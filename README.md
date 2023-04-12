@@ -1,3 +1,8 @@
+1. выбираем ivi
+2. prettier - установлен
+3. classnames - установлен. TODO: написать компонент для теста
+4. storybook - TODO: написать компоненты для теста
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
