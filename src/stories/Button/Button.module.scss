@@ -1,0 +1,45 @@
+.button {
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    font-family: 'Inter';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paySubscription {
+    width: 151px;
+    height: 32px;
+    background-image: linear-gradient(270deg, #ea003d 0, #c447ff 100%);
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 700;
+}
+
+.watchSubscription {
+    width: 201px;
+    height: 40px;
+    background-color: #ea003d;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.thirtyDays,
+.certificate {
+    width: 596px;
+    height: 48px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+    gap: 8px;
+}
+
+.thirtyDays {
+    background-color: #2d1c40;
+}
+
+.certificate {
+    background-color: #1e1b2e;
+}
