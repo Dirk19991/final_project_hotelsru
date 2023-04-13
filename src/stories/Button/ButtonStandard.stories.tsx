@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from './ButtonStandard'
-import '../../styles/globals.css'
+import '../../styles/globals.scss'
 
 // autodocs - для удобства копирования кода из storybook. Тут импортируется сам компонент и дается название
 const meta: Meta<typeof Button> = {
