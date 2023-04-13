@@ -1,14 +1,14 @@
 import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import React from 'react'
-import classes from './Footer.module.scss'
+import styles from './Footer.module.scss'
 
 const Footer = () => {
     return (
         <div className="container">
-            <footer className={classes.footer}>
-                <div className={classes.wrapper}>
-                    <div className={classes.buttonGroup}>
+            <footer className={styles.footer}>
+                <div className={styles.wrapper}>
+                    <div className={styles.buttonGroup}>
                         <ButtonFooter
                             height={20}
                             href="/"
@@ -43,12 +43,13 @@ const Footer = () => {
                             width={20}
                         />
                     </div>
-                    <div className={classes.buttonGroup}>
+                    <div className={styles.buttonGroup}>
                         <ButtonRound
                             height={20}
                             href="/"
                             src="/icons/social_vkontakte.svg"
                             width={20}
+                            type="round"
                         />
 
                         <ButtonRound
@@ -56,6 +57,7 @@ const Footer = () => {
                             href="/"
                             src="/icons/social_odnoklassniki.svg"
                             width={20}
+                            type="round"
                         />
 
                         <ButtonRound
@@ -63,12 +65,14 @@ const Footer = () => {
                             href="/"
                             src="/icons/social_twitter.svg"
                             width={20}
+                            type="round"
                         />
                         <ButtonRound
                             height={20}
                             href="/"
                             src="/icons/social_viber.svg"
                             width={20}
+                            type="round"
                         />
 
                         <ButtonRound
@@ -76,6 +80,7 @@ const Footer = () => {
                             href="/"
                             src="/icons/social_linkedin.svg"
                             width={20}
+                            type="round"
                         />
 
                         <ButtonRound
@@ -83,10 +88,11 @@ const Footer = () => {
                             href="/"
                             src="/icons/social_telegram.svg"
                             width={20}
+                            type="round"
                         />
                     </div>
                 </div>
-                <div className={classes.info}>
+                <div className={styles.info}>
                     <p>© 2023 ООО «Иви.ру»</p>
                     <p>
                         HBO ® and related service marks are the property of Home
