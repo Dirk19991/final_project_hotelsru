@@ -1,12 +1,8 @@
 import Head from 'next/head'
-<<<<<<< HEAD
 import styles from '@/styles/Home.module.scss'
-import { Button } from '@/stories/Button/ButtonStandard'
-import { ButtonFooter } from '@/stories/Button/ButtonFooter'
-=======
-import Header from '@/components/Header/Header'
+
 import Footer from '@/components/Footer/Footer'
->>>>>>> 41e6dc7e16738e6dba7314a40e61318cf60da7a4
+import Header from '@/components/Header/Header'
 
 export default function Home() {
     return (
