@@ -1,17 +1,9 @@
-@import './variables';
+@import './reset';
+@import './vars';
 @import './mixins';
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Inter';
-}
-
-html,
 body {
-    max-width: 100vw;
-    overflow-x: hidden;
+    background-color: $main-bg-color;
 }
 
 a {
@@ -23,8 +15,4 @@ a {
 .container {
     max-width: 1240px;
     margin: 0 auto;
-}
-
-body {
-    background-color: $main-bg-color;
 }

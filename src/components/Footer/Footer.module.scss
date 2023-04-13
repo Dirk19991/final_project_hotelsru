@@ -1,3 +1,5 @@
+@import '@/styles/vars.scss';
+
 .footer {
     display: flex;
     flex-direction: column;
@@ -16,7 +18,7 @@
 }
 
 .info {
-    color: rgba(255, 255, 255, 0.48);
+    color: $link-color;
     font-size: 15px;
     line-height: 20px;
     font-weight: 500;
