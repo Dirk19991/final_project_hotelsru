@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from './Header.module.scss'
-import { Button } from '@/stories/Button/Button'
+import { Button } from '@/stories/Button/ButtonStandard'
 import Link from 'next/link'
 
 const Header = () => {
@@ -29,9 +29,11 @@ const Header = () => {
                         </ul>
                     </nav>
                     <div>
-                        <Button onClick={() => {}} type="watchSubscription">
-                            Смотреть по подписке
-                        </Button>
+                        <Button
+                            href="/"
+                            label="Смотреть по подписке"
+                            type="watchSubscription"
+                        ></Button>
                         <div>Поиск</div>
                     </div>
                 </div>

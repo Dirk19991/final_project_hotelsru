@@ -2,10 +2,15 @@
     border-radius: 8px;
     color: #ffffff;
     border: none;
-    font-family: 'Inter';
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        filter: brightness(1.1);
+    }
 }
 
 .paySubscription {
@@ -42,4 +47,21 @@
 
 .certificate {
     background-color: #1e1b2e;
+}
+
+.chat {
+    background-color: #1e1b2e;
+    width: 196px;
+    height: 40px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.footer {
+    padding: 9px 15px;
+    background-color: #1f1b2e;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
 }
