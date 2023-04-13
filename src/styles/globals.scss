@@ -1,11 +1,18 @@
-@import './variables';
+@import './reset';
+@import './vars';
 @import './mixins';
+
+body {
+    background-color: $main-bg-color;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    all: unset;
+}
 
 .container {
     max-width: 1240px;
     margin: 0 auto;
-}
-
-body {
-    background-color: $main-bg-color;
 }
