@@ -3,7 +3,6 @@ import classes from './ButtonStandard.module.scss'
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import { __String } from 'typescript'
 
 // пока сделал 5 кнопок, соответственно 4 типа, в children все что угодно. Типы будут добавляться дальше, или можем сделать какую-то другую градацию. Этот компонент именно для прямоугольных кнопок, для круглых думаю надо бы сделать отдельный
 export interface ButtonProps {

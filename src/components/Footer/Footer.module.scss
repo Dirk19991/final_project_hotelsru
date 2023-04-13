@@ -1,0 +1,22 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+}
+
+.info {
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+}
