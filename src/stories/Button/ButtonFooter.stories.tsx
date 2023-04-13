@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ButtonFooter } from './ButtonFooter'
-import '../../styles/globals.css'
+import '../../styles/globals.scss'
 
 const meta: Meta<typeof ButtonFooter> = {
     title: 'Кнопки/Футер',
