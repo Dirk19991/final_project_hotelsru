@@ -3,7 +3,7 @@ import { ButtonRound } from './ButtonRound'
 import '../../styles/globals.scss'
 
 const meta: Meta<typeof ButtonRound> = {
-    title: 'Кнопки/Круглые',
+    title: 'Кнопки/Круглые и Квадратные',
     component: ButtonRound,
     tags: ['autodocs'],
 }
@@ -17,6 +17,7 @@ export const VK: Story = {
         width: 20,
         height: 20,
         href: '/',
+        type: 'round',
     },
 }
 
@@ -26,6 +27,7 @@ export const OK: Story = {
         width: 20,
         height: 20,
         href: '/',
+        type: 'round',
     },
 }
 
@@ -35,6 +37,7 @@ export const Twitter: Story = {
         width: 20,
         height: 20,
         href: '/',
+        type: 'round',
     },
 }
 
@@ -44,6 +47,7 @@ export const Viber: Story = {
         width: 20,
         height: 20,
         href: '/',
+        type: 'round',
     },
 }
 
@@ -53,6 +57,7 @@ export const LinkedIn: Story = {
         width: 20,
         height: 20,
         href: '/',
+        type: 'round',
     },
 }
 
@@ -62,5 +67,36 @@ export const Telegram: Story = {
         width: 20,
         height: 20,
         href: '/',
+        type: 'round',
+    },
+}
+
+export const Mail: Story = {
+    args: {
+        src: '/icons/mail.svg',
+        width: 20,
+        height: 20,
+        href: '/',
+        type: 'square',
+    },
+}
+
+export const Phone: Story = {
+    args: {
+        src: '/icons/phone.svg',
+        width: 20,
+        height: 20,
+        href: '/',
+        type: 'square',
+    },
+}
+
+export const BigViolet: Story = {
+    args: {
+        src: '/icons/speaker.svg',
+        width: 56,
+        height: 56,
+        href: '/',
+        type: 'bigViolet',
     },
 }

@@ -3,6 +3,7 @@ import styles from '@/styles/Home.module.scss'
 
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
+import BottomMenu from '@/components/BottomMenu/BottomMenu'
 
 export default function Home() {
     return (
@@ -32,6 +33,7 @@ export default function Home() {
                 Homepage
                 {/* <section>большой баннер с фильмами</section>  */}
                 {/* <section>Ряды с плейлистами фильмов</section> */}
+                <BottomMenu />
             </main>
             <Footer />
         </>
