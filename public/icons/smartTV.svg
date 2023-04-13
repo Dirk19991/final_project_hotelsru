@@ -1,0 +1,12 @@
+<svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<polyline class="st0" points="29,6 29,4 3,4 3,23 14,23 " id="id_101"></polyline>
+<polyline class="st0" points="15,29 10,29 12,26 " id="id_102"></polyline>
+<path fill="white"
+ class="st0" d="M27,29h-7c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7c1.1,0,2,0.9,2,2v15C29,28.1,28.1,29,27,29z" id="id_103"></path>
+<line class="st0" x1="18" y1="23" x2="29" y2="23" id="id_104"></line>
+<line class="st0" x1="22" y1="26" x2="25" y2="26" id="id_105"></line>
+</svg>

@@ -1,0 +1,34 @@
+.button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #1f1b2e;
+    color: #ffffff;
+    padding: 0 15px;
+    border-radius: 8px;
+    width: fit-content;
+    height: 40px;
+    cursor: pointer;
+}
+
+.image {
+    filter: brightness(0) invert(1);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.sublabel {
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.72);
+}

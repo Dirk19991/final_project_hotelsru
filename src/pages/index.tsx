@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
+import { Button } from '@/stories/Button/ButtonStandard'
+import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 
 export default function Home() {
     return (
