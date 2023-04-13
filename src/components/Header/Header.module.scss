@@ -1,11 +1,47 @@
+@import '@/styles/mixins.scss';
+@import '@/styles/vars.scss';
+
 .header {
     color: white;
 }
 
 .wrapper {
+}
+
+.logo {
+    margin-right: 30px;
+}
+
+.content {
+    @include flex-list;
+    height: 72px;
+}
+
+.navigation {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-// content: "\E33C"; - лупа ??
+.menu {
+    display: flex;
+    gap: 15px;
+    li {
+        font-weight: 15px;
+        font-weight: 600;
+        color: $link-color;
+        cursor: pointer;
+        transition: all 0.4s;
+        &:hover {
+            color: $accent-color;
+        }
+    }
+}
+.panel {
+    display: flex;
+    align-items: center;
+    button {
+        font-size: 13px;
+    }
+}
+.search {
+}
