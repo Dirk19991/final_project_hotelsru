@@ -1,12 +1,17 @@
+@import '/src/styles/vars.scss';
+
 .slide {
     border-radius: 32px;
     display: flex;
     position: relative;
     padding: 32px;
-    display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 500px;
+    width: 1240px;
+    max-width: 100%;
+    height: 523px;
+    max-height: 43vw;
+
     overflow: hidden;
     &__wrapper {
         position: absolute;
@@ -15,8 +20,9 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
+        max-width: 60%;
         span {
-            color: #fff;
+            color: $accent-color;
             max-width: 60%;
             font-size: 15px;
             line-height: 22px;
@@ -24,4 +30,23 @@
             font-style: normal;
         }
     }
+}
+
+.mainImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    position: relative;
+}
+
+.titleText {
+    color: $accent-color;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.titleImage {
+    max-width: 60%;
+    height: auto;
+    object-fit: cover;
 }
