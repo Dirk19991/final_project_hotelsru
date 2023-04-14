@@ -1,9 +1,11 @@
 @import './reset';
 @import './vars';
 @import './mixins';
+@import '~font-awesome/scss/font-awesome';
 
 body {
     background-color: $main-bg-color;
+    font-size: 15px;
 }
 
 a {
@@ -13,6 +15,7 @@ a {
 }
 
 .container {
+    width: 100%;
     max-width: 1240px;
     margin: 0 auto;
 }

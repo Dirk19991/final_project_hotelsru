@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 
+// можно\нужно ли делать списки меню - отдельными компоненты?)
+
 const BottomMenu = () => {
     return (
         <div className="container">

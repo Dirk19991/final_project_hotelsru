@@ -1,0 +1,53 @@
+.imageContainer {
+    width: 225px;
+    height: 450px;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.imageContainer:after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(0deg, #100e19, rgba(16, 14, 25, 0));
+}
+
+.titleImage {
+    position: absolute;
+    bottom: 70px;
+    right: 25px;
+    width: 176px;
+    height: 60px;
+    z-index: 2;
+
+    > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.numberImage {
+    position: absolute;
+    bottom: 0px;
+    right: 88px;
+    width: 48px;
+    height: 66px;
+    z-index: 2;
+
+    > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}

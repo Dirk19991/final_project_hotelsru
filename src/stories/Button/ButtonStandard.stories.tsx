@@ -23,6 +23,14 @@ export const PaySubscription: Story = {
     },
 }
 
+export const HeaderThrityDays: Story = {
+    args: {
+        type: 'headerThirtyDays',
+        label: 'Смотреть 30 дней бесплатно',
+        href: '/',
+    },
+}
+
 export const WatchSubscription: Story = {
     args: {
         label: 'Смотреть по подписке',

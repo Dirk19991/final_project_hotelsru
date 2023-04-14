@@ -9,7 +9,7 @@ git branch;
 
 Синхронизировать локальные файлы с удаленным репозиторием (смотрим по ветке дев):
 git checkout dev; 
-git pull;
+git pull https://github.com/Dirk19991/final_project_hotelsru.git dev;
 
 При работе над новым функционалом отделяемся от ветки dev и переходим на новую:
 1. 

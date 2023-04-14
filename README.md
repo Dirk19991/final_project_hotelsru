@@ -3,41 +3,18 @@
 3. classnames - установлен. TODO: написать компонент для теста
 4. storybook - TODO: написать компоненты для теста
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+---
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Текущая стадия: Главная страница
+1. Шапка (на всех страницах)
+1.1. Лого ведет на главную
+1.2. Вложенные ссылки в "фильмы" и сериалы ведут на сделанную страницу фильмов, где включены нужные кусочки фильтра сразу
+1.3. Все остальные ссылки ведут куда-то на сам сайт ivi (но все верстаем)
+1.4. У профиля далее есть кнопка "Войти или зарегистрироваться". Она функциональная, но ее работа немного будет отличаться. Подробнее в разделе про авторизацию.
+2. крупный список "показать подборку" фильмов листающийся делаем. Достаточно 4 "карточки таких сделать" - картинки для них можно с самого иви взять. Ссылки в нашем случае будут вести на отфильтрованный список фильмов (п.2.) Достаточно
+3. Кнопки 30 дней подписки и пр. делаем с эффектами, но без функционала
+4. Рекомендую посмотреть НЕ делаем
+5. ТОП 10 за неделю делаем. Данные просто верстаем, но ведем на конкретные страницы фильма из п.3.
+6. "Онлайн-кинотеатр Иви: фильмы в хорошем качестве" — делаем
+7. Добрые мультсериалы, зарубежные фильмы, драмы... - делаем 2 любых раздела на свой выбор. Фильмы должны здесь браться из базы данных. Фильмы ведут на страницу фильма, а заголовки ведуут на страницу списка фильмов, где произведена нужная фильтрация 
+8. Подвал. Все верстаем с нужными эффектами. Но ничего функционального там нет. Подвал отображается на всех страницах.

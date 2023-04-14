@@ -1,11 +1,127 @@
+@import '@/styles/mixins.scss';
+@import '@/styles/vars.scss';
+
 .header {
     color: white;
 }
 
 .wrapper {
+}
+
+.logo {
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.content {
+    @include flex-list;
+    height: 72px;
+}
+
+.navigation {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-// content: "\E33C"; - лупа ??
+.menu {
+    display: flex;
+    gap: 15px;
+    li {
+        font-weight: 15px;
+        font-weight: 600;
+        color: $link-color;
+        cursor: pointer;
+        transition: all 0.4s;
+        &:hover {
+            color: $accent-color;
+        }
+    }
+}
+.panel {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.search {
+    button {
+        border: none;
+        background-color: transparent;
+        color: $link-color;
+        line-height: 20px;
+        cursor: pointer;
+        transition: all 0.4s;
+        div {
+            font-size: 15px;
+            font-weight: normal;
+            font-weight: 600;
+            &::before {
+                margin-right: 8px;
+                content: '\f002';
+                font-family: 'FontAwesome';
+                font-weight: 400;
+                font-size: 18px;
+                display: inline-block;
+            }
+        }
+        &:hover {
+            color: $accent-color;
+        }
+    }
+}
+.notify {
+    a {
+        cursor: pointer;
+        color: $link-color;
+        transition: all 0.4s;
+        &::before {
+            margin-right: 8px;
+            content: '\f0a2';
+            font-family: 'FontAwesome';
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-block;
+        }
+        &:hover {
+            color: $accent-color;
+        }
+    }
+}
+
+.avatar {
+    a {
+        display: block;
+
+        > div {
+            border-radius: 8px;
+            border: 2px solid $link-color;
+            background-color: transparent;
+            cursor: pointer;
+            height: 48px;
+            width: 48px;
+            display: flex;
+            transition: all 0.4s;
+            div {
+                margin: auto;
+                &::before {
+                    font-family: 'FontAwesome';
+                    color: $link-color;
+                    content: '\f2c0';
+                    font-weight: 400;
+                    font-size: 20px;
+                    transition: all 0.4s;
+                }
+            }
+            &:hover {
+                border: 2px solid $accent-color;
+                -webkit-box-shadow: 0px 0px 25px 1px rgba(255, 255, 255, 0.2);
+                -moz-box-shadow: 0px 0px 25px 1px rgba(255, 255, 255, 0.2);
+                box-shadow: 0px 0px 25px 1px rgba(255, 255, 255, 0.2);
+                div {
+                    &::before {
+                        color: $accent-color;
+                    }
+                }
+            }
+        }
+    }
+}
