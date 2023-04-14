@@ -1,0 +1,27 @@
+.slide {
+    border-radius: 32px;
+    display: flex;
+    position: relative;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    overflow: hidden;
+    &__wrapper {
+        position: absolute;
+        left: 32px;
+        bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        span {
+            color: #fff;
+            max-width: 60%;
+            font-size: 15px;
+            line-height: 22px;
+            font-weight: 400;
+            font-style: normal;
+        }
+    }
+}
