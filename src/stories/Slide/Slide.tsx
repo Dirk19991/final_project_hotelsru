@@ -15,6 +15,7 @@ const Slide = ({ mainImage, mainText, titleImage, titleText }: SlideProps) => {
     return (
         <div className={styles.slide}>
             <Image
+                priority
                 className={styles.mainImage}
                 src={mainImage}
                 alt="slide"
@@ -23,6 +24,7 @@ const Slide = ({ mainImage, mainText, titleImage, titleText }: SlideProps) => {
             <div className={styles.slide__wrapper}>
                 {titleImage ? (
                     <Image
+                        priority
                         className={styles.titleImage}
                         src={titleImage}
                         alt=""

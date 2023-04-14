@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import styles from './Carusel.module.scss'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -24,6 +24,12 @@ const Carusel = () => {
             <div className="container">
                 <div className={styles.carusel__wrapper}>
                     <Swiper
+                        style={
+                            {
+                                '--swiper-navigation-color': '#ffffff80',
+                                '--swiper-pagination-color': '#ffffff80',
+                            } as CSSProperties
+                        }
                         modules={[Navigation]}
                         spaceBetween={50}
                         slidesPerView={1}
