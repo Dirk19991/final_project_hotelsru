@@ -8,6 +8,18 @@
 .topTen {
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: 1250px) {
+        max-width: 1000px;
+    }
+
+    @media screen and (max-width: 1000px) {
+        width: 750px;
+    }
+
+    @media screen and (max-width: 750px) {
+        width: 470px;
+    }
 }
 
 .header {

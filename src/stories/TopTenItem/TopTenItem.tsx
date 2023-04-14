@@ -8,6 +8,7 @@ export interface TopTenItemProps {
     mainImage: string
     titleImage: string
     numberImage: string
+    numberImage2?: string
     href: string
 }
 
@@ -15,6 +16,7 @@ export const TopTenItem = ({
     mainImage,
     titleImage,
     numberImage,
+    numberImage2,
     href,
 }: TopTenItemProps) => {
     return (
@@ -23,14 +25,22 @@ export const TopTenItem = ({
                 <Image
                     className={styles.mainImage}
                     fill
-                    alt={mainImage}
+                    alt="mainImage"
                     src={mainImage}
                 ></Image>
                 <div className={styles.titleImage}>
-                    <Image fill alt={titleImage} src={titleImage}></Image>
+                    <Image fill alt="title" src={titleImage}></Image>
                 </div>
                 <div className={styles.numberImage}>
-                    <Image fill alt={numberImage} src={numberImage}></Image>
+                    <Image fill alt="number" src={numberImage}></Image>
+                    {numberImage2 && (
+                        <Image
+                            className={styles.numberImage2}
+                            fill
+                            alt="number"
+                            src={numberImage2}
+                        ></Image>
+                    )}
                 </div>
             </div>
         </Link>
