@@ -3,10 +3,18 @@ import Image from 'next/image'
 import styles from './Header.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-const { wrapper, content, header, navigation, menu, panel, logo, search } =
-    styles
+const {
+    wrapper,
+    content,
+    header,
+    navigation,
+    menu,
+    panel,
+    logo,
+    search,
+    notify,
+    avatar,
+} = styles
 
 const Header = () => {
     return (
@@ -76,23 +84,25 @@ const Header = () => {
                         </nav>
                         <div className={panel}>
                             <Button
-                                href="/"
                                 label="Смотреть 30 дней бесплатно"
-                                type="watchSubscription"
-                            ></Button>
+                                onClick={() => {}}
+                                type="headerThirtyDays"
+                            />
                             <div className={search}>
                                 <button>
-                                    <div>
-                                        <FontAwesomeIcon
-                                            icon={faMagnifyingGlass}
-                                            size="xl"
-                                        />
-                                        Поиск
-                                    </div>
+                                    <div>Поиск</div>
                                 </button>
                             </div>
-                            <div className="notify">колокольчик</div>
-                            <div className="avatar">аватар</div>
+                            <div className={notify}>
+                                <Link href="https://www.ivi.ru/profile/pull_notifications"></Link>
+                            </div>
+                            <div className={avatar}>
+                                <Link href="https://www.ivi.ru/profile/">
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="dropdownBody"></div>

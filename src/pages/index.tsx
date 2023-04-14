@@ -29,9 +29,6 @@ export default function Home() {
             </Head>
             <Header />
             <main>
-                Homepage
-                {/* <section>большой баннер с фильмами</section>  */}
-                {/* <section>Ряды с плейлистами фильмов</section> */}
                 <TopTen />
                 <BottomMenu />
             </main>
