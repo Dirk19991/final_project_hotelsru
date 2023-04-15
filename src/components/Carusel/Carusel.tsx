@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 import styles from './Carusel.module.scss'
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import { Navigation, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/scss'
 import 'swiper/css/bundle'
@@ -9,6 +9,8 @@ import Slide from '@/stories/Slide/Slide'
 interface Props {
     slides: Array<any> // прописать типы
 }
+
+
 
 const Carusel = () => {
     // const listArray = slides.map((slide, index) => {
@@ -19,6 +21,7 @@ const Carusel = () => {
     //     )
     // })
 
+
     return (
         <section className={styles.carusel}>
             <div className="container">
@@ -28,11 +31,14 @@ const Carusel = () => {
                             {
                                 '--swiper-navigation-color': '#ffffff80',
                                 '--swiper-pagination-color': '#ffffff80',
+                                'overflow': 'visible',  
                             } as CSSProperties
                         }
-                        modules={[Navigation]}
-                        spaceBetween={50}
+                        modules={[Navigation, Autoplay]}
+                        spaceBetween={30}
                         slidesPerView={1}
+                        loopedSlides={3}
+                        initialSlide={1}
                         loop={true}
                         autoplay={{ delay: 3000 }}
                         navigation
