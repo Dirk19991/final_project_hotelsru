@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/scss'
 import 'swiper/css/bundle'
 import Slide from '@/stories/Slide/Slide'
+import cn from 'classnames'
 
 interface Props {
     slides: Array<any> // прописать типы
@@ -25,7 +26,7 @@ const Carusel = () => {
     return (
         <section className={styles.carusel}>
             <div className="container">
-                <div className={styles.carusel__wrapper}>
+                <div className={cn(styles.carusel__wrapper, 'main__slider')}>
                     <Swiper
                         style={
                             {
