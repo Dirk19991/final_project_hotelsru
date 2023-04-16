@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
 import BottomMenu from '@/components/BottomMenu/BottomMenu'
-import Carusel from '@/components/Carusel/Carusel'
+import MainCarusel from '@/components/MainCarusel/MainCarusel'
 import TopTen from '@/components/TopTen/TopTen'
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
             </Head>
             <Header />
             <main>
-                <Carusel />
+                <MainCarusel />
                 Homepage
                 {/* <section>большой баннер с фильмами</section>  */}
                 {/* <section>Ряды с плейлистами фильмов</section> */}

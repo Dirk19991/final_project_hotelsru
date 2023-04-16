@@ -1,16 +1,19 @@
 import React, { CSSProperties } from 'react'
-import styles from './Carusel.module.scss'
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import styles from './MainCarusel.module.scss'
+import { Navigation, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/scss'
 import 'swiper/css/bundle'
 import Slide from '@/stories/Slide/Slide'
+import cn from 'classnames'
 
 interface Props {
     slides: Array<any> // прописать типы
 }
 
-const Carusel = () => {
+
+
+const MainCarusel = () => {
     // const listArray = slides.map((slide, index) => {
     //     return (
     //         <SwiperSlide key={index}>
@@ -19,20 +22,24 @@ const Carusel = () => {
     //     )
     // })
 
+
     return (
         <section className={styles.carusel}>
             <div className="container">
-                <div className={styles.carusel__wrapper}>
+                <div className={cn(styles.carusel__wrapper, 'main__slider')}>
                     <Swiper
                         style={
                             {
                                 '--swiper-navigation-color': '#ffffff80',
                                 '--swiper-pagination-color': '#ffffff80',
+                                'overflow': 'visible',  
                             } as CSSProperties
                         }
-                        modules={[Navigation]}
-                        spaceBetween={50}
+                        modules={[Navigation, Autoplay]}
+                        spaceBetween={30}
                         slidesPerView={1}
+                        loopedSlides={3}
+                        initialSlide={1}
                         loop={true}
                         autoplay={{ delay: 3000 }}
                         navigation
@@ -79,4 +86,4 @@ const Carusel = () => {
     )
 }
 
-export default Carusel
+export default MainCarusel
