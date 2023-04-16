@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import styles from './Carusel.module.scss'
+import styles from './MainCarusel.module.scss'
 import { Navigation, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/scss'
@@ -13,7 +13,7 @@ interface Props {
 
 
 
-const Carusel = () => {
+const MainCarusel = () => {
     // const listArray = slides.map((slide, index) => {
     //     return (
     //         <SwiperSlide key={index}>
@@ -86,4 +86,4 @@ const Carusel = () => {
     )
 }
 
-export default Carusel
+export default MainCarusel
