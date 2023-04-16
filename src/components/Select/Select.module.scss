@@ -1,0 +1,109 @@
+@import '@/styles/vars.scss';
+
+.select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    background-color: #312b45;
+    padding: 8px 16px;
+    border-radius: 4px;
+    min-height: 60px;
+    cursor: pointer;
+    &__title {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 100%;
+        h5 {
+            font-size: 15px;
+            line-height: 20px;
+            color: $accent-color;
+        }
+        span {
+            font-size: 13px;
+            line-height: 16px;
+            color: $accent-color;
+        }
+        &::after {
+            position: absolute;
+            content: '';
+            width: 9px;
+            height: 2px;
+            top: 50%;
+            right: 6px;
+            background-color: $accent-color;
+            transform: rotate(30deg);
+            transition: transform 0.2s ease-in-out;
+        }
+        &::before {
+            position: absolute;
+            content: '';
+            width: 9px;
+            height: 2px;
+            top: 50%;
+            right: 0px;
+            background-color: $accent-color;
+            transform: rotate(-30deg);
+            transition: transform 0.2s ease-in-out;
+        }  
+        &.active {
+            &::after {
+                transform: rotate(-30deg);
+            }
+            &::before {
+                transform: rotate(30deg);
+            }
+        }
+    }
+    &__content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 8px 16px;
+        border-radius: 4px;
+        color:  $accent-color;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 300%;
+        min-width: 300%;
+        background-color: #312b45;
+        transform: translateY(calc(100% + 3px) );
+        z-index: 100;
+        gap: 10px;
+        div {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            p {
+                padding: 5px;
+                cursor: pointer;
+            }
+            span {
+                &::after {
+                    position: absolute;
+                    content: '';
+                    width: 8px;
+                    height: 2px;
+                    top: calc(50% + 3px) ;
+                    right: 10px;
+                    background: $accent-color;
+                    transform: rotate(40deg);
+                }
+                &::before {
+                    position: absolute;
+                    content: '';
+                    width: 15px;
+                    height: 2px;
+                    top: 50%;
+                    right: 0px;
+                    background: $accent-color;
+                    transform: rotate(-60deg);
+                }  
+            }
+        }
+    }
+}
