@@ -1,0 +1,28 @@
+@import '@/styles/vars.scss';
+
+.moviesHead {
+    margin-bottom: 30px;
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: $accent-color;
+        width: 75%;
+        h1 {
+            font-size: 40px;
+            line-height: 44px;
+            font-weight: 700;
+        }
+        p {
+            font-size: 15px;
+            line-height: 22px;
+            opacity: 0.5;
+        }
+        span {
+            font-size: 15px;
+            line-height: 22px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+    }
+}

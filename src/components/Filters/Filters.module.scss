@@ -1,0 +1,18 @@
+@import '@/styles/vars.scss';
+
+.filters {
+    &__wrapper {
+        padding: 20px;
+        background-color: $secondary-bg-color;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    &__selects {
+        display: flex;
+        gap: 10px;
+    }
+    span {
+        color: white;
+    }
+}
