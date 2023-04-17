@@ -13,7 +13,6 @@ export default function Home() {
             {/* <section>большой баннер с фильмами</section>  */}
             {/* <section>Ряды с плейлистами фильмов</section> */}
             <TopTen />
-            <BottomMenu />
         </>
     )
 }
