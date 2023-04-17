@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './Filters.module.scss'
-import cn from 'classnames'
-import Select from '../Select/Select'
+import FilterSelect from '../../stories/FilterSelect/FilterSelect'
 
 // для примера
-const arr = [
+// тут для сторибука нужно будет экспортировать соответвующие массивы стран, рейтингов, когда они появятся
+export const genresArr = [
     'Артхаус',
     'Биография',
     'Боевики',
@@ -39,9 +39,9 @@ const Filters = () => {
             <div className="container">
                 <div className={styles.filters__wrapper}>
                     <div className={styles.filters__selects}>
-                        <Select title="Жанры" values={arr} />
-                        <Select title="Страны" values={arr} />
-                        <Select title="Рейтинг" values={arr} />
+                        <FilterSelect title="Жанры" values={genresArr} />
+                        <FilterSelect title="Страны" values={genresArr} />
+                        <FilterSelect title="Рейтинг" values={genresArr} />
                     </div>
                     <span>X Сбросить фильтры</span> {/* временно для визуала*/}
                 </div>
