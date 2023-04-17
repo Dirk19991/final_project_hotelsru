@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import styles from './Select.module.scss'
+import styles from './FilterSelect.module.scss'
 import cn from 'classnames'
 
-interface ISelect {
+interface SelectProps {
     title: string
     values: string[]
 }
 
-const Select = (props: ISelect): JSX.Element => {
+const FilterSelect = (props: SelectProps): JSX.Element => {
     const [isOpen, toggleIsOpen] = useState(false)
-    const [choosenValue, setChoosenValue] = useState('')
+    const [chosenValue, setChosenValue] = useState('')
 
     const handleClick = () => {
         toggleIsOpen((prev) => !prev)
@@ -19,20 +19,20 @@ const Select = (props: ISelect): JSX.Element => {
         <div className={styles.select} onClick={handleClick}>
             <div className={cn(styles.select__title, isOpen && styles.active)}>
                 <h5>{props.title}</h5>
-                {choosenValue !== '' && <span>{choosenValue}</span>}
+                {chosenValue !== '' && <span>{chosenValue}</span>}
             </div>
-            {isOpen && 
+            {isOpen && (
                 <div className={styles.select__content}>
                     {props.values.map((el, index) => (
-                        <div key={index} onClick={() => setChoosenValue(el)}>
+                        <div key={index} onClick={() => setChosenValue(el)}>
                             <p>{el}</p>
-                            {choosenValue === el && <span></span>}
+                            {chosenValue === el && <span></span>}
                         </div>
                     ))}
                 </div>
-            }
+            )}
         </div>
     )
 }
 
-export default Select
+export default FilterSelect
