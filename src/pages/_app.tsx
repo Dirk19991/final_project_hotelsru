@@ -1,3 +1,4 @@
+import Layout from '@/components/Layout/Layout'
 import '@/styles/globals.scss'
 import '@/styles/vars.scss'
 import type { AppProps } from 'next/app'
@@ -11,13 +12,13 @@ const roboto = Roboto({
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <>
+        <Layout>
             <style jsx global>{`
                 html {
                     font-family: ${roboto.style.fontFamily};
                 }
             `}</style>
             <Component {...pageProps} />
-        </>
+        </Layout>
     )
 }
