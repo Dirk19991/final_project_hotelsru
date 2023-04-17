@@ -1,0 +1,32 @@
+@import '@/styles/vars.scss';
+
+.imageContainer {
+    width: 153px;
+    height: 235px;
+    margin: 10px 0px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.image {
+    transition: all 0.3s;
+    &:hover {
+        filter: brightness(0.4);
+    }
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    color: $accent-color;
+    transition: all 0.3s;
+    filter: brightness(1);
+}
