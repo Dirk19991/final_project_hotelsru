@@ -30,7 +30,6 @@ interface IMoviesData {
 
 const BestComedies = () => {
     const [moviesData, setMoviesData] = useState<IMoviesData[] | null>(null)
-    const [overflowHidden, setOverflowHidden] = useState(false)
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
@@ -98,10 +97,6 @@ const BestComedies = () => {
                         {moviesData &&
                             moviesData.map((movie) => (
                                 <SwiperSlide
-                                    onMouseEnter={() =>
-                                        setOverflowHidden(false)
-                                    }
-                                    onMouseLeave={() => setOverflowHidden(true)}
                                     style={{
                                         margin: '0px 0px',
                                     }}

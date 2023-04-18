@@ -1,11 +1,15 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './TopTen.module.scss'
 import { TopTenItem } from '@/stories/TopTenItem/TopTenItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
+import cn from 'classnames'
 
 const TopTen = () => {
+    const [init, setInit] = useState(false)
+    const prevRef = useRef(null)
+    const nextRef = useRef(null)
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
@@ -22,10 +26,10 @@ const TopTen = () => {
                     </div>
                     <span>за неделю</span>
                 </div>
-                <div className={styles.topTen}>
+                <div className={cn(styles.bestComedies, 'small__slider')}>
                     <Swiper
+                        onInit={() => setInit(true)}
                         breakpoints={{
-                            // when window width is >= 768px
                             1250: {
                                 slidesPerView: 5,
                                 slidesPerGroup: 5,
@@ -51,7 +55,10 @@ const TopTen = () => {
                         }
                         modules={[Navigation]}
                         spaceBetween={25}
-                        navigation
+                        navigation={{
+                            prevEl: prevRef.current,
+                            nextEl: nextRef.current,
+                        }}
                     >
                         {numbers.map((number) => (
                             <SwiperSlide key={number}>
@@ -69,6 +76,20 @@ const TopTen = () => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    <div className={styles.prevButton} ref={prevRef}>
+                        <Image
+                            fill
+                            src="./icons/arrowLeft.svg"
+                            alt="arrowLeft"
+                        />
+                    </div>
+                    <div className={styles.nextButton} ref={nextRef}>
+                        <Image
+                            fill
+                            src="./icons/arrowRight.svg"
+                            alt="arrowRight"
+                        />
+                    </div>
                 </div>
             </div>
         </section>
