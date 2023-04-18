@@ -5,7 +5,7 @@
     padding-bottom: 48px;
 }
 
-.bestComedies {
+.topTen {
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -30,7 +30,6 @@
     color: $accent-color;
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 10px;
 
     > span {
         margin-bottom: 8px;
