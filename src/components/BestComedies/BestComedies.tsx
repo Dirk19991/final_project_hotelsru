@@ -1,10 +1,11 @@
-import React, { CSSProperties, useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import styles from './BestComedies.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 import { SlideSmall } from '@/stories/SlideSmall/SlideSmall'
 import cn from 'classnames'
 import data from '../../data/mockData'
+import Image from 'next/image'
 
 interface IMoviesData {
     id: number
@@ -29,6 +30,10 @@ interface IMoviesData {
 
 const BestComedies = () => {
     const [moviesData, setMoviesData] = useState<IMoviesData[] | null>(null)
+    const [overflowHidden, setOverflowHidden] = useState(false)
+    const [init, setInit] = useState(false)
+    const prevRef = useRef(null)
+    const nextRef = useRef(null)
 
     useEffect(() => {
         fetch('http://localhost:3001/movies?year=2020')
@@ -36,14 +41,12 @@ const BestComedies = () => {
                 if (response.ok) {
                     return response.json()
                 }
-                console.log()
+
                 throw new Error('Error')
             })
             .then((res) => setMoviesData(res.slice(0, 20)))
             .catch((error) => setMoviesData(data))
     }, [])
-
-    console.log(moviesData)
 
     return (
         <section className="container">
@@ -52,6 +55,7 @@ const BestComedies = () => {
 
                 <div className={cn(styles.bestComedies, 'small__slider')}>
                     <Swiper
+                        onInit={() => setInit(true)}
                         speed={500}
                         breakpoints={{
                             1250: {
@@ -75,20 +79,29 @@ const BestComedies = () => {
                             {
                                 '--swiper-navigation-color': '#ffffff80',
                                 '--swiper-pagination-color': '#ffffff80',
+
                                 width: '1240px',
                                 padding: '40px 5px',
                                 transform: 'translateY(-40px)',
-                                overflow: 'visible',
+                                overflow: 'hidden',
+                                position: 'relative',
                             } as CSSProperties
                         }
                         modules={[Navigation]}
                         spaceBetween={25}
-                        navigation
+                        navigation={{
+                            prevEl: prevRef.current,
+                            nextEl: nextRef.current,
+                        }}
                         watchSlidesProgress
                     >
                         {moviesData &&
                             moviesData.map((movie) => (
                                 <SwiperSlide
+                                    onMouseEnter={() =>
+                                        setOverflowHidden(false)
+                                    }
+                                    onMouseLeave={() => setOverflowHidden(true)}
                                     style={{
                                         margin: '0px 0px',
                                     }}
@@ -105,6 +118,20 @@ const BestComedies = () => {
                                 </SwiperSlide>
                             ))}
                     </Swiper>
+                    <div className={styles.prevButton} ref={prevRef}>
+                        <Image
+                            fill
+                            src="./icons/arrowLeft.svg"
+                            alt="arrowLeft"
+                        />
+                    </div>
+                    <div className={styles.nextButton} ref={nextRef}>
+                        <Image
+                            fill
+                            src="./icons/arrowRight.svg"
+                            alt="arrowRight"
+                        />
+                    </div>
                 </div>
             </div>
         </section>
