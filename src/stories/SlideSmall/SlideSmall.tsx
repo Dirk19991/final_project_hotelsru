@@ -9,7 +9,6 @@ import {
     faStar,
     faBan,
 } from '@fortawesome/free-solid-svg-icons'
-import { genresArr } from '@/components/Filters/Filters'
 
 export interface ISlideSmall {
     image: string
