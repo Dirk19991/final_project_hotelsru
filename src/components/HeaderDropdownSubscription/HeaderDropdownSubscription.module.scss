@@ -1,0 +1,82 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    height: 439px;
+}
+
+.content {
+    width: 50%;
+    padding: 0 12px 0 0;
+    h1 {
+        font-size: 28px;
+        font-weight: bold;
+        color: $accent-color;
+        margin-bottom: 12px;
+    }
+    p {
+        font-size: 15px;
+        color: $link-color;
+        margin-bottom: 36px;
+    }
+}
+
+.list {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    margin-bottom: 32px;
+    svg {
+        stroke: $link-color;
+    }
+    li {
+        height: 128px;
+        font-weight: bold;
+        background-color: $tile-color;
+        padding: 14px 17px 17px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 8px;
+        transition: all 0.4s;
+        &:nth-child(2) {
+            grid-column: span 2;
+        }
+    }
+}
+
+.text {
+    line-height: 20px;
+}
+.subscriptionBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+        width: 65.3%;
+        background-color: $subscription-button-color;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        padding: 9px 15px;
+        display: block;
+        color: $accent-color;
+        border-radius: 8px;
+        border: none;
+        font-weight: bold;
+        height: 40px;
+        cursor: pointer;
+        transition: 0.4s;
+        &:hover {
+            background-color: lighten($subscription-button-color, 5%);
+        }
+    }
+    span {
+        display: block;
+        width: 32.33%;
+        padding: 0 12px 0 12px;
+        font-size: 13px;
+        line-height: 17px;
+        color: $link-color;
+    }
+}
