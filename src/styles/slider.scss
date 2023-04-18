@@ -20,6 +20,15 @@
     }
 }
 
+.medium__slider {
+    .swiper-button-disabled {
+        opacity: 0.5;
+    }
+    .swiper-wrapper {
+        margin-top: 10px;
+    }
+}
+
 .small__slider {
     .swiper-button-disabled {
         opacity: 0.5;

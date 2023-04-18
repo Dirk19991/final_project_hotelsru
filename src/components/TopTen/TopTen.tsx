@@ -26,7 +26,7 @@ const TopTen = () => {
                     </div>
                     <span>за неделю</span>
                 </div>
-                <div className={cn(styles.bestComedies, 'small__slider')}>
+                <div className={cn(styles.topTen, 'medium__slider')}>
                     <Swiper
                         onInit={() => setInit(true)}
                         breakpoints={{
@@ -51,6 +51,7 @@ const TopTen = () => {
                             {
                                 '--swiper-navigation-color': '#ffffff80',
                                 '--swiper-pagination-color': '#ffffff80',
+                                marginTop: '20px',
                             } as CSSProperties
                         }
                         modules={[Navigation]}
