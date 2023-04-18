@@ -17,5 +17,17 @@ export const ExampleSlide: Story = {
         href: '/',
         year: 2020,
         rating: '6.777',
+        country: [
+            {
+                id: 1,
+                name: 'Франция',
+            },
+        ],
+        genre: [
+            {
+                id: 1,
+                name: 'Комедия',
+            },
+        ],
     },
 }

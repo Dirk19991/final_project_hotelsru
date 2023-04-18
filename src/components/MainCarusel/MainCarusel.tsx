@@ -11,8 +11,6 @@ interface Props {
     slides: Array<any> // прописать типы
 }
 
-
-
 const MainCarusel = () => {
     // const listArray = slides.map((slide, index) => {
     //     return (
@@ -21,7 +19,6 @@ const MainCarusel = () => {
     //         </SwiperSlide>
     //     )
     // })
-
 
     return (
         <section className={styles.carusel}>
@@ -32,7 +29,7 @@ const MainCarusel = () => {
                             {
                                 '--swiper-navigation-color': '#ffffff80',
                                 '--swiper-pagination-color': '#ffffff80',
-                                'overflow': 'visible',  
+                                overflow: 'visible',
                             } as CSSProperties
                         }
                         modules={[Navigation, Autoplay]}

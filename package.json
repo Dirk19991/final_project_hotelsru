@@ -12,6 +12,10 @@
         "test": "jest --watch"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@fortawesome/free-regular-svg-icons": "^6.4.0",
+        "@fortawesome/free-solid-svg-icons": "^6.4.0",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "@types/node": "18.15.11",
         "@types/swiper": "^6.0.0",
         "classnames": "^2.3.2",

@@ -1,21 +1,46 @@
 .main__slider {
     .swiper-button-next {
-        position: absolute!important;
-        top: calc(50% - 15px)!important;
-        right: -35px!important;
-    
-        z-index: 100!important;
+        position: absolute !important;
+        top: calc(50% - 15px) !important;
+        right: -35px !important;
+
+        z-index: 100 !important;
     }
     .swiper-button-prev {
-        position: absolute!important;
-        top: calc(50% - 15px)!important;
-        left: -35px!important;
-        z-index: 100!important;
+        position: absolute !important;
+        top: calc(50% - 15px) !important;
+        left: -35px !important;
+        z-index: 100 !important;
     }
     .swiper-slide-next {
         opacity: 0.5;
     }
     .swiper-slide-prev {
         opacity: 0.5;
+    }
+}
+
+.small__slider {
+    .swiper-button-next {
+        position: absolute !important;
+        top: calc(50% - 15px) !important;
+        right: -35px !important;
+
+        z-index: 100 !important;
+    }
+    .swiper-button-prev {
+        position: absolute !important;
+        top: calc(50% - 15px) !important;
+        left: -35px !important;
+        z-index: 100 !important;
+    }
+    .swiper-slide {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .swiper-slide-visible {
+        opacity: 1;
+        transition: opacity 0.3s;
     }
 }
