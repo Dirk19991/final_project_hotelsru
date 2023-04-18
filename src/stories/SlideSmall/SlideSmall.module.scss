@@ -1,0 +1,84 @@
+@import '@/styles/vars.scss';
+
+.imageContainer {
+    width: 153px;
+    height: 235px;
+    margin: 10px 0px;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.image {
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+
+.info {
+    position: absolute;
+    width: 153px;
+    height: 235px;
+    margin: 10px 0px;
+    top: 0;
+    left: 0;
+    color: $accent-color;
+    transition: all 0.3s;
+    filter: brightness(1);
+}
+
+.icons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    top: 10px;
+    right: 10px;
+}
+
+.icon {
+    position: relative;
+}
+
+.message {
+    position: absolute;
+    top: -35px;
+    left: -20px;
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 5px 10px;
+    background-color: $secondary-bg-color;
+    color: $accent-color;
+    white-space: nowrap;
+}
+
+.triangle {
+    position: absolute;
+    top: 20px;
+    left: 17px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+
+    border-top: 10px solid $secondary-bg-color;
+}
+
+.rating {
+    position: absolute;
+    top: 98px;
+    left: 10px;
+    font-size: 24px;
+}
+
+.bottomInfo {
+    position: absolute;
+    top: 170px;
+    left: 10px;
+    padding-right: 10px;
+}
