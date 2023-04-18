@@ -1,0 +1,562 @@
+{
+    "navigation_links": [
+        { "id": 1, "name": "Мой Иви", "href": "", "expandable": false },
+        { "id": 2, "name": "Что нового", "href": "new", "expandable": false },
+        { "id": 3, "name": "Фильмы", "href": "movies", "expandable": true },
+        { "id": 4, "name": "Сериалы", "href": "series", "expandable": true },
+        {
+            "id": 5,
+            "name": "Мультфильмы",
+            "href": "animation",
+            "expandable": true
+        },
+        { "id": 6, "name": "TV+", "href": "tvplus", "expandable": false }
+    ],
+    "movies_categories": {
+        "genre": [
+            {
+                "id": 1,
+                "name": "Артхаус",
+                "link": "movies/arthouse"
+            },
+            {
+                "id": 2,
+                "name": "Боевики",
+                "link": "movies/boeviki"
+            },
+            {
+                "id": 3,
+                "name": "Вестерн",
+                "link": "movies/western"
+            },
+            {
+                "id": 4,
+                "name": "Военные",
+                "link": "movies/voennye"
+            },
+            {
+                "id": 5,
+                "name": "Детективы",
+                "link": "movies/detective"
+            },
+            {
+                "id": 6,
+                "name": "Для всей семьи",
+                "link": "movies/dlya_vsej_semi"
+            },
+            {
+                "id": 7,
+                "name": "Для детей",
+                "link": "movies/detskiy"
+            },
+            {
+                "id": 8,
+                "name": "Документальные",
+                "link": "movies/documentary"
+            },
+            {
+                "id": 9,
+                "name": "Драмы",
+                "link": "movies/drama"
+            },
+            {
+                "id": 10,
+                "name": "Исторические",
+                "link": "movies/istoricheskie"
+            },
+            {
+                "id": 11,
+                "name": "Катастрофы",
+                "link": "movies/disaster"
+            },
+            {
+                "id": 12,
+                "name": "Комедии",
+                "link": "movies/comedy"
+            },
+            {
+                "id": 13,
+                "name": "Криминальные",
+                "link": "movies/crime"
+            },
+            {
+                "id": 14,
+                "name": "Мелодрамы",
+                "link": "movies/melodramy"
+            },
+            {
+                "id": 15,
+                "name": "Мистические",
+                "link": "movies/misticheskie"
+            },
+            {
+                "id": 16,
+                "name": "По комиксам",
+                "link": "movies/comics"
+            },
+            {
+                "id": 17,
+                "name": "Приключения",
+                "link": "movies/adventures"
+            },
+            {
+                "id": 18,
+                "name": "Спорт",
+                "link": "movies/sport"
+            },
+            {
+                "id": 19,
+                "name": "Трииллеры",
+                "link": "movies/thriller"
+            },
+            {
+                "id": 20,
+                "name": "Ужасы",
+                "link": "movies/horror"
+            },
+            {
+                "id": 21,
+                "name": "Фантастика",
+                "link": "movies/fantastika"
+            },
+            {
+                "id": 22,
+                "name": "Фэнтези",
+                "link": "movies/fentezi"
+            }
+        ],
+        "country": [
+            {
+                "id": 1,
+                "name": "Русские",
+                "link": "movies/ru"
+            },
+            {
+                "id": 2,
+                "name": "Зарубежные",
+                "link": "movies/foreign"
+            },
+            {
+                "id": 3,
+                "name": "Советское кино",
+                "link": "movies/su"
+            }
+        ],
+        "year": [
+            {
+                "id": 1,
+                "name": "Фильмы 2023 года",
+                "link": "movies/2023"
+            },
+            {
+                "id": 2,
+                "name": "Фильмы 2022 года",
+                "link": "movies/2022"
+            },
+            {
+                "id": 3,
+                "name": "Фильмы 2021 года",
+                "link": "movies/2021"
+            },
+            {
+                "id": 4,
+                "name": "Фильмы 2020 года",
+                "link": "movies/2020"
+            }
+        ],
+        "selection": [
+            {
+                "id": 1,
+                "name": "Новинки",
+                "link": "https://www.ivi.ru/new/movie-new"
+            },
+            {
+                "id": 2,
+                "name": "Подборки",
+                "link": "https://www.ivi.ru/collections"
+            },
+            {
+                "id": 3,
+                "name": "Иви.Рейтинг",
+                "link": "https://www.ivi.ru/movies/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready"
+            },
+            {
+                "id": 4,
+                "name": "Трейлеры",
+                "link": "https://www.ivi.ru/trailers"
+            },
+            {
+                "id": 5,
+                "name": "Что посмотреть",
+                "link": "https://www.ivi.ru/goodmovies"
+            },
+            {
+                "id": 6,
+                "name": "Фильмы в HD",
+                "link": "https://www.ivi.ru/collections/movies-hd"
+            },
+            {
+                "id": 7,
+                "name": "Выбор Иви",
+                "link": "https://www.ivi.ru/collections/vyibor-ivi"
+            },
+            {
+                "id": 8,
+                "name": "Новинки подписки",
+                "link": "https://www.ivi.ru/collections/very-new-svod?sort=priority_in_collection"
+            }
+        ]
+    },
+    "series_categories": {
+        "genre": [
+            {
+                "id": 1,
+                "name": "Биография",
+                "link": "series/biography"
+            },
+            {
+                "id": 2,
+                "name": "Боевики",
+                "link": "series/boeviki"
+            },
+            {
+                "id": 3,
+                "name": "Военные",
+                "link": "series/voennye"
+            },
+            {
+                "id": 4,
+                "name": "Детективы",
+                "link": "series/detective"
+            },
+            {
+                "id": 5,
+                "name": "Для всей семьи",
+                "link": "series/dlya_vsej_semi"
+            },
+            {
+                "id": 6,
+                "name": "Дорамы",
+                "link": "series/doramy"
+            },
+            {
+                "id": 7,
+                "name": "Драмы",
+                "link": "series/drama"
+            },
+            {
+                "id": 8,
+                "name": "Исторические",
+                "link": "series/istoricheskie"
+            },
+            {
+                "id": 9,
+                "name": "Комедийные",
+                "link": "series/comedy"
+            },
+            {
+                "id": 10,
+                "name": "Криминальные",
+                "link": "series/crime"
+            },
+            {
+                "id": 11,
+                "name": "Медицинские",
+                "link": "series/medicine"
+            },
+            {
+                "id": 12,
+                "name": "Мелодрамы",
+                "link": "series/melodramy"
+            },
+            {
+                "id": 13,
+                "name": "Мистические",
+                "link": "series/misticheskie"
+            },
+            {
+                "id": 14,
+                "name": "Приключения",
+                "link": "series/adventures"
+            },
+            {
+                "id": 15,
+                "name": "Романтические",
+                "link": "series/series/romanticheskie"
+            },
+            {
+                "id": 16,
+                "name": "Телешоу",
+                "link": "series/tvshow"
+            },
+            {
+                "id": 17,
+                "name": "Триллеры",
+                "link": "series/thriller"
+            },
+            {
+                "id": 18,
+                "name": "Турецкие",
+                "link": "series/turetskie"
+            },
+            {
+                "id": 19,
+                "name": "Документальные",
+                "link": "series/documentary"
+            },
+            {
+                "id": 20,
+                "name": "Ужасы",
+                "link": "series/horror"
+            },
+            {
+                "id": 21,
+                "name": "Фантастические",
+                "link": "series/fantastika"
+            },
+            {
+                "id": 22,
+                "name": "Фэнтези",
+                "link": "series/fentezi"
+            }
+        ],
+        "country": [
+            {
+                "id": 1,
+                "name": "Русские",
+                "link": "series/ru"
+            },
+            {
+                "id": 2,
+                "name": "Зарубежные",
+                "link": "series/foreign"
+            },
+            {
+                "id": 3,
+                "name": "Американские",
+                "link": "series/su"
+            },
+            {
+                "id": 4,
+                "name": "Украинские",
+                "link": "series/su"
+            },
+            {
+                "id": 5,
+                "name": "Корейские",
+                "link": "series/su"
+            },
+            {
+                "id": 6,
+                "name": "Турецкие",
+                "link": "series/su"
+            }
+        ],
+        "year": [
+            {
+                "id": 1,
+                "name": "Сериалы 2023 года",
+                "link": "series/2023"
+            },
+            {
+                "id": 2,
+                "name": "Сериалы 2022 года",
+                "link": "series/2022"
+            },
+            {
+                "id": 3,
+                "name": "Сериалы 2021 года",
+                "link": "series/2021"
+            },
+            {
+                "id": 4,
+                "name": "Сериалы 2020 года",
+                "link": "series/2020"
+            }
+        ],
+        "selection": [
+            {
+                "id": 1,
+                "name": "Новинки",
+                "link": "new/movie-new"
+            },
+            {
+                "id": 2,
+                "name": "Иви.Рейтинг",
+                "link": "movies/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready"
+            },
+            {
+                "id": 3,
+                "name": "Сериалы в HD",
+                "link": "collections/movies-hd"
+            },
+            {
+                "id": 4,
+                "name": "Бесплатные сериалы",
+                "link": "collections/vyibor-ivi"
+            }
+        ]
+    },
+    "animation_categories": {
+        "genre": [
+            {
+                "id": 1,
+                "name": "Аниме",
+                "link": "animation/biography"
+            },
+            {
+                "id": 2,
+                "name": "Боевик",
+                "link": "animation/boeviki"
+            },
+            {
+                "id": 3,
+                "name": "Детектив",
+                "link": "animation/detectives"
+            },
+            {
+                "id": 4,
+                "name": "Для взрослых",
+                "link": "animation/vzroslye"
+            },
+            {
+                "id": 5,
+                "name": "Для всей семьи",
+                "link": "animation/dlya_vsej_semi"
+            },
+            {
+                "id": 6,
+                "name": "Для детей",
+                "link": "animation/detskiy"
+            },
+            {
+                "id": 7,
+                "name": "Драма",
+                "link": "animation/drama"
+            },
+            {
+                "id": 8,
+                "name": "История",
+                "link": "animation/istoricheskie"
+            },
+            {
+                "id": 9,
+                "name": "Комедия",
+                "link": "animation/comedy"
+            },
+            {
+                "id": 10,
+                "name": "Криминальные",
+                "link": "animation/crime"
+            },
+            {
+                "id": 11,
+                "name": "Мюзикл",
+                "link": "animation/musical"
+            },
+            {
+                "id": 12,
+                "name": "Полнометражные",
+                "link": "animation/polnometrazhnye"
+            },
+
+            {
+                "id": 13,
+                "name": "Приключения",
+                "link": "animation/adventure"
+            },
+            {
+                "id": 14,
+                "name": "Развивающие",
+                "link": "animation/razvivayuschie"
+            },
+            {
+                "id": 15,
+                "name": "Сериалы",
+                "link": "animation/serialy"
+            },
+
+            {
+                "id": 16,
+                "name": "Спорт",
+                "link": "animation/sport"
+            },
+            {
+                "id": 17,
+                "name": "Триллер",
+                "link": "animation/thriller"
+            },
+            {
+                "id": 18,
+                "name": "Ужасы",
+                "link": "animation/horror"
+            },
+            {
+                "id": 19,
+                "name": "Фантастика",
+                "link": "animation/fantastika"
+            },
+            {
+                "id": 20,
+                "name": "Фэнтези",
+                "link": "animation/fentezi"
+            }
+        ],
+        "country": [
+            {
+                "id": 1,
+                "name": "Советские",
+                "link": "animation/su"
+            },
+            {
+                "id": 2,
+                "name": "Русские",
+                "link": "animation/ru"
+            },
+            {
+                "id": 3,
+                "name": "Американские",
+                "link": "animation/us"
+            },
+            {
+                "id": 4,
+                "name": "Зарубежные",
+                "link": "animation/foreign"
+            }
+        ],
+        "year": [
+            {
+                "id": 1,
+                "name": "Мультики 2023 года",
+                "link": "animation/2023"
+            },
+            {
+                "id": 2,
+                "name": "Мультики 2022 года",
+                "link": "animation/2022"
+            },
+            {
+                "id": 3,
+                "name": "Мультики 2021 года",
+                "link": "animation/2021"
+            },
+            {
+                "id": 4,
+                "name": "Мультики 2020 года",
+                "link": "animation/2020"
+            }
+        ],
+        "selection": [
+            {
+                "id": 1,
+                "name": "Новинки",
+                "link": "https://www.ivi.ru/new/animation-new"
+            },
+            {
+                "id": 2,
+                "name": "Мультики в HD",
+                "link": "https://www.ivi.ru/collections/cartoons-hd"
+            }
+        ]
+    }
+}

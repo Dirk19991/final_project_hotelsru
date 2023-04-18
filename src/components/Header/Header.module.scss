@@ -5,17 +5,75 @@
     color: white;
 }
 
+.top {
+    width: 1240px;
+    margin: 0 auto;
+    margin-top: 3px;
+    border-radius: 12px 12px 0 0;
+    transition: 0.3s;
+    &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 1240px;
+        height: 7px;
+        z-index: 98;
+        transition: 0.3s;
+        background-color: transparent;
+    }
+}
+
+.topExpanded {
+    background-color: $active-menu-color;
+    &::after {
+        background-color: $active-menu-color;
+    }
+}
+
+.topCollapsed {
+    background-color: transparent;
+}
+
 .wrapper {
+    margin: 0 auto;
+    max-width: 1216px;
+    width: 1216px;
+}
+
+.inner {
+    margin: 0 -12px;
+}
+
+.dropdown {
+    width: 1240px;
+    margin: 0 -12px 0;
+    padding: 32px 24px 32px;
+    top: 76px;
+    position: absolute;
+    z-index: 99;
+    border-radius: 0 0 12px 12px;
+    border-top: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.dropdownExpanded {
+    border-top: 1px solid $divider-color;
+    background-color: $active-menu-color;
+}
+
+.body {
+    padding: 0 12px;
 }
 
 .logo {
-    margin-right: 30px;
+    padding-top: 2px;
+    margin-right: 33px;
     cursor: pointer;
 }
 
 .content {
     @include flex-list;
-    height: 72px;
+    height: 67px;
 }
 
 .navigation {
@@ -26,12 +84,17 @@
 .menu {
     display: flex;
     gap: 15px;
+    align-items: center;
     li {
         font-weight: 15px;
         font-weight: 600;
+        line-height: 69px;
         color: $link-color;
         cursor: pointer;
         transition: all 0.4s;
+        a {
+            letter-spacing: 0.5px;
+        }
         &:hover {
             color: $accent-color;
         }
@@ -54,6 +117,9 @@
             font-size: 15px;
             font-weight: normal;
             font-weight: 600;
+            div {
+                letter-spacing: 0.5px;
+            }
             &::before {
                 margin-right: 8px;
                 content: '\f002';
@@ -68,19 +134,16 @@
         }
     }
 }
-.notify {
-    a {
-        cursor: pointer;
+.language {
+    button {
+        border: 1px solid $tile-color;
+        height: 30px;
+        width: 30px;
+        border-radius: 8px;
+        background-color: transparent;
         color: $link-color;
-        transition: all 0.4s;
-        &::before {
-            margin-right: 8px;
-            content: '\f0a2';
-            font-family: 'FontAwesome';
-            font-weight: 600;
-            font-size: 15px;
-            display: inline-block;
-        }
+        cursor: pointer;
+        transition: 0.4s;
         &:hover {
             color: $accent-color;
         }

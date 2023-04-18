@@ -1,111 +1,162 @@
-import React from 'react'
 import Image from 'next/image'
 import styles from './Header.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Link from 'next/link'
-const {
-    wrapper,
-    content,
-    header,
-    navigation,
-    menu,
-    panel,
-    logo,
-    search,
-    notify,
-    avatar,
-} = styles
+import { useState } from 'react'
+import headerData from './links.json'
+import HeaderDropdownFilters from '../HeaderDropdownFilters/HeaderDropdownFilters'
+import HeaderDropdownProfile from '../HeaderDropdownProfile/HeaderDropdownProfile'
+import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDropdownSubscription'
 
 const Header = () => {
+    const [isHovering, setIsHovering] = useState<boolean>(false)
+    const [currentTabId, setCurrentTabId] = useState<number | null>(null)
+
+    const openExtraMenu = () => {
+        setIsHovering(true)
+    }
+
+    const closeExtraMenu = () => {
+        setIsHovering(false)
+    }
+
+    const handleMouseOver = (id: number, expandable: boolean) => {
+        setCurrentTabId(id)
+        return expandable ? openExtraMenu() : closeExtraMenu()
+    }
+
     return (
-        <header className={header}>
-            <div className="container">
-                <div className={wrapper}>
-                    <div className={content}>
-                        <nav className={navigation}>
-                            <Link href="/" className={logo}>
-                                <Image
-                                    src="https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg"
-                                    alt="ivi"
-                                    width={66}
-                                    height={48}
-                                />
-                            </Link>
-                            <ul role="list" className={menu}>
-                                <li>
-                                    <Link
-                                        href="https://www.ivi.ru/"
-                                        title="Мой Иви"
-                                    >
-                                        Мой Иви
+        <header className={styles.header} onMouseLeave={closeExtraMenu}>
+            <div
+                className={`${styles.top} ${
+                    isHovering ? styles.topExpanded : styles.topCollapsed
+                }`}
+            >
+                <div className={styles.wrapper}>
+                    <div className={styles.inner}>
+                        <div className={styles.body}>
+                            <div className={styles.content}>
+                                <nav className={styles.navigation}>
+                                    <Link href="/" className={styles.logo}>
+                                        <Image
+                                            src="https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg"
+                                            alt="ivi"
+                                            width={66}
+                                            height={48}
+                                        />
                                     </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="https://www.ivi.ru/new"
-                                        title="Мой Иви"
+                                    <ul
+                                        data-testid="navigation-bar"
+                                        className={styles.menu}
                                     >
-                                        Что нового
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="https://www.ivi.ru/movies"
-                                        title="Мой Иви"
+                                        {headerData.navigation_links.map(
+                                            ({
+                                                id,
+                                                name,
+                                                href,
+                                                expandable,
+                                            }) => (
+                                                <li key={id}>
+                                                    <Link
+                                                        href={`/${href}`}
+                                                        title={name}
+                                                        onMouseOver={() =>
+                                                            handleMouseOver(
+                                                                id,
+                                                                expandable
+                                                            )
+                                                        }
+                                                    >
+                                                        {name}
+                                                    </Link>
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </nav>
+                                <div className={styles.panel}>
+                                    <div
+                                        onMouseOver={() =>
+                                            handleMouseOver(10, true)
+                                        }
                                     >
-                                        Фильмы
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="https://www.ivi.ru/series"
-                                        title="Мой Иви"
-                                    >
-                                        Сериалы
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="https://www.ivi.ru/animation"
-                                        title="Мой Иви"
-                                    >
-                                        Мультфильмы
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="https://www.ivi.ru/tvplus"
-                                        title="Мой Иви"
-                                    >
-                                        TV+
-                                    </Link>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div className={panel}>
-                            <Button
-                                label="Смотреть 30 дней бесплатно"
-                                onClick={() => {}}
-                                type="headerThirtyDays"
-                            />
-                            <div className={search}>
-                                <button>
-                                    <div>Поиск</div>
-                                </button>
-                            </div>
-                            <div className={notify}>
-                                <Link href="https://www.ivi.ru/profile/pull_notifications"></Link>
-                            </div>
-                            <div className={avatar}>
-                                <Link href="https://www.ivi.ru/profile/">
-                                    <div>
-                                        <div></div>
+                                        <Button
+                                            label="Смотреть 30 дней бесплатно"
+                                            onClick={() => {}}
+                                            type="headerThirtyDays"
+                                        />
                                     </div>
-                                </Link>
+
+                                    <div
+                                        className={styles.search}
+                                        onMouseOver={closeExtraMenu}
+                                    >
+                                        <button>
+                                            <div>Поиск</div>
+                                        </button>
+                                    </div>
+                                    <div
+                                        className={styles.language}
+                                        onMouseOver={closeExtraMenu}
+                                    >
+                                        {/* TODO: Storybook */}
+                                        <button>RU</button>
+                                    </div>
+                                    <div
+                                        className={styles.avatar}
+                                        onMouseOver={() =>
+                                            handleMouseOver(11, true)
+                                        }
+                                    >
+                                        <Link href="https://www.ivi.ru/profile/">
+                                            <div>
+                                                <div></div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                className={`${styles.dropdown} ${
+                                    isHovering ? styles.dropdownExpanded : ''
+                                }`}
+                                onMouseLeave={openExtraMenu}
+                            >
+                                {isHovering && (
+                                    <div className={styles.dropdownContent}>
+                                        {currentTabId === 3 && (
+                                            <HeaderDropdownFilters
+                                                subMenuData={
+                                                    headerData.movies_categories
+                                                }
+                                            />
+                                        )}
+                                        {currentTabId === 4 && (
+                                            <HeaderDropdownFilters
+                                                subMenuData={
+                                                    headerData.series_categories
+                                                }
+                                            />
+                                        )}
+                                        {currentTabId === 5 && (
+                                            <HeaderDropdownFilters
+                                                subMenuData={
+                                                    headerData.animation_categories
+                                                }
+                                            />
+                                        )}
+
+                                        {currentTabId === 10 && (
+                                            <HeaderDropdownSubscription />
+                                        )}
+                                        {currentTabId === 11 && (
+                                            <HeaderDropdownProfile />
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
-                    <div className="dropdownBody"></div>
                 </div>
             </div>
         </header>

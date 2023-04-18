@@ -1,0 +1,111 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    height: 323px;
+}
+
+.categories {
+    display: flex;
+}
+.genres {
+    margin-right: 80px;
+    h4 {
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: $accent-color;
+        font-weight: bold;
+    }
+    ul {
+        width: 326px;
+        height: 304px;
+        column-count: 2;
+        column-fill: auto;
+        column-gap: 80px;
+        li {
+            color: $link-color;
+            margin-bottom: 13px;
+            transition: color 0.3s;
+            a {
+                cursor: pointer;
+            }
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}
+
+.singleColumn {
+    width: 202.66px;
+}
+
+.sidebar {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+.tabs {
+    border-left: 1px solid $divider-color;
+    ul {
+        user-select: none;
+        li {
+            padding: 3px 0 3px 15px;
+            margin-left: -1px;
+            color: $link-color;
+            transition: all 0.3s;
+            margin-bottom: 7px;
+            a {
+                cursor: pointer;
+            }
+            &:hover {
+                border-left: 1px solid $accent-color;
+                color: $accent-color;
+            }
+        }
+    }
+}
+
+.widget {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 244px;
+    > div {
+        background-color: black;
+        border-radius: 8px;
+        height: 264px;
+        margin-bottom: 24px;
+        color: white;
+    }
+    button {
+        cursor: pointer;
+        height: 44px;
+        padding: 0px;
+        border-radius: 8px;
+    }
+}
+
+.years,
+.countries {
+    margin-bottom: 30px;
+    h4 {
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: $accent-color;
+        font-weight: bold;
+    }
+    ul {
+        li {
+            color: $link-color;
+            margin-bottom: 13px;
+            transition: color 0.3s;
+            a {
+                cursor: pointer;
+            }
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}
