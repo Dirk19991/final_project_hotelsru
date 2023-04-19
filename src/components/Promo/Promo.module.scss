@@ -1,0 +1,58 @@
+@import '@/styles/vars.scss';
+
+.promo {
+    max-width: 900px;
+    margin-top: 40px;
+    line-height: 22px;
+}
+
+.header {
+    color: $accent-color;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.text {
+    color: $promo-color;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.list {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-left: 10px;
+
+    > li {
+        > span {
+            margin-left: -5px;
+        }
+    }
+}
+
+.button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #ffffffde;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: all 0.3s;
+
+    &:hover {
+        color: $accent-color;
+    }
+}
+
+.ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
