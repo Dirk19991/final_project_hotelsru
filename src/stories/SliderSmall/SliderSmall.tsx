@@ -114,6 +114,7 @@ const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
                                         image={movie.previewPoster}
                                         country={movie.country}
                                         genre={movie.genre}
+                                        name={movie.name}
                                     />
                                 </SwiperSlide>
                             ))}
