@@ -1,5 +1,15 @@
 @import '@/styles/vars.scss';
 
+.wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .header {
     color: $accent-color;
+}
+
+.flex {
+    display: flex;
+    gap: 20px;
 }
