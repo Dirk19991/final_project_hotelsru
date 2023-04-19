@@ -1,5 +1,10 @@
 @import '@/styles/vars.scss';
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
 .imageContainer {
     width: 153px;
     height: 235px;
@@ -89,4 +94,13 @@
     top: 170px;
     left: 10px;
     padding-right: 10px;
+}
+
+.name {
+    color: $accent-color;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

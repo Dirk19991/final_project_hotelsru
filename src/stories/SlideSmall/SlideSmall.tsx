@@ -23,6 +23,7 @@ export interface ISlideSmall {
         id: number
         name: string
     }[]
+    name: string
 }
 
 export const SlideSmall = ({
@@ -32,6 +33,7 @@ export const SlideSmall = ({
     rating,
     country,
     genre,
+    name,
 }: ISlideSmall) => {
     const [imageHovered, setImageHovered] = useState(false)
     const [bookmarkHovered, setBookmarkHovered] = useState(false)
@@ -40,115 +42,126 @@ export const SlideSmall = ({
     const [dislikeHovered, setDislikeHovered] = useState(false)
 
     return (
-        <Link href={href}>
-            <div
-                onMouseLeave={() => setImageHovered(false)}
-                onMouseEnter={() => setImageHovered(true)}
-                className={styles.imageContainer}
-                style={{ zIndex: imageHovered ? 100 : 1 }}
-            >
-                <Image
-                    className={styles.image}
-                    fill
-                    alt="mainImage"
-                    src={image}
-                    style={{
-                        filter: imageHovered
-                            ? 'brightness(0.4)'
-                            : 'brightness(1)',
-                    }}
-                ></Image>
-
+        <div className={styles.wrapper}>
+            <Link href={href}>
                 <div
-                    style={{
-                        opacity: imageHovered ? '1' : '0',
-                    }}
-                    className={styles.info}
+                    onMouseLeave={() => setImageHovered(false)}
+                    onMouseEnter={() => setImageHovered(true)}
+                    className={styles.imageContainer}
+                    style={{ zIndex: imageHovered ? 100 : 1 }}
                 >
-                    <div className={styles.icons}>
-                        <div className={styles.icon}>
-                            <FontAwesomeIcon
-                                onMouseLeave={() => setBookmarkHovered(false)}
-                                onMouseEnter={() => setBookmarkHovered(true)}
-                                size="lg"
-                                icon={faBookmark}
-                            />
-                            <div
-                                style={{
-                                    opacity: bookmarkHovered ? '1' : '0',
-                                }}
-                                className={styles.message}
-                            >
-                                Смотреть позже
-                                <div className={styles.triangle}></div>
+                    <Image
+                        className={styles.image}
+                        fill
+                        alt="mainImage"
+                        src={image}
+                        style={{
+                            filter: imageHovered
+                                ? 'brightness(0.4)'
+                                : 'brightness(1)',
+                        }}
+                    ></Image>
+
+                    <div
+                        style={{
+                            opacity: imageHovered ? '1' : '0',
+                        }}
+                        className={styles.info}
+                    >
+                        <div className={styles.icons}>
+                            <div className={styles.icon}>
+                                <FontAwesomeIcon
+                                    onMouseLeave={() =>
+                                        setBookmarkHovered(false)
+                                    }
+                                    onMouseEnter={() =>
+                                        setBookmarkHovered(true)
+                                    }
+                                    size="lg"
+                                    icon={faBookmark}
+                                />
+                                <div
+                                    style={{
+                                        opacity: bookmarkHovered ? '1' : '0',
+                                    }}
+                                    className={styles.message}
+                                >
+                                    Смотреть позже
+                                    <div className={styles.triangle}></div>
+                                </div>
+                            </div>
+                            <div className={styles.icon}>
+                                <FontAwesomeIcon
+                                    onMouseLeave={() =>
+                                        setSimilarHovered(false)
+                                    }
+                                    onMouseEnter={() => setSimilarHovered(true)}
+                                    size="lg"
+                                    icon={faWandMagicSparkles}
+                                />
+                                <div
+                                    style={{
+                                        visibility: similarHovered
+                                            ? 'visible'
+                                            : 'hidden',
+                                    }}
+                                    className={styles.message}
+                                >
+                                    Похожее
+                                    <div className={styles.triangle}></div>
+                                </div>
+                            </div>
+                            <div className={styles.icon}>
+                                <FontAwesomeIcon
+                                    onMouseLeave={() => setStarHovered(false)}
+                                    onMouseEnter={() => setStarHovered(true)}
+                                    size="lg"
+                                    icon={faStar}
+                                />
+                                <div
+                                    style={{
+                                        visibility: starHovered
+                                            ? 'visible'
+                                            : 'hidden',
+                                    }}
+                                    className={styles.message}
+                                >
+                                    Уже смотрел, оценить
+                                    <div className={styles.triangle}></div>
+                                </div>
+                            </div>
+                            <div className={styles.icon}>
+                                <FontAwesomeIcon
+                                    onMouseLeave={() =>
+                                        setDislikeHovered(false)
+                                    }
+                                    onMouseEnter={() => setDislikeHovered(true)}
+                                    size="lg"
+                                    icon={faBan}
+                                />
+                                <div
+                                    style={{
+                                        visibility: dislikeHovered
+                                            ? 'visible'
+                                            : 'hidden',
+                                    }}
+                                    className={styles.message}
+                                >
+                                    Не нравится такое
+                                    <div className={styles.triangle}></div>
+                                </div>
                             </div>
                         </div>
-                        <div className={styles.icon}>
-                            <FontAwesomeIcon
-                                onMouseLeave={() => setSimilarHovered(false)}
-                                onMouseEnter={() => setSimilarHovered(true)}
-                                size="lg"
-                                icon={faWandMagicSparkles}
-                            />
-                            <div
-                                style={{
-                                    visibility: similarHovered
-                                        ? 'visible'
-                                        : 'hidden',
-                                }}
-                                className={styles.message}
-                            >
-                                Похожее
-                                <div className={styles.triangle}></div>
-                            </div>
+                        <div className={styles.rating}>
+                            {parseFloat(rating).toFixed(2)}
                         </div>
-                        <div className={styles.icon}>
-                            <FontAwesomeIcon
-                                onMouseLeave={() => setStarHovered(false)}
-                                onMouseEnter={() => setStarHovered(true)}
-                                size="lg"
-                                icon={faStar}
-                            />
-                            <div
-                                style={{
-                                    visibility: starHovered
-                                        ? 'visible'
-                                        : 'hidden',
-                                }}
-                                className={styles.message}
-                            >
-                                Уже смотрел, оценить
-                                <div className={styles.triangle}></div>
-                            </div>
+                        <div className={styles.bottomInfo}>
+                            {year}, {country[0].name}, {genre[0].name}
                         </div>
-                        <div className={styles.icon}>
-                            <FontAwesomeIcon
-                                onMouseLeave={() => setDislikeHovered(false)}
-                                onMouseEnter={() => setDislikeHovered(true)}
-                                size="lg"
-                                icon={faBan}
-                            />
-                            <div
-                                style={{
-                                    visibility: dislikeHovered
-                                        ? 'visible'
-                                        : 'hidden',
-                                }}
-                                className={styles.message}
-                            >
-                                Не нравится такое
-                                <div className={styles.triangle}></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.rating}>
-                        {parseFloat(rating).toFixed(2)}
-                    </div>
-                    <div className={styles.bottomInfo}>
-                        {year}, {country[0].name}, {genre[0].name}
                     </div>
                 </div>
-            </div>
-        </Link>
+            </Link>
+            <div className={styles.name}>{name}</div>
+        </div>
     )
 }
