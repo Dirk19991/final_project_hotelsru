@@ -7,7 +7,7 @@ import cn from 'classnames'
 import data from '../../data/mockData'
 import Image from 'next/image'
 
-interface IMoviesData {
+export interface IMoviesData {
     id: number
     name: string
     type: string
@@ -110,7 +110,7 @@ const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
                                     <SlideSmall
                                         rating={movie.rating}
                                         year={movie.year}
-                                        href="/"
+                                        href={`/watch/${movie.id}`}
                                         image={movie.previewPoster}
                                         country={movie.country}
                                         genre={movie.genre}
