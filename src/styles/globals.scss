@@ -27,3 +27,22 @@ a {
     max-width: 1216px;
     margin: 0 auto;
 }
+
+@media screen and (min-width: 600px) and (max-width: 1279px) {
+    .container {
+        width: auto;
+        margin: 0 40px;
+    }
+}
+@media screen and (min-width: 600px) and (max-width: 1279px) {
+    .container {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: auto;
+        margin: 0 16px;
+    }
+}

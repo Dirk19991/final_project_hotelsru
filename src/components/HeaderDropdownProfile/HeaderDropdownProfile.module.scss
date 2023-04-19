@@ -6,12 +6,14 @@
 }
 
 .content {
+    width: 66.66667%;
     margin-right: 24px;
 }
 
 .list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, minmax(155px, 1fr));
+    grid-template-rows: repeat(2, auto);
     gap: 25px;
     svg {
         stroke: $link-color;
@@ -19,7 +21,6 @@
     li {
         a {
             > div {
-                width: 178px;
                 height: 108px;
                 background-color: $tile-color;
                 padding: 14px 17px 17px;

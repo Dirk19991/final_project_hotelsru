@@ -7,9 +7,10 @@
 
 .categories {
     display: flex;
+    width: 50%;
 }
 .genres {
-    margin-right: 80px;
+    width: 66.66667%;
     h4 {
         margin-bottom: 12px;
         font-size: 15px;
@@ -21,7 +22,7 @@
         height: 304px;
         column-count: 2;
         column-fill: auto;
-        column-gap: 80px;
+        column-gap: 24px;
         li {
             color: $link-color;
             margin-bottom: 13px;
@@ -37,7 +38,7 @@
 }
 
 .singleColumn {
-    width: 202.66px;
+    width: 33.33333%;
 }
 
 .sidebar {
