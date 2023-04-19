@@ -1,4 +1,5 @@
 import MainCarusel from '@/components/MainCarusel/MainCarusel'
+import Promo from '@/components/Promo/Promo'
 import TopTen from '@/components/TopTen/TopTen'
 import SliderSmall from '@/stories/SliderSmall/SliderSmall'
 
@@ -6,8 +7,7 @@ export default function Home() {
     return (
         <>
             <MainCarusel />
-            {/* <section>большой баннер с фильмами</section>  */}
-            {/* <section>Ряды с плейлистами фильмов</section> */}
+            <Promo />
             <TopTen />
             <SliderSmall
                 endpoint="http://localhost:3001/movies?year=2020"
