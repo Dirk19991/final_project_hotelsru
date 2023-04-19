@@ -12,15 +12,7 @@
     position: relative;
 
     @media screen and (max-width: 1250px) {
-        max-width: 1000px;
-    }
-
-    @media screen and (max-width: 1000px) {
-        width: 750px;
-    }
-
-    @media screen and (max-width: 750px) {
-        width: 470px;
+        width: calc(100vw - 140px);
     }
 }
 

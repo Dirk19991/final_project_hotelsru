@@ -38,7 +38,7 @@ const TopTen = () => {
                                 slidesPerView: 4,
                                 slidesPerGroup: 4,
                             },
-                            750: {
+                            800: {
                                 slidesPerView: 3,
                                 slidesPerGroup: 3,
                             },
