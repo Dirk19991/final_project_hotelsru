@@ -4,7 +4,7 @@ import { Navigation, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/scss'
 import 'swiper/css/bundle'
-import Slide from '@/stories/Slide/Slide'
+import Slide from '@/stories/SlideBig/SlideBig'
 import cn from 'classnames'
 
 interface Props {

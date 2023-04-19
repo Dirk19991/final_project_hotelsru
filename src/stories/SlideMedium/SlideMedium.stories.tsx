@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { TopTenItem } from './TopTenItem'
+import { TopTenItem } from './SlideMedium'
 import '../../styles/globals.scss'
 
 const meta: Meta<typeof TopTenItem> = {
-    title: 'Топ-10',
+    title: 'Слайдеры/Средний слайд',
     component: TopTenItem,
     tags: ['autodocs'],
     argTypes: {

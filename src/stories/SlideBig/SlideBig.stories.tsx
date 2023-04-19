@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Slide from './Slide'
+import Slide from './SlideBig'
 import '../../styles/globals.scss'
 
 const meta: Meta<typeof Slide> = {
-    title: 'Слайд',
+    title: 'Слайдеры/Большой слайд',
     component: Slide,
     tags: ['autodocs'],
 }

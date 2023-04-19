@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import styles from './Slide.module.scss'
+import styles from './SlideBig.module.scss'
 import 'swiper/css'
 import { Button } from '../Button/ButtonStandard'
 
