@@ -41,6 +41,8 @@ export const SlideSmall = ({
     const [starHovered, setStarHovered] = useState(false)
     const [dislikeHovered, setDislikeHovered] = useState(false)
 
+    const filmGenre = genre.sort((a, b) => a.id - b.id)[0].name
+
     return (
         <div className={styles.wrapper}>
             <Link href={href}>
@@ -156,7 +158,7 @@ export const SlideSmall = ({
                             {parseFloat(rating).toFixed(2)}
                         </div>
                         <div className={styles.bottomInfo}>
-                            {year}, {country[0].name}, {genre[0].name}
+                            {year}, {country[0].name}, {filmGenre}
                         </div>
                     </div>
                 </div>
