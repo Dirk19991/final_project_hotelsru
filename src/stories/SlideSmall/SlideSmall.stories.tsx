@@ -3,7 +3,7 @@ import { SlideSmall } from './SlideSmall'
 import '../../styles/globals.scss'
 
 const meta: Meta<typeof SlideSmall> = {
-    title: 'Маленький слайд',
+    title: 'Слайдеры/Маленький слайд',
     component: SlideSmall,
     tags: ['autodocs'],
 }

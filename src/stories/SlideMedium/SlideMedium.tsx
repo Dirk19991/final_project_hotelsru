@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './TopTenItem.module.scss'
+import styles from './SlideMedium.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 
