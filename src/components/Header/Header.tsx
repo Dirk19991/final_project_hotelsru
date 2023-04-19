@@ -7,18 +7,17 @@ import headerData from './links.json'
 import HeaderDropdownFilters from '../HeaderDropdownFilters/HeaderDropdownFilters'
 import HeaderDropdownProfile from '../HeaderDropdownProfile/HeaderDropdownProfile'
 import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDropdownSubscription'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const Header = () => {
+    const matchesTabSize = useMediaQuery('(min-width: 1160px)')
+    const matchesPhoneSize = useMediaQuery('(min-width: 600px)')
+
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const openExtraMenu = () => {
-        setIsHovering(true)
-    }
-
-    const closeExtraMenu = () => {
-        setIsHovering(false)
-    }
+    const openExtraMenu = () => matchesTabSize && setIsHovering(true)
+    const closeExtraMenu = () => matchesTabSize && setIsHovering(false)
 
     const handleMouseOver = (id: number, expandable: boolean) => {
         setCurrentTabId(id)
@@ -45,34 +44,36 @@ const Header = () => {
                                             height={48}
                                         />
                                     </Link>
-                                    <ul
-                                        data-testid="navigation-bar"
-                                        className={styles.menu}
-                                    >
-                                        {headerData.navigation_links.map(
-                                            ({
-                                                id,
-                                                name,
-                                                href,
-                                                expandable,
-                                            }) => (
-                                                <li key={id}>
-                                                    <Link
-                                                        href={`/${href}`}
-                                                        title={name}
-                                                        onMouseOver={() =>
-                                                            handleMouseOver(
-                                                                id,
-                                                                expandable
-                                                            )
-                                                        }
-                                                    >
-                                                        {name}
-                                                    </Link>
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
+                                    {matchesTabSize && (
+                                        <ul
+                                            data-testid="navigation-bar"
+                                            className={styles.menu}
+                                        >
+                                            {headerData.navigation_links.map(
+                                                ({
+                                                    id,
+                                                    name,
+                                                    href,
+                                                    expandable,
+                                                }) => (
+                                                    <li key={id}>
+                                                        <Link
+                                                            href={`/${href}`}
+                                                            title={name}
+                                                            onMouseOver={() =>
+                                                                handleMouseOver(
+                                                                    id,
+                                                                    expandable
+                                                                )
+                                                            }
+                                                        >
+                                                            {name}
+                                                        </Link>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    )}
                                 </nav>
                                 <div className={styles.panel}>
                                     <div
@@ -87,33 +88,39 @@ const Header = () => {
                                         />
                                     </div>
 
-                                    <div
-                                        className={styles.search}
-                                        onMouseOver={closeExtraMenu}
-                                    >
-                                        <button>
-                                            <div>Поиск</div>
-                                        </button>
-                                    </div>
-                                    <div
-                                        className={styles.language}
-                                        onMouseOver={closeExtraMenu}
-                                    >
-                                        {/* TODO: Storybook */}
-                                        <button>RU</button>
-                                    </div>
-                                    <div
-                                        className={styles.avatar}
-                                        onMouseOver={() =>
-                                            handleMouseOver(11, true)
-                                        }
-                                    >
-                                        <Link href="https://www.ivi.ru/profile/">
-                                            <div>
-                                                <div></div>
-                                            </div>
-                                        </Link>
-                                    </div>
+                                    {matchesTabSize && (
+                                        <div
+                                            className={styles.search}
+                                            onMouseOver={closeExtraMenu}
+                                        >
+                                            <button>
+                                                <div>Поиск</div>
+                                            </button>
+                                        </div>
+                                    )}
+                                    {matchesPhoneSize && (
+                                        <div
+                                            className={styles.language}
+                                            onMouseOver={closeExtraMenu}
+                                        >
+                                            {/* TODO: Storybook */}
+                                            <button>RU</button>
+                                        </div>
+                                    )}
+                                    {matchesPhoneSize && (
+                                        <div
+                                            className={styles.avatar}
+                                            onMouseOver={() =>
+                                                handleMouseOver(11, true)
+                                            }
+                                        >
+                                            <Link href="https://www.ivi.ru/profile/">
+                                                <div>
+                                                    <div></div>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div
@@ -122,7 +129,7 @@ const Header = () => {
                                 }`}
                                 onMouseLeave={openExtraMenu}
                             >
-                                {isHovering && (
+                                {isHovering && matchesTabSize && (
                                     <div className={styles.dropdownContent}>
                                         {currentTabId === 3 && (
                                             <HeaderDropdownFilters
