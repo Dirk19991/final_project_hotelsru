@@ -62,16 +62,16 @@ const BestComedies = () => {
                                 slidesPerGroup: 7,
                             },
                             1000: {
-                                slidesPerView: 6,
-                                slidesPerGroup: 6,
-                            },
-                            750: {
                                 slidesPerView: 5,
                                 slidesPerGroup: 5,
                             },
-                            500: {
+                            750: {
                                 slidesPerView: 4,
                                 slidesPerGroup: 4,
+                            },
+                            500: {
+                                slidesPerView: 3,
+                                slidesPerGroup: 3,
                             },
                         }}
                         style={
