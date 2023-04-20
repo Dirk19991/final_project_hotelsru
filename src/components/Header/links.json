@@ -1,17 +1,4 @@
 {
-    "navigation_links": [
-        { "id": 1, "name": "Мой Иви", "href": "", "expandable": false },
-        { "id": 2, "name": "Что нового", "href": "new", "expandable": false },
-        { "id": 3, "name": "Фильмы", "href": "movies", "expandable": true },
-        { "id": 4, "name": "Сериалы", "href": "series", "expandable": true },
-        {
-            "id": 5,
-            "name": "Мультфильмы",
-            "href": "animation",
-            "expandable": true
-        },
-        { "id": 6, "name": "TV+", "href": "tvplus", "expandable": false }
-    ],
     "movies_categories": {
         "genre": [
             {

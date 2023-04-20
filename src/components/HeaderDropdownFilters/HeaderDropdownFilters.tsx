@@ -20,9 +20,9 @@ interface IHeaderDropdown {
     subMenuData: ISubMenuData
 }
 
-const HeaderDropdown: FC<IHeaderDropdown> = ({ subMenuData }) => {
+const HeaderDropdownFilters: FC<IHeaderDropdown> = ({ subMenuData }) => {
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-testid="dropdown-filters">
             <div className={styles.categories}>
                 <div className={styles.genres}>
                     <h4>Жанры</h4>
@@ -86,4 +86,4 @@ const HeaderDropdown: FC<IHeaderDropdown> = ({ subMenuData }) => {
     )
 }
 
-export default HeaderDropdown
+export default HeaderDropdownFilters
