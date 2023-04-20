@@ -8,8 +8,10 @@ interface IFilmDescription {
 }
 
 const FilmDescription = ({ filmData }: IFilmDescription) => {
-    const { name, year, type, genre, description } = filmData
+    const { name, year, type, genre, description, rating } = filmData
     const genres = genre.map((elem) => elem.name).join(' · ')
+
+    const fixedRating = +parseFloat(rating).toFixed(1)
     return (
         <div className={styles.wrapper}>
             <h2 className={styles.name}>
@@ -27,7 +29,7 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                     <ButtonRating
                         fontSize={15}
                         height={44}
-                        rating={7.5}
+                        rating={fixedRating}
                         width={44}
                     />
                 </ButtonActor>
@@ -65,7 +67,7 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                 <ButtonRating
                     fontSize={25}
                     height={56}
-                    rating={7.5}
+                    rating={fixedRating}
                     width={56}
                 />
             </div>
