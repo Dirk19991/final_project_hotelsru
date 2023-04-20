@@ -8,6 +8,7 @@ import HeaderDropdownFilters from '../HeaderDropdownFilters/HeaderDropdownFilter
 import HeaderDropdownProfile from '../HeaderDropdownProfile/HeaderDropdownProfile'
 import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDropdownSubscription'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import { ButtonRound } from '@/stories/Button/ButtonRound'
 
 const Header = () => {
     const matchesTabSize = useMediaQuery('(min-width: 1160px)')
@@ -103,8 +104,12 @@ const Header = () => {
                                             className={styles.language}
                                             onMouseOver={closeExtraMenu}
                                         >
-                                            {/* TODO: Storybook */}
-                                            <button>RU</button>
+                                            <ButtonRound
+                                                onClick={() => {}}
+                                                type="language"
+                                            >
+                                                RU
+                                            </ButtonRound>
                                         </div>
                                     )}
                                     {matchesPhoneSize && (

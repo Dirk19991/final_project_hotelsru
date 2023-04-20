@@ -25,7 +25,7 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                 <div></div>
             </div>
             <div className={styles.buttons}>
-                <ButtonActor height={0} href="/" src="" width={0} image={false}>
+                <ButtonActor image={false}>
                     <ButtonRating
                         fontSize={15}
                         height={44}

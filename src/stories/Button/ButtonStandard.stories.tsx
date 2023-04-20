@@ -69,3 +69,17 @@ export const Certificate: Story = {
         href: '/',
     },
 }
+
+export const BigThirtyDays: Story = {
+    args: {
+        label: 'Смотреть 30 дней бесплатно',
+        type: 'bigThirtyDays',
+    },
+}
+
+export const Register: Story = {
+    args: {
+        label: 'Войти или зарегистрироваться',
+        type: 'register',
+    },
+}

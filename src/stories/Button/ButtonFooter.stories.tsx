@@ -4,7 +4,7 @@ import '../../styles/globals.scss'
 import '@/styles/vars.scss'
 
 const meta: Meta<typeof ButtonFooter> = {
-    title: 'Кнопки/Футер',
+    title: 'Кнопки/Футер и кнопки с иконкой',
     component: ButtonFooter,
     tags: ['autodocs'],
 }
@@ -67,5 +67,16 @@ export const Trailer: Story = {
         href: '/',
         label: 'Трейлер',
         type: 'grey',
+    },
+}
+
+export const SmartTVHeader: Story = {
+    args: {
+        src: '/icons/smartTV.svg',
+        width: 20,
+        height: 20,
+        href: '/',
+        label: 'Смотрите на Smart TV',
+        type: 'long',
     },
 }

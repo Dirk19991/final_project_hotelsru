@@ -14,7 +14,7 @@ export interface ButtonFooterProps {
     label?: string
     sublabel?: string
     href: string
-    type: 'black' | 'grey'
+    type: 'black' | 'grey' | 'long'
 }
 
 export const ButtonFooter = ({
