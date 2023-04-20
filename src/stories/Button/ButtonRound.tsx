@@ -10,7 +10,7 @@ export interface ButtonRoundProps {
     height: number
     onClick?: () => void
     href: string
-    type: 'round' | 'square' | 'bigViolet'
+    type: 'round' | 'square' | 'bigViolet' | 'grey'
 }
 
 export const ButtonRound = ({

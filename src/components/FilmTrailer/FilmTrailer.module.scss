@@ -1,3 +1,11 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .trailer {
     width: 720px;
     height: 405px;
@@ -6,4 +14,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.icons {
+    display: flex;
+    gap: 10px;
+
+    > a > div {
+        color: rgba(255, 255, 255, 0.68);
+    }
 }

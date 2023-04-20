@@ -1,3 +1,5 @@
+@import '@/styles/vars.scss';
+
 .button {
     display: flex;
     justify-content: center;
@@ -39,4 +41,13 @@
     box-shadow: 0 0 104px #a869f0;
     width: 104px;
     height: 104px;
+}
+
+.grey {
+    background-color: $grey-button-color;
+    border-radius: 8px;
+
+    &:hover {
+        background-color: #5c5b5ead;
+    }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
-import classes from './ButtonFooter.module.scss'
+import styles from './ButtonFooter.module.scss'
+import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -13,6 +14,7 @@ export interface ButtonFooterProps {
     label?: string
     sublabel?: string
     href: string
+    type: 'black' | 'grey'
 }
 
 export const ButtonFooter = ({
@@ -22,20 +24,23 @@ export const ButtonFooter = ({
     width,
     height,
     href,
+    type,
 }: ButtonFooterProps) => {
+    const btnClass = cn(styles.button, styles[type])
+
     return (
         <Link href={href}>
-            <div className={classes.button}>
+            <div className={btnClass}>
                 <Image
-                    className={classes.image}
+                    className={styles.image}
                     height={height}
                     width={width}
                     src={src}
                     alt={src}
                 ></Image>
-                <div className={classes.column}>
-                    <div className={classes.sublabel}>{sublabel}</div>
-                    <div className={classes.label}>{label}</div>
+                <div className={styles.column}>
+                    <div className={styles.sublabel}>{sublabel}</div>
+                    <div className={styles.label}>{label}</div>
                 </div>
             </div>
         </Link>
