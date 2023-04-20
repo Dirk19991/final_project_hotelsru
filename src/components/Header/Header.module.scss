@@ -83,25 +83,7 @@
     align-items: center;
 }
 
-.menu {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    li {
-        font-weight: 15px;
-        font-weight: 600;
-        line-height: 69px;
-        color: $link-color;
-        cursor: pointer;
-        transition: all 0.4s;
-        a {
-            letter-spacing: 0.5px;
-        }
-        &:hover {
-            color: $accent-color;
-        }
-    }
-}
+
 .panel {
     display: flex;
     align-items: center;

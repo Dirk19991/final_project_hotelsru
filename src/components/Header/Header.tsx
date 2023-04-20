@@ -8,6 +8,7 @@ import HeaderDropdownFilters from '../HeaderDropdownFilters/HeaderDropdownFilter
 import HeaderDropdownProfile from '../HeaderDropdownProfile/HeaderDropdownProfile'
 import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDropdownSubscription'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import NavigationBar from '../NavigationBar/NavigationBar'
 
 const Header = () => {
     const matchesTabSize = useMediaQuery('(min-width: 1160px)')
@@ -36,7 +37,11 @@ const Header = () => {
                         <div className={styles.body}>
                             <div className={styles.content}>
                                 <nav className={styles.navigation}>
-                                    <Link href="/" className={styles.logo}>
+                                    <Link
+                                        href="/"
+                                        className={styles.logo}
+                                        data-testid="header-logo"
+                                    >
                                         <Image
                                             src="https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg"
                                             alt="ivi"
@@ -45,34 +50,9 @@ const Header = () => {
                                         />
                                     </Link>
                                     {matchesTabSize && (
-                                        <ul
-                                            data-testid="navigation-bar"
-                                            className={styles.menu}
-                                        >
-                                            {headerData.navigation_links.map(
-                                                ({
-                                                    id,
-                                                    name,
-                                                    href,
-                                                    expandable,
-                                                }) => (
-                                                    <li key={id}>
-                                                        <Link
-                                                            href={`/${href}`}
-                                                            title={name}
-                                                            onMouseOver={() =>
-                                                                handleMouseOver(
-                                                                    id,
-                                                                    expandable
-                                                                )
-                                                            }
-                                                        >
-                                                            {name}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                            )}
-                                        </ul>
+                                        <NavigationBar
+                                            handleMouseOver={handleMouseOver}
+                                        />
                                     )}
                                 </nav>
                                 <div className={styles.panel}>
@@ -80,6 +60,7 @@ const Header = () => {
                                         onMouseOver={() =>
                                             handleMouseOver(10, true)
                                         }
+                                        data-testid="subscription-button"
                                     >
                                         <Button
                                             label="Смотреть 30 дней бесплатно"
@@ -92,6 +73,7 @@ const Header = () => {
                                         <div
                                             className={styles.search}
                                             onMouseOver={closeExtraMenu}
+                                            data-testid="search-button"
                                         >
                                             <button>
                                                 <div>Поиск</div>
@@ -102,6 +84,7 @@ const Header = () => {
                                         <div
                                             className={styles.language}
                                             onMouseOver={closeExtraMenu}
+                                            data-testid="lang-button"
                                         >
                                             {/* TODO: Storybook */}
                                             <button>RU</button>
@@ -110,6 +93,7 @@ const Header = () => {
                                     {matchesPhoneSize && (
                                         <div
                                             className={styles.avatar}
+                                            data-testid="profile-button"
                                             onMouseOver={() =>
                                                 handleMouseOver(11, true)
                                             }
@@ -130,9 +114,13 @@ const Header = () => {
                                 onMouseLeave={openExtraMenu}
                             >
                                 {isHovering && matchesTabSize && (
-                                    <div className={styles.dropdownContent}>
+                                    <div
+                                        className={styles.dropdownContent}
+                                        data-testid="dropdown-content"
+                                    >
                                         {currentTabId === 3 && (
                                             <HeaderDropdownFilters
+                                                data-testid="movies-dropdown"
                                                 subMenuData={
                                                     headerData.movies_categories
                                                 }
