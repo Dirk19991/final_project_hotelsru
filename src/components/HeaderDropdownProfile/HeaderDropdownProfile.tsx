@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './HeaderDropdownProfile.module.scss'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Button } from '@/stories/Button/ButtonStandard'
 
 const HeaderDropdownProfile = () => {
     const { push } = useRouter()
@@ -184,10 +185,12 @@ const HeaderDropdownProfile = () => {
                 </ul>
             </div>
             <div className={styles.sideContent}>
-                {/* TODO: Storybook */}
-                <button onClick={() => push('/auth')}>
-                    Войти или зарегистрироваться
-                </button>
+                <Button
+                    label="Войти или зарегистрироваться"
+                    onClick={() => push('/auth')}
+                    type="register"
+                />
+
                 <div className={styles.links}>
                     <ul>
                         <li>

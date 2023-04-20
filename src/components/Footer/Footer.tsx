@@ -19,6 +19,7 @@ const Footer = () => {
                                 src="/icons/apple.svg"
                                 sublabel="Загрузить в"
                                 width={20}
+                                type="black"
                             />
                             <ButtonFooter
                                 height={20}
@@ -27,6 +28,7 @@ const Footer = () => {
                                 src="/icons/googlePlay.svg"
                                 sublabel="Доступно в"
                                 width={20}
+                                type="black"
                             />
 
                             <ButtonFooter
@@ -36,6 +38,7 @@ const Footer = () => {
                                 src="/icons/smartTV.svg"
                                 sublabel="Смотрите на"
                                 width={20}
+                                type="black"
                             />
 
                             <ButtonFooter
@@ -44,6 +47,7 @@ const Footer = () => {
                                 label="Все устройства"
                                 src="/icons/allDevices.svg"
                                 width={20}
+                                type="black"
                             />
                         </div>
                         <div className={styles.buttonGroup}>

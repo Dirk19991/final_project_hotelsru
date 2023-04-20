@@ -1,0 +1,39 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: calc(100% - 720px);
+    text-align: center;
+}
+
+.name {
+    color: $accent-color;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.info {
+    color: $accent-color;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.description {
+    text-align: left;
+}
+
+.bigButton {
+    align-self: flex-start;
+}

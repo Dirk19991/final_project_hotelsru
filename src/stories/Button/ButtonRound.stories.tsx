@@ -100,3 +100,39 @@ export const BigViolet: Story = {
         type: 'bigViolet',
     },
 }
+
+export const Bookmark: Story = {
+    args: {
+        src: '/icons/bookmark.svg',
+        width: 20,
+        height: 20,
+        href: '/',
+        type: 'grey',
+    },
+}
+
+export const Bell: Story = {
+    args: {
+        src: '/icons/bell.svg',
+        width: 20,
+        height: 20,
+        href: '/',
+        type: 'grey',
+    },
+}
+
+export const Download: Story = {
+    args: {
+        src: '/icons/download.svg',
+        width: 20,
+        height: 20,
+        href: '/',
+        type: 'grey',
+    },
+}
+
+export const Language: Story = {
+    args: {
+        type: 'language',
+    },
+}

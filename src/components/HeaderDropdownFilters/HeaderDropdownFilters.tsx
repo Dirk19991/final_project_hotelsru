@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styles from './HeaderDropdownFilters.module.scss'
 import Link from 'next/link'
+import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 
 interface IHeaderLink {
     id: number
@@ -71,8 +72,14 @@ const HeaderDropdownFilters: FC<IHeaderDropdown> = ({ subMenuData }) => {
                         короче хз пока как делать этот виджет. Возможно, его
                         необязателньо делать точь в точь
                     </div>
-                    {/* TODO: Storybook */}
-                    <button>Смотреть на SmartTV</button>
+                    <ButtonFooter
+                        height={20}
+                        href="/"
+                        label="Смотрите на Smart TV"
+                        src="/icons/smartTV.svg"
+                        type="long"
+                        width={20}
+                    />
                 </div>
             </div>
         </div>

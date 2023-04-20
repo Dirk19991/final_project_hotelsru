@@ -5,24 +5,28 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export interface ButtonRoundProps {
-    src: string
-    width: number
-    height: number
+    src?: string
+    width?: number
+    height?: number
     onClick?: () => void
-    href: string
-    type: 'round' | 'square' | 'bigViolet'
+    href?: string
+    type: 'round' | 'square' | 'bigViolet' | 'grey' | 'language'
+    children?: React.ReactNode
 }
 
 export const ButtonRound = ({
-    src,
-    width,
-    height,
-    href,
+    src = '',
+    width = 0,
+    height = 0,
+    href = '/',
     type,
+    children,
 }: ButtonRoundProps) => {
     const btnClass = cn(styles.button, styles[type])
 
-    return (
+    return type === 'language' ? (
+        <button className={btnClass}>{children ? children : 'RU'}</button>
+    ) : (
         <Link href={href}>
             <button className={btnClass}>
                 <Image

@@ -3,9 +3,11 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from './Film.module.scss'
 import data from '@/data/mockDataFilm'
+import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
+import FilmTrailer from '../FilmTrailer/FilmTrailer'
+import FilmDescription from '../FilmDescription/FilmDescription'
 
 const Film = () => {
-    // на случай если бэк не запущен
     const router = useRouter()
     const filmID = router.query.filmName
 
@@ -22,17 +24,23 @@ const Film = () => {
             })
             .then((res) => setFilmData(res))
             .catch((error) => setFilmData(data as IMoviesData))
-    }, [filmID, filmData])
+    }, [filmID])
 
     console.log(filmData)
 
     return filmData ? (
         <div className="container">
-            <h1 className={styles.header}>{filmData.name}</h1>
+            <div className={styles.wrapper}>
+                <FilmBreadcrumbs filmData={filmData} />
+                <div className={styles.flex}>
+                    <FilmTrailer />
+                    <FilmDescription filmData={filmData} />
+                </div>
+            </div>
         </div>
     ) : (
         <div className="container">
-            <h1>НЕТ ФИЛЬМА</h1>
+            <h1 className={styles.header}>НЕТ ФИЛЬМА</h1>
         </div>
     )
 }

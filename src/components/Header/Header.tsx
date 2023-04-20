@@ -9,6 +9,7 @@ import HeaderDropdownProfile from '../HeaderDropdownProfile/HeaderDropdownProfil
 import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDropdownSubscription'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
+import { ButtonRound } from '@/stories/Button/ButtonRound'
 
 const Header = () => {
     const matchesTabSize = useMediaQuery('(min-width: 1160px)')
@@ -86,8 +87,12 @@ const Header = () => {
                                             onMouseOver={closeExtraMenu}
                                             data-testid="lang-button"
                                         >
-                                            {/* TODO: Storybook */}
-                                            <button>RU</button>
+                                            <ButtonRound
+                                                onClick={() => {}}
+                                                type="language"
+                                            >
+                                                RU
+                                            </ButtonRound>
                                         </div>
                                     )}
                                     {matchesPhoneSize && (
