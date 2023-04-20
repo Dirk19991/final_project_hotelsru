@@ -7,12 +7,24 @@
         display: flex;
         flex-direction: column;
         gap: 30px;
+        position: relative;
+        z-index: 50;
     }
     &__selects {
         display: flex;
         gap: 10px;
     }
-    span {
-        color: white;
+    .reset {
+        color: $link-color;
+        cursor: pointer;
+        &::before {
+            content: '\f00d';
+            font-family: 'FontAwesome';
+            color: $link-color;
+            font-weight: 400;
+            font-size: 20px;
+            transition: all 0.4s;
+            margin-right: 10px;
+        }
     }
 }
