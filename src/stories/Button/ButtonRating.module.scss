@@ -1,0 +1,16 @@
+@import '@/styles/vars.scss';
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background-color: $rating-button-color;
+    cursor: pointer;
+}
+
+.rating {
+    color: $accent-color;
+    font-weight: 700;
+}

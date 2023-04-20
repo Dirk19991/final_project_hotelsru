@@ -1,0 +1,33 @@
+@import '@/styles/vars.scss';
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: $grey-button-color;
+    border-radius: 8px;
+    border: none;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: #5c5b5ead;
+    }
+}
+
+.image {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
