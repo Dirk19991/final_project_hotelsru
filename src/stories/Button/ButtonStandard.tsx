@@ -11,6 +11,8 @@ export interface ButtonProps {
         | 'paySubscription'
         | 'watchSubscription'
         | 'thirtyDays'
+        | 'bigThirtyDays'
+        | 'register'
         | 'certificate'
         | 'chat'
         | 'headerThirtyDays'
@@ -30,6 +32,7 @@ export const Button = ({
     width,
     height,
     href,
+    onClick,
 }: ButtonProps) => {
     // classnames с помощью функции cn собирает общий для всех кнопок класс (.button) и тот, который пришел из пропсов ([type])
     const btnClass = cn(classes.button, classes[type])
@@ -40,7 +43,11 @@ export const Button = ({
         <>
             {href && (
                 <Link href={href}>
-                    <button type="button" className={btnClass}>
+                    <button
+                        onClick={onClick}
+                        type="button"
+                        className={btnClass}
+                    >
                         {src ? (
                             <Image
                                 height={height}
@@ -57,7 +64,7 @@ export const Button = ({
                 </Link>
             )}
             {!href && (
-                <button type="button" className={btnClass}>
+                <button onClick={onClick} type="button" className={btnClass}>
                     {src ? (
                         <Image
                             height={height}

@@ -130,3 +130,9 @@ export const Download: Story = {
         type: 'grey',
     },
 }
+
+export const Language: Story = {
+    args: {
+        type: 'language',
+    },
+}

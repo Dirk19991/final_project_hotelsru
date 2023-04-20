@@ -4,7 +4,7 @@ import '../../styles/globals.scss'
 import '@/styles/vars.scss'
 
 const meta: Meta<typeof ButtonActor> = {
-    title: 'Кнопки/Актеры',
+    title: 'Кнопки/Актеры и контейнер для рейтинга',
     component: ButtonActor,
     tags: ['autodocs'],
 }

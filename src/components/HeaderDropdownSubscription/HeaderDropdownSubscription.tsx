@@ -1,3 +1,4 @@
+import { Button } from '@/stories/Button/ButtonStandard'
 import React from 'react'
 import styles from './HeaderDropdownSubscription.module.scss'
 
@@ -127,8 +128,11 @@ const HeaderDropdownSubscription = () => {
                     </ul>
                 </div>
                 <div className={styles.subscriptionBtn}>
-                    {/* TODO: Storybook */}
-                    <button>Смотреть 30 дней бесплатно</button>
+                    <Button
+                        label="Смотреть 30 дней бесплатно"
+                        onClick={() => {}}
+                        type="bigThirtyDays"
+                    />
                     <span>
                         Отключить можно <br /> в любой момент
                     </span>

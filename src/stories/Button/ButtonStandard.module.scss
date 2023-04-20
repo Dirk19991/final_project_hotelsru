@@ -1,3 +1,5 @@
+@import '@/styles/vars.scss';
+
 .button {
     border-radius: 8px;
     color: #ffffff;
@@ -75,4 +77,43 @@
     font-size: 15px;
     line-height: 20px;
     font-weight: 700;
+}
+
+.bigThirtyDays {
+    width: 65.3%;
+    background-color: $subscription-button-color;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    padding: 9px 15px;
+    display: block;
+    color: $accent-color;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.4s;
+    &:hover {
+        background-color: lighten($subscription-button-color, 5%);
+        filter: none;
+    }
+}
+
+.register {
+    width: 100%;
+    background-color: $subscription-button-color;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    padding: 9px 15px;
+    display: block;
+    color: $accent-color;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.4s;
+    &:hover {
+        background-color: lighten($subscription-button-color, 5%);
+    }
 }

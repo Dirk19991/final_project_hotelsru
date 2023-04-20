@@ -51,3 +51,18 @@
         background-color: #5c5b5ead;
     }
 }
+
+.language {
+    border: 1px solid $tile-color;
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: $link-color;
+    cursor: pointer;
+    transition: 0.4s;
+    &:hover {
+        color: $accent-color;
+        background-color: transparent;
+    }
+}

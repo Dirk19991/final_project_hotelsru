@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { ButtonRating } from './ButtonRating'
 
 export interface ButtonActorProps {
-    src: string
-    width: number
-    height: number
-    href: string
+    src?: string
+    width?: number
+    height?: number
+    href?: string
     image: boolean
     children?: React.ReactNode
 }
