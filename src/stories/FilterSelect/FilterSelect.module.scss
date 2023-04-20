@@ -85,24 +85,12 @@
             }
             span {
                 &::after {
-                    position: absolute;
-                    content: '';
-                    width: 8px;
-                    height: 2px;
-                    top: calc(50% + 3px);
-                    right: 10px;
-                    background: $accent-color;
-                    transform: rotate(40deg);
-                }
-                &::before {
-                    position: absolute;
-                    content: '';
-                    width: 15px;
-                    height: 2px;
-                    top: 50%;
-                    right: 0px;
-                    background: $accent-color;
-                    transform: rotate(-60deg);
+                    content: '\f00c';
+                    font-family: 'FontAwesome';
+                    color: $link-color;
+                    font-weight: 400;
+                    font-size: 20px;
+                    transition: all 0.4s;
                 }
             }
         }

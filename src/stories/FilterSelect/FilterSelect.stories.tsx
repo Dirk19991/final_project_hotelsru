@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import FilterSelect from './FilterSelect'
-import '@/styles/globals.scss'
+// import '@/styles/globals.scss'
 import { genresArr } from '@/components/Filters/Filters'
+import links from '../../components/Header/links.json'
 
 const meta: Meta<typeof FilterSelect> = {
     title: 'Фильтр фильмов',
@@ -15,20 +16,20 @@ type Story = StoryObj<typeof FilterSelect>
 export const GenreSelect: Story = {
     args: {
         title: 'Жанры',
-        values: genresArr,
+        values: links.movies_categories.genre,
     },
 }
 
 export const RatingSelect: Story = {
     args: {
         title: 'Рейтинг',
-        values: genresArr,
+        values: links.movies_categories.genre,
     },
 }
 
 export const CountriesSelect: Story = {
     args: {
         title: 'Страны',
-        values: genresArr,
+        values: links.movies_categories.country,
     },
 }
