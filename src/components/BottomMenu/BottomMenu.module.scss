@@ -55,6 +55,12 @@
 
     > .white {
         color: #ffffff;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            color: rgba(255, 255, 255, 0.48);
+        }
     }
 }
 
