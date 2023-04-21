@@ -52,6 +52,21 @@ export interface I18nContextType {
             watchingOnlineContent: string
             discoverOpportunity: string
             thisWeek: string
+            search: string
+            watch30days: string
+            watchOnSmartTV: string
+            iviSubscription: string
+            subscriptionCost: string
+            brandNewTVSeries: string
+            andMovies: string
+            weeklyUpdates: string
+            moviesAndTVSeries: string
+            moviesWithoutAds: string
+            familyAccount: string
+            downloadMobile: string
+            unsubscribe: string
+            anyMoment: string
+            subscribeAndWatch: string
         }
     }
 }
@@ -115,6 +130,21 @@ const i18n: I18nContextType['i18n'] = {
         discoverOpportunity:
             'Discover the opportunity to watch movies online for free in excellent quality with Ivi!',
         thisWeek: 'this week',
+        search: 'Search',
+        watch30days: 'Watch 30 days for free',
+        watchOnSmartTV: 'Watch on Smart TV',
+        iviSubscription: 'Ivi Subscription',
+        subscriptionCost: '189 roubles/month, automatic renewal',
+        brandNewTVSeries: 'Brand new TV series',
+        andMovies: 'and movies',
+        weeklyUpdates: 'Weekly updates of the catalogue',
+        moviesAndTVSeries: 'with movies and TV series from all over the world',
+        moviesWithoutAds: 'Movies and TV series without ads',
+        familyAccount: 'Family account on 5 devices',
+        downloadMobile: 'Download on your mobile device',
+        unsubscribe: 'Unsubscribe',
+        anyMoment: 'any moment',
+        subscribeAndWatch: 'Subscribe and watch',
     },
     ru: {
         aboutUs: 'О нас',
@@ -174,6 +204,21 @@ const i18n: I18nContextType['i18n'] = {
         discoverOpportunity:
             'Откройте для себя возможность смотреть фильмы онлайн бесплатно в отличном качестве с кинотеатром Иви!',
         thisWeek: 'за неделю',
+        search: 'Поиск',
+        watch30days: 'Смотреть 30 дней бесплатно',
+        watchOnSmartTV: 'Смотрите на Smart TV',
+        iviSubscription: 'Подписка Иви',
+        subscriptionCost: 'Стоимость 189 ₽ в месяц, продление автоматическое',
+        brandNewTVSeries: 'Новинки сериалов',
+        andMovies: 'и фильмов',
+        weeklyUpdates: 'Еженедельное пополнение каталога',
+        moviesAndTVSeries: 'фильмами и сериалами со всего мира',
+        moviesWithoutAds: 'Фильмы и сериалы без рекламы',
+        familyAccount: 'Семейный аккаунт на 5 устройствах',
+        downloadMobile: 'Загрузка на мобильные устройства',
+        unsubscribe: 'Отключить можно',
+        anyMoment: 'в любой момент',
+        subscribeAndWatch: 'Смотреть по подписке',
     },
 }
 
