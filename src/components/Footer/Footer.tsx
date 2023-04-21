@@ -17,7 +17,7 @@ const Footer = () => {
                         <div className={styles.buttonGroup}>
                             <ButtonFooter
                                 height={20}
-                                href="/"
+                                href="https://go.onelink.me/app/devicesiOS"
                                 label="App Store"
                                 src="/icons/apple.svg"
                                 sublabel={i18n[language].downloadIn}
@@ -26,7 +26,7 @@ const Footer = () => {
                             />
                             <ButtonFooter
                                 height={20}
-                                href="/"
+                                href="https://go.onelink.me/app/devicesAndroid"
                                 label="Google Play"
                                 src="/icons/googlePlay.svg"
                                 sublabel={i18n[language].availableIn}
@@ -36,7 +36,7 @@ const Footer = () => {
 
                             <ButtonFooter
                                 height={20}
-                                href="/"
+                                href="https://www.ivi.ru/pages/tvsmart"
                                 label="Smart TV"
                                 src="/icons/smartTV.svg"
                                 sublabel={i18n[language].watchOn}
@@ -46,7 +46,7 @@ const Footer = () => {
 
                             <ButtonFooter
                                 height={20}
-                                href="/"
+                                href="https://www.ivi.ru/devices"
                                 label={i18n[language].allDevices}
                                 src="/icons/allDevices.svg"
                                 width={20}
@@ -56,7 +56,7 @@ const Footer = () => {
                         <div className={styles.buttonGroup}>
                             <ButtonRound
                                 height={20}
-                                href="/"
+                                href="https://vk.com/iviru?crc=fa4448c13e06e69ba9e814e8743c7e2e"
                                 src="/icons/social_vkontakte.svg"
                                 width={20}
                                 type="round"
@@ -64,7 +64,7 @@ const Footer = () => {
 
                             <ButtonRound
                                 height={20}
-                                href="/"
+                                href="https://ok.ru/ivi.ru"
                                 src="/icons/social_odnoklassniki.svg"
                                 width={20}
                                 type="round"
@@ -72,14 +72,14 @@ const Footer = () => {
 
                             <ButtonRound
                                 height={20}
-                                href="/"
+                                href="https://twitter.com/ivi_ru"
                                 src="/icons/social_twitter.svg"
                                 width={20}
                                 type="round"
                             />
                             <ButtonRound
                                 height={20}
-                                href="/"
+                                href="https://vb.me/a0544c"
                                 src="/icons/social_viber.svg"
                                 width={20}
                                 type="round"
@@ -87,7 +87,7 @@ const Footer = () => {
 
                             <ButtonRound
                                 height={20}
-                                href="/"
+                                href="https://www.linkedin.com/company/2543415/"
                                 src="/icons/social_linkedin.svg"
                                 width={20}
                                 type="round"
@@ -95,7 +95,7 @@ const Footer = () => {
 
                             <ButtonRound
                                 height={20}
-                                href="/"
+                                href="https://t.me/official_iviru"
                                 src="/icons/social_telegram.svg"
                                 width={20}
                                 type="round"

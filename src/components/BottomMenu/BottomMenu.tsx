@@ -18,32 +18,44 @@ const BottomMenu = () => {
                     <li>{i18n[language].aboutUs}</li>
                     <li>
                         {' '}
-                        <Link href="/">{i18n[language].aboutCompany}</Link>
+                        <Link href="https://corp.ivi.ru/">
+                            {i18n[language].aboutCompany}
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">{i18n[language].vacancies}</Link>
+                        <Link href="https://corp.ivi.ru/career/#career-vacancy-block">
+                            {i18n[language].vacancies}
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">
+                        <Link href="https://www.ivi.ru/pages/beta">
                             {i18n[language].betaTestingProgram}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/">
+                        <Link href="https://www.ivi.ru/info/partners">
                             {i18n[language].informationForPartners}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/">{i18n[language].advertising}</Link>
+                        <Link href="https://corp.ivi.ru/advertisers/">
+                            {i18n[language].advertising}
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">{i18n[language].userAgreement}</Link>
+                        <Link href="https://www.ivi.ru/info/agreement">
+                            {i18n[language].userAgreement}
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">{i18n[language].privacyPolicy}</Link>
+                        <Link href="https://www.ivi.ru/info/confidential">
+                            {i18n[language].privacyPolicy}
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">{i18n[language].compliance}</Link>
+                        <Link href="https://www.ivi.ru/info/goryachaya-liniya-komplaens">
+                            {i18n[language].compliance}
+                        </Link>
                     </li>
                 </ul>
 
@@ -52,28 +64,40 @@ const BottomMenu = () => {
                         <li>{i18n[language].sections}</li>
                         <li>
                             {' '}
-                            <Link href="/">{i18n[language].myIvi}</Link>
+                            <Link href="https://www.ivi.ru/">
+                                {i18n[language].myIvi}
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/">{i18n[language].whatsNew}</Link>
+                            <Link href="https://www.ivi.ru/new">
+                                {i18n[language].whatsNew}
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/">{i18n[language].movies}</Link>
+                            <Link href="https://www.ivi.ru/movies">
+                                {i18n[language].movies}
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/">{i18n[language].tvSeries}</Link>
+                            <Link href="https://www.ivi.ru/series">
+                                {i18n[language].tvSeries}
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/">{i18n[language].cartoons}</Link>
+                            <Link href="https://www.ivi.ru/animation">
+                                {i18n[language].cartoons}
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/">TV+</Link>
+                            <Link href="https://www.ivi.ru/tvplus">TV+</Link>
                         </li>
                         <li>
-                            <Link href="/">{i18n[language].whatToWatch}</Link>
+                            <Link href="https://www.ivi.ru/goodmovies">
+                                {i18n[language].whatToWatch}
+                            </Link>
                         </li>
                         <li className={styles.violet}>
-                            <Link href="/">
+                            <Link href="https://www.ivi.ru/cert">
                                 {i18n[language].activateCertificate}
                             </Link>
                         </li>
@@ -89,7 +113,7 @@ const BottomMenu = () => {
                     </div>
 
                     <Button
-                        href="/"
+                        href="https://www.ivi.ru/profile"
                         label={i18n[language].openChat}
                         onClick={() => {}}
                         type="chat"
@@ -97,7 +121,7 @@ const BottomMenu = () => {
                     <div className={styles.flex}>
                         <ButtonRound
                             height={20}
-                            href="/"
+                            href="mailto:support@ivi.ru"
                             onClick={() => {}}
                             src="/icons/mail.svg"
                             type="square"
@@ -105,20 +129,22 @@ const BottomMenu = () => {
                         />
                         <ButtonRound
                             height={20}
-                            href="/"
+                            href="tel:88002344923"
                             onClick={() => {}}
                             src="/icons/phone.svg"
                             type="square"
                             width={20}
                         />
                     </div>
-                    <div className={styles.white}>ask.ivi.ru</div>
+                    <a href="https://www.ask.ivi.ru" className={styles.white}>
+                        ask.ivi.ru
+                    </a>
                     <div>{i18n[language].FAQ}</div>
                 </div>
                 <div className={styles.speaker}>
                     <ButtonRound
                         height={56}
-                        href="/"
+                        href="https://www.ivi.ru/subscribe?redirect_url=%2F"
                         onClick={() => {}}
                         src="/icons/speaker.svg"
                         type="bigViolet"
