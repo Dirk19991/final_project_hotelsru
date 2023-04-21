@@ -10,6 +10,7 @@ import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDrop
 import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
+import { useI18nContext } from '@/context/i18n'
 
 const Header = () => {
     const matchesTabSize = useMediaQuery('(min-width: 1160px)')
@@ -25,6 +26,8 @@ const Header = () => {
         setCurrentTabId(id)
         return expandable ? openExtraMenu() : closeExtraMenu()
     }
+
+    const { toggleLanguage, language } = useI18nContext()
 
     return (
         <header className={styles.header} onMouseLeave={closeExtraMenu}>
@@ -88,10 +91,12 @@ const Header = () => {
                                             data-testid="lang-button"
                                         >
                                             <ButtonRound
-                                                onClick={() => {}}
+                                                onClick={toggleLanguage}
                                                 type="language"
                                             >
-                                                RU
+                                                {language === 'en'
+                                                    ? 'EN'
+                                                    : 'RU'}
                                             </ButtonRound>
                                         </div>
                                     )}

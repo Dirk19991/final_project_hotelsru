@@ -21,14 +21,17 @@ export const ButtonRound = ({
     href = '/',
     type,
     children,
+    onClick,
 }: ButtonRoundProps) => {
     const btnClass = cn(styles.button, styles[type])
 
     return type === 'language' ? (
-        <button className={btnClass}>{children ? children : 'RU'}</button>
+        <button onClick={onClick} className={btnClass}>
+            {children ? children : 'RU'}
+        </button>
     ) : (
         <Link href={href}>
-            <button className={btnClass}>
+            <button onClick={onClick} className={btnClass}>
                 <Image
                     className={styles.image}
                     alt={src}
