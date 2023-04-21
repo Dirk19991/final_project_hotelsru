@@ -9,9 +9,16 @@ interface SlideProps {
     mainText: string
     titleImage?: string
     titleText?: string
+    label: string
 }
 
-const Slide = ({ mainImage, mainText, titleImage, titleText }: SlideProps) => {
+const Slide = ({
+    mainImage,
+    mainText,
+    titleImage,
+    titleText,
+    label,
+}: SlideProps) => {
     return (
         <div className={styles.slide}>
             <Image
@@ -37,7 +44,7 @@ const Slide = ({ mainImage, mainText, titleImage, titleText }: SlideProps) => {
                 <span>{mainText}</span>
                 <Button
                     href="/"
-                    label="Смотреть по подписке"
+                    label={label}
                     type="watchSubscription"
                 ></Button>
             </div>

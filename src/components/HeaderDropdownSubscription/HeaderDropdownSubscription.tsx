@@ -1,13 +1,16 @@
 import { Button } from '@/stories/Button/ButtonStandard'
 import React from 'react'
 import styles from './HeaderDropdownSubscription.module.scss'
+import { useI18nContext } from '@/context/i18n'
 
 const HeaderDropdownSubscription = () => {
+    const { i18n, language } = useI18nContext()
+
     return (
         <div className={styles.wrapper} data-testid="dropdown-subscription">
             <div className={styles.content}>
-                <h1>Подписка Иви</h1>
-                <p>Стоимость 189 ₽ в месяц, продление автоматическое</p>
+                <h1>{i18n[language].iviSubscription}</h1>
+                <p>{i18n[language].subscriptionCost}</p>
                 <div>
                     <ul className={styles.list}>
                         <li>
@@ -28,7 +31,8 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                Новинки сериалов <br />и фильмов
+                                {i18n[language].brandNewTVSeries} <br />
+                                {i18n[language].andMovies}
                             </div>
                         </li>
 
@@ -50,8 +54,8 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                Еженедельное пополнение каталога <br /> фильмами
-                                и сериалами со всего мира
+                                {i18n[language].weeklyUpdates} <br />{' '}
+                                {i18n[language].moviesAndTVSeries}
                             </div>
                         </li>
 
@@ -78,7 +82,7 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                Фильмы и сериалы без рекламы
+                                {i18n[language].moviesWithoutAds}
                             </div>
                         </li>
 
@@ -100,7 +104,7 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                Семейный аккаунт на 5 устройствах
+                                {i18n[language].familyAccount}
                             </div>
                         </li>
 
@@ -122,19 +126,20 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                Загрузка на мобильные устройства
+                                {i18n[language].downloadMobile}
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div className={styles.subscriptionBtn}>
                     <Button
-                        label="Смотреть 30 дней бесплатно"
+                        label={i18n[language].watch30days}
                         onClick={() => {}}
                         type="bigThirtyDays"
                     />
                     <span>
-                        Отключить можно <br /> в любой момент
+                        {i18n[language].unsubscribe} <br />{' '}
+                        {i18n[language].anyMoment}
                     </span>
                 </div>
             </div>

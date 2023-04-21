@@ -27,7 +27,7 @@ const Header = () => {
         return expandable ? openExtraMenu() : closeExtraMenu()
     }
 
-    const { toggleLanguage, language } = useI18nContext()
+    const { toggleLanguage, language, i18n } = useI18nContext()
 
     return (
         <header className={styles.header} onMouseLeave={closeExtraMenu}>
@@ -67,7 +67,7 @@ const Header = () => {
                                         data-testid="subscription-button"
                                     >
                                         <Button
-                                            label="Смотреть 30 дней бесплатно"
+                                            label={i18n[language].watch30days}
                                             onClick={() => {}}
                                             type="headerThirtyDays"
                                         />
@@ -80,7 +80,9 @@ const Header = () => {
                                             data-testid="search-button"
                                         >
                                             <button>
-                                                <div>Поиск</div>
+                                                <div>
+                                                    {i18n[language].search}
+                                                </div>
                                             </button>
                                         </div>
                                     )}
