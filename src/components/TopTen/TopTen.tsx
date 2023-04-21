@@ -5,8 +5,10 @@ import { TopTenItem } from '@/stories/SlideMedium/SlideMedium'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 import cn from 'classnames'
+import { useI18nContext } from '@/context/i18n'
 
 const TopTen = () => {
+    const { i18n, language } = useI18nContext()
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
@@ -24,7 +26,7 @@ const TopTen = () => {
                             src="/icons/top10.svg"
                         />
                     </div>
-                    <span>за неделю</span>
+                    <span>{i18n[language].thisWeek}</span>
                 </div>
                 <div className={cn(styles.topTen, 'medium__slider')}>
                     <Swiper

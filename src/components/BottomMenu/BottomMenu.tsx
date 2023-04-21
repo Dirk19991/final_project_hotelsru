@@ -4,82 +4,93 @@ import styles from './BottomMenu.module.scss'
 import Link from 'next/link'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
+import { useI18nContext } from '@/context/i18n'
 
 // можно\нужно ли делать списки меню - отдельными компоненты?)
 
 const BottomMenu = () => {
+    const { i18n, language } = useI18nContext()
+
     return (
         <div className="container">
             <div className={styles.wrapper}>
                 <ul className={styles.list}>
-                    <li>О нас</li>
+                    <li>{i18n[language].aboutUs}</li>
                     <li>
                         {' '}
-                        <Link href="/">О компании</Link>
+                        <Link href="/">{i18n[language].aboutCompany}</Link>
                     </li>
                     <li>
-                        <Link href="/">Вакансии</Link>
+                        <Link href="/">{i18n[language].vacancies}</Link>
                     </li>
                     <li>
-                        <Link href="/">Программа бета-тестирования</Link>
+                        <Link href="/">
+                            {i18n[language].betaTestingProgram}
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">Информация для партнёров</Link>
+                        <Link href="/">
+                            {i18n[language].informationForPartners}
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">Размещение рекламы</Link>
+                        <Link href="/">{i18n[language].advertising}</Link>
                     </li>
                     <li>
-                        <Link href="/">Пользовательское соглашение</Link>
+                        <Link href="/">{i18n[language].userAgreement}</Link>
                     </li>
                     <li>
-                        <Link href="/">Политика конфиденциальности</Link>
+                        <Link href="/">{i18n[language].privacyPolicy}</Link>
                     </li>
                     <li>
-                        <Link href="/">Комплаенс</Link>
+                        <Link href="/">{i18n[language].compliance}</Link>
                     </li>
                 </ul>
 
                 <div>
                     <ul className={styles.list}>
-                        <li>Разделы</li>
+                        <li>{i18n[language].sections}</li>
                         <li>
                             {' '}
-                            <Link href="/">Мой Иви</Link>
+                            <Link href="/">{i18n[language].myIvi}</Link>
                         </li>
                         <li>
-                            <Link href="/">Что нового</Link>
+                            <Link href="/">{i18n[language].whatsNew}</Link>
                         </li>
                         <li>
-                            <Link href="/">Фильмы</Link>
+                            <Link href="/">{i18n[language].movies}</Link>
                         </li>
                         <li>
-                            <Link href="/">Сериалы</Link>
+                            <Link href="/">{i18n[language].tvSeries}</Link>
                         </li>
                         <li>
-                            <Link href="/">Мультфильмы</Link>
+                            <Link href="/">{i18n[language].cartoons}</Link>
                         </li>
                         <li>
                             <Link href="/">TV+</Link>
                         </li>
                         <li>
-                            <Link href="/">Что посмотреть</Link>
+                            <Link href="/">{i18n[language].whatToWatch}</Link>
                         </li>
                         <li className={styles.violet}>
-                            <Link href="/">Активация сертификата</Link>
+                            <Link href="/">
+                                {i18n[language].activateCertificate}
+                            </Link>
                         </li>
                     </ul>
                 </div>
                 <div className={styles.column}>
-                    <div className={styles.support}>Служба поддержки</div>
+                    <div className={styles.support}>
+                        {i18n[language].support}
+                    </div>
                     <div className={styles.help}>
-                        <div>Мы всегда готовы вам помочь.</div>
-                        <div>Наши операторы онлайн 24/7</div>
+                        <div>{i18n[language].weAreAlways}</div>
+                        <div>{i18n[language].ourOperators}</div>
                     </div>
 
                     <Button
                         href="/"
-                        label="Написать в чате"
+                        label={i18n[language].openChat}
                         onClick={() => {}}
                         type="chat"
                     />
@@ -102,7 +113,7 @@ const BottomMenu = () => {
                         />
                     </div>
                     <div className={styles.white}>ask.ivi.ru</div>
-                    <div>Ответы на вопросы</div>
+                    <div>{i18n[language].FAQ}</div>
                 </div>
                 <div className={styles.speaker}>
                     <ButtonRound
@@ -113,9 +124,7 @@ const BottomMenu = () => {
                         type="bigViolet"
                         width={56}
                     />
-                    <div>
-                        Смотрите фильмы, сериалы и мультфильмы без рекламы
-                    </div>
+                    <div>{i18n[language].watchFilms}</div>
                 </div>
             </div>
         </div>

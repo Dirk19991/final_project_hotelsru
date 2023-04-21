@@ -3,8 +3,11 @@ import { ButtonRound } from '@/stories/Button/ButtonRound'
 import React from 'react'
 import BottomMenu from '../BottomMenu/BottomMenu'
 import styles from './Footer.module.scss'
+import { useI18nContext } from '@/context/i18n'
 
 const Footer = () => {
+    const { i18n, language } = useI18nContext()
+
     return (
         <footer>
             <BottomMenu />
@@ -17,7 +20,7 @@ const Footer = () => {
                                 href="/"
                                 label="App Store"
                                 src="/icons/apple.svg"
-                                sublabel="Загрузить в"
+                                sublabel={i18n[language].downloadIn}
                                 width={20}
                                 type="black"
                             />
@@ -26,7 +29,7 @@ const Footer = () => {
                                 href="/"
                                 label="Google Play"
                                 src="/icons/googlePlay.svg"
-                                sublabel="Доступно в"
+                                sublabel={i18n[language].availableIn}
                                 width={20}
                                 type="black"
                             />
@@ -36,7 +39,7 @@ const Footer = () => {
                                 href="/"
                                 label="Smart TV"
                                 src="/icons/smartTV.svg"
-                                sublabel="Смотрите на"
+                                sublabel={i18n[language].watchOn}
                                 width={20}
                                 type="black"
                             />
@@ -44,7 +47,7 @@ const Footer = () => {
                             <ButtonFooter
                                 height={20}
                                 href="/"
-                                label="Все устройства"
+                                label={i18n[language].allDevices}
                                 src="/icons/allDevices.svg"
                                 width={20}
                                 type="black"
@@ -100,7 +103,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className={styles.info}>
-                        <p>© 2023 ООО «Иви.ру»</p>
+                        <p>© 2023 {i18n[language].LLC}</p>
                         <p>
                             HBO ® and related service marks are the property of
                             Home Box Office, Inc
