@@ -26,7 +26,6 @@ export interface I18nContextType {
             whatToWatch: string
             activateCertificate: string
             support: string
-            weAreAlways: string
             ourOperators: string
             openChat: string
             FAQ: string
@@ -67,12 +66,16 @@ export interface I18nContextType {
             unsubscribe: string
             anyMoment: string
             subscribeAndWatch: string
+            catalog: string
+            more: string
         }
     }
 }
 
 const i18n: I18nContextType['i18n'] = {
     en: {
+        more: 'More',
+        catalog: 'Catalog',
         aboutUs: 'About us',
         aboutCompany: 'About Company',
         vacancies: 'Vacancies',
@@ -91,8 +94,8 @@ const i18n: I18nContextType['i18n'] = {
         whatToWatch: 'What to watch',
         activateCertificate: 'Activate certificate',
         support: 'Support',
-        weAreAlways: 'We are always ready to help you',
-        ourOperators: 'Our operators are 24/7 online',
+        ourOperators:
+            'We are always ready to help you. Our operators are 24/7 online',
         openChat: 'Open chat',
         FAQ: 'FAQ',
         watchFilms: 'Watch films, TV series and cartoons withous ads',
@@ -147,6 +150,8 @@ const i18n: I18nContextType['i18n'] = {
         subscribeAndWatch: 'Subscribe and watch',
     },
     ru: {
+        more: 'Ещё',
+        catalog: 'Каталог',
         aboutUs: 'О нас',
         aboutCompany: 'О компании',
         vacancies: 'Вакансии',
@@ -165,8 +170,7 @@ const i18n: I18nContextType['i18n'] = {
         whatToWatch: 'Что посмотреть',
         activateCertificate: 'Активация сертификата',
         support: 'Служба поддержки',
-        weAreAlways: 'Мы всегда готовы вам помочь.',
-        ourOperators: 'Наши операторы онлайн 24/7',
+        ourOperators: 'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
         openChat: 'Написать в чате',
         FAQ: 'Ответы на вопросы',
         watchFilms: 'Смотрите фильмы, сериалы и мультфильмы без рекламы',

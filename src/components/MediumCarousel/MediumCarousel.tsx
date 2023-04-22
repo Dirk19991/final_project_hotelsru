@@ -1,6 +1,6 @@
 import React, { CSSProperties, useRef, useState } from 'react'
 import Image from 'next/image'
-import styles from './TopTen.module.scss'
+import styles from './MediumCarousel.module.scss'
 import { TopTenItem } from '@/stories/SlideMedium/SlideMedium'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'

@@ -8,6 +8,7 @@ import HeaderDropdownProfile from '@/components/HeaderDropdownProfile/HeaderDrop
 import HeaderDropdownSubscription from '@/components/HeaderDropdownSubscription/HeaderDropdownSubscription'
 
 const handleMouseOver = jest.fn()
+jest.mock('next/router', () => require('next-router-mock'))
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: jest.fn().mockImplementation((query) => ({
@@ -21,7 +22,6 @@ Object.defineProperty(window, 'matchMedia', {
         dispatchEvent: jest.fn(),
     })),
 })
-jest.mock('next/router', () => require('next-router-mock'))
 const dropdownContentMock = {
     genre: [
         {
@@ -162,6 +162,7 @@ describe('Header nav testing', () => {
         expect(handleMouseOver).toHaveBeenCalled()
         expect(dropdownProfile).toBeInTheDocument()
     })
+    
     it('renders dropdownSubscription on mouse over', () => {
         resizeScreenSize(1440)
         render(<Header />)
