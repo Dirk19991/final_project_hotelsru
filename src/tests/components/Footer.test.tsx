@@ -1,19 +1,47 @@
 import Footer from '@/components/Footer/Footer'
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import '@testing-library/jest-dom'
+import {render, screen} from '@testing-library/react'
+import resizeScreenSize from '@/util/resizeScreenSize'
+
+jest.mock('next/router', () => require('next-router-mock'))
+Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+    })),
+})
 
 describe('Testing footer', () => {
-    it('renders buttons correctly', () => {
+    it('renders only footer navigation and contacts on desktop screens', () => {
+        resizeScreenSize(1440)
         render(<Footer />)
-        const appStore = screen.getByText(/app store/i)
-        const googlePlay = screen.getByText(/google play/i)
-        const smartTV = screen.getByText(/smart tv/i)
-        const allDevices = screen.getByText(/все устройства/i)
-        const chat = screen.getByText(/написать в чате/i)
 
-        expect(appStore).toBeInTheDocument
-        expect(googlePlay).toBeInTheDocument
-        expect(smartTV).toBeInTheDocument
-        expect(allDevices).toBeInTheDocument
-        expect(chat).toBeInTheDocument
+        const footerNav = screen.getByTestId('footer-navigation')
+        const footerContacts = screen.getByTestId('footer-contacts')
+        const footerMobile = screen.queryByTestId('footer-mobile')
+
+        expect(footerNav).toBeInTheDocument()
+        expect(footerContacts).toBeInTheDocument()
+        expect(footerMobile).not.toBeInTheDocument()
+    })
+
+    it("renders only footer mobile on tab or less screens", () => {
+        resizeScreenSize(600)
+        render(<Footer />)
+
+        const footerNav = screen.queryByTestId('footer-navigation')
+        const footerContacts = screen.queryByTestId('footer-contacts')
+        const footerMobile = screen.getByTestId('footer-mobile')
+
+        expect(footerNav).not.toBeInTheDocument()
+        expect(footerContacts).not.toBeInTheDocument()
+        expect(footerMobile).toBeInTheDocument()
     })
 })

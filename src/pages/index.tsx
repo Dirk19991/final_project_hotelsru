@@ -1,6 +1,6 @@
-import MainCarusel from '@/components/MainCarusel/MainCarusel'
+import MainCarusel from '@/components/MainCarousel/MainCarousel'
 import Promo from '@/components/Promo/Promo'
-import TopTen from '@/components/TopTen/TopTen'
+import MediumCarousel from '@/components/MediumCarousel/MediumCarousel'
 import SliderSmall from '@/stories/SliderSmall/SliderSmall'
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
         <>
             <MainCarusel />
             <Promo />
-            <TopTen />
+            <MediumCarousel />
             <SliderSmall
                 endpoint="http://localhost:3001/movies?year=2020"
                 headerText="Лучшие комедии"

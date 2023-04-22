@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import styles from './MainCarusel.module.scss'
+import styles from './MainCarousel.module.scss'
 import { Navigation, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/scss'

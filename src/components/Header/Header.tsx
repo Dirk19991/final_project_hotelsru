@@ -13,14 +13,14 @@ import { ButtonRound } from '@/stories/Button/ButtonRound'
 import { useI18nContext } from '@/context/i18n'
 
 const Header = () => {
-    const matchesTabSize = useMediaQuery('(min-width: 1160px)')
-    const matchesPhoneSize = useMediaQuery('(min-width: 600px)')
+    const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
+    const matchesTabSize = useMediaQuery('(min-width: 600px)')
 
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const openExtraMenu = () => matchesTabSize && setIsHovering(true)
-    const closeExtraMenu = () => matchesTabSize && setIsHovering(false)
+    const openExtraMenu = () => matchesDesktopSize && setIsHovering(true)
+    const closeExtraMenu = () => matchesDesktopSize && setIsHovering(false)
 
     const handleMouseOver = (id: number, expandable: boolean) => {
         setCurrentTabId(id)
@@ -53,7 +53,7 @@ const Header = () => {
                                             height={48}
                                         />
                                     </Link>
-                                    {matchesTabSize && (
+                                    {matchesDesktopSize && (
                                         <NavigationBar
                                             handleMouseOver={handleMouseOver}
                                         />
@@ -73,7 +73,7 @@ const Header = () => {
                                         />
                                     </div>
 
-                                    {matchesTabSize && (
+                                    {matchesDesktopSize && (
                                         <div
                                             className={styles.search}
                                             onMouseOver={closeExtraMenu}
@@ -86,7 +86,7 @@ const Header = () => {
                                             </button>
                                         </div>
                                     )}
-                                    {matchesPhoneSize && (
+                                    {matchesTabSize && (
                                         <div
                                             className={styles.language}
                                             onMouseOver={closeExtraMenu}
@@ -102,7 +102,7 @@ const Header = () => {
                                             </ButtonRound>
                                         </div>
                                     )}
-                                    {matchesPhoneSize && (
+                                    {matchesTabSize && (
                                         <div
                                             className={styles.avatar}
                                             data-testid="profile-button"
@@ -125,7 +125,7 @@ const Header = () => {
                                 }`}
                                 onMouseLeave={openExtraMenu}
                             >
-                                {isHovering && matchesTabSize && (
+                                {isHovering && matchesDesktopSize && (
                                     <div
                                         className={styles.dropdownContent}
                                         data-testid="dropdown-content"

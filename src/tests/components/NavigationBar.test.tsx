@@ -1,5 +1,5 @@
 import NavigationBar from '@/components/NavigationBar/NavigationBar'
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 
 const handleMouseOver = jest.fn()
 const navElementsAmount = 6
