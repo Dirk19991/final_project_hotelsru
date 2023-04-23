@@ -25,6 +25,7 @@ export interface I18nContextType {
             cartoons: string
             whatToWatch: string
             activateCertificate: string
+            thirtyDays1Rouble: string
             support: string
             ourOperators: string
             openChat: string
@@ -93,6 +94,7 @@ const i18n: I18nContextType['i18n'] = {
         cartoons: 'Cartoons',
         whatToWatch: 'What to watch',
         activateCertificate: 'Activate certificate',
+        thirtyDays1Rouble: "30 days subscription for 1 ₽",
         support: 'Support',
         ourOperators:
             'We are always ready to help you. Our operators are 24/7 online',
@@ -168,7 +170,8 @@ const i18n: I18nContextType['i18n'] = {
         tvSeries: 'Сериалы',
         cartoons: 'Мультфильмы',
         whatToWatch: 'Что посмотреть',
-        activateCertificate: 'Активация сертификата',
+        activateCertificate: 'Активировать сертификат',
+        thirtyDays1Rouble: "30 дней подписки за 1 ₽",
         support: 'Служба поддержки',
         ourOperators: 'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
         openChat: 'Написать в чате',
