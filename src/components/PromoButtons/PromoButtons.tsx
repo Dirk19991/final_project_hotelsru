@@ -1,14 +1,17 @@
 import { Button } from '@/stories/Button/ButtonStandard'
 import styles from './PromoButtons.module.scss'
+import { useI18nContext } from '@/context/i18n'
 
 const PromoButtons = () => {
+    const { language, i18n } = useI18nContext()
+
     return (
         <div className="container">
             <div className={styles.wrapper}>
                 <Button
                     height={32}
                     href="/"
-                    label="30 дней подписки за 1 ₽"
+                    label={i18n[language].thirtyDays1Rouble}
                     onClick={() => {}}
                     src="/icons/lightning.svg"
                     type="thirtyDays"
@@ -17,7 +20,7 @@ const PromoButtons = () => {
                 <Button
                     height={32}
                     href="/"
-                    label="Активировать сертификат"
+                    label={i18n[language].activateCertificate}
                     onClick={() => {}}
                     src="/icons/gift.svg"
                     type="certificate"
