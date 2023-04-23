@@ -42,11 +42,13 @@ const Slide = ({
                     <div className={styles.titleText}>{titleText}</div>
                 )}
                 <span>{mainText}</span>
-                <Button
-                    href="/"
-                    label={label}
-                    type="watchSubscription"
-                ></Button>
+                <div className={styles.button}>
+                    <Button
+                        href="/"
+                        label={label}
+                        type="watchSubscription"
+                    ></Button>
+                </div>
             </div>
         </div>
     )

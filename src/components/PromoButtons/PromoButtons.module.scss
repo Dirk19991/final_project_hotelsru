@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    gap: 10px;
+
+    @media screen and (max-width: 750px) {
+        flex-direction: column;
+    }
+
+    > a {
+        width: 49vw;
+        max-width: 600px;
+
+        @media screen and (max-width: 750px) {
+            width: 100%;
+        }
+
+        > button {
+            width: 100%;
+        }
+    }
+
+    > a:first-child {
+        @media screen and (max-width: 1200px) {
+        }
+
+        @media screen and (max-width: 750px) {
+            padding-left: 0;
+        }
+    }
+
+    > a:last-child {
+        @media screen and (max-width: 1200px) {
+        }
+
+        @media screen and (max-width: 750px) {
+            padding-right: 0;
+        }
+    }
+}

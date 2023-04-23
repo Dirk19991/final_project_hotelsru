@@ -53,7 +53,7 @@ const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
     }, [endpoint])
 
     return (
-        <section className="container">
+        <section className={styles.sliderContainer}>
             <div className={styles.wrapper}>
                 <div className={styles.header}>{headerText}</div>
 
@@ -74,9 +74,13 @@ const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
                                 slidesPerView: 4,
                                 slidesPerGroup: 4,
                             },
-                            500: {
-                                slidesPerView: 3,
-                                slidesPerGroup: 3,
+                            450: {
+                                slidesPerView: 2,
+                                slidesPerGroup: 2,
+                            },
+                            350: {
+                                slidesPerView: 1,
+                                slidesPerGroup: 1,
                             },
                         }}
                         style={

@@ -2,11 +2,13 @@ import MainCarusel from '@/components/MainCarousel/MainCarousel'
 import Promo from '@/components/Promo/Promo'
 import MediumCarousel from '@/components/MediumCarousel/MediumCarousel'
 import SliderSmall from '@/stories/SliderSmall/SliderSmall'
+import PromoButtons from '@/components/PromoButtons/PromoButtons'
 
 export default function Home() {
     return (
         <>
             <MainCarusel />
+            <PromoButtons />
             <Promo />
             <MediumCarousel />
             <SliderSmall
