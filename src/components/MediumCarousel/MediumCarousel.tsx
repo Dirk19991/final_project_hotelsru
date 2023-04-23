@@ -15,7 +15,7 @@ const TopTen = () => {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
-        <section className="container">
+        <section className={styles.carouselContainer}>
             <div className={styles.wrapper}>
                 <div className={styles.header}>
                     <div>
@@ -44,9 +44,13 @@ const TopTen = () => {
                                 slidesPerView: 3,
                                 slidesPerGroup: 3,
                             },
-                            500: {
+                            570: {
                                 slidesPerView: 2,
                                 slidesPerGroup: 2,
+                            },
+                            250: {
+                                slidesPerView: 1,
+                                slidesPerGroup: 1,
                             },
                         }}
                         style={

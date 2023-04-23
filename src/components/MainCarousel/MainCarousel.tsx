@@ -25,7 +25,7 @@ const MainCarusel = () => {
 
     return (
         <section className={styles.carusel}>
-            <div className="container">
+            <div className={styles.caruselContainer}>
                 <div className={cn(styles.carusel__wrapper, 'main__slider')}>
                     <Swiper
                         style={

@@ -20,6 +20,11 @@
         flex-direction: column;
         gap: 24px;
         max-width: 60%;
+
+        @media screen and (max-width: 750px) {
+            bottom: 10px;
+        }
+
         span {
             color: $accent-color;
             max-width: 60%;
@@ -27,6 +32,15 @@
             line-height: 22px;
             font-weight: 400;
             font-style: normal;
+            @media screen and (max-width: 750px) {
+                font-size: 10px;
+                line-height: 13px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     }
 }
@@ -48,4 +62,10 @@
     max-width: 60%;
     height: auto;
     object-fit: cover;
+}
+
+.button {
+    @media screen and (max-width: 750px) {
+        display: none;
+    }
 }

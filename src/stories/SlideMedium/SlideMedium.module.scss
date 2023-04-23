@@ -1,6 +1,8 @@
 .imageContainer {
-    width: 225px;
-    height: 450px;
+    min-width: 150px;
+
+    max-width: 735px;
+    aspect-ratio: 1/2;
     border-radius: 20px 20px 0 0;
     overflow: hidden;
     position: relative;
@@ -25,7 +27,7 @@
 .titleImage {
     position: absolute;
     bottom: 70px;
-    right: 25px;
+    right: calc((100% - 176px) / 2);
     width: 176px;
     height: 60px;
     z-index: 2;
@@ -40,7 +42,7 @@
 .numberImage {
     position: absolute;
     bottom: 0px;
-    right: 88px;
+    right: calc((100% - 48px) / 2);
     width: 48px;
     height: 66px;
     z-index: 2;

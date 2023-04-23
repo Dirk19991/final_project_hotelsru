@@ -5,12 +5,19 @@
         right: -50px !important;
 
         z-index: 100 !important;
+        @media screen and (max-width: 600px) {
+            display: none;
+        }
     }
     .swiper-button-prev {
         position: absolute !important;
         top: calc(50% - 15px) !important;
         left: -50px !important;
         z-index: 100 !important;
+
+        @media screen and (max-width: 600px) {
+            display: none;
+        }
     }
     .swiper-slide-next {
         opacity: 0.5;

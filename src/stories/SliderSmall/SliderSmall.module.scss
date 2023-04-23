@@ -1,5 +1,12 @@
 @import '@/styles/vars.scss';
 
+.sliderContainer {
+    padding: 0 60px;
+    width: 100%;
+    max-width: 1336px;
+    margin: 0 auto;
+}
+
 .wrapper {
     padding-top: 48px;
 
@@ -51,10 +58,10 @@
 }
 
 .nextButton {
-    top: 90px;
+    top: calc(50% - 64px);
     right: -50px;
 }
 .prevButton {
-    top: 90px;
+    top: calc(50% - 64px);
     left: -50px;
 }
