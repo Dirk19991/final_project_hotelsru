@@ -61,9 +61,11 @@ const Filters = () => {
                             <span>{ratesAmountValue}</span>
                         </div>
                     </div>
-                    <button className={styles.reset} disabled={false}>
-                        <FontAwesomeIcon icon={faXmark} size="xl" />
-                        Сбросить фильтры
+                    <button className={styles.reset} disabled={true}>
+                        <div>
+                            <FontAwesomeIcon icon={faXmark} size="xl" />
+                        </div>
+                        <span>Сбросить фильтры</span>
                     </button>
                 </div>
             </div>
