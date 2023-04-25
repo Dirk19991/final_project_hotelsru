@@ -83,3 +83,10 @@ export const Register: Story = {
         type: 'register',
     },
 }
+
+export const Watch: Story = {
+    args: {
+        label: 'Смотреть',
+        type: 'watch',
+    },
+}
