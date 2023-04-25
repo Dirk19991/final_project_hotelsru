@@ -117,3 +117,12 @@
         background-color: lighten($subscription-button-color, 5%);
     }
 }
+
+.watch {
+    width: 140px;
+    height: 40px;
+    background-color: #312b45;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+}

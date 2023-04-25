@@ -1,0 +1,72 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    color: $accent-color;
+}
+
+.back {
+    align-self: flex-start;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 500;
+    z-index: 1;
+    cursor: pointer;
+
+    &:hover {
+        > img {
+            transform: scale(1.1);
+            transition: all 0.2s;
+        }
+    }
+}
+
+.mainInfo {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.photo {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ruName {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.enName {
+    color: $promo-color;
+    margin-bottom: 20px;
+}
+
+.filmography {
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 10px;
+
+    > span {
+        color: $promo-color;
+        font-size: 15px;
+        font-weight: 400;
+        margin-left: 10px;
+    }
+    border-bottom: 1px solid $divider-color;
+}
+
+.films {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
