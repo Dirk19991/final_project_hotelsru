@@ -1,82 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Filters.module.scss'
-import FilterSelect from '../../stories/FilterSelect/FilterSelect'
-import {
-    CountriesSelect,
-    GenreSelect,
-} from '@/stories/FilterSelect/FilterSelect.stories'
+import FilterSelect from '../FilterSelect/FilterSelect'
+import FilterSearch from '../FilterSearch/FilterSearch'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
-// для примера
-// тут для сторибука нужно будет экспортировать соответвующие массивы стран, рейтингов, когда они появятся
-export const genresArr = [
-    'Артхаус',
-    'Биография',
-    'Боевики',
-    'Вестерн',
-    'Военные',
-    'Детективы',
-    'Для детей',
-    'Документальные',
-    'Драмы',
-    'Зарубежные',
-    'Исторические',
-    'Катастрофы',
-    'Комедии',
-    'Криминал',
-    'Мелодрамы',
-    'Мистические',
-    'Музыкальные',
-    'По комиксам',
-    'Приключения',
-    'Русские',
-    'Семейные',
-    'Советские',
-    'Спорт',
-    'Триллеры',
-    'Ужасы',
-    'Фантастика',
-    'Фэнтези',
-]
-interface IFilters {
-    filterGenre: number | null
-    filterCountry: number | null
-    setFilterGenre: (id: number | null) => void
-    setFilterCountry: (id: number | null) => void
-}
+const Filters = () => {
+    const [currentFilter, setCurrentFilter] = useState<string>('')
+    const [ratingValue, setRatingValue] = useState<string>('0')
+    const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
 
-const Filters = ({
-    setFilterGenre,
-    setFilterCountry,
-    filterGenre,
-    filterCountry,
-}: IFilters) => {
-    const handleReset = () => {
-        setFilterGenre(null)
-        setFilterCountry(null)
-    }
     return (
         <div className={styles.filters}>
             <div className="container">
-                <div className={styles.filters__wrapper}>
-                    <div className={styles.filters__selects}>
+                <div className={styles.wrapper}>
+                    <div className={styles.selects}>
                         <FilterSelect
-                            title={GenreSelect.args?.title!}
-                            values={GenreSelect.args?.values!}
-                            filter={filterGenre}
-                            setFilter={setFilterGenre}
+                            filterType="genres"
+                            currentFilter={currentFilter}
+                            setCurrentFilter={setCurrentFilter}
                         />
                         <FilterSelect
-                            title={CountriesSelect.args?.title!}
-                            values={CountriesSelect.args?.values!}
-                            filter={filterCountry}
-                            setFilter={setFilterCountry}
+                            filterType="countries"
+                            currentFilter={currentFilter}
+                            setCurrentFilter={setCurrentFilter}
                         />
-                        {/* <FilterSelect title="Рейтинг" values={genresArr} /> */}
+                        <FilterSelect
+                            filterType="years"
+                            currentFilter={currentFilter}
+                            setCurrentFilter={setCurrentFilter}
+                        />
+                        <FilterSearch searchType="producer" />
+                        <FilterSearch searchType="actor" />
                     </div>
-                    <span className={styles.reset} onClick={handleReset}>
+                    <div className={styles.ranges}>
+                        <div className={styles.range}>
+                            <p>Рейтинг от:</p>
+                            <input
+                                type="range"
+                                value={ratingValue}
+                                onChange={(e) => setRatingValue(e.target.value)}
+                                min="0"
+                                max="10"
+                                step="0.1"
+                            />
+                            <span>{ratingValue}</span>
+                        </div>
+                        <div className={styles.range}>
+                            <p>Количество оценок (тыс.) от:</p>
+                            <input
+                                type="range"
+                                value={ratesAmountValue}
+                                onChange={(e) =>
+                                    setRatesAmountValue(e.target.value)
+                                }
+                                min="0"
+                                max="1000"
+                                step="100"
+                            />
+                            <span>{ratesAmountValue}</span>
+                        </div>
+                    </div>
+                    <button className={styles.reset} disabled={false}>
+                        <FontAwesomeIcon icon={faXmark} size="xl" />
                         Сбросить фильтры
-                    </span>{' '}
-                    {/* временно для визуала*/}
+                    </button>
                 </div>
             </div>
         </div>

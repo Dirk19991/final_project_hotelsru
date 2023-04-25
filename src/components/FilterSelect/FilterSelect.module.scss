@@ -1,0 +1,106 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    position: relative;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $secondary-bg-color;
+    padding: 8px 16px;
+    width: 227px;
+    min-height: 60px;
+    border-radius: 4px;
+    gap: 5px;
+    cursor: pointer;
+    > div {
+        font-size: 15px;
+        line-height: 20px;
+        color: $accent-color;
+        font-weight: bold;
+    }
+    span {
+        font-size: 13px;
+        font-weight: bold;
+        color: $link-color;
+    }
+    &::after {
+        position: absolute;
+        content: '';
+        width: 9px;
+        height: 2px;
+        top: 50%;
+        right: 22px;
+        background-color: $accent-color;
+        transform: rotate(30deg);
+        transition: transform 0.2s ease-in-out;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        width: 9px;
+        height: 2px;
+        top: 50%;
+        right: 16px;
+        background-color: $accent-color;
+        transform: rotate(-30deg);
+        transition: transform 0.2s ease-in-out;
+    }
+    &.active {
+        background-color: $active-filter-color;
+        &::after {
+            transform: rotate(-30deg);
+        }
+        &::before {
+            transform: rotate(30deg);
+        }
+    }
+}
+
+.dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    background-color: $secondary-bg-color;
+    border-radius: 4px;
+
+    // color: $accent-color;
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+
+    // transform: translateY(calc(100% + 3px));
+    // z-index: 1000;
+    // gap: 10px;
+    // div {
+    //     position: relative;
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
+    //     p {
+    //         padding: 5px;
+    //         cursor: pointer;
+    //     }
+    //     span {
+    //         &::after {
+    //             content: '\f00c';
+    //             font-family: 'FontAwesome';
+    //             color: $link-color;
+    //             font-weight: 400;
+    //             font-size: 20px;
+    //             transition: all 0.4s;
+    //         }
+    //     }
+    // }
+}
+
+.genresDropdown,
+.countriesDropdown,
+.yearsDropdown {
+    padding: 8px 16px;
+    height: 100px;
+    width: 100%;
+}
