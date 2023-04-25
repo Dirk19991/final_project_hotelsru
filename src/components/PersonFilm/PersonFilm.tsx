@@ -1,10 +1,10 @@
-import { IMoviesData } from '@/stories/SliderSmall/SliderSmall'
+import { IMovie } from '@/types/ComponentProps/IMovie'
 import styles from './PersonFilm.module.scss'
 import Image from 'next/image'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useRouter } from 'next/router'
 
-const PersonFilm = ({ film }: { film: IMoviesData }) => {
+const PersonFilm = ({ film }: { film: IMovie }) => {
     const fixedRating = +parseFloat(film.rating).toFixed(1)
 
     return (

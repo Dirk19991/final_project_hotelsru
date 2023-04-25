@@ -1,10 +1,10 @@
 import { ButtonActor } from '@/stories/Button/ButtonActor'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
-import { IMoviesData } from '@/stories/SliderSmall/SliderSmall'
+import { IMovie } from '@/types/ComponentProps/IMovie'
 import styles from './FilmDescription.module.scss'
 
 interface IFilmDescription {
-    filmData: IMoviesData
+    filmData: IMovie
 }
 
 const FilmDescription = ({ filmData }: IFilmDescription) => {
