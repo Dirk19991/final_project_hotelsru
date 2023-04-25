@@ -12,13 +12,12 @@ html {
 body {
     background-color: $main-bg-color;
     font-size: 15px;
-    font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
     position: relative;
 }
 
 button {
-    font-family: 'Roboto', sans-serif;
+    font-family: inherit;
 }
 
 a {
