@@ -1,4 +1,4 @@
-import { IMoviesData } from '@/stories/SliderSmall/SliderSmall'
+import { IMovie } from '@/types/ComponentProps/IMovie'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from './Film.module.scss'
@@ -11,7 +11,7 @@ const Film = () => {
     const router = useRouter()
     const filmID = router.query.filmName
 
-    const [filmData, setFilmData] = useState<IMoviesData | null>(null)
+    const [filmData, setFilmData] = useState<IMovie | null>(null)
 
     useEffect(() => {
         fetch(`http://localhost:3001/movies/${filmID}`)
@@ -23,7 +23,7 @@ const Film = () => {
                 throw new Error('Error')
             })
             .then((res) => setFilmData(res))
-            .catch((error) => setFilmData(data as IMoviesData))
+            .catch((error) => setFilmData(data as IMovie))
     }, [filmID])
 
     console.log(filmData)
