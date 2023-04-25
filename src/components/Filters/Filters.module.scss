@@ -31,12 +31,17 @@ $range-label-color: $shade-10 !default;
 
 .reset {
     color: $link-color;
-    cursor: pointer;
+    cursor: auto;
     background: none;
     border: none;
     font-size: 15px;
     transition: color 0.2s;
-    cursor: none;
+    display: flex;
+    align-items: center;
+    div {
+        width: 24px;
+        height: 24px;
+    }
     svg {
         margin-right: 5px;
     }
@@ -81,12 +86,12 @@ $range-label-color: $shade-10 !default;
             transition: background 0.15s ease-in-out;
 
             &:hover {
-                background: $active-filter-color;
+                background: $active-range-color;
             }
         }
 
         &:active::-webkit-slider-thumb {
-            background: $active-filter-color;
+            background: $active-range-color;
         }
 
         &::-moz-range-thumb {
@@ -99,18 +104,18 @@ $range-label-color: $shade-10 !default;
             transition: background 0.15s ease-in-out;
 
             &:hover {
-                background: $active-filter-color;
+                background: $active-range-color;
             }
         }
 
         &:active::-moz-range-thumb {
-            background: $active-filter-color;
+            background: $active-range-color;
         }
 
         &:focus {
             &::-webkit-slider-thumb {
                 box-shadow: 0 0 0 3px $accent-color,
-                    0 0 0 6px $active-filter-color;
+                    0 0 0 6px $active-range-color;
             }
         }
     }
