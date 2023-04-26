@@ -9,11 +9,13 @@ import FilmDescription from '../FilmDescription/FilmDescription'
 
 const Film = () => {
     const router = useRouter()
+    console.log(router.query)
     const filmID = router.query.filmName
 
     const [filmData, setFilmData] = useState<IMovie | null>(null)
 
     useEffect(() => {
+        if (!router.isReady) return
         fetch(`http://localhost:3001/movies/${filmID}`)
             .then((response) => {
                 if (response.ok) {
@@ -23,8 +25,10 @@ const Film = () => {
                 throw new Error('Error')
             })
             .then((res) => setFilmData(res))
-            .catch((error) => setFilmData(JSON.parse(JSON.stringify(data)) as IMovie))
-    }, [filmID])
+            .catch((error) =>
+                setFilmData(JSON.parse(JSON.stringify(data)) as IMovie)
+            )
+    }, [filmID, router.isReady])
 
     console.log(filmData)
 
@@ -33,7 +37,7 @@ const Film = () => {
             <div className={styles.wrapper}>
                 <FilmBreadcrumbs filmData={filmData} />
                 <div className={styles.flex}>
-                    <FilmTrailer />
+                    <FilmTrailer filmData={filmData} />
                     <FilmDescription filmData={filmData} />
                 </div>
             </div>

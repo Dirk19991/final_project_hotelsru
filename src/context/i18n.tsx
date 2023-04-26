@@ -73,6 +73,9 @@ export interface I18nContextType {
             subscribeAndWatch: string
             catalog: string
             more: string
+            movie: string
+            cartoon: string
+            'tv-series': string
         }
     }
 }
@@ -157,6 +160,9 @@ const i18n: I18nContextType['i18n'] = {
         unsubscribe: 'Unsubscribe',
         anyMoment: 'any moment',
         subscribeAndWatch: 'Subscribe and watch',
+        movie: 'movie',
+            cartoon: 'cartoon',
+            'tv-series': 'tv series'
     },
     ru: {
         genres: 'Жанры',
@@ -237,6 +243,9 @@ const i18n: I18nContextType['i18n'] = {
         unsubscribe: 'Отключить можно',
         anyMoment: 'в любой момент',
         subscribeAndWatch: 'Смотреть по подписке',
+        movie: 'фильм',
+        cartoon: 'мультфильм',
+        'tv-series': 'сериал'
     },
 }
 
