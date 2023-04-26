@@ -15,6 +15,7 @@ const data = {
         { id: 6, name: 'драма' },
         { id: 11, name: 'история' },
     ],
+    country: [{ id: 1, name: 'США' }],
 }
 
 export default data
