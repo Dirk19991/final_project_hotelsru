@@ -31,3 +31,17 @@
         margin-bottom: 8px;
     }
 }
+
+@media screen and (max-width: 1020px) {
+    .wrapper {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        h2 {
+            font-size: 28px;
+        }
+    }
+}

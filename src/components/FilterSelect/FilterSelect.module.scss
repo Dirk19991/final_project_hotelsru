@@ -2,6 +2,7 @@
 
 .wrapper {
     position: relative;
+    width: 20%;
 }
 
 .select {
@@ -11,7 +12,6 @@
     justify-content: center;
     background-color: $secondary-bg-color;
     padding: 8px 16px;
-    width: 227px;
     min-height: 60px;
     border-radius: 4px;
     gap: 5px;
@@ -60,26 +60,58 @@
     }
 }
 
-.dropdown {
+.genresDropdown,
+.countriesDropdown,
+.yearsDropdown {
     position: absolute;
     left: 0;
+    right: 0;
+    width: 100%;
     top: calc(100% + 4px);
+    padding: 16px;
     background-color: $secondary-bg-color;
     border-radius: 4px;
     z-index: 9999;
 }
 
-.genresDropdown,
-.countriesDropdown {
-    width: 630px;
-    padding: 16px;
-}
-
-.countriesDropdown {
+.countriesDropdown,
+.genresDropdown {
+    min-width: 630px;
 }
 
 .yearsDropdown {
-    width: 227px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
     padding: 16px;
-    height: 100px;
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper {
+        width: 49%;
+    }
+}
+
+@media screen and (max-width: 728px) {
+    .countriesDropdown,
+    .genresDropdown {
+        min-width: 412px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .wrapper {
+        width: 48.5%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        width: 100%;
+    }
+    .countriesDropdown,
+    .genresDropdown {
+        min-width: auto;
+    }
 }
