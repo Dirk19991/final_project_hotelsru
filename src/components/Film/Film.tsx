@@ -1,19 +1,21 @@
-import { IMoviesData } from '@/stories/SliderSmall/SliderSmall'
+import { IMovie } from '@/types/ComponentProps/IMovie'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from './Film.module.scss'
-import data from '@/data/mockDataFilm'
+import data from '@/data/mockDataFilm.json'
 import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
 import FilmTrailer from '../FilmTrailer/FilmTrailer'
 import FilmDescription from '../FilmDescription/FilmDescription'
 
 const Film = () => {
     const router = useRouter()
+    console.log(router.query)
     const filmID = router.query.filmName
 
-    const [filmData, setFilmData] = useState<IMoviesData | null>(null)
+    const [filmData, setFilmData] = useState<IMovie | null>(null)
 
     useEffect(() => {
+        if (!router.isReady) return
         fetch(`http://localhost:3001/movies/${filmID}`)
             .then((response) => {
                 if (response.ok) {
@@ -23,8 +25,10 @@ const Film = () => {
                 throw new Error('Error')
             })
             .then((res) => setFilmData(res))
-            .catch((error) => setFilmData(data as IMoviesData))
-    }, [filmID])
+            .catch((error) =>
+                setFilmData(JSON.parse(JSON.stringify(data)) as IMovie)
+            )
+    }, [filmID, router.isReady])
 
     console.log(filmData)
 
@@ -33,7 +37,7 @@ const Film = () => {
             <div className={styles.wrapper}>
                 <FilmBreadcrumbs filmData={filmData} />
                 <div className={styles.flex}>
-                    <FilmTrailer />
+                    <FilmTrailer filmData={filmData} />
                     <FilmDescription filmData={filmData} />
                 </div>
             </div>

@@ -17,6 +17,7 @@ export interface ButtonProps {
         | 'chat'
         | 'headerThirtyDays'
         | 'watch'
+        | 'rating'
     src?: string
     width?: number
     height?: number

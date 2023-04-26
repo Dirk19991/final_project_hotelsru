@@ -90,3 +90,10 @@ export const Watch: Story = {
         type: 'watch',
     },
 }
+
+export const Rating: Story = {
+    args: {
+        label: 'Оценить',
+        type: 'rating',
+    },
+}

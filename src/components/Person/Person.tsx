@@ -1,18 +1,28 @@
 import styles from './Person.module.scss'
 import Image from 'next/image'
-import { useState } from 'react'
-import data from '@/data/mockDataActor'
+import { useEffect, useState } from 'react'
 import PersonFilm from '../PersonFilm/PersonFilm'
 import { useRouter } from 'next/router'
+import { IPerson } from '@/types/ComponentProps/IMovie'
 
 const Person = () => {
     const router = useRouter()
 
-    const name = data.name
-    const enName = data.enName
-    const numberOfFilms = data.movies.length
+    const [actorData, setActorData] = useState<IPerson | null>(null)
+
+   
+
+    useEffect(() => {
+      fetch('http://localhost:3001/person/1337').then(res => res.json()).then(data => setActorData(data))
+
+    }, [])
+    
+    const name = actorData && actorData.name
+    const enName = actorData && actorData.enName
+    const numberOfFilms = actorData && actorData.movies.length
 
     return (
+        actorData ? 
         <div className="container">
             <div className={styles.wrapper}>
                 <div onClick={() => router.back()} className={styles.back}>
@@ -29,7 +39,7 @@ const Person = () => {
                         <Image
                             layout="fill"
                             objectFit="cover"
-                            src="/mockActor.webp"
+                            src={actorData.photo}
                             alt="photo"
                         />
                     </div>
@@ -39,13 +49,13 @@ const Person = () => {
                         Полная фильмография <span>{numberOfFilms} фильма</span>
                     </div>
                     <div className={styles.films}>
-                        {data.movies.map((film) => (
+                        {actorData.movies.map((film) => (
                             <PersonFilm key={film.id} film={film} />
                         ))}
                     </div>
                 </div>
             </div>
-        </div>
+        </div> : <div>НЕТ ДАННЫХ</div>
     )
 }
 export default Person

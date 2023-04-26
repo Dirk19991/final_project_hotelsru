@@ -101,6 +101,7 @@ const FooterNavigation = () => {
             <div className={styles.support} data-testid="support-section">
                 <h4>{i18n[language].support}</h4>
                 <div className={styles.help}>
+                    <div>{i18n[language].readyToHelp}</div>
                     <div>{i18n[language].ourOperators}</div>
                 </div>
 
@@ -129,9 +130,7 @@ const FooterNavigation = () => {
                     />
                 </div>
                 <div className={styles.faq}>
-                    <Link href="https://www.ask.ivi.ru">
-                        ask.ivi.ru
-                    </Link>
+                    <Link href="https://www.ask.ivi.ru">ask.ivi.ru</Link>
                     <span>{i18n[language].FAQ}</span>
                 </div>
             </div>

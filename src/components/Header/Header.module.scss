@@ -11,17 +11,17 @@
     margin: 3px auto 0;
     border-radius: 12px 12px 0 0;
     transition: 0.3s;
-    &::after {
-        position: absolute;
-        content: '';
-        display: block;
-        width: 100%;
-        max-width: 1240px;
-        height: 7px;
-        z-index: 98;
-        transition: 0.3s;
-        background-color: transparent;
-    }
+    // &::after {
+    //     position: absolute;
+    //     content: '';
+    //     display: block;
+    //     width: 100%;
+    //     max-width: 1240px;
+    //     height: 7px;
+    //     z-index: 98;
+    //     transition: 0.3s;
+    //     background-color: transparent;
+    // }
 }
 
 .wrapper {
@@ -49,8 +49,8 @@
     width: 100%;
     max-width: 1240px;
     margin: 0 -12px 0;
-    padding: 32px 24px 32px;
-    top: 76px;
+    padding: 0px 24px 0px;
+    top: 70px;
     position: absolute;
     z-index: 99;
     border-radius: 0 0 12px 12px;
@@ -59,6 +59,7 @@
 }
 
 .dropdownExpanded {
+    padding: 32px 24px 32px;
     border-top: 1px solid $divider-color;
     background-color: $active-menu-color;
 }
@@ -82,7 +83,6 @@
     display: flex;
     align-items: center;
 }
-
 
 .panel {
     display: flex;

@@ -3,16 +3,17 @@
 @import './mixins';
 @import './slider';
 @import '~font-awesome/scss/font-awesome';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
 html {
-    overflow-x: hidden;
+    overflow-x: clip;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
     background-color: $main-bg-color;
     font-size: 15px;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
 }
 

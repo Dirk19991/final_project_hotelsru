@@ -1,13 +1,18 @@
-import { IMoviesData } from '@/stories/SliderSmall/SliderSmall'
+import { FC } from 'react'
+import { IMovie } from '@/types/ComponentProps/IMovie'
 import styles from './FilmBreadcrumbs.module.scss'
+import { useI18nContext } from '@/context/i18n'
 
 interface IFilmBreadcrumbs {
-    filmData: IMoviesData
+    filmData: IMovie
 }
 
-const FilmBreadcrumbs = ({ filmData }: IFilmBreadcrumbs) => {
-    const { genre, type } = filmData
-    const mainGenre = genre.sort((a, b) => a.id - b.id)[0].name
+const FilmBreadcrumbs: FC<IFilmBreadcrumbs> = ({ filmData }) => {
+    const { language, i18n } = useI18nContext()
+
+    const { genres, type } = filmData
+    const mainGenre = genres.sort((a, b) => a.id - b.id)[0].name
+    
     // переделать после появления i18n
 
     return (

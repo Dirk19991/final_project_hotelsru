@@ -8,6 +8,9 @@ export interface I18nContextType {
     toggleLanguage: () => void
     i18n: {
         [key in Language]: {
+            genres: string
+            countries: string
+            years: string
             aboutUs: string
             aboutCompany: string
             vacancies: string
@@ -27,6 +30,7 @@ export interface I18nContextType {
             activateCertificate: string
             thirtyDays1Rouble: string
             support: string
+            readyToHelp: string
             ourOperators: string
             openChat: string
             FAQ: string
@@ -69,12 +73,18 @@ export interface I18nContextType {
             subscribeAndWatch: string
             catalog: string
             more: string
+            movie: string
+            cartoon: string
+            'tv-series': string
         }
     }
 }
 
 const i18n: I18nContextType['i18n'] = {
     en: {
+        genres: 'Genres',
+        countries: 'Countries',
+        years: 'Years',
         more: 'More',
         catalog: 'Catalog',
         aboutUs: 'About us',
@@ -94,10 +104,10 @@ const i18n: I18nContextType['i18n'] = {
         cartoons: 'Cartoons',
         whatToWatch: 'What to watch',
         activateCertificate: 'Activate certificate',
-        thirtyDays1Rouble: "30 days subscription for 1 ₽",
+        thirtyDays1Rouble: '30 days subscription for 1 ₽',
         support: 'Support',
-        ourOperators:
-            'We are always ready to help you. Our operators are 24/7 online',
+        ourOperators: 'Our operators are 24/7 online',
+        readyToHelp: 'We are always ready to help you.',
         openChat: 'Open chat',
         FAQ: 'FAQ',
         watchFilms: 'Watch films, TV series and cartoons withous ads',
@@ -150,8 +160,14 @@ const i18n: I18nContextType['i18n'] = {
         unsubscribe: 'Unsubscribe',
         anyMoment: 'any moment',
         subscribeAndWatch: 'Subscribe and watch',
+        movie: 'movie',
+            cartoon: 'cartoon',
+            'tv-series': 'tv series'
     },
     ru: {
+        genres: 'Жанры',
+        countries: 'Страны',
+        years: 'Годы',
         more: 'Ещё',
         catalog: 'Каталог',
         aboutUs: 'О нас',
@@ -171,9 +187,10 @@ const i18n: I18nContextType['i18n'] = {
         cartoons: 'Мультфильмы',
         whatToWatch: 'Что посмотреть',
         activateCertificate: 'Активировать сертификат',
-        thirtyDays1Rouble: "30 дней подписки за 1 ₽",
+        thirtyDays1Rouble: '30 дней подписки за 1 ₽',
         support: 'Служба поддержки',
-        ourOperators: 'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
+        readyToHelp: 'Мы всегда готовы вам помочь.',
+        ourOperators: 'Наши операторы онлайн 24/7',
         openChat: 'Написать в чате',
         FAQ: 'Ответы на вопросы',
         watchFilms: 'Смотрите фильмы, сериалы и мультфильмы без рекламы',
@@ -226,6 +243,9 @@ const i18n: I18nContextType['i18n'] = {
         unsubscribe: 'Отключить можно',
         anyMoment: 'в любой момент',
         subscribeAndWatch: 'Смотреть по подписке',
+        movie: 'фильм',
+        cartoon: 'мультфильм',
+        'tv-series': 'сериал'
     },
 }
 

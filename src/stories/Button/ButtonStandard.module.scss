@@ -126,3 +126,19 @@
     line-height: 20px;
     font-weight: 700;
 }
+
+.rating {
+    width: 72px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $accent-color;
+    font-weight: 600;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+
+    &:hover {
+        border: 1px solid $accent-color;
+    }
+}
