@@ -7,8 +7,8 @@ interface IFilmBreadcrumbs {
 }
 
 const FilmBreadcrumbs: FC<IFilmBreadcrumbs> = ({ filmData }) => {
-    const { genre, type } = filmData
-    const mainGenre = genre.sort((a, b) => a.id - b.id)[0].name
+    const { genres, type } = filmData
+    const mainGenre = genres.sort((a, b) => a.id - b.id)[0].name
     // переделать после появления i18n
 
     return (

@@ -8,18 +8,18 @@ interface IFilmDescription {
 }
 
 const FilmDescription = ({ filmData }: IFilmDescription) => {
-    const { name, year, type, genre, description, rating } = filmData
-    const genres = genre.map((elem) => elem.name).join(' · ')
+    const { nameRU, year, type, genres, description, rating } = filmData
+    const filmGenres = genres.map((elem) => elem.name).join(' · ')
 
     const fixedRating = +parseFloat(rating).toFixed(1)
     return (
         <div className={styles.wrapper}>
             <h2 className={styles.name}>
-                {name} ({type} {year})
+                {nameRU} ({type} {year})
             </h2>
             <div className={styles.info}>
                 <div>
-                    {year} {genres}
+                    {year} {filmGenres}
                 </div>
                 <div className={styles.description}>{description}</div>
                 <div></div>
