@@ -9,39 +9,39 @@ interface ICountryParam {
 }
 
 export interface IPersonMovie {
-    description: string,
-    director: string,
-    id: number,
-    name: string,
-    poster: string,
-    previewPoster: string,
-    rating: string,
-    slogan: null | string,
-    type: string,
+    description: string
+    director: string
+    id: number
+    name: string
+    poster: string
+    previewPoster: string
+    rating: string
+    slogan: null | string
+    type: string
     year: number
 }
 
 export interface IPerson {
     description: string
-enName: string,
-id: number,
-name: string,
-photo: string,
-movies: IPersonMovie[]
+    enName: string
+    id: number
+    name: string
+    photo: string
+    movies: IPersonMovie[]
 }
 
 interface ISimilarMovie {
-   Movie_description: string
-Movie_director: string
-Movie_id: number
-Movie_name: string
-Movie_poster: string
-Movie_previewPoster: string
-Movie_rating: string
-Movie_slogan: string | null
-Movie_type: string
-Movie_year: number
-    }
+    Movie_description: string
+    Movie_director: string
+    Movie_id: number
+    Movie_name: string
+    Movie_poster: string
+    Movie_previewPoster: string
+    Movie_rating: string
+    Movie_slogan: string | null
+    Movie_type: string
+    Movie_year: number
+}
 
 export interface IMovie {
     actors: IPerson[]
@@ -67,4 +67,19 @@ export interface IMovie {
     type: string
     trailer: string
     year: number
+}
+
+export interface ISmallSliderMovie {
+    id: number
+    name: string
+    type: string
+    rating: string
+    description: string
+    slogan: null | string
+    poster: string
+    previewPoster: string
+    year: number
+    director: string
+    genre: IGenreParam[]
+    country: ICountryParam[]
 }
