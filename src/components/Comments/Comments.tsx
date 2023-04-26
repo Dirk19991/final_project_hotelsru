@@ -2,15 +2,15 @@ import { SlideSmall } from '@/stories/SlideSmall/SlideSmall'
 import styles from './Comments.module.scss'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { IMoviesData } from '@/stories/SliderSmall/SliderSmall'
-import data from '@/data/mockDataFilm'
+import data from '@/data/mockDataFilm.json'
 import { Button } from '@/stories/Button/ButtonStandard'
+import { IMovie } from '@/types/ComponentProps/IMovie'
 
 const Comments = () => {
     const router = useRouter()
     const filmID = router.query.filmName
 
-    const [filmData, setFilmData] = useState<IMoviesData | null>(null)
+    const [filmData, setFilmData] = useState<IMovie | null>(null)
     const [comment, setComment] = useState('')
     const [error, setError] = useState('')
 
@@ -24,7 +24,7 @@ const Comments = () => {
                 throw new Error('Error')
             })
             .then((res) => setFilmData(res))
-            .catch((error) => setFilmData(data as IMoviesData))
+            .catch((error) => JSON.parse(JSON.stringify(data)) as IMovie)
     }, [filmID])
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ const Comments = () => {
             <div className={styles.wrapper}>
                 <div className={styles.comments}>
                     <h2>
-                        {filmData?.name} ({filmData?.type} {filmData?.year})
+                        {filmData?.nameRu} ({filmData?.type} {filmData?.year})
                     </h2>
                     <form className={styles.floating}>
                         <label className={styles.label}>
@@ -85,9 +85,9 @@ const Comments = () => {
                             year={filmData.year}
                             href={`/`}
                             image={filmData.previewPoster}
-                            country={filmData.country}
-                            genre={filmData.genre}
-                            name={filmData.name}
+                            country={[{ id: 1, name: 'США' }]}
+                            genre={filmData.genres}
+                            name={filmData.nameRu}
                         />
                     )}
                 </div>
