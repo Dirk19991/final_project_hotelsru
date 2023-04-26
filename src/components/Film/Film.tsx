@@ -2,7 +2,7 @@ import { IMovie } from '@/types/ComponentProps/IMovie'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from './Film.module.scss'
-import data from '@/data/mockDataFilm'
+import data from '@/data/mockDataFilm.json'
 import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
 import FilmTrailer from '../FilmTrailer/FilmTrailer'
 import FilmDescription from '../FilmDescription/FilmDescription'
@@ -23,7 +23,7 @@ const Film = () => {
                 throw new Error('Error')
             })
             .then((res) => setFilmData(res))
-            .catch((error) => setFilmData(data as IMovie))
+            .catch((error) => setFilmData(JSON.parse(JSON.stringify(data)) as IMovie))
     }, [filmID])
 
     console.log(filmData)

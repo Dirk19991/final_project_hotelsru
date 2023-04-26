@@ -15,7 +15,7 @@ export const ButtonRating = ({
     rating,
 }: ButtonRatingProps) => {
     return (
-        <button
+        <div
             style={{ width: width, height: height }}
             className={styles.button}
         >
@@ -25,6 +25,6 @@ export const ButtonRating = ({
             >
                 {rating}
             </div>
-        </button>
+        </div>
     )
 }

@@ -19,7 +19,7 @@ const PersonFilm = ({ film }: { film: IMovie }) => {
             </div>
             <div className={styles.information}>
                 <div className={styles.year}>{film.year}</div>
-                <div className={styles.filmTitle}>{film.name}</div>
+                <div className={styles.filmTitle}>{film.nameRU}</div>
                 <div className={styles.rating}>Рейтинг Иви: {fixedRating}</div>
             </div>
             <div className={styles.button}>
