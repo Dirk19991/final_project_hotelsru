@@ -65,3 +65,9 @@
         color: $link-color;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        padding-top: 30px;
+    }
+}
