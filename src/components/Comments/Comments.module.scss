@@ -1,0 +1,75 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    padding: 120px 200px;
+    color: $accent-color;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: 150px;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    > h2 {
+        text-align: left;
+        margin-bottom: 20px;
+        font-size: 40px;
+        line-height: 44px;
+        font-weight: 900;
+    }
+}
+
+.label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > input {
+        height: 40px;
+        padding: 18px 12px 2px;
+        background-color: $promo-color;
+        outline: none;
+        border-radius: 10px;
+    }
+
+    > span {
+        position: absolute;
+        bottom: -20px;
+        left: 20px;
+        color: red;
+        font-size: 16px;
+    }
+}
+
+.floating {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.float {
+    position: absolute;
+    top: 4px;
+    left: 30px;
+    height: 100%;
+    padding-top: 5px;
+    pointer-events: none;
+    border: 1px solid transparent;
+    width: calc(100% - 60px);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: $tile-color;
+    transform-origin: 0 0;
+    transition: opacity 0.1s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.inputComment:focus + .float,
+.inputComment:not(:placeholder-shown) ~ .float {
+    transform: scale(0.8) translateY(-30%);
+}

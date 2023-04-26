@@ -1,0 +1,65 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    color: $link-color;
+    background-color: $secondary-bg-color;
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 15px rgba(0, 0, 10, 0.5));
+    border-radius: 10px;
+
+    > h5 {
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 700;
+    }
+    > p {
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 400;
+        color: $accent-color;
+    }
+    > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        > span {
+            color: inherit;
+            font-size: 15px;
+        }
+        > div {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .likeUp {
+                &::before {
+                    content: '\f164';
+                    font-family: 'FontAwesome';
+                    font-weight: 400;
+                    font-size: 18px;
+                    display: inline-block;
+                }
+            }
+            .likeDown {
+                &::before {
+                    content: '\f165';
+                    font-family: 'FontAwesome';
+                    font-weight: 400;
+                    font-size: 18px;
+                    display: inline-block;
+                }
+            }
+            .value {
+                color: inherit;
+                font-size: 18px;
+                color: $rating-button-color;
+            }
+        }
+    }
+}
+
