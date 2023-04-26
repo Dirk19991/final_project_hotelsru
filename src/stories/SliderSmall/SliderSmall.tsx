@@ -6,8 +6,7 @@ import { SlideSmall } from '@/stories/SlideSmall/SlideSmall'
 import cn from 'classnames'
 import data from '../../data/mockData'
 import Image from 'next/image'
-import { IMovie } from '@/types/ComponentProps/IMovie'
-
+import { IMovie, ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
 
 interface ISliderSmall {
     endpoint: string
@@ -15,7 +14,9 @@ interface ISliderSmall {
 }
 
 const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
-    const [moviesData, setMoviesData] = useState<IMovie[] | null>(null)
+    const [moviesData, setMoviesData] = useState<ISmallSliderMovie[] | null>(
+        null
+    )
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
