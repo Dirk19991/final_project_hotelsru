@@ -8,11 +8,26 @@ interface ICountryParam {
     name: string
 }
 
-interface IPerson {
+export interface IPersonMovie {
+    description: string,
+    director: string,
+    id: number,
+    name: string,
+    poster: string,
+    previewPoster: string,
+    rating: string,
+    slogan: null | string,
+    type: string,
+    year: number
+}
+
+export interface IPerson {
+    description: string
 enName: string,
 id: number,
 name: string,
-photo: string
+photo: string,
+movies: IPersonMovie[]
 }
 
 interface ISimilarMovie {
@@ -38,8 +53,8 @@ export interface IMovie {
     endYear: number | null
     genres: IGenreParam[]
     id: number
-    nameEN: string
-    nameRU: string
+    nameEn: string
+    nameRu: string
     poster: string
     previewPoster: string
     producer: IPerson[]
