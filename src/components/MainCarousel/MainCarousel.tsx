@@ -24,7 +24,7 @@ const MainCarousel = () => {
                             } as CSSProperties
                         }
                         modules={[Navigation]}
-                        spaceBetween={30}
+                        spaceBetween={24}
                         slidesPerView={1}
                         loopedSlides={3}
                         initialSlide={1}
