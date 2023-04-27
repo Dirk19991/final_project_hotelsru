@@ -2,12 +2,12 @@ import React, { CSSProperties, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './MediumCarousel.module.scss'
 import { TopTenItem } from '@/stories/SlideMedium/SlideMedium'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import cn from 'classnames'
 import { useI18nContext } from '@/context/i18n'
 
-const TopTen = () => {
+const MediumCarousel = () => {
     const { i18n, language } = useI18nContext()
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
@@ -103,4 +103,4 @@ const TopTen = () => {
     )
 }
 
-export default TopTen
+export default MediumCarousel

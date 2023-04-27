@@ -1,21 +1,26 @@
-.carusel {
+.carousel {
     display: flex;
     align-items: center;
     justify-content: center;
-    &__wrapper {
-        position: relative;
-    }
     margin-bottom: 20px;
     overflow: hidden;
 }
 
-.caruselContainer {
-    padding: 0 60px;
+.container {
     width: 100%;
-    max-width: 1336px;
-    margin: 0 auto;
+    max-width: 1216px;
+    min-width: 310px;
+}
 
-    @media screen and (max-width: 1200px) {
-        padding: 0 16px;
+@media screen and (max-width: 1279px) {
+    .container {
+        width: calc(100vw - 52px);
+        padding: 0 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 3px;
     }
 }

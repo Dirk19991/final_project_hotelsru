@@ -1,12 +1,12 @@
 import MediumCarousel from '@/components/MediumCarousel/MediumCarousel'
-import { render, screen, within } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 jest.mock('swiper/react', () => ({
     Swiper: ({ children }: any) => (
-        <div data-testid="Swiper-testId">{children}</div>
+        <div data-testid="MediumCarousel-testId">{children}</div>
     ),
     SwiperSlide: ({ children }: any) => (
-        <div data-testid="SwiperSlide-testId">{children}</div>
+        <div data-testid="MediumCarouselSlide-testId">{children}</div>
     ),
 }))
 
@@ -17,13 +17,11 @@ jest.mock('swiper', () => ({
     A11y: (props: any) => null,
 }))
 
-const navElementsAmount = 10
-
-describe('Testing header navigation bar', () => {
+describe('Testing medium carousel', () => {
     it('renders determined amount of slides', () => {
         const view = render(<MediumCarousel />)
 
-        const slides = view.getAllByTestId('SwiperSlide-testId')
+        const slides = view.getAllByTestId('MediumCarouselSlide-testId')
         expect(slides.length).toBe(10)
     })
 })

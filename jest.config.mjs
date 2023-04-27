@@ -7,7 +7,8 @@ const createJestConfig = nextJest({
 const config = {
     testEnvironment: 'jest-environment-jsdom',
     moduleNameMapper: {
-        'swiper/css': 'swiper/swiper.min.css',
+        'swiper/css': ['<rootDir>/node_modules/swiper/swiper.min.css'],
+        'swiper/react': ['<rootDir>/node_modules/swiper/react/swiper-react.js'],
     },
     transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)'],
 }
