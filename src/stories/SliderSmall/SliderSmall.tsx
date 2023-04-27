@@ -6,14 +6,27 @@ import { SlideSmall } from '@/stories/SlideSmall/SlideSmall'
 import cn from 'classnames'
 import data from '../../data/mockData'
 import Image from 'next/image'
-import { IMovie, ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
+import {
+    IMovie,
+    ISimilarMovie,
+    ISmallSliderMovie,
+} from '@/types/ComponentProps/IMovie'
 
-interface ISliderSmall {
+interface WithEndpoint {
+    type: 'endpoint'
     endpoint: string
     headerText: string
 }
 
-const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
+interface WithData {
+    type: 'similarMovie'
+    similarMovies: ISimilarMovie[]
+    headerText: string
+}
+
+type ISliderSmall = WithEndpoint | WithData
+
+const SliderSmall = (props: ISliderSmall) => {
     const [moviesData, setMoviesData] = useState<ISmallSliderMovie[] | null>(
         null
     )
@@ -22,7 +35,11 @@ const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
     const nextRef = useRef(null)
 
     useEffect(() => {
-        fetch(endpoint)
+        if (props.type === 'similarMovie') {
+            return
+        }
+
+        fetch(props.endpoint)
             .then((response) => {
                 if (response.ok) {
                     return response.json()
@@ -32,17 +49,18 @@ const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
             })
             .then((res) => setMoviesData(res.slice(0, 20)))
             .catch((error) => setMoviesData(data))
-    }, [endpoint])
+    }, [props])
 
     return (
         <section className={styles.sliderContainer}>
             <div className={styles.wrapper}>
-                <div className={styles.header}>{headerText}</div>
+                <div className={styles.header}>{props.headerText}</div>
 
                 <div className={cn(styles.bestComedies, 'small__slider')}>
                     <Swiper
                         onInit={() => setInit(true)}
                         speed={500}
+                        slidesPerView="auto"
                         breakpoints={{
                             1250: {
                                 slidesPerView: 7,
@@ -104,18 +122,47 @@ const SliderSmall = ({ endpoint, headerText }: ISliderSmall) => {
                                     />
                                 </SwiperSlide>
                             ))}
+                        {props.type === 'similarMovie' &&
+                            props.similarMovies.map((movie) => (
+                                <SwiperSlide
+                                    style={{
+                                        margin: '0px 0px',
+                                    }}
+                                    key={movie.Movie_id}
+                                >
+                                    <SlideSmall
+                                        rating={movie.Movie_rating}
+                                        year={movie.Movie_year}
+                                        href={`/watch/${movie.Movie_id}`}
+                                        image={movie.Movie_previewPoster}
+                                        country={[
+                                            {
+                                                id: 1,
+                                                name: 'США',
+                                            },
+                                        ]}
+                                        genre={[
+                                            {
+                                                id: 1,
+                                                name: 'боевик',
+                                            },
+                                        ]}
+                                        name={movie.Movie_name}
+                                    />
+                                </SwiperSlide>
+                            ))}
                     </Swiper>
                     <div className={styles.prevButton} ref={prevRef}>
                         <Image
                             fill
-                            src="./icons/arrowLeft.svg"
+                            src="/icons/arrowLeft.svg"
                             alt="arrowLeft"
                         />
                     </div>
                     <div className={styles.nextButton} ref={nextRef}>
                         <Image
                             fill
-                            src="./icons/arrowRight.svg"
+                            src="/icons/arrowRight.svg"
                             alt="arrowRight"
                         />
                     </div>

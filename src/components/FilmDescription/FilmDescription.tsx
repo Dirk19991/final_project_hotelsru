@@ -5,7 +5,8 @@ import { Button } from '@/stories/Button/ButtonStandard'
 import { IMovie } from '@/types/ComponentProps/IMovie'
 import toHoursAndMinutes from '@/util/toHoursAndMinutes'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import styles from './FilmDescription.module.scss'
 
 interface IFilmDescription {
@@ -27,12 +28,18 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
     const [detailsOpened, setDetailsOpened] = useState(false)
     const { language, i18n } = useI18nContext()
 
+    // состояние не обновляется до исходного значения при переходе на другой фильм, возвращаем исходное состояние принудительно
+    const dynamicRoute = useRouter().asPath
+    useEffect(() => {
+        setDetailsOpened(false)
+    }, [dynamicRoute])
+
     const filmGenres = genres.map((elem) => elem.name).join(' · ')
     const fixedRating = +parseFloat(rating).toFixed(1)
     const filmType = type as 'movie' | 'tv-series' | 'cartoon'
     const time = toHoursAndMinutes(duration)
     const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
-    console.log(mainActors)
+
     return (
         <div className={styles.wrapper}>
             <h2 className={styles.name}>

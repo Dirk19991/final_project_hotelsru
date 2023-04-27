@@ -12,10 +12,12 @@ export default function Home() {
             <Promo />
             <MediumCarousel />
             <SliderSmall
+                type="endpoint"
                 endpoint="http://localhost:3001/movies?year=2020"
                 headerText="Лучшие комедии"
             />
             <SliderSmall
+                type="endpoint"
                 endpoint="http://localhost:3001/movies?year=2021"
                 headerText="Остросюжетные боевики"
             />

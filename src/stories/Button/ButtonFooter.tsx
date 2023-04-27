@@ -15,6 +15,7 @@ export interface ButtonFooterProps {
     sublabel?: string
     href: string
     type: 'black' | 'grey' | 'long'
+    buttonWidth?: string
 }
 
 export const ButtonFooter = ({
@@ -25,23 +26,39 @@ export const ButtonFooter = ({
     height,
     href,
     type,
+    buttonWidth,
 }: ButtonFooterProps) => {
     const btnClass = cn(styles.button, styles[type])
 
     return (
         <Link href={href}>
-            <div className={btnClass}>
-                <Image
-                    className={styles.image}
-                    height={height}
-                    width={width}
-                    src={src}
-                    alt={src}
-                ></Image>
-                <div className={styles.column}>
-                    <div className={styles.sublabel}>{sublabel}</div>
-                    <div className={styles.label}>{label}</div>
-                </div>
+            <div
+                style={{ width: buttonWidth && `${buttonWidth}` }}
+                className={btnClass}
+            >
+                {label ? (
+                    <>
+                        <Image
+                            className={styles.image}
+                            height={height}
+                            width={width}
+                            src={src}
+                            alt={src}
+                        ></Image>
+                        <div className={styles.column}>
+                            <div className={styles.sublabel}>{sublabel}</div>
+                            <div className={styles.label}>{label}</div>
+                        </div>
+                    </>
+                ) : (
+                    <Image
+                        className={styles.image}
+                        height={height}
+                        width={width}
+                        src={src}
+                        alt={src}
+                    ></Image>
+                )}
             </div>
         </Link>
     )

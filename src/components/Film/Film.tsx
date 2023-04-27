@@ -6,10 +6,16 @@ import data from '@/data/mockDataFilm.json'
 import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
 import FilmTrailer from '../FilmTrailer/FilmTrailer'
 import FilmDescription from '../FilmDescription/FilmDescription'
+import SliderSmall from '@/stories/SliderSmall/SliderSmall'
+import 'swiper/scss'
+import 'swiper/css/bundle'
+import useMediaQuery from '@/hooks/useMediaQuery'
+import FilmMobile from '../FilmMobile/FilmMobile'
 
 const Film = () => {
+    const isMobile = useMediaQuery('(max-width: 1200px)')
     const router = useRouter()
-    console.log(router.query)
+
     const filmID = router.query.filmName
 
     const [filmData, setFilmData] = useState<IMovie | null>(null)
@@ -30,22 +36,38 @@ const Film = () => {
             )
     }, [filmID, router.isReady])
 
-    console.log(filmData)
-
-    return filmData ? (
-        <div className="container">
-            <div className={styles.wrapper}>
-                <FilmBreadcrumbs filmData={filmData} />
-                <div className={styles.flex}>
-                    <FilmTrailer filmData={filmData} />
-                    <FilmDescription filmData={filmData} />
+    return (
+        <>
+            {filmData && !isMobile && (
+                <>
+                    <div className="container">
+                        <div className={styles.wrapper}>
+                            <FilmBreadcrumbs filmData={filmData} />
+                            <div className={styles.flex}>
+                                <FilmTrailer filmData={filmData} />
+                                <FilmDescription filmData={filmData} />
+                            </div>
+                            <h3 className={styles.header}>
+                                С фильмом &quot;{filmData.nameRu}&quot; смотрят:
+                            </h3>
+                        </div>
+                    </div>
+                    <div className={styles.slider}>
+                        <SliderSmall
+                            type="similarMovie"
+                            similarMovies={filmData.similarMovies}
+                            headerText=""
+                        />
+                    </div>
+                </>
+            )}
+            {filmData && isMobile && <FilmMobile filmData={filmData} />}
+            {!filmData && (
+                <div className="container">
+                    <h1 className={styles.header}>НЕТ ФИЛЬМА</h1>
                 </div>
-            </div>
-        </div>
-    ) : (
-        <div className="container">
-            <h1 className={styles.header}>НЕТ ФИЛЬМА</h1>
-        </div>
+            )}
+        </>
     )
 }
 

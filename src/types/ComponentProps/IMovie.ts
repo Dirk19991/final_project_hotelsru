@@ -30,7 +30,7 @@ export interface IPerson {
     movies: IPersonMovie[]
 }
 
-interface ISimilarMovie {
+export interface ISimilarMovie {
     Movie_description: string
     Movie_director: string
     Movie_id: number
