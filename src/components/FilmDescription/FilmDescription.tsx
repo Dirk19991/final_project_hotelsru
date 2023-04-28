@@ -60,7 +60,9 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                                 width={44}
                             />
                         </ButtonActor>
-                        <div className={styles.actorInfo}>Рейтинг Иви</div>
+                        <div className={styles.actorInfo}>
+                            {i18n[language].iviRatingNoColon}
+                        </div>
                     </div>
 
                     {mainActors.map((actor) => (
@@ -72,7 +74,9 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                                 width={44}
                                 image={true}
                             />
-                            <div className={styles.actorInfo}>{actor.name}</div>
+                            <div className={styles.actorInfo}>
+                                {language === 'en' ? actor.enName : actor.name}
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -94,7 +98,7 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                             : styles.detailsClosed
                     }
                 >
-                    Детали о фильме
+                    {i18n[language].filmDetails}
                 </div>
             </div>
             <div className={styles.ratingGroup}>
@@ -107,12 +111,20 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                     />
                 </div>
                 <div>
-                    <div className={styles.ratingText}>Рейтинг Иви</div>
-                    <div>Интересный сюжет</div>
-                    <div>{ratingCount.toLocaleString()} оценок</div>
+                    <div className={styles.ratingText}>
+                        {i18n[language].iviRatingNoColon}
+                    </div>
+                    <div>{i18n[language].interestingPlot}</div>
+                    <div>
+                        {ratingCount.toLocaleString()} {i18n[language].ratings}
+                    </div>
                 </div>
                 <div className={styles.ratingButton}>
-                    <Button label="Оценить" onClick={() => {}} type="rating" />
+                    <Button
+                        label={i18n[language].rate}
+                        onClick={() => {}}
+                        type="rating"
+                    />
                 </div>
             </div>
         </div>
