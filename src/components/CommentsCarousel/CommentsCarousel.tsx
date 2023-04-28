@@ -7,6 +7,7 @@ import CommentSlide from './CommentSlide/CommentSlide'
 import Modal from '../Modal/Modal'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Comments from '../Comments/Comments'
+import commentsData from '../../data/mockDataComments.json'
 
 const CommentsCarousel = ({}) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -64,33 +65,15 @@ const CommentsCarousel = ({}) => {
                                 nextEl: nextRef.current,
                             }}
                         >
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <CommentSlide />
-                            </SwiperSlide>
+                            {commentsData.map((comment) => (
+                                <SwiperSlide key={comment.id}>
+                                    <CommentSlide
+                                        author={comment.author}
+                                        date={comment.date}
+                                        text={comment.text}
+                                    />
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                         <div className={styles.prevButton} ref={prevRef}>
                             <Image

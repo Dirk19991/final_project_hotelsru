@@ -1,0 +1,90 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    gap: 10px;
+    padding-left: 50px;
+    margin-bottom: 20px;
+}
+
+.ava {
+    position: absolute;
+    padding: 8px 10px;
+    left: 0;
+    top: 0;
+    min-width: 27px;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    background-color: green;
+    border-radius: 4px;
+}
+
+.comment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: $promo-color;
+    > span {
+        margin-right: 20px;
+        font-size: 13px;
+        line-height: 16px;
+        opacity: 0.8;
+    }
+    > span:first-child {
+        font-weight: 700;
+    }
+
+    > p {
+        font-size: 15px;
+        line-height: 22px;
+        color: $accent-color;
+        opacity: 0.8;
+    }
+}
+
+.likes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-self: flex-start;
+    .likeUp {
+        &::before {
+            content: '\f164';
+            font-family: 'FontAwesome';
+            font-weight: 400;
+            font-size: 18px;
+            display: inline-block;
+            color: $promo-color;
+        }
+    }
+    .likeDown {
+        &::before {
+            content: '\f165';
+            font-family: 'FontAwesome';
+            font-weight: 400;
+            font-size: 18px;
+            display: inline-block;
+            color: $promo-color;
+        }
+    }
+    .value {
+        color: inherit;
+        font-size: 18px;
+        color: $rating-button-color;
+    }
+}
+
+.answer {
+    > span {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 12px;
+        font-weight: 300;
+        cursor: pointer;
+        text-decoration: underline;
+        letter-spacing: 1px;
+    }
+}

@@ -81,6 +81,11 @@ export interface I18nContextType {
             movie: string
             cartoon: string
             'tv-series': string
+            back: string
+            notEnoughRatings: string
+            iviRating: string
+            fullFilmography: string
+            watch: string
         }
     }
 }
@@ -173,6 +178,11 @@ const i18n: I18nContextType['i18n'] = {
         movie: 'movie',
         cartoon: 'cartoon',
         'tv-series': 'tv series',
+        back: 'Back',
+        notEnoughRatings: 'not enough ratings',
+        iviRating: 'IVI rating:',
+        fullFilmography: 'Full filmography',
+        watch: 'Watch',
     },
     ru: {
         sortBy: "Сортировать по",
@@ -261,6 +271,11 @@ const i18n: I18nContextType['i18n'] = {
         movie: 'фильм',
         cartoon: 'мультфильм',
         'tv-series': 'сериал',
+        back: 'Назад',
+        notEnoughRatings: 'недостаточно оценок',
+        iviRating: 'Рейтинг Иви:',
+        fullFilmography: 'Полная фильмография',
+        watch: 'Смотреть',
     },
 }
 
