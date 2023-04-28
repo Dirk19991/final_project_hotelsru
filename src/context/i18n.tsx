@@ -76,6 +76,11 @@ export interface I18nContextType {
             movie: string
             cartoon: string
             'tv-series': string
+            back: string
+            notEnoughRatings: string
+            iviRating: string
+            fullFilmography: string
+            watch: string
         }
     }
 }
@@ -161,8 +166,13 @@ const i18n: I18nContextType['i18n'] = {
         anyMoment: 'any moment',
         subscribeAndWatch: 'Subscribe and watch',
         movie: 'movie',
-            cartoon: 'cartoon',
-            'tv-series': 'tv series'
+        cartoon: 'cartoon',
+        'tv-series': 'tv series',
+        back: 'Back',
+        notEnoughRatings: 'not enough ratings',
+        iviRating: 'IVI rating:',
+        fullFilmography: 'Full filmography',
+        watch: 'Watch',
     },
     ru: {
         genres: 'Жанры',
@@ -245,7 +255,12 @@ const i18n: I18nContextType['i18n'] = {
         subscribeAndWatch: 'Смотреть по подписке',
         movie: 'фильм',
         cartoon: 'мультфильм',
-        'tv-series': 'сериал'
+        'tv-series': 'сериал',
+        back: 'Назад',
+        notEnoughRatings: 'недостаточно оценок',
+        iviRating: 'Рейтинг Иви:',
+        fullFilmography: 'Полная фильмография',
+        watch: 'Смотреть',
     },
 }
 
