@@ -36,11 +36,9 @@ const FilterSelect: FC<any> = ({
                     {filterType === 'countries' && i18n[language].countries}
                     {filterType === 'years' && i18n[language].years}
                 </div>
-                {filterType === 'genres' && (
-                    <span>{'Артхаус, В...'}</span>
-                )}
+                {filterType === 'genres' && <span>{'Артхаус, Драма, Документальный'}</span>}
                 {filterType === 'countries' && (
-                    <span>{'Австралия, ...'}</span>
+                    <span>{'Австралия, Великобритания, Германия'}</span>
                 )}
                 {filterType === 'years' && <span>{'2024 год'}</span>}
             </div>

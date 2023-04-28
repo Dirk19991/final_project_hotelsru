@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import styles from './SlideSmall.module.scss'
+import React, { useState, FC } from 'react'
+import styles from './DefaultCarouselSlide.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,7 +10,9 @@ import {
     faBan,
 } from '@fortawesome/free-solid-svg-icons'
 
-export interface ISlideSmall {
+
+
+export interface IDefaultCarousel {
     image: string
     href: string
     year: number
@@ -26,7 +28,7 @@ export interface ISlideSmall {
     name: string
 }
 
-export const SlideSmall = ({
+const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
     image,
     href,
     year,
@@ -34,7 +36,7 @@ export const SlideSmall = ({
     country,
     genre,
     name,
-}: ISlideSmall) => {
+}) => {
     const [imageHovered, setImageHovered] = useState(false)
     const [bookmarkHovered, setBookmarkHovered] = useState(false)
     const [similarHovered, setSimilarHovered] = useState(false)
@@ -158,7 +160,8 @@ export const SlideSmall = ({
                             {parseFloat(rating).toFixed(2)}
                         </div>
                         <div className={styles.bottomInfo}>
-                            {year}, {country[0].name}, {filmGenre}
+                            <span>{year}, {country[0].name}, {filmGenre}</span>
+                            <p>110 минут</p>
                         </div>
                     </div>
                 </div>
@@ -167,3 +170,5 @@ export const SlideSmall = ({
         </div>
     )
 }
+
+export default DefaultCarouselSlide
