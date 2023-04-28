@@ -4,10 +4,12 @@ import MoviesList from '@/components/MoviesList/MoviesList'
 import SliderSmall from '@/stories/SliderSmall/SliderSmall'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
 import { useState } from 'react'
+import SortingPanel from '@/components/SortingPanel/SortingPanel'
 import { useI18nContext } from '@/context/i18n'
 
 export default function Movies() {
     const { i18n, language } = useI18nContext()
+    const [currentSorting, setCurrentSorting] = useState<string>('byRating')
 
     const breadcrumbsData = [
         { id: 1, title: i18n[language].myIvi, href: '/' },
@@ -23,11 +25,16 @@ export default function Movies() {
         },
         { id: 4, title: '2004 год', href: '/2021' },
     ]
+    
 
     return (
         <>
-            <Breadcrumbs breadcrumbsData={breadcrumbsData}/>
+            <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <MoviesTitle />
+            <SortingPanel
+                setCurrentSorting={setCurrentSorting}
+                currentSorting={currentSorting}
+            />
             <Filters />
         </>
     )

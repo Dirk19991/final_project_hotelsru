@@ -8,6 +8,11 @@ export interface I18nContextType {
     toggleLanguage: () => void
     i18n: {
         [key in Language]: {
+            sortBy: string
+            byRating: string
+            byRatesAmount: string
+            byReleaseDate: string
+            byAlphabet: string
             genres: string
             countries: string
             years: string
@@ -87,6 +92,11 @@ export interface I18nContextType {
 
 const i18n: I18nContextType['i18n'] = {
     en: {
+        sortBy: "Sort by",
+        byRating: "Rating",
+        byRatesAmount: "Amount of rates",
+        byReleaseDate: "Release date",
+        byAlphabet: "Alphabet",
         genres: 'Genres',
         countries: 'Countries',
         years: 'Years',
@@ -175,6 +185,11 @@ const i18n: I18nContextType['i18n'] = {
         watch: 'Watch',
     },
     ru: {
+        sortBy: "Сортировать по",
+        byRating: "Рейтингу",
+        byRatesAmount: "Количеству оценок",
+        byReleaseDate: "Дате выхода",
+        byAlphabet: "Алфавиту",
         genres: 'Жанры',
         countries: 'Страны',
         years: 'Годы',
