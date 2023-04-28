@@ -1,6 +1,6 @@
 @import '@/styles/vars.scss';
 
-.main__slider {
+.main__carousel {
     .swiper-button-next {
         position: absolute !important;
         top: calc(50% - 0px) !important;
@@ -60,9 +60,9 @@
     }
 }
 
-.small__slider {
+.default__carousel {
     .swiper-button-disabled {
-        opacity: 0.5;
+        display: none;
     }
     .swiper-wrapper {
         display: flex;

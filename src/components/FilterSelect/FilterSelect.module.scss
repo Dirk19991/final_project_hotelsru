@@ -26,6 +26,11 @@
         font-size: 13px;
         font-weight: bold;
         color: $link-color;
+        display: block;
+        padding-right: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     &::after {
         position: absolute;

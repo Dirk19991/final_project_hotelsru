@@ -6,17 +6,17 @@
 }
 
 .imageContainer {
-    min-width: 153px;
+    min-width: 138px;
     max-width: 540px;
     aspect-ratio: 1/1.53;
-    margin: 10px 0px;
+    margin: 10px 0px 10px;
     border-radius: 8px;
     position: relative;
     cursor: pointer;
     transition: all 0.3s;
 
     &:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 }
 
@@ -29,7 +29,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    margin: 10px 0px;
+    margin: 8px 0px 0px 3px;
     top: 0;
     left: 0;
     color: $accent-color;
@@ -88,19 +88,32 @@
     top: 98px;
     left: 10px;
     font-size: 24px;
+    font-weight: bold;
 }
 
 .bottomInfo {
     position: absolute;
-    top: 170px;
+    top: 165px;
     left: 10px;
     padding-right: 10px;
+    font-size: 13px;
+    line-height: 1.2;
+    
+    span {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        max-width: 100px;
+        margin-bottom: 5px;
+    }
 }
 
 .name {
-    color: $accent-color;
-    font-size: 16px;
-    font-weight: 500;
+    color: $film-name-color;
+    font-weight: bold;
+    font-size: 15px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
