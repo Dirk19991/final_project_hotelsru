@@ -54,6 +54,7 @@ const SortingPanel: FC<ISortingPanel> = ({
         })
 
         setSortingTypes(newSortState)
+        setIsDropdownOpen(false)
     }
 
     return (
