@@ -81,7 +81,9 @@ const FilmMobile = ({ filmData }: IFilmMobile) => {
                                     width={44}
                                 />
                             </ButtonActor>
-                            <div className={styles.actorInfo}>Рейтинг Иви</div>
+                            <div className={styles.actorInfo}>
+                                {i18n[language].iviRatingNoColon}
+                            </div>
                         </div>
                         {responsiveActors.map((actor) => (
                             <div key={actor.id} className={styles.column}>
@@ -93,7 +95,9 @@ const FilmMobile = ({ filmData }: IFilmMobile) => {
                                     image={true}
                                 />
                                 <div className={styles.actorInfo}>
-                                    {actor.name}
+                                    {language === 'en'
+                                        ? actor.enName
+                                        : actor.name}
                                 </div>
                             </div>
                         ))}
@@ -102,7 +106,7 @@ const FilmMobile = ({ filmData }: IFilmMobile) => {
                         <ButtonFooter
                             height={20}
                             href="/"
-                            label="Смотреть позже"
+                            label={i18n[language].watchLater}
                             onClick={() => {}}
                             src="/icons/bookmark.svg"
                             type="grey"
@@ -131,10 +135,12 @@ const FilmMobile = ({ filmData }: IFilmMobile) => {
                             : styles.detailsClosed
                     }
                 >
-                    Детали о фильме
+                    {i18n[language].filmDetails}
                 </div>
                 <h3 className={styles.header}>
-                    С фильмом &quot;{filmData.nameRu}&quot; смотрят:
+                    {language === 'en'
+                        ? 'Similar movies:'
+                        : `С фильмом "${filmData.nameRu}" смотрят:`}
                 </h3>
             </div>
             <div className={styles.slider}>

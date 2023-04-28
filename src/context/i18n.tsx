@@ -81,6 +81,13 @@ export interface I18nContextType {
             iviRating: string
             fullFilmography: string
             watch: string
+            trailer: string
+            filmDetails: string
+            iviRatingNoColon: string
+            interestingPlot: string
+            rate: string
+            ratings: string
+            watchLater: string
         }
     }
 }
@@ -173,6 +180,13 @@ const i18n: I18nContextType['i18n'] = {
         iviRating: 'IVI rating:',
         fullFilmography: 'Full filmography',
         watch: 'Watch',
+        trailer: 'Trailer',
+        filmDetails: 'Film details',
+        iviRatingNoColon: 'IVI rating',
+        interestingPlot: 'Interesting plot',
+        rate: 'Rate',
+        ratings: 'ratings',
+        watchLater: 'Watch later',
     },
     ru: {
         genres: 'Жанры',
@@ -261,6 +275,14 @@ const i18n: I18nContextType['i18n'] = {
         iviRating: 'Рейтинг Иви:',
         fullFilmography: 'Полная фильмография',
         watch: 'Смотреть',
+
+        trailer: 'Трейлер',
+        filmDetails: 'Детали о фильме',
+        iviRatingNoColon: 'Рейтинг Иви',
+        interestingPlot: 'Интересный сюжет',
+        rate: 'Оценить',
+        ratings: 'Оценок',
+        watchLater: 'Смотреть позже',
     },
 }
 

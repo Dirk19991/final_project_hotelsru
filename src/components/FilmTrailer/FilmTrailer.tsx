@@ -1,3 +1,4 @@
+import { useI18nContext } from '@/context/i18n'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
@@ -9,6 +10,7 @@ interface IFilmTrailer {
 }
 
 const FilmTrailer = ({ filmData }: IFilmTrailer) => {
+    const { language, i18n } = useI18nContext()
     const isMobile = useMediaQuery('(max-width: 1200px)')
     const id = filmData.trailer.split('/').at(-1)
 
@@ -31,7 +33,7 @@ const FilmTrailer = ({ filmData }: IFilmTrailer) => {
                     <ButtonFooter
                         height={20}
                         href="/"
-                        label="Трейлер"
+                        label={i18n[language].trailer}
                         onClick={() => {}}
                         src="/icons/play.svg"
                         type="grey"

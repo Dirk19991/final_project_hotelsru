@@ -11,8 +11,10 @@ import 'swiper/scss'
 import 'swiper/css/bundle'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import FilmMobile from '../FilmMobile/FilmMobile'
+import { useI18nContext } from '@/context/i18n'
 
 const Film = () => {
+    const { language, i18n } = useI18nContext()
     const isMobile = useMediaQuery('(max-width: 1200px)')
     const router = useRouter()
 
@@ -48,7 +50,9 @@ const Film = () => {
                                 <FilmDescription filmData={filmData} />
                             </div>
                             <h3 className={styles.header}>
-                                С фильмом &quot;{filmData.nameRu}&quot; смотрят:
+                                {language === 'en'
+                                    ? 'Similar movies:'
+                                    : `С фильмом "${filmData.nameRu}" смотрят:`}
                             </h3>
                         </div>
                     </div>
