@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "author": "Frank",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae facere expedita.",
+        "date": "Дата"
+    },
+    {
+        "id": 2,
+        "author": "Sam",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae facere expedita.",
+        "date": "Дата"
+    },
+    {
+        "id": 3,
+        "author": "Igor",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae facere expedita.",
+        "date": "Дата"
+    },
+    {
+        "id": 4,
+        "author": "Alena",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae facere expedita.",
+        "date": "Дата"
+    },
+    {
+        "id": 5,
+        "author": "Tonny",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae facere expedita.",
+        "date": "Дата"
+    },
+    {
+        "id": 6,
+        "author": "Fill",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae facere expedita.",
+        "date": "Дата"
+    },
+    {
+        "id": 7,
+        "author": "Hank",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae facere expedita.",
+        "date": "Дата"
+    }
+]
