@@ -8,10 +8,13 @@
     position: relative;
     height: 120px;
     width: 80px;
+    min-width: 80px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
-.information {
+.information,
+.mobileInformation {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -19,16 +22,38 @@
     margin-right: 20px;
 }
 
+.mobileInformation {
+    width: 100%;
+}
+
 .year,
 .filmTitle {
     font-weight: 700;
+}
+
+.filmTitle {
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        transition: 0.3s;
+        color: $link-color;
+    }
 }
 
 .rating {
     color: $promo-color;
 }
 
-.button {
+.button,
+.mobileButton {
     align-self: center;
     margin-left: auto;
+}
+
+.mobileButton {
+    width: 100%;
+    > a > button {
+        width: 100%;
+    }
 }
