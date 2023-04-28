@@ -21,6 +21,7 @@
 
 @media screen and (max-width: 600px) {
     .container {
-        padding: 3px;
+        width: calc(100vw - 40px);
+        padding: 0px;
     }
 }

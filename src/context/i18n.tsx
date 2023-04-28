@@ -8,6 +8,11 @@ export interface I18nContextType {
     toggleLanguage: () => void
     i18n: {
         [key in Language]: {
+            sortBy: string
+            byRating: string
+            byRatesAmount: string
+            byReleaseDate: string
+            byAlphabet: string
             genres: string
             countries: string
             years: string
@@ -82,6 +87,11 @@ export interface I18nContextType {
 
 const i18n: I18nContextType['i18n'] = {
     en: {
+        sortBy: "Sort by",
+        byRating: "Rating",
+        byRatesAmount: "Amount of rates",
+        byReleaseDate: "Release date",
+        byAlphabet: "Alphabet",
         genres: 'Genres',
         countries: 'Countries',
         years: 'Years',
@@ -161,10 +171,15 @@ const i18n: I18nContextType['i18n'] = {
         anyMoment: 'any moment',
         subscribeAndWatch: 'Subscribe and watch',
         movie: 'movie',
-            cartoon: 'cartoon',
-            'tv-series': 'tv series'
+        cartoon: 'cartoon',
+        'tv-series': 'tv series',
     },
     ru: {
+        sortBy: "Сортировать по",
+        byRating: "Рейтингу",
+        byRatesAmount: "Количеству оценок",
+        byReleaseDate: "Дате выхода",
+        byAlphabet: "Алфавиту",
         genres: 'Жанры',
         countries: 'Страны',
         years: 'Годы',
@@ -245,7 +260,7 @@ const i18n: I18nContextType['i18n'] = {
         subscribeAndWatch: 'Смотреть по подписке',
         movie: 'фильм',
         cartoon: 'мультфильм',
-        'tv-series': 'сериал'
+        'tv-series': 'сериал',
     },
 }
 
