@@ -1,12 +1,18 @@
 import styles from './CommentSlide.module.scss'
 
-const CommentSlide = ({}) => {
+export interface IComment {
+    author: string
+    text: string
+    date: string
+}
+
+const CommentSlide = ({ author, text, date }: IComment) => {
     return (
         <div className={styles.wrapper}>
-            <h5>Имя</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat vero natus perferendis dicta saepe blanditiis</p>
+            <h5>{author}</h5>
+            <p>{text}</p>
             <div>
-                <span>дата</span>
+                <span>{date}</span>
                 <div className={styles.likes}>
                     <span className={styles.likeUp}></span>
                     <span className={styles.value}>36</span>
