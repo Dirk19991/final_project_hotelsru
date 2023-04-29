@@ -187,7 +187,7 @@ const HeaderDropdownProfile = () => {
             <div className={styles.sideContent}>
                 <Button
                     label="Войти или зарегистрироваться"
-                    onClick={() => push('/auth')}
+                    onClick={() => push('/authorization')}
                     type="register"
                 />
 
