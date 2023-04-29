@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './MoviesList.module.scss'
-import { SlideSmall } from '@/stories/SlideSmall/SlideSmall'
+import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import data from '../../data/mockData'
 
 interface IMoviesData {
@@ -74,7 +74,7 @@ const MoviesList = ({ filterGenre, filterCountry }: IMoviesList) => {
                 <div className={styles.list}>
                     {moviesDataFiltred &&
                         moviesDataFiltred.map((movie) => (
-                            <SlideSmall
+                            <DefaultCarouselSlide
                                 key={movie.id}
                                 rating={movie.rating}
                                 year={movie.year}
