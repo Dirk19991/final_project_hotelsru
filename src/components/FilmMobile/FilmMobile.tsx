@@ -3,7 +3,7 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import { ButtonActor } from '@/stories/Button/ButtonActor'
 import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
-import SliderSmall from '@/stories/SliderSmall/SliderSmall'
+import DefaultCarousel from '../DefaultCarousel/DefaultCarousel'
 import { IMovie } from '@/types/ComponentProps/IMovie'
 import toHoursAndMinutes from '@/util/toHoursAndMinutes'
 import { useState } from 'react'
@@ -144,7 +144,7 @@ const FilmMobile = ({ filmData }: IFilmMobile) => {
                 </h3>
             </div>
             <div className={styles.slider}>
-                <SliderSmall
+                <DefaultCarousel
                     type="similarMovie"
                     similarMovies={filmData.similarMovies}
                     headerText=""

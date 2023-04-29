@@ -1,4 +1,4 @@
-import { SlideSmall } from '@/stories/SlideSmall/SlideSmall'
+import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import styles from './Comments.module.scss'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -51,7 +51,7 @@ const Comments = () => {
                 </div>
                 <div className={styles.banner}>
                     {filmData && (
-                        <SlideSmall
+                        <DefaultCarouselSlide
                             rating={filmData.rating}
                             year={filmData.year}
                             href={`/`}

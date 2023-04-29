@@ -6,7 +6,7 @@ import data from '@/data/mockDataFilm.json'
 import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
 import FilmTrailer from '../FilmTrailer/FilmTrailer'
 import FilmDescription from '../FilmDescription/FilmDescription'
-import SliderSmall from '@/stories/SliderSmall/SliderSmall'
+import DefaultCarousel from '../DefaultCarousel/DefaultCarousel'
 import 'swiper/scss'
 import 'swiper/css/bundle'
 import useMediaQuery from '@/hooks/useMediaQuery'
@@ -57,7 +57,7 @@ const Film = () => {
                         </div>
                     </div>
                     <div className={styles.slider}>
-                        <SliderSmall
+                        <DefaultCarousel
                             type="similarMovie"
                             similarMovies={filmData.similarMovies}
                             headerText=""
