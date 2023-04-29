@@ -1,0 +1,96 @@
+@import '@/styles/vars.scss';
+
+.auth {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 52px);
+    left: 0;
+    right: 0;
+    background-color: $auth-bg-color;
+    color: white;
+    padding-top: 16px;
+}
+
+.wrapper {
+    width: 50%;
+    margin-left: 30%;
+}
+
+.info {
+    background-color: $secondary-bg-color;
+    border-radius: 16px 16px 16px 0px;
+    padding: 16px;
+    max-width: 450px;
+    margin-bottom: 24px;
+    p {
+        color: $accent-color;
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+    span {
+        color: $promo-color;
+        font-size: 13px;
+    }
+}
+
+.agreement {
+    margin-left: 20%;
+    margin-top: 25px;
+    font-size: 13px;
+    line-height: 1.3;
+    color: $promo-color;
+    span {
+        display: block;
+        a {
+            position: relative;
+            cursor: pointer;
+            color: $accent-color;
+            z-index: 1;
+            &::before {
+                content: '';
+                background-color: $breadcrumbs-link-color;
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                width: 100%;
+                height: 1.5px;
+                z-index: -1;
+                transition: all 0.1s ease-in-out;
+            }
+            &:hover::before {
+                bottom: 0;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.input {
+    position: relative;
+    width: 290px;
+    background-color: #d9d6e1;
+    border-radius: 8px;
+    height: 40px;
+    input {
+        background-color: #d9d6e1;
+        border: none;
+        outline: 0;
+        font-weight: bold;
+        color: #09070e;
+        &::placeholder {
+            color: transparent;
+        }
+
+        &:placeholder-shown ~ .form__label {
+            font-size: 1.3rem;
+            cursor: text;
+            top: 20px;
+        }
+    }
+    svg {
+        stroke: $link-color;
+        width: 20px;
+        height: 20px;
+    }
+}

@@ -29,6 +29,11 @@ export default function App({ Component, pageProps }: AppProps) {
                     name="viewport"
                     content="width=device-width, initial-scale=1.0"
                 />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    href="https://gambit-central.dfs.ivi.ru/dist/23.04.05_c1f11edb/storm/images/favicon/64.png"
+                />
             </Head>
             <I18nProvider>
                 <Layout>
