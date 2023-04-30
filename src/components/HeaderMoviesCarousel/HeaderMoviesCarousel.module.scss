@@ -1,0 +1,47 @@
+@import '@/styles/vars.scss';
+
+.carousel {
+    box-shadow: 0px 40px 26px -6px $active-menu-color inset,
+        0px -40px 26px -6px $active-menu-color inset;
+}
+
+.wrapper {
+    height: 370px;
+    gap: 8px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    will-change: transform;
+    z-index: -1;
+    a {
+        cursor: pointer;
+    }
+    img {
+        border-radius: 8px;
+    }
+    &:nth-child(1) {
+        transform: translateY(-80px);
+        animation: bannermove 40s linear infinite;
+    }
+    &:nth-child(2) {
+        transform: translateY(0);
+        animation: bannermove 45s linear infinite;
+    }
+    &:nth-child(3) {
+        transform: translateY(-80px);
+        animation: bannermove 40s linear infinite;
+    }
+}
+
+@keyframes bannermove {
+    100% {
+        transform: translateY(calc(-200% + 160px));
+        will-change: transform;
+    }
+}
