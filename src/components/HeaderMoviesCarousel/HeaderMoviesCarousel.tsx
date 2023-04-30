@@ -15,7 +15,7 @@ const HeaderMoviesCarousel = () => {
             <div className={styles.wrapper}>
                 {[movies1, movies2, movies3].map((list) => {
                     return (
-                        <div className={styles.row}>
+                        <div className={styles.column}>
                             {list.map((movie) => {
                                 return (
                                     <Link href={`/watch/${movie.id}`}>
