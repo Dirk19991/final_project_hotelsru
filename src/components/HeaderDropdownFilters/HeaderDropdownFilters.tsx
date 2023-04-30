@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 import styles from './HeaderDropdownFilters.module.scss'
 import Link from 'next/link'
-import { ButtonFooter } from '@/stories/Button/ButtonFooter'
-import { useI18nContext } from '@/context/i18n'
+import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
 
 interface IHeaderLink {
     id: number
@@ -22,8 +21,6 @@ interface IHeaderDropdown {
 }
 
 const HeaderDropdownFilters: FC<IHeaderDropdown> = ({ subMenuData }) => {
-    const { i18n, language } = useI18nContext()
-
     return (
         <div className={styles.wrapper} data-testid="dropdown-filters">
             <div className={styles.categories}>
@@ -70,20 +67,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdown> = ({ subMenuData }) => {
                         ))}
                     </ul>
                 </div>
-                <div className={styles.widget}>
-                    <div>
-                        короче хз пока как делать этот виджет. Возможно, его
-                        необязателньо делать точь в точь
-                    </div>
-                    <ButtonFooter
-                        height={20}
-                        href="/"
-                        label={i18n[language].watchOnSmartTV}
-                        src="/icons/smartTV.svg"
-                        type="long"
-                        width={20}
-                    />
-                </div>
+                <SubsciriptionWidget />
             </div>
         </div>
     )

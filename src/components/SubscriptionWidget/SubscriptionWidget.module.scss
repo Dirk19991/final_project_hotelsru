@@ -1,0 +1,19 @@
+.widget {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 244px;
+    > div {
+        background-color: black;
+        border-radius: 8px;
+        height: 264px;
+        margin-bottom: 24px;
+        color: white;
+    }
+    button {
+        cursor: pointer;
+        height: 44px;
+        padding: 0px;
+        border-radius: 8px;
+    }
+}

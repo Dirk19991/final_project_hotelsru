@@ -23,6 +23,10 @@ const nextConfig = {
             },
         ],
     },
+    env: {
+        LOCAL_API_URL: 'http://localhost:3001',
+        DEPLOY_API_URL: '',
+    },
 }
 
 module.exports = nextConfig

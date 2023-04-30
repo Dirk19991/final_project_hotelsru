@@ -2,6 +2,8 @@ import { Button } from '@/stories/Button/ButtonStandard'
 import React from 'react'
 import styles from './HeaderDropdownSubscription.module.scss'
 import { useI18nContext } from '@/context/i18n'
+import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
+import Link from 'next/link'
 
 const HeaderDropdownSubscription = () => {
     const { i18n, language } = useI18nContext()
@@ -143,7 +145,15 @@ const HeaderDropdownSubscription = () => {
                     </span>
                 </div>
             </div>
-            <div className={styles.sideContent}></div>
+            <div className={styles.sideContent}>
+                <SubsciriptionWidget />
+
+                <div>
+                    <Link href="https://www.ivi.ru/profile/subscriptions">
+                        Другие Подписки
+                    </Link>
+                </div>
+            </div>
         </div>
     )
 }
