@@ -53,18 +53,12 @@
 
 .medium__slider {
     .swiper-button-disabled {
-        opacity: 0.5;
-    }
-    .swiper-wrapper {
-        margin-top: 10px;
+        display: none;
     }
 }
 
 .default__carousel {
     .swiper-button-disabled {
         display: none;
-    }
-    .swiper-wrapper {
-        display: flex;
     }
 }

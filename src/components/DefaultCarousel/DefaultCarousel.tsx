@@ -66,17 +66,33 @@ const DefaultCarousel = (props: ISliderSmall) => {
                             slidesPerView="auto"
                             modules={[Navigation]}
                             breakpoints={{
-                                1250: {
+                                1300: {
                                     slidesPerView: 7,
                                     slidesPerGroup: 7,
                                 },
-                                1000: {
+                                1090: {
+                                    slidesPerView: 6,
+                                    slidesPerGroup: 6,
+                                },
+                                920: {
                                     slidesPerView: 5,
                                     slidesPerGroup: 5,
                                 },
-                                750: {
+                                760: {
                                     slidesPerView: 4,
                                     slidesPerGroup: 4,
+                                },
+                                600: {
+                                    slidesPerView: 3,
+                                    slidesPerGroup: 3,
+                                },
+                                510: {
+                                    slidesPerView: 4,
+                                    slidesPerGroup: 4,
+                                },
+                                390: {
+                                    slidesPerView: 3,
+                                    slidesPerGroup: 3,
                                 },
                                 300: {
                                     slidesPerView: 2,
