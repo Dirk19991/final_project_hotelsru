@@ -50,17 +50,97 @@ const FilterSelect: FC<any> = ({
                 )}
                 {currentFilter === 'countries' &&
                     filterType === 'countries' && (
-                        <div className={styles.countriesDropdown}>countre</div>
+                        <div className={styles.countriesDropdown}>
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="years"
+                                            value="Австралия"
+                                        />
+                                        <div>Австралия</div>
+                                    </label>
+                                </li>
+
+                                <li>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="years"
+                                            value="Аргентина"
+                                        />
+                                        <div>Аргентина</div>
+                                    </label>
+                                </li>
+
+                                <li>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="years"
+                                            value="Албания"
+                                        />
+                                        <div>Албания</div>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
                     )}
                 {currentFilter === 'years' && filterType === 'years' && (
                     <div className={styles.yearsDropdown}>
                         <ul>
-                            <li>Все годы</li>
-                            <li className={styles.active}>2023 год</li>
-                            <li>2022 год</li>
-                            <li>2022-2023</li>
-                            <li>1980-1990</li>
-                            <li>до 1980</li>
+                            <li>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="years"
+                                        value="all"
+                                        checked
+                                    />
+                                    <div>Все годы</div>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="years"
+                                        value="2022"
+                                    />
+                                    <div>2022 год</div>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="years"
+                                        value="2021"
+                                    />
+                                    <div>2021 год</div>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="years"
+                                        value="1980-2000"
+                                    />
+                                    <div>1980-2000</div>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="years"
+                                        value="<1980"
+                                    />
+                                    <div>до 1980</div>
+                                </label>
+                            </li>
                         </ul>
                     </div>
                 )}

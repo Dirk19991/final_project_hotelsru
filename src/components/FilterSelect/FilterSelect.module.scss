@@ -136,49 +136,104 @@
         flex-direction: column;
         gap: 12px;
         li {
-            position: relative;
-            transition: 0.3s;
-            cursor: pointer;
-            &.active {
-                color: $accent-color;
-                &::after {
-                    opacity: 1;
-                    border-color: $accent-color;
+            label {
+                cursor: pointer;
+                input {
+                    display: none;
+                    &:checked + div {
+                        color: $accent-color;
+                        &::after {
+                            opacity: 1;
+                            border-color: $accent-color;
+                        }
+                        &::before {
+                            opacity: 1;
+                        }
+                    }
                 }
-                &::before {
-                    opacity: 1;
+                div {
+                    position: relative;
+                    transition: 0.1s;
+                    &:hover {
+                        color: $accent-color;
+                        &::after {
+                            opacity: 1;
+                        }
+                    }
+                    &::after {
+                        transition: 0.1s;
+                        content: '';
+                        position: absolute;
+                        opacity: 0;
+                        right: 0px;
+                        width: 16px;
+                        height: 16px;
+                        border-radius: 50%;
+                        background-color: transparent;
+                        border: 2px solid $link-color;
+                    }
+                    &::before {
+                        transition: 0.1s;
+                        content: '';
+                        position: absolute;
+                        opacity: 0;
+                        top: 6.5px;
+                        right: 6px;
+                        width: 3px;
+                        height: 3px;
+                        border-radius: 50%;
+                        background-color: transparent;
+                        border: 1px solid $accent-color;
+                    }
                 }
             }
-            &:hover {
-                color: $accent-color;
-                &::after {
-                    opacity: 1;
+        }
+    }
+}
+
+.countriesDropdown {
+    ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 40px;
+        li {
+            color: $link-color;
+            font-weight: bold;
+            font-size: 13px;
+            label {
+                cursor: pointer;
+                input {
+                    display: none;
+                    &:checked + div {
+                        color: $accent-color;
+                        &::after {
+                            opacity: 1;
+                            border-color: $accent-color;
+                        }
+                    }
                 }
-            }
-            &::after {
-                transition: 0.3s;
-                content: '';
-                position: absolute;
-                opacity: 0;
-                right: 0;
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                background-color: transparent;
-                border: 2px solid $link-color;
-            }
-            &::before {
-                transition: 0.3s;
-                content: '';
-                position: absolute;
-                opacity: 0;
-                top: 6px;
-                right: 6px;
-                width: 3.5px;
-                height: 3.5px;
-                border-radius: 50%;
-                background-color: transparent;
-                border: 1px solid $accent-color;
+                div {
+                    position: relative;
+                    transition: 0.1s;
+                    &::after {
+                        transition: 0.1s;
+                        content: '\f00c';
+                        font-family: 'FontAwesome';
+                        position: absolute;
+                        opacity: 0;
+                        font-weight: normal;
+                        transform: scaleX(1.1);
+                        right: 0px;
+                        background-color: transparent;
+                    }
+                    &:hover {
+                        color: $accent-color;
+                        &::after {
+                            opacity: 1;
+                            color: $accent-color;
+                        }
+                    }
+                }
             }
         }
     }
