@@ -53,10 +53,14 @@ const DefaultCarousel = (props: ISliderSmall) => {
         <section className={styles.section}>
             <div className={'container'}>
                 <div className={styles.wrapper}>
-                    <div className={styles.title}>
-                        <Link href="/movies/">
+                    <div className={cn(styles.title, props.type === 'similarMovie' && styles.simpleText)}>
+                        {props.type === 'similarMovie' ? (
                             <span>{props.headerText}</span>
-                        </Link>
+                        ) : (
+                            <Link href="/movies/">
+                                <span>{props.headerText}</span>
+                            </Link>
+                        )}
                     </div>
 
                     <div className={cn(styles.carousel, 'default__carousel')}>
