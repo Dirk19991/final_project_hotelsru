@@ -191,11 +191,13 @@
     }
 }
 
-.countriesDropdown {
+.countriesDropdown,
+.genresDropdown {
     ul {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-column-gap: 40px;
+        gap: 16px;
         li {
             color: $link-color;
             font-weight: bold;

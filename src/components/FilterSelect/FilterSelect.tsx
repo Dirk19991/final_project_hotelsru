@@ -46,7 +46,51 @@ const FilterSelect: FC<any> = ({
             </div>
             <div className={styles.dropdown}>
                 {currentFilter === 'genres' && filterType === 'genres' && (
-                    <div className={styles.genresDropdown}>genre</div>
+                    <div className={styles.genresDropdown}>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="Детективы" />
+                                    <div>Детективы</div>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="Боевики" />
+                                    <div>Боевики</div>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="Драмы" />
+                                    <div>Драмы</div>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="Детективы" />
+                                    <div>Детективы</div>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="Боевики" />
+                                    <div>Боевики</div>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="Драмы" />
+                                    <div>Драмы</div>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 )}
                 {currentFilter === 'countries' &&
                     filterType === 'countries' && (
@@ -56,7 +100,6 @@ const FilterSelect: FC<any> = ({
                                     <label>
                                         <input
                                             type="checkbox"
-                                            name="years"
                                             value="Австралия"
                                         />
                                         <div>Австралия</div>
@@ -67,7 +110,6 @@ const FilterSelect: FC<any> = ({
                                     <label>
                                         <input
                                             type="checkbox"
-                                            name="years"
                                             value="Аргентина"
                                         />
                                         <div>Аргентина</div>
@@ -78,7 +120,36 @@ const FilterSelect: FC<any> = ({
                                     <label>
                                         <input
                                             type="checkbox"
-                                            name="years"
+                                            value="Албания"
+                                        />
+                                        <div>Албания</div>
+                                    </label>
+                                </li>
+
+                                <li>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            value="Австралия"
+                                        />
+                                        <div>Австралия</div>
+                                    </label>
+                                </li>
+
+                                <li>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            value="Аргентина"
+                                        />
+                                        <div>Аргентина</div>
+                                    </label>
+                                </li>
+
+                                <li>
+                                    <label>
+                                        <input
+                                            type="checkbox"
                                             value="Албания"
                                         />
                                         <div>Албания</div>
@@ -96,7 +167,6 @@ const FilterSelect: FC<any> = ({
                                         type="radio"
                                         name="years"
                                         value="all"
-                                        checked
                                     />
                                     <div>Все годы</div>
                                 </label>
