@@ -25,6 +25,7 @@ export interface ButtonProps {
     label?: string
     sublabel?: string
     href?: string
+    disabled?: boolean | undefined
 }
 
 export const Button = ({
@@ -35,6 +36,7 @@ export const Button = ({
     height,
     href,
     onClick,
+    disabled,
 }: ButtonProps) => {
     // classnames с помощью функции cn собирает общий для всех кнопок класс (.button) и тот, который пришел из пропсов ([type])
     const btnClass = cn(classes.button, classes[type])
@@ -49,6 +51,7 @@ export const Button = ({
                         onClick={onClick}
                         type="button"
                         className={btnClass}
+                        disabled={disabled !== undefined && disabled}
                     >
                         {src ? (
                             <Image
@@ -66,7 +69,12 @@ export const Button = ({
                 </Link>
             )}
             {!href && (
-                <button onClick={onClick} type="button" className={btnClass}>
+                <button
+                    onClick={onClick}
+                    type="button"
+                    className={btnClass}
+                    disabled={disabled !== undefined && disabled}
+                >
                     {src ? (
                         <Image
                             height={height}
