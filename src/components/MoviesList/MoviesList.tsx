@@ -24,12 +24,7 @@ interface IMoviesData {
     }[]
 }
 
-interface IMoviesList {
-    filterGenre: number | null
-    filterCountry: number | null
-}
-
-const MoviesList = ({ filterGenre, filterCountry }: IMoviesList) => {
+const MoviesList = () => {
     const [moviesData, setMoviesData] = useState<IMoviesData[] | null>(null)
     const [moviesDataFiltred, setMoviesDataFiltred] = useState<
         IMoviesData[] | null
@@ -48,43 +43,27 @@ const MoviesList = ({ filterGenre, filterCountry }: IMoviesList) => {
             .catch((error) => setMoviesData(data))
     }, [])
 
-    useEffect(() => {
-        if (moviesData && (filterGenre || filterCountry)) {
-            const newArray = []
-            for (let element of moviesData) {
-                const isIdMatching = element.genre.some(
-                    (genre) => genre.id == filterGenre
-                )
-                const isCountryMatching = element.country.some(
-                    (country) => country.id == filterCountry
-                )
-                if (isIdMatching || isCountryMatching) {
-                    newArray.push(element)
-                }
-            }
-            setMoviesDataFiltred(newArray)
-        } else {
-            setMoviesDataFiltred(moviesData)
-        }
-    }, [filterGenre, filterCountry, moviesData])
-
     return (
-        <section className="container">
-            <div className={styles.wrapper}>
-                <div className={styles.list}>
-                    {moviesDataFiltred &&
-                        moviesDataFiltred.map((movie) => (
-                            <DefaultCarouselSlide
-                                key={movie.id}
-                                rating={movie.rating}
-                                year={movie.year}
-                                href="/"
-                                image={movie.previewPoster}
-                                country={movie.country}
-                                genre={movie.genre}
-                                name={movie.name}
-                            />
-                        ))}
+        <section>
+            <div className="container">
+                <div className={styles.wrapper}>
+                    <ul className={styles.list}>
+                        {moviesData &&
+                            moviesData.map((movie) => (
+                                <li className={styles.movie}>
+                                    <DefaultCarouselSlide
+                                        key={movie.id}
+                                        rating={movie.rating}
+                                        year={movie.year}
+                                        href="/"
+                                        image={movie.previewPoster}
+                                        country={movie.country}
+                                        genre={movie.genre}
+                                        name={movie.name}
+                                    />
+                                </li>
+                            ))}
+                    </ul>
                 </div>
             </div>
         </section>

@@ -2,7 +2,6 @@
 
 .panel {
     margin-bottom: 24px;
-    cursor: pointer;
 }
 
 .wrapper {
@@ -10,8 +9,9 @@
 }
 
 .select {
+    cursor: pointer;
     width: auto;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     svg {
         stroke: $accent-color;
