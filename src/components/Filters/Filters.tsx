@@ -56,7 +56,7 @@ const Filters = () => {
                                 }
                                 min="0"
                                 max="1000"
-                                step="100"
+                                step="10"
                             />
                             <span>{ratesAmountValue}</span>
                         </div>

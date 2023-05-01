@@ -24,15 +24,47 @@
 
 .dropdown {
     position: absolute;
-    display: none;
+    display: block;
     left: 0;
     right: 0;
     top: calc(100% + 4px);
     width: 100%;
-    height: 100px;
+    // height: 100px;
     z-index: 9999;
     background-color: $secondary-bg-color;
     border-radius: 4px;
+    padding: 16px;
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        li {
+            &:not(:last-child) {
+                border-bottom: 1px solid $divider-color;
+                padding-bottom: 8px;
+            }
+        }
+    }
+}
+
+.person {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    img {
+        margin-right: 16px;
+        border-radius: 4px;
+    }
+    div {
+        p {
+            color: $accent-color;
+            font-size: 13px;
+        }
+        span {
+            color: $link-color;
+            font-size: 10px;
+        }
+    }
 }
 
 @media screen and (max-width: 900px) {

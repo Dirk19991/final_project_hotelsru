@@ -41,6 +41,16 @@ export default function Movies() {
                 currentSorting={currentSorting}
             />
             <Filters />
+            <DefaultCarousel
+                type="endpoint"
+                endpoint="http://localhost:3001/movies?year=2021"
+                headerText="Остросюжетные боевики"
+            />
+            <DefaultCarousel
+                type="endpoint"
+                endpoint="http://localhost:3001/movies?year=2021"
+                headerText="Остросюжетные боевики"
+            />
         </>
     )
 }
