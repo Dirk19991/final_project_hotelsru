@@ -28,6 +28,10 @@
     }
 }
 
+.carousel {
+    margin-top: 50px;
+}
+
 .nextButton,
 .prevButton {
     width: 25px;
@@ -48,6 +52,13 @@
     }
     &:hover {
         opacity: 1;
+    }
+}
+
+.swiper {
+    transform: translateY(-20px);
+    > div {
+        margin-top: 20px;
     }
 }
 
@@ -73,4 +84,3 @@
         left: -22px;
     }
 }
-

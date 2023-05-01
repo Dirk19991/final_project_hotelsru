@@ -61,6 +61,7 @@ const DefaultCarousel = (props: ISliderSmall) => {
 
                     <div className={cn(styles.carousel, 'default__carousel')}>
                         <Swiper
+                            className={styles.swiper}
                             onInit={() => setInit(true)}
                             speed={500}
                             slidesPerView="auto"
