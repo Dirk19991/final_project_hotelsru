@@ -17,7 +17,7 @@
 .wrapper {
     height: 180px;
     border-radius: 8px 8px 0 0;
-    gap: 8px;
+    gap: 6px;
     display: flex;
     overflow: hidden;
     box-shadow: 0px 40px 26px -6px $tile-color inset,
@@ -27,7 +27,7 @@
 .column {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     will-change: transform;
     z-index: -1;
     a {
@@ -66,7 +66,7 @@
         .price {
             opacity: 1;
             transform: translateY(-73px);
-            padding: 8px 8px 8px;
+            padding: 8px 14px 8px;
         }
         .subscriptionButton {
             opacity: 1;
@@ -80,7 +80,7 @@
     width: 100%;
     left: 0;
     transform: translateY(0);
-    padding: 8px 8px 0px;
+    padding: 8px 14px 0px;
     transition: 0.3s;
     box-shadow: 0px -20px 40px 0px $tile-color;
     div {

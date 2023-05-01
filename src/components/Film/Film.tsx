@@ -49,18 +49,17 @@ const Film = () => {
                                 <FilmTrailer filmData={filmData} />
                                 <FilmDescription filmData={filmData} />
                             </div>
-                            <h3 className={styles.header}>
-                                {language === 'en'
-                                    ? 'Similar movies:'
-                                    : `С фильмом "${filmData.nameRu}" смотрят:`}
-                            </h3>
                         </div>
                     </div>
                     <div className={styles.slider}>
                         <DefaultCarousel
                             type="similarMovie"
                             similarMovies={filmData.similarMovies}
-                            headerText=""
+                            headerText={
+                                language === 'en'
+                                    ? 'Similar movies:'
+                                    : `С фильмом "${filmData.nameRu}" смотрят:`
+                            }
                         />
                     </div>
                 </>
