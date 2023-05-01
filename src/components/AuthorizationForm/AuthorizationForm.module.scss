@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     background-color: $auth-bg-color;
-    color: white;
+    color: $accent-color;
     padding-top: 16px;
 }
 
@@ -73,37 +73,57 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+
     &::before {
         position: absolute;
-        margin-right: 8px;
-        content: '\f007';
         font-family: 'FontAwesome';
         font-weight: 400;
-        font-size: 18px;
+        font-size: 14px;
         display: inline-block;
-        color: $film-name-color;
-        left: 10px;
-        top: 10px;
+        transition: 0.3s;
+        color: $auth-icons-color;
+    }
+    &:hover {
+        &::before {
+            color: $movies-title-color;
+        }
     }
 
     > input {
+        cursor: pointer;
         height: 40px;
         padding: 18px 12px 2px 40px;
-        background-color: $promo-color;
+        background-color: $film-name-color;
         outline: none;
         border-radius: 10px;
+        font-weight: bold;
+        color: $active-menu-color;
+    }
+}
+
+.email {
+    &::before {
+        content: '\f2c0';
+        left: 15px;
+        top: 14px;
+    }
+}
+.password {
+    &::before {
+        content: '\f023';
+        left: 16.5px;
+        top: 15px;
     }
 }
 
 .form {
     position: relative;
-    margin-bottom: 30px;
-    width: 100%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     max-width: 75%;
     align-items: flex-end;
-    gap: 20px;
+    gap: 10px;
     > button {
         width: 100%;
     }
@@ -118,15 +138,70 @@
     pointer-events: none;
     border: 1px solid transparent;
     width: calc(100% - 60px);
-    font-weight: 400;
     font-size: 14px;
+    font-weight: bold;
     line-height: 19px;
-    color: $film-name-color;
+    color: $promo-color;
     transform-origin: 0 0;
     transition: opacity 0.1s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .inputAuth:focus + .float,
 .inputAuth:not(:placeholder-shown) ~ .float {
-    transform: scale(0.8) translateY(-30%);
+    transform: scale(0.85) translateY(-17%);
+}
+
+.socials {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 35px;
+        border-radius: 8px;
+        border: none;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: $accent-color;
+        transition: 0.3s;
+        svg {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: darken($accent-color, 10%);
+        }
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .wrapper {
+        width: 60%;
+        margin-left: 9.32323%;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .wrapper {
+        width: 70%;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        width: 100%;
+    }
+    .info {
+        max-width: 100%;
+    }
+    .form {
+        width: 100%;
+        max-width: 100%;
+    }
 }

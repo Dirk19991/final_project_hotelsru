@@ -10,8 +10,12 @@
     cursor: pointer;
     transition: all 0.3s;
 
-    &:hover {
-        filter: brightness(1.1);
+    &:not(:disabled):hover {
+        filter: brightness(1.2);
+    }
+    &:disabled {
+        cursor: auto;
+        filter: brightness(0.8)
     }
 }
 
