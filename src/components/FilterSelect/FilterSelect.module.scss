@@ -123,3 +123,63 @@
         min-width: auto;
     }
 }
+
+.yearsDropdown {
+    span,
+    ul li {
+        font-size: 13px;
+        font-weight: bold;
+        color: $link-color;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        li {
+            position: relative;
+            transition: 0.3s;
+            cursor: pointer;
+            &.active {
+                color: $accent-color;
+                &::after {
+                    opacity: 1;
+                    border-color: $accent-color;
+                }
+                &::before {
+                    opacity: 1;
+                }
+            }
+            &:hover {
+                color: $accent-color;
+                &::after {
+                    opacity: 1;
+                }
+            }
+            &::after {
+                transition: 0.3s;
+                content: '';
+                position: absolute;
+                opacity: 0;
+                right: 0;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background-color: transparent;
+                border: 2px solid $link-color;
+            }
+            &::before {
+                transition: 0.3s;
+                content: '';
+                position: absolute;
+                opacity: 0;
+                top: 6px;
+                right: 6px;
+                width: 3.5px;
+                height: 3.5px;
+                border-radius: 50%;
+                background-color: transparent;
+                border: 1px solid $accent-color;
+            }
+        }
+    }
+}

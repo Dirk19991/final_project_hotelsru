@@ -36,11 +36,13 @@ const FilterSelect: FC<any> = ({
                     {filterType === 'countries' && i18n[language].countries}
                     {filterType === 'years' && i18n[language].years}
                 </div>
-                {filterType === 'genres' && <span>{'Артхаус, Драма, Документальный'}</span>}
+                {filterType === 'genres' && (
+                    <span>{'Артхаус, Драма, Документальный'}</span>
+                )}
                 {filterType === 'countries' && (
                     <span>{'Австралия, Великобритания, Германия'}</span>
                 )}
-                {filterType === 'years' && <span>{'2024 год'}</span>}
+                {filterType === 'years' && <span>{'2023 год'}</span>}
             </div>
             <div className={styles.dropdown}>
                 {currentFilter === 'genres' && filterType === 'genres' && (
@@ -51,7 +53,16 @@ const FilterSelect: FC<any> = ({
                         <div className={styles.countriesDropdown}>countre</div>
                     )}
                 {currentFilter === 'years' && filterType === 'years' && (
-                    <div className={styles.yearsDropdown}>year</div>
+                    <div className={styles.yearsDropdown}>
+                        <ul>
+                            <li>Все годы</li>
+                            <li className={styles.active}>2023 год</li>
+                            <li>2022 год</li>
+                            <li>2022-2023</li>
+                            <li>1980-1990</li>
+                            <li>до 1980</li>
+                        </ul>
+                    </div>
                 )}
             </div>
         </div>
