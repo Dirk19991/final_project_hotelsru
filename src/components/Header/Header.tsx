@@ -10,6 +10,7 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import { useI18nContext } from '@/context/i18n'
+import headerData from '@/data/headerStaticLinks.json'
 
 const Header = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
@@ -30,13 +31,15 @@ const Header = () => {
     }
 
     useEffect(() => {
-        const fetchHeaderData = async () => {
-            const res = await fetch('/api/header-static')
-            const data = res.json()
-            return data
-        }
+        // const fetchHeaderData = async () => {
+        //     const res = await fetch('/api/header-static')
+        //     const data = res.json()
+        //     return data
+        // }
 
-        fetchHeaderData().then(setHeaderStaticLinks)
+        // fetchHeaderData().then(setHeaderStaticLinks)
+        // локально работает, на деплое - нет
+        setHeaderStaticLinks(headerData)
     }, [])
 
     return (
