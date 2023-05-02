@@ -7,7 +7,6 @@ import 'swiper/css/bundle'
 import cn from 'classnames'
 import { useI18nContext } from '@/context/i18n'
 
-
 const MainCarousel = () => {
     const { i18n, language } = useI18nContext()
 

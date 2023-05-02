@@ -6,7 +6,7 @@ import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import cn from 'classnames'
 import data from '../../data/mockData'
 import Link from 'next/link'
-import 'swiper/css/bundle'
+
 import Image from 'next/image'
 import { ISimilarMovie, ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
 
@@ -53,7 +53,12 @@ const DefaultCarousel = (props: ISliderSmall) => {
         <section className={styles.section}>
             <div className={'container'}>
                 <div className={styles.wrapper}>
-                    <div className={cn(styles.title, props.type === 'similarMovie' && styles.simpleText)}>
+                    <div
+                        className={cn(
+                            styles.title,
+                            props.type === 'similarMovie' && styles.simpleText
+                        )}
+                    >
                         {props.type === 'similarMovie' ? (
                             <span>{props.headerText}</span>
                         ) : (
@@ -167,14 +172,22 @@ const DefaultCarousel = (props: ISliderSmall) => {
                                     </SwiperSlide>
                                 ))}
                         </Swiper>
-                        <div className={styles.prevButton} ref={prevRef}>
+                        <div
+                            data-testid="leftButton"
+                            className={styles.prevButton}
+                            ref={prevRef}
+                        >
                             <Image
                                 fill
                                 src="/icons/arrowLeft.svg"
                                 alt="arrowLeft"
                             />
                         </div>
-                        <div className={styles.nextButton} ref={nextRef}>
+                        <div
+                            data-testid="rightButton"
+                            className={styles.nextButton}
+                            ref={nextRef}
+                        >
                             <Image
                                 fill
                                 src="/icons/arrowRight.svg"
