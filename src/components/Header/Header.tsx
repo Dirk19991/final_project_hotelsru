@@ -2,8 +2,7 @@ import Image from 'next/image'
 import styles from './Header.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Link from 'next/link'
-import { useState } from 'react'
-import headerData from '@/data/links.json'
+import { useState, useEffect } from 'react'
 import HeaderDropdownFilters from '../HeaderDropdownFilters/HeaderDropdownFilters'
 import HeaderDropdownProfile from '../HeaderDropdownProfile/HeaderDropdownProfile'
 import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDropdownSubscription'
@@ -15,22 +14,33 @@ import { useI18nContext } from '@/context/i18n'
 const Header = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
+    const { toggleLanguage, language, i18n } = useI18nContext()
 
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const openExtraMenu = () => matchesDesktopSize && setIsHovering(true)
-    const closeExtraMenu = () => matchesDesktopSize && setIsHovering(false)
+    const [headerStaticLinks, setHeaderStaticLinks] = useState<any>([])
+
+    const openSubMenu = () => matchesDesktopSize && setIsHovering(true)
+    const closeSubMenu = () => matchesDesktopSize && setIsHovering(false)
 
     const handleMouseOver = (id: number, expandable: boolean) => {
         setCurrentTabId(id)
-        return expandable ? openExtraMenu() : closeExtraMenu()
+        return expandable ? openSubMenu() : closeSubMenu()
     }
 
-    const { toggleLanguage, language, i18n } = useI18nContext()
+    useEffect(() => {
+        const fetchHeaderData = async () => {
+            const res = await fetch('http://localhost:3000/api/header-static')
+            const data = res.json()
+            return data
+        }
+
+        fetchHeaderData().then(setHeaderStaticLinks)
+    }, [])
 
     return (
-        <header className={styles.header} onMouseLeave={closeExtraMenu}>
+        <header className={styles.header} onMouseLeave={closeSubMenu}>
             <div
                 className={`${styles.top} ${
                     isHovering ? styles.topExpanded : styles.topCollapsed
@@ -76,7 +86,7 @@ const Header = () => {
                                     {matchesDesktopSize && (
                                         <div
                                             className={styles.search}
-                                            onMouseOver={closeExtraMenu}
+                                            onMouseOver={closeSubMenu}
                                             data-testid="search-button"
                                         >
                                             <button>
@@ -89,7 +99,7 @@ const Header = () => {
                                     {matchesTabSize && (
                                         <div
                                             className={styles.language}
-                                            onMouseOver={closeExtraMenu}
+                                            onMouseOver={closeSubMenu}
                                             data-testid="lang-button"
                                         >
                                             <ButtonRound
@@ -123,7 +133,7 @@ const Header = () => {
                                 className={`${styles.dropdown} ${
                                     isHovering ? styles.dropdownExpanded : ''
                                 }`}
-                                onMouseLeave={openExtraMenu}
+                                onMouseLeave={openSubMenu}
                             >
                                 {isHovering && matchesDesktopSize && (
                                     <div
@@ -134,22 +144,25 @@ const Header = () => {
                                             <HeaderDropdownFilters
                                                 data-testid="movies-dropdown"
                                                 subMenuData={
-                                                    headerData.movies_categories
+                                                    headerStaticLinks.movies_categories
                                                 }
+                                                type="movie"
                                             />
                                         )}
                                         {currentTabId === 4 && (
                                             <HeaderDropdownFilters
                                                 subMenuData={
-                                                    headerData.series_categories
+                                                    headerStaticLinks.series_categories
                                                 }
+                                                type="series"
                                             />
                                         )}
                                         {currentTabId === 5 && (
                                             <HeaderDropdownFilters
                                                 subMenuData={
-                                                    headerData.animation_categories
+                                                    headerStaticLinks.animation_categories
                                                 }
+                                                type="cartoon"
                                             />
                                         )}
 

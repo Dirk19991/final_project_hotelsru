@@ -63,7 +63,7 @@ const SubsciriptionWidget = () => {
                         />
                         <div>
                             <p>Подписка Иви</p>
-                            <span>От 199 руб. за месяц</span>
+                            <span>От 189 руб. за месяц</span>
                         </div>
                     </div>
 
