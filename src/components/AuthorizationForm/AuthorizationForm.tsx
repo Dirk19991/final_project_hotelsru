@@ -97,8 +97,8 @@ const AuthorizationForm = () => {
                                         y2="41.881"
                                         gradientUnits="userSpaceOnUse"
                                     >
-                                        <stop offset="0" stop-color="#33bef0" />
-                                        <stop offset="1" stop-color="#0a85d9" />
+                                        <stop offset="0" stopColor="#33bef0" />
+                                        <stop offset="1" stopColor="#0a85d9" />
                                     </linearGradient>
                                     <path
                                         fill="url(#c7KC3Nc5k7hJ0awmj858~a)"

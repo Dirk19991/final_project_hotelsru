@@ -10,8 +10,6 @@ import {
     faBan,
 } from '@fortawesome/free-solid-svg-icons'
 
-
-
 export interface IDefaultCarousel {
     image: string
     href: string
@@ -46,7 +44,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
     const filmGenre = genre.sort((a, b) => a.id - b.id)[0].name
 
     return (
-        <div className={styles.wrapper}>
+        <div data-testid="defaultCarouselSlide" className={styles.wrapper}>
             <Link href={href}>
                 <div
                     onMouseLeave={() => setImageHovered(false)}
@@ -85,6 +83,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     icon={faBookmark}
                                 />
                                 <div
+                                    data-testid="later"
                                     style={{
                                         opacity: bookmarkHovered ? '1' : '0',
                                     }}
@@ -104,6 +103,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     icon={faWandMagicSparkles}
                                 />
                                 <div
+                                    data-testid="similar"
                                     style={{
                                         visibility: similarHovered
                                             ? 'visible'
@@ -123,6 +123,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     icon={faStar}
                                 />
                                 <div
+                                    data-testid="alreadyWatched"
                                     style={{
                                         visibility: starHovered
                                             ? 'visible'
@@ -144,6 +145,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     icon={faBan}
                                 />
                                 <div
+                                    data-testid="dislike"
                                     style={{
                                         visibility: dislikeHovered
                                             ? 'visible'
@@ -160,7 +162,9 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                             {parseFloat(rating).toFixed(2)}
                         </div>
                         <div className={styles.bottomInfo}>
-                            <span>{year}, {country[0].name}, {filmGenre}</span>
+                            <span>
+                                {year}, {country[0].name}, {filmGenre}
+                            </span>
                             <p>110 минут</p>
                         </div>
                     </div>
