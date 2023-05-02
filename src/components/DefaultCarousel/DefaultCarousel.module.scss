@@ -37,6 +37,13 @@
     }
 }
 
+.swiper {
+    transform: translateY(-20px);
+    > div {
+        margin-top: 20px;
+    }
+}
+
 .nextButton,
 .prevButton {
     width: 25px;
