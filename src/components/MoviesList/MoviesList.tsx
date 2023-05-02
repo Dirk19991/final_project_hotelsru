@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './MoviesList.module.scss'
 import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import data from '../../data/mockData'
+import MoviesListSkeleton from '@/components/MoviesListSkeleton/MoviesListSkeleton'
 
 interface IMoviesData {
     id: number
@@ -26,9 +27,6 @@ interface IMoviesData {
 
 const MoviesList = () => {
     const [moviesData, setMoviesData] = useState<IMoviesData[] | null>(null)
-    const [moviesDataFiltred, setMoviesDataFiltred] = useState<
-        IMoviesData[] | null
-    >(null)
 
     useEffect(() => {
         fetch('http://localhost:3001/movies?year=2020')
@@ -47,7 +45,9 @@ const MoviesList = () => {
         <section>
             <div className="container">
                 <div className={styles.wrapper}>
-                    <ul className={styles.list}>
+                    {/* <MoviesListSkeleton /> */}
+                    {/* isLoading === true -> юзать скелетон вместо списка и кнопки  */}
+                     <ul className={styles.list}>
                         {moviesData &&
                             moviesData.map((movie) => (
                                 <li className={styles.movie}>
@@ -64,6 +64,9 @@ const MoviesList = () => {
                                 </li>
                             ))}
                     </ul>
+                    
+                    {/* Storybook */}
+                    <button className={styles.showMore}>Показать еще</button> 
                 </div>
             </div>
         </section>

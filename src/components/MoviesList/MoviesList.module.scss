@@ -9,10 +9,27 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(153px, 1fr));
     gap: 24px;
+    margin-bottom: 30px;
 }
 
 @media screen and (max-width: 1280px) {
     .list {
         grid-template-columns: repeat(auto-fill, minmax(174px, 1fr));
+    }
+}
+
+.showMore {
+    width: 100%;
+    border: 1px solid $link-color;
+    background-color: transparent;
+    color: $accent-color;
+    font-weight: bold;
+    height: 40px;
+    transition: 0.3s;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover {
+        border: 1px solid $accent-color;
     }
 }
