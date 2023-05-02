@@ -26,9 +26,6 @@ interface IMoviesData {
 
 const MoviesList = () => {
     const [moviesData, setMoviesData] = useState<IMoviesData[] | null>(null)
-    const [moviesDataFiltred, setMoviesDataFiltred] = useState<
-        IMoviesData[] | null
-    >(null)
 
     useEffect(() => {
         fetch('http://localhost:3001/movies?year=2020')
@@ -64,6 +61,8 @@ const MoviesList = () => {
                                 </li>
                             ))}
                     </ul>
+                    {/* Storybook */}
+                    <button className={styles.showMore}>Показать еще</button>
                 </div>
             </div>
         </section>
