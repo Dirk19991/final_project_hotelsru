@@ -31,7 +31,7 @@ const Header = () => {
 
     useEffect(() => {
         const fetchHeaderData = async () => {
-            const res = await fetch('http://localhost:3000/api/header-static')
+            const res = await fetch('/api/header-static')
             const data = res.json()
             return data
         }
