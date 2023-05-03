@@ -9,16 +9,16 @@ interface IFilterSelect {
 
 const FilterSelect: FC<any> = ({
     filterType,
-    currentFilter,
-    setCurrentFilter,
+    currentModal,
+    setCurrentModal,
 }) => {
     const { language, i18n } = useI18nContext()
 
     const handleCurrentFilter = () => {
-        if (filterType === currentFilter) {
-            setCurrentFilter('')
+        if (filterType === currentModal) {
+            setCurrentModal('')
         } else {
-            setCurrentFilter(filterType)
+            setCurrentModal(filterType)
         }
     }
 
@@ -27,7 +27,7 @@ const FilterSelect: FC<any> = ({
             <div
                 className={cn(
                     styles.select,
-                    filterType === currentFilter && styles.active
+                    filterType === currentModal && styles.active
                 )}
                 onClick={handleCurrentFilter}
             >
@@ -45,7 +45,7 @@ const FilterSelect: FC<any> = ({
                 {filterType === 'years' && <span>{'2023 год'}</span>}
             </div>
             <div className={styles.dropdown}>
-                {currentFilter === 'genres' && filterType === 'genres' && (
+                {currentModal === 'genres' && filterType === 'genres' && (
                     <div className={styles.genresDropdown}>
                         <ul>
                             <li>
@@ -92,7 +92,7 @@ const FilterSelect: FC<any> = ({
                         </ul>
                     </div>
                 )}
-                {currentFilter === 'countries' &&
+                {currentModal === 'countries' &&
                     filterType === 'countries' && (
                         <div className={styles.countriesDropdown}>
                             <ul>
@@ -158,7 +158,7 @@ const FilterSelect: FC<any> = ({
                             </ul>
                         </div>
                     )}
-                {currentFilter === 'years' && filterType === 'years' && (
+                {currentModal === 'years' && filterType === 'years' && (
                     <div className={styles.yearsDropdown}>
                         <ul>
                             <li>

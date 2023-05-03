@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 const Filters = () => {
-    const [currentFilter, setCurrentFilter] = useState<string>('')
+    const [currentModal, setCurrentModal] = useState<string>('')
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
 
@@ -17,18 +17,18 @@ const Filters = () => {
                     <div className={styles.selects}>
                         <FilterSelect
                             filterType="genres"
-                            currentFilter={currentFilter}
-                            setCurrentFilter={setCurrentFilter}
+                            currentModal={currentModal}
+                            setCurrentModal={setCurrentModal}
                         />
                         <FilterSelect
                             filterType="countries"
-                            currentFilter={currentFilter}
-                            setCurrentFilter={setCurrentFilter}
+                            currentModal={currentModal}
+                            setCurrentModal={setCurrentModal}
                         />
                         <FilterSelect
                             filterType="years"
-                            currentFilter={currentFilter}
-                            setCurrentFilter={setCurrentFilter}
+                            currentModal={currentModal}
+                            setCurrentModal={setCurrentModal}
                         />
                         <FilterSearch searchType="producer" />
                         <FilterSearch searchType="actor" />

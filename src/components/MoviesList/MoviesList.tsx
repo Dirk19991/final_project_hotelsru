@@ -47,10 +47,10 @@ const MoviesList = () => {
                 <div className={styles.wrapper}>
                     {/* <MoviesListSkeleton /> */}
                     {/* isLoading === true -> юзать скелетон вместо списка и кнопки  */}
-                     <ul className={styles.list}>
+                    <ul className={styles.list}>
                         {moviesData &&
                             moviesData.map((movie) => (
-                                <li className={styles.movie}>
+                                <li className={styles.movie} key={movie.id}>
                                     <DefaultCarouselSlide
                                         key={movie.id}
                                         rating={movie.rating}
@@ -64,9 +64,9 @@ const MoviesList = () => {
                                 </li>
                             ))}
                     </ul>
-                    
+
                     {/* Storybook */}
-                    <button className={styles.showMore}>Показать еще</button> 
+                    <button className={styles.showMore}>Показать еще</button>
                 </div>
             </div>
         </section>
