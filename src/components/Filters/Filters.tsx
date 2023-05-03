@@ -11,6 +11,8 @@ const Filters: FC<any> = () => {
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
 
+    const { language, i18n } = useI18nContext()
+
     return (
         <div className={styles.filters}>
             <div className="container">
