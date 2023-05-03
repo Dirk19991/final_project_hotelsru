@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import { useI18nContext } from '@/context/i18n'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
@@ -29,11 +29,12 @@ const MoviesFilters = () => {
         <>
             <Head>
                 <title>
-                    Смотреть %жанры% онлайн бесплатно в хорошем HD качестве и без
-                    регистрации. Удобный просмотр онлайн фильмов на ivi.ru
+                    Смотреть %жанры% онлайн бесплатно в хорошем HD качестве и
+                    без регистрации. Удобный просмотр онлайн фильмов на ivi.ru
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
+
             <SortingPanel
                 setCurrentSorting={setCurrentSorting}
                 currentSorting={currentSorting}

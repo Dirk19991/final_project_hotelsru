@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import styles from './Filters.module.scss'
 import FilterSelect from '../FilterSelect/FilterSelect'
 import FilterSearch from '../FilterSearch/FilterSearch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
-const Filters = () => {
+const Filters: FC<any> = () => {
     const [currentModal, setCurrentModal] = useState<string>('')
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
