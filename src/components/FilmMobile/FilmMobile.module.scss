@@ -115,3 +115,9 @@
 .slider {
     margin-top: -50px;
 }
+
+@media screen and (max-width: 1200px) {
+    .slider {
+        margin-top: -10px;
+    }
+}

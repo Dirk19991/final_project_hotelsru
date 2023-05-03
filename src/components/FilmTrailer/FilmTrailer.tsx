@@ -15,7 +15,7 @@ const FilmTrailer = ({ filmData }: IFilmTrailer) => {
     const id = filmData.trailer.split('/').at(-1)
 
     return (
-        <div className={styles.wrapper}>
+        <div data-testid="trailer" className={styles.wrapper}>
             <div className={isMobile ? styles.mobileTrailer : styles.trailer}>
                 <iframe
                     className={isMobile && styles.mobileFrame}
@@ -29,7 +29,7 @@ const FilmTrailer = ({ filmData }: IFilmTrailer) => {
                 />
             </div>
             {!isMobile && (
-                <div className={styles.icons}>
+                <div data-testid="buttons" className={styles.icons}>
                     <ButtonFooter
                         height={20}
                         href="/"

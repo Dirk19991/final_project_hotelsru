@@ -7,11 +7,12 @@ import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
 import FilmTrailer from '../FilmTrailer/FilmTrailer'
 import FilmDescription from '../FilmDescription/FilmDescription'
 import DefaultCarousel from '../DefaultCarousel/DefaultCarousel'
-import 'swiper/scss'
-import 'swiper/css/bundle'
+
 import useMediaQuery from '@/hooks/useMediaQuery'
 import FilmMobile from '../FilmMobile/FilmMobile'
 import { useI18nContext } from '@/context/i18n'
+import 'swiper/scss'
+import 'swiper/css/bundle'
 
 const Film = () => {
     const { language, i18n } = useI18nContext()
@@ -42,7 +43,7 @@ const Film = () => {
         <>
             {filmData && !isMobile && (
                 <>
-                    <div className="container">
+                    <div data-testId="film" className="container">
                         <div className={styles.wrapper}>
                             <FilmBreadcrumbs filmData={filmData} />
                             <div className={styles.flex}>
