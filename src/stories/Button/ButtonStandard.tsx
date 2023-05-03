@@ -18,6 +18,7 @@ export interface ButtonProps {
         | 'headerThirtyDays'
         | 'watch'
         | 'rating'
+        | 'showMore'
     src?: string
     width?: number
     height?: number

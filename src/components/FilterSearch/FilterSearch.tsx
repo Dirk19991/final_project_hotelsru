@@ -1,10 +1,14 @@
 import React, { FC } from 'react'
 import styles from './FilterSearch.module.scss'
 import Image from 'next/image'
+import { useI18nContext } from '@/context/i18n'
 
 const FilterSearch: FC<any> = ({ searchType }) => {
+    const { language, i18n } = useI18nContext()
     const placeholderTitle =
-        searchType === 'producer' ? 'Поиск по режиссеру' : 'Поиск по актеру'
+        searchType === 'producer'
+            ? i18n[language].searchByDirector
+            : i18n[language].searchByActor
 
     const imgsrc =
         'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/c5eef897-dfb2-42a3-bc17-d5346f5dc587/280x420'
