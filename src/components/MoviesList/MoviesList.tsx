@@ -53,7 +53,7 @@ const MoviesList = () => {
                     <ul className={styles.list}>
                         {moviesData &&
                             moviesData.map((movie) => (
-                                <li className={styles.movie}>
+                                <li className={styles.movie} key={movie.id}>
                                     <DefaultCarouselSlide
                                         key={movie.id}
                                         rating={movie.rating}
@@ -69,7 +69,6 @@ const MoviesList = () => {
                     </ul>
 
                     {/* Storybook */}
-
                     <Button
                         label={i18n[language].showMore}
                         onClick={() => {}}

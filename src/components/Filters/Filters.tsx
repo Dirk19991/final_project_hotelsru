@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import styles from './Filters.module.scss'
 import FilterSelect from '../FilterSelect/FilterSelect'
 import FilterSearch from '../FilterSearch/FilterSearch'
@@ -6,10 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useI18nContext } from '@/context/i18n'
 
-const Filters = () => {
-    const { language, i18n } = useI18nContext()
-
-    const [currentFilter, setCurrentFilter] = useState<string>('')
+const Filters: FC<any> = () => {
+    const [currentModal, setCurrentModal] = useState<string>('')
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
 
@@ -20,18 +18,18 @@ const Filters = () => {
                     <div className={styles.selects}>
                         <FilterSelect
                             filterType="genres"
-                            currentFilter={currentFilter}
-                            setCurrentFilter={setCurrentFilter}
+                            currentModal={currentModal}
+                            setCurrentModal={setCurrentModal}
                         />
                         <FilterSelect
                             filterType="countries"
-                            currentFilter={currentFilter}
-                            setCurrentFilter={setCurrentFilter}
+                            currentModal={currentModal}
+                            setCurrentModal={setCurrentModal}
                         />
                         <FilterSelect
                             filterType="years"
-                            currentFilter={currentFilter}
-                            setCurrentFilter={setCurrentFilter}
+                            currentModal={currentModal}
+                            setCurrentModal={setCurrentModal}
                         />
                         <FilterSearch searchType="producer" />
                         <FilterSearch searchType="actor" />

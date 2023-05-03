@@ -58,6 +58,7 @@ const Header = () => {
                                         href="/"
                                         className={styles.logo}
                                         data-testid="header-logo"
+                                        onMouseOver={closeSubMenu}
                                     >
                                         <Image
                                             src="https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg"
