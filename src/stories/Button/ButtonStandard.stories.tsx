@@ -97,3 +97,10 @@ export const Rating: Story = {
         type: 'rating',
     },
 }
+
+export const ShowMore: Story = {
+    args: {
+        label: 'Показать еще',
+        type: 'showMore',
+    },
+}

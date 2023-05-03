@@ -4,8 +4,11 @@ import FilterSelect from '../FilterSelect/FilterSelect'
 import FilterSearch from '../FilterSearch/FilterSearch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { useI18nContext } from '@/context/i18n'
 
 const Filters = () => {
+    const { language, i18n } = useI18nContext()
+
     const [currentFilter, setCurrentFilter] = useState<string>('')
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
@@ -35,7 +38,7 @@ const Filters = () => {
                     </div>
                     <div className={styles.ranges}>
                         <div className={styles.range}>
-                            <p>Рейтинг от:</p>
+                            <p>{i18n[language].ratingFrom}</p>
                             <input
                                 type="range"
                                 value={ratingValue}
@@ -47,7 +50,7 @@ const Filters = () => {
                             <span>{ratingValue}</span>
                         </div>
                         <div className={styles.range}>
-                            <p>Количество оценок (тыс.) от:</p>
+                            <p>{i18n[language].numberOfRatings}</p>
                             <input
                                 type="range"
                                 value={ratesAmountValue}
@@ -65,7 +68,7 @@ const Filters = () => {
                         <div>
                             <FontAwesomeIcon icon={faXmark} size="xl" />
                         </div>
-                        <span>Сбросить фильтры</span>
+                        <span>{i18n[language].resetFilters}</span>
                     </button>
                 </div>
             </div>

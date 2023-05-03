@@ -32,6 +32,30 @@
     }
 }
 
+.button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #ffffffde;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: all 0.3s;
+
+    &:hover {
+        color: $accent-color;
+    }
+}
+
+.ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media screen and (max-width: 1020px) {
     .wrapper {
         width: 100%;
