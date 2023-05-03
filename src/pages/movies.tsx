@@ -4,6 +4,8 @@ import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
 import { useI18nContext } from '@/context/i18n'
 import DefaultCarousel from '@/components/DefaultCarousel/DefaultCarousel'
 import Head from 'next/head'
+import MoviesList from '@/components/MoviesList/MoviesList'
+import 'swiper/scss'
 
 export default function Movies() {
     const { i18n, language } = useI18nContext()

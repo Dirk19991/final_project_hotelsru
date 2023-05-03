@@ -15,7 +15,7 @@
     }
     &:disabled {
         cursor: auto;
-        filter: brightness(0.8)
+        filter: brightness(0.8);
     }
 }
 
@@ -141,6 +141,22 @@
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.32);
 
+    &:hover {
+        border: 1px solid $accent-color;
+    }
+}
+
+.showMore {
+    width: 100%;
+    border: 1px solid $link-color;
+    background-color: transparent;
+    color: $accent-color;
+    font-weight: bold;
+    height: 40px;
+    transition: 0.3s;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
     &:hover {
         border: 1px solid $accent-color;
     }

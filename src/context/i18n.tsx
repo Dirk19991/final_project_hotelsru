@@ -93,17 +93,29 @@ export interface I18nContextType {
             rate: string
             ratings: string
             watchLater: string
+            watchMoviesOnline: string
+            doYouLikeWatching: string
+            theSelectionOfFilms: string
+            inOurCatalog: string
+            ifYouAreInterested: string
+            doNotMiss: string
+            ratingFrom: string
+            resetFilters: string
+            numberOfRatings: string
+            searchByDirector: string
+            searchByActor: string
+            showMore: string
         }
     }
 }
 
 const i18n: I18nContextType['i18n'] = {
     en: {
-        sortBy: "Sort by",
-        byRating: "Rating",
-        byRatesAmount: "Amount of rates",
-        byReleaseDate: "Release date",
-        byAlphabet: "Alphabet",
+        sortBy: 'Sort by',
+        byRating: 'Rating',
+        byRatesAmount: 'Number of ratings',
+        byReleaseDate: 'Release date',
+        byAlphabet: 'Alphabet',
         genres: 'Genres',
         countries: 'Countries',
         years: 'Years',
@@ -197,13 +209,31 @@ const i18n: I18nContextType['i18n'] = {
         rate: 'Rate',
         ratings: 'ratings',
         watchLater: 'Watch later',
+        watchMoviesOnline: 'Watch movies online',
+        doYouLikeWatching:
+            'Do you like watching movies online and spending a lot of time serfing websites looking for something interesting? It is worth checking ivi.ru - the films that we have collected will keep you engaged for a long time. The collection is constantly updated with new films and critically acclaimed masterpieces of the past! You can be a fan of action movies or teen dramas, the abundance of our catalog will make you forget about all other leisure activities and you will rewatch your favorite movies online again and again!',
+        theSelectionOfFilms:
+            "The selection of films is very big and varied, so everyone will find something interesting for themselves, whatever their tastes. Do you prefer only foreign films? We have plenty of them: these are the golden classics of Hollywood, soulful French comedies, hot Italian dramas, and loud Indian musical films. Or maybe you are a patriot and love Russian films? Well, we have a lot of them. What do you like more - good old classics or new films? No matter what your answer is, we've got it all, from early cinema to 2023 films.",
+        inOurCatalog:
+            'In our catalog you can find a movie of any genre. These are romantic films, and detectives, and action films, and westerns, and science fiction, and art house, and hilarious comedies, and films about war, and horror, and thrillers, and documentaries... In addition to full-length films, on the website there are also short films, as well as foreign and Russian TV series.',
+        ifYouAreInterested:
+            'If you are interested in watching iconic movies of a particular genre online, the category system will help you easily navigate and find, for example, the best dramas or the best animated films online.',
+        doNotMiss:
+            "Do not miss a great opportunity to watch movies online without registration, choosing only what you are really interested in, and when it is convenient for you. It's so easy and enjoyable!",
+        ratingFrom: 'Rating from:',
+        resetFilters: 'Reset filters',
+        numberOfRatings: 'Number of ratings (thousands) from:',
+        searchByDirector: 'Search by director',
+        searchByActor: 'Search by actor',
+        showMore: 'Show more',
     },
+
     ru: {
-        sortBy: "Сортировать по",
-        byRating: "Рейтингу",
-        byRatesAmount: "Количеству оценок",
-        byReleaseDate: "Дате выхода",
-        byAlphabet: "Алфавиту",
+        sortBy: 'Сортировать по',
+        byRating: 'Рейтингу',
+        byRatesAmount: 'Количеству оценок',
+        byReleaseDate: 'Дате выхода',
+        byAlphabet: 'Алфавиту',
         genres: 'Жанры',
         countries: 'Страны',
         years: 'Годы',
@@ -298,6 +328,23 @@ const i18n: I18nContextType['i18n'] = {
         rate: 'Оценить',
         ratings: 'Оценок',
         watchLater: 'Смотреть позже',
+        watchMoviesOnline: 'Фильмы смотреть онлайн',
+        doYouLikeWatching:
+            'Вы любите смотреть фильмы онлайн и проводите много времени, прочесывая сайты в поисках чего-нибудь интересного? Стоит задержаться на ivi.ru – фильмов, которые собраны у нас, вам хватит надолго. Коллекция постоянно пополняется как новыми фильмами, так и признанными шедеврами прошлых лет! Независимо от того, кто вы – любитель энергичных боевиков или поклонница молодежных сериалов, изобилие нашего каталога заставит вас забыть обо всех других способах проведения досуга, и вы будете пересматривать любимые фильмы онлайн снова и снова!',
+        theSelectionOfFilms:
+            'Выбор фильмов очень широк и многообразен, так что каждый найдет для себя что-то интересное, каким бы ни были его вкусы. Предпочитаете картины исключительно зарубежного производства? У нас их предостаточно: это и золотая классика Голливуда, и душевные французские комедии, и темпераментные итальянские драмы, и шумные индийские музыкальные фильмы. А может, вы патриот и любите российские фильмы? Что ж, и таких фильмов у нас немало. Что вам больше по вкусу – добрая старая классика или новинки кинопроката? Неважно, каким будет ваш ответ – у нас есть все, как картины эпохи зарождения кинематографа, так и фильмы 2023 года.',
+        inOurCatalog:
+            'В нашем каталоге вы найдете любые жанры. Это и фильмы про любовь, и детективы, и боевики, и вестерны, и фантастика, и арт-хаус, и уморительные комедии, и фильмы про войну, и ужасы, и триллеры, и документалистика... Кроме «полного метра» на сайте представлены также короткометражные фильмы, а также иностранные и русские сериалы.',
+        ifYouAreInterested:
+            'Если вас интересуют самые знаковые фильмы онлайн в том или ином жанре, система рубрикации поможет вам без труда сориентироваться и найти, например, лучшие драмы или лучший анимационный фильм онлайн.',
+        doNotMiss:
+            'Не упустите замечательную возможность смотреть фильмы онлайн без регистрации, выбирая только то, что вам действительно интересно, и тогда, когда вам это удобно. Ведь это так просто и приятно!',
+        ratingFrom: 'Рейтинг от:',
+        resetFilters: 'Сбросить фильтры',
+        numberOfRatings: 'Количество оценок (тыс.) от:',
+        searchByDirector: 'Поиск по режиссеру',
+        searchByActor: 'Поиск по актеру',
+        showMore: 'Показать еще',
     },
 }
 

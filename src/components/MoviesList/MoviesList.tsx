@@ -3,6 +3,8 @@ import styles from './MoviesList.module.scss'
 import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import data from '../../data/mockData'
 import MoviesListSkeleton from '@/components/MoviesListSkeleton/MoviesListSkeleton'
+import { Button } from '@/stories/Button/ButtonStandard'
+import { useI18nContext } from '@/context/i18n'
 
 interface IMoviesData {
     id: number
@@ -26,6 +28,7 @@ interface IMoviesData {
 }
 
 const MoviesList = () => {
+    const { language, i18n } = useI18nContext()
     const [moviesData, setMoviesData] = useState<IMoviesData[] | null>(null)
 
     useEffect(() => {
@@ -66,7 +69,11 @@ const MoviesList = () => {
                     </ul>
 
                     {/* Storybook */}
-                    <button className={styles.showMore}>Показать еще</button>
+                    <Button
+                        label={i18n[language].showMore}
+                        onClick={() => {}}
+                        type="showMore"
+                    />
                 </div>
             </div>
         </section>
