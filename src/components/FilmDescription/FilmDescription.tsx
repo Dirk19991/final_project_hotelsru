@@ -41,7 +41,7 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
     const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
 
     return (
-        <div className={styles.wrapper}>
+        <div data-testid="description" className={styles.wrapper}>
             <h2 className={styles.name}>
                 {nameRu} ({i18n[language][filmType]} {startYear})
             </h2>
@@ -66,7 +66,11 @@ const FilmDescription = ({ filmData }: IFilmDescription) => {
                     </div>
 
                     {mainActors.map((actor) => (
-                        <div key={actor.id} className={styles.column}>
+                        <div
+                            data-testid="button-actor"
+                            key={actor.id}
+                            className={styles.column}
+                        >
                             <ButtonActor
                                 height={44}
                                 href={`/person/${actor.id}`}
