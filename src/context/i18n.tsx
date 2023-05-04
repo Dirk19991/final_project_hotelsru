@@ -105,6 +105,20 @@ export interface I18nContextType {
             searchByDirector: string
             searchByActor: string
             showMore: string
+            subscribe: string
+            youCanCancel: string
+            from189: string
+            purchases: string
+            browsingHistory: string
+            subscriptions: string
+            activate: string
+            certificateActivation: string
+            logInWithCode: string
+            purchaseMethods: string
+            settings: string
+            help: string
+            logInOrSignUp: string
+            otherSubscriptions: string
         }
     }
 }
@@ -226,6 +240,20 @@ const i18n: I18nContextType['i18n'] = {
         searchByDirector: 'Search by director',
         searchByActor: 'Search by actor',
         showMore: 'Show more',
+        subscribe: 'Subscribe',
+        youCanCancel: 'You can cancel the subscription any time',
+        from189: 'From 189 rb/month',
+        purchases: 'Purchases',
+        browsingHistory: 'Browsing history',
+        subscriptions: 'Subscriptions',
+        activate: 'Activate',
+        certificateActivation: 'Certificate activation',
+        logInWithCode: 'Log in with code',
+        purchaseMethods: 'Purchase methods',
+        settings: 'Settings',
+        help: 'Help',
+        logInOrSignUp: 'Log in or sign up',
+        otherSubscriptions: 'Other subscriptions',
     },
 
     ru: {
@@ -345,6 +373,20 @@ const i18n: I18nContextType['i18n'] = {
         searchByDirector: 'Поиск по режиссеру',
         searchByActor: 'Поиск по актеру',
         showMore: 'Показать еще',
+        subscribe: 'Подключить',
+        youCanCancel: 'Отключить можно в любой момент',
+        from189: 'От 189 руб. за месяц',
+        purchases: 'Покупки',
+        browsingHistory: 'История просмотров',
+        subscriptions: 'Подписки',
+        activate: 'Подключить',
+        certificateActivation: 'Активация сертификата',
+        logInWithCode: 'Вход по коду',
+        purchaseMethods: 'Способы оплаты',
+        settings: 'Настройки',
+        help: 'Помощь',
+        logInOrSignUp: 'Войти или зарегистрироваться',
+        otherSubscriptions: 'Другие подписки',
     },
 }
 
