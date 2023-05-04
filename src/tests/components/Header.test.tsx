@@ -128,9 +128,15 @@ describe('Header nav testing', () => {
     it('renders dropdown filters on mouse over', () => {
         render(<Header />)
         render(<NavigationBar handleMouseOver={handleMouseOver} />)
-        render(<HeaderDropdownFilters subMenuData={dropdownContentMock} />)
+        render(
+            <HeaderDropdownFilters
+                subMenuData={dropdownContentMock}
+                type="genre"
+            />
+        )
 
         const navBar = screen.getByTestId('navigation-bar')
+        const subscriptionWidget = screen.getByTestId('subscription-widget')
 
         expect(navBar).toBeInTheDocument()
 
@@ -146,6 +152,7 @@ describe('Header nav testing', () => {
 
             if (i === 2 || i === 3 || i === 4) {
                 expect(dropdownFilters).toBeInTheDocument()
+                expect(subscriptionWidget).toBeInTheDocument()
             }
         })
     })
@@ -162,7 +169,7 @@ describe('Header nav testing', () => {
         expect(handleMouseOver).toHaveBeenCalled()
         expect(dropdownProfile).toBeInTheDocument()
     })
-    
+
     it('renders dropdownSubscription on mouse over', () => {
         resizeScreenSize(1440)
         render(<Header />)
@@ -170,9 +177,11 @@ describe('Header nav testing', () => {
 
         const subscriptionButton = screen.getByTestId('subscription-button')
         const dropdownSubscription = screen.getByTestId('dropdown-subscription')
+        const headerCarousel = screen.getByTestId('header-carousel')
 
         fireEvent.mouseOver(subscriptionButton)
         expect(handleMouseOver).toHaveBeenCalled()
         expect(dropdownSubscription).toBeInTheDocument()
+        expect(headerCarousel).toBeInTheDocument()
     })
 })

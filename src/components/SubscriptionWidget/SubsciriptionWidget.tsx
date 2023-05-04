@@ -25,6 +25,7 @@ const SubsciriptionWidget = () => {
             className={styles.widget}
             onMouseOver={() => setIsHovering(true)}
             onMouseOut={() => setIsHovering(false)}
+            data-testid="subscription-widget"
         >
             <div className={styles.carousel}>
                 <div className={styles.wrapper}>
