@@ -5,6 +5,7 @@ import FooterMobile from '../FooterMobile/FooterMobile'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import styles from './Footer.module.scss'
 import { useRouter } from 'next/router'
+import { Button } from '@/stories/Button/ButtonStandard'
 
 const Footer = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
@@ -18,12 +19,11 @@ const Footer = () => {
                 <div className="container">
                     <FooterNavigation />
                     {isLoggedIn && (
-                        <button
-                            className={styles.admin}
+                        <Button
+                            type="showMore"
+                            label="Админ-панель"
                             onClick={() => push('/admin')}
-                        >
-                            Админ-панель
-                        </button>
+                        />
                     )}
                     <FooterContacts />
                 </div>
