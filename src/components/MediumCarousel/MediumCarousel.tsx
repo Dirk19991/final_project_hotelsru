@@ -1,11 +1,11 @@
 import React, { CSSProperties, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './MediumCarousel.module.scss'
-import { TopTenItem } from '@/stories/SlideMedium/SlideMedium'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import cn from 'classnames'
 import { useI18nContext } from '@/context/i18n'
+import { MediumCarouselSlide } from '@/stories/MediumCarouselSlide/MediumCarouselSlide'
 
 const MediumCarousel = () => {
     const { i18n, language } = useI18nContext()
@@ -49,7 +49,6 @@ const MediumCarousel = () => {
                                     slidesPerView: 2,
                                     slidesPerGroup: 2,
                                 },
-                                
                             }}
                             style={
                                 {
@@ -67,7 +66,7 @@ const MediumCarousel = () => {
                         >
                             {numbers.map((number) => (
                                 <SwiperSlide key={number}>
-                                    <TopTenItem
+                                    <MediumCarouselSlide
                                         href="/"
                                         mainImage={`/topTen/${number}/main.jpg`}
                                         numberImage={`/topTen/${number}/number.svg`}

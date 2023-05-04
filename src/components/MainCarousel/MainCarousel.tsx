@@ -1,11 +1,11 @@
 import React, { CSSProperties } from 'react'
 import styles from './MainCarousel.module.scss'
-import MainCarouselSlide from '../MainCarouselSlide/MainCarouselSlide'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css/bundle'
 import cn from 'classnames'
 import { useI18nContext } from '@/context/i18n'
+import MainCarouselSlide from '@/stories/MainCarouselSlide/MainCarouselSlide'
 
 const MainCarousel = () => {
     const { i18n, language } = useI18nContext()

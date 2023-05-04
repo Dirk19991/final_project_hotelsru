@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from './MoviesList.module.scss'
-import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import data from '../../data/mockData'
 import MoviesListSkeleton from '@/components/MoviesListSkeleton/MoviesListSkeleton'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useI18nContext } from '@/context/i18n'
+import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 
 interface IMoviesData {
     id: number

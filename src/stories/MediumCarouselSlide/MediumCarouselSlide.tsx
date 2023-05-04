@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './SlideMedium.module.scss'
+import styles from './MediumCarouselSlide.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,7 +11,7 @@ export interface TopTenItemProps {
     href: string
 }
 
-export const TopTenItem = ({
+export const MediumCarouselSlide = ({
     mainImage,
     titleImage,
     numberImage,

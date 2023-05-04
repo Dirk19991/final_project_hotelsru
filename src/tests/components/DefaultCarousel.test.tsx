@@ -1,4 +1,4 @@
-import DefaultCarousel from '@/components/DefaultCarousel/DefaultCarousel'
+import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { render, waitFor } from '@testing-library/react'
 import { enableFetchMocks } from 'jest-fetch-mock'
 import '@testing-library/jest-dom'

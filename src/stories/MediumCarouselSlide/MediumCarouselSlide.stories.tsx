@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { TopTenItem } from './SlideMedium'
+import { MediumCarouselSlide } from './MediumCarouselSlide'
 import '../../styles/globals.scss'
 
-const meta: Meta<typeof TopTenItem> = {
+const meta: Meta<typeof MediumCarouselSlide> = {
     title: 'Слайдеры/Средний слайд',
-    component: TopTenItem,
+    component: MediumCarouselSlide,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ width: '224px', height: '448px' }}>
+                <Story />
+            </div>
+        ),
+    ],
     argTypes: {
         mainImage: {
             options: [
@@ -41,7 +48,7 @@ const meta: Meta<typeof TopTenItem> = {
 }
 
 export default meta
-type Story = StoryObj<typeof TopTenItem>
+type Story = StoryObj<typeof MediumCarouselSlide>
 
 export const ExampleItem: Story = {
     args: {

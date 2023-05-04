@@ -3,7 +3,7 @@ import Promo from '@/components/Promo/Promo'
 import MediumCarousel from '@/components/MediumCarousel/MediumCarousel'
 import PromoButtons from '@/components/PromoButtons/PromoButtons'
 import Head from 'next/head'
-import DefaultCarousel from '@/components/DefaultCarousel/DefaultCarousel'
+import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 
 export default function Home() {
     return (
