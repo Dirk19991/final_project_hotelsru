@@ -1,4 +1,4 @@
-import { IComment } from '@/components/CommentsCarousel/CommentSlide/CommentSlide'
+import { IComment } from '@/stories/CommentSlide/CommentSlide'
 import styles from './Comment.module.scss'
 import { useState } from 'react'
 import CommentForm from '../CommentForm/CommentForm'
