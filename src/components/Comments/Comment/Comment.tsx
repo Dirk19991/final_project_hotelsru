@@ -3,7 +3,7 @@ import styles from './Comment.module.scss'
 import { useState } from 'react'
 import CommentForm from '../CommentForm/CommentForm'
 
-const Comment = ({ author, text, date }: IComment) => {
+const Comment = ({ author, text, date, comments }: IComment) => {
     const [isAnswerOpen, toggleIsAnswerOpen] = useState(false)
 
     return (
@@ -24,6 +24,17 @@ const Comment = ({ author, text, date }: IComment) => {
                     Ответить
                 </span>
                 {isAnswerOpen && <CommentForm />}
+            </div>
+            <div className={styles.commentsList}>
+                {comments?.map((comment) => (
+                    <Comment
+                        key={comment.id}
+                        author={comment.author}
+                        text={comment.text}
+                        date={comment.date}
+                        comments={comment.comments}
+                    />
+                ))}
             </div>
         </div>
     )

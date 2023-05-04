@@ -45,6 +45,7 @@ const Comments = () => {
                                 author={comment.author}
                                 text={comment.text}
                                 date={comment.date}
+                                comments={comment.comments}
                             />
                         ))}
                     </div>
