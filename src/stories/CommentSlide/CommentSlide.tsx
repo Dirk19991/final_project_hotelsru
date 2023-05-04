@@ -1,9 +1,11 @@
 import styles from './CommentSlide.module.scss'
 
 export interface IComment {
+    id?: number
     author: string
     text: string
     date: string
+    comments?: IComment[]
 }
 
 const CommentSlide = ({ author, text, date }: IComment) => {

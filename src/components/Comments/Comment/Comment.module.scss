@@ -6,7 +6,6 @@
     grid-template-columns: 7fr 1fr;
     gap: 10px;
     padding-left: 50px;
-    margin-bottom: 20px;
 }
 
 .ava {
@@ -87,4 +86,8 @@
         text-decoration: underline;
         letter-spacing: 1px;
     }
+}
+
+.commentsList {
+    grid-column: 1 / 3;
 }
