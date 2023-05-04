@@ -1,4 +1,3 @@
-import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import styles from './Comments.module.scss'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -7,6 +6,7 @@ import { IMovie } from '@/types/ComponentProps/IMovie'
 import commentsData from '../../data/mockDataComments.json'
 import Comment from './Comment/Comment'
 import CommentForm from './CommentForm/CommentForm'
+import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 
 const Comments = () => {
     const router = useRouter()

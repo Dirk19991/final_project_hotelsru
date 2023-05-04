@@ -2,13 +2,13 @@ import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import styles from './DefaultCarousel.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
-import DefaultCarouselSlide from '../DefaultCarouselSlide/DefaultCarouselSlide'
 import cn from 'classnames'
 import data from '../../data/mockData'
 import Link from 'next/link'
 
 import Image from 'next/image'
 import { ISimilarMovie, ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
+import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 
 interface WithEndpoint {
     type: 'endpoint'
