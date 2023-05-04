@@ -26,7 +26,6 @@ const SubsciriptionWidget = () => {
             onMouseOver={() => setIsHovering(true)}
             onMouseOut={() => setIsHovering(false)}
         >
-            
             <div className={styles.carousel}>
                 <div className={styles.wrapper}>
                     {[movies1, movies2, movies3].map((list) => {
@@ -62,8 +61,8 @@ const SubsciriptionWidget = () => {
                             alt="Подписка"
                         />
                         <div>
-                            <p>Подписка Иви</p>
-                            <span>От 189 руб. за месяц</span>
+                            <p>{i18n[language].iviSubscription}</p>
+                            <span>{i18n[language].from189}</span>
                         </div>
                     </div>
 
@@ -73,9 +72,9 @@ const SubsciriptionWidget = () => {
                                 push('https://www.ivi.ru/profile/subscription')
                             }
                         >
-                            Подключить
+                            {i18n[language].subscribe}
                         </button>
-                        <small>Отключить можно в любой момент</small>
+                        <small>{i18n[language].youCanCancel}</small>
                     </div>
                 </div>
             </div>

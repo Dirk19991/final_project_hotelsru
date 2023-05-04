@@ -150,7 +150,7 @@ const HeaderDropdownSubscription = () => {
 
                 <div className={styles.otherSubscriptions}>
                     <Link href="https://www.ivi.ru/profile/subscriptions">
-                        Другие Подписки
+                        {i18n[language].otherSubscriptions}
                     </Link>
                 </div>
             </div>
