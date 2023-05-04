@@ -119,6 +119,9 @@ export interface I18nContextType {
             help: string
             logInOrSignUp: string
             otherSubscriptions: string
+            similar: string
+            alreadyWatched: string
+            dontLikeIt: string
         }
     }
 }
@@ -254,6 +257,9 @@ const i18n: I18nContextType['i18n'] = {
         help: 'Help',
         logInOrSignUp: 'Log in or sign up',
         otherSubscriptions: 'Other subscriptions',
+        similar: 'Similar',
+        alreadyWatched: 'Already watched, rate',
+        dontLikeIt: `Don't like it`,
     },
 
     ru: {
@@ -387,6 +393,9 @@ const i18n: I18nContextType['i18n'] = {
         help: 'Помощь',
         logInOrSignUp: 'Войти или зарегистрироваться',
         otherSubscriptions: 'Другие подписки',
+        similar: 'Похожие',
+        alreadyWatched: 'Уже смотрел, оценить',
+        dontLikeIt: 'Не нравится такое',
     },
 }
 

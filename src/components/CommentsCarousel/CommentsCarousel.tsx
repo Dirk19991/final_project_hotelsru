@@ -3,11 +3,11 @@ import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 import { CSSProperties, useRef, useState } from 'react'
-import CommentSlide from './CommentSlide/CommentSlide'
 import Modal from '../Modal/Modal'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Comments from '../Comments/Comments'
 import commentsData from '../../data/mockDataComments.json'
+import CommentSlide from '@/stories/CommentSlide/CommentSlide'
 
 const CommentsCarousel = ({}) => {
     const [isModalOpen, setIsModalOpen] = useState(false)

@@ -9,6 +9,7 @@ import {
     faStar,
     faBan,
 } from '@fortawesome/free-solid-svg-icons'
+import { useI18nContext } from '@/context/i18n'
 
 export interface IDefaultCarousel {
     image: string
@@ -42,6 +43,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
     const [dislikeHovered, setDislikeHovered] = useState(false)
 
     const filmGenre = genre.sort((a, b) => a.id - b.id)[0].name
+    const { language, i18n } = useI18nContext()
 
     return (
         <div data-testid="defaultCarouselSlide" className={styles.wrapper}>
@@ -89,7 +91,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     }}
                                     className={styles.message}
                                 >
-                                    Смотреть позже
+                                    {i18n[language].watchLater}
                                     <div className={styles.triangle}></div>
                                 </div>
                             </div>
@@ -111,7 +113,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     }}
                                     className={styles.message}
                                 >
-                                    Похожее
+                                    {i18n[language].similar}
                                     <div className={styles.triangle}></div>
                                 </div>
                             </div>
@@ -131,7 +133,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     }}
                                     className={styles.message}
                                 >
-                                    Уже смотрел, оценить
+                                    {i18n[language].alreadyWatched}
                                     <div className={styles.triangle}></div>
                                 </div>
                             </div>
@@ -153,7 +155,7 @@ const DefaultCarouselSlide: FC<IDefaultCarousel> = ({
                                     }}
                                     className={styles.message}
                                 >
-                                    Не нравится такое
+                                    {i18n[language].dontLikeIt}
                                     <div className={styles.triangle}></div>
                                 </div>
                             </div>
