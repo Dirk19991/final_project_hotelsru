@@ -1,3 +1,4 @@
+import AdminPanel from '@/components/AdminPanel/AdminPanel'
 import Head from 'next/head'
 
 export default function Admin() {
@@ -6,6 +7,7 @@ export default function Admin() {
             <Head>
                 <title>{'Админ панель'}</title>
             </Head>
+            <AdminPanel />
         </>
     )
 }

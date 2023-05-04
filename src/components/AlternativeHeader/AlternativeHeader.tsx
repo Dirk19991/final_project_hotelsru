@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
 import styles from './AlterntaiveHeader.module.scss'
 import { useRouter } from 'next/router'
 
@@ -6,16 +6,15 @@ interface IAlternativeHeader {
     title: string
 }
 
-const AlternativeHeader:FC<IAlternativeHeader> = ({title}) => {
-
-    const {push} = useRouter();
+const AlternativeHeader: FC<IAlternativeHeader> = ({ title }) => {
+    const { push } = useRouter()
 
     return (
         <header>
             <div className={styles.wrapper}>
                 <div></div>
                 <div className={styles.title}>{title}</div>
-                <div className={styles.back} onClick={() => push("/")}>
+                <div className={styles.back} onClick={() => push('/')}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

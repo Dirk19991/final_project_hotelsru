@@ -1,0 +1,96 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    width: 320px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input,
+.nameInput,
+.genreInput {
+    width: 200px;
+    padding: 8px 16px;
+    height: 60px;
+    background-color: $secondary-bg-color;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    color: $accent-color;
+    &::placeholder {
+        color: $link-color;
+    }
+}
+
+.nameInput,
+.genreInput {
+    width: 100%;
+    &:focus {
+        outline: none;
+    }
+}
+
+.genreInput {
+    height: 40px;
+}
+
+.button {
+    width: fit-content;
+    padding: 0 10px;
+    height: 30px;
+    background-color: $secondary-bg-color;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    color: $accent-color;
+    cursor: pointer;
+    transition: 0.3s all;
+    &::placeholder {
+        color: $link-color;
+    }
+}
+
+.error {
+    margin-top: 10px;
+    font-weight: 700;
+    color: red;
+    overflow: hidden;
+}
+
+.saved {
+    margin-top: 10px;
+    font-weight: 700;
+    color: green;
+    overflow: hidden;
+}
+
+.info {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 30px;
+    width: 700px;
+    background-color: white;
+    border: 1px solid white;
+    grid-gap: 1px;
+
+    > div {
+        background-color: $main-bg-color;
+        color: $accent-color;
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+}
+
+.genres {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
