@@ -28,12 +28,15 @@ const SubsciriptionWidget = () => {
         >
             <div className={styles.carousel}>
                 <div className={styles.wrapper}>
-                    {[movies1, movies2, movies3].map((list) => {
+                    {[movies1, movies2, movies3].map((list, idx) => {
                         return (
-                            <div className={styles.column}>
+                            <div className={styles.column} key={idx}>
                                 {list.map((movie) => {
                                     return (
-                                        <Link href={`/watch/${movie.id}`}>
+                                        <Link
+                                            href={`/watch/${movie.id}`}
+                                            key={movie.id}
+                                        >
                                             <Image
                                                 src={movie.poster}
                                                 alt={movie.description}

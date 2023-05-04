@@ -18,7 +18,7 @@ const FilmTrailer = ({ filmData }: IFilmTrailer) => {
         <div data-testid="trailer" className={styles.wrapper}>
             <div className={isMobile ? styles.mobileTrailer : styles.trailer}>
                 <iframe
-                    className={isMobile && styles.mobileFrame}
+                    className={isMobile ? styles.mobileFrame : ""}
                     width="720"
                     height="405"
                     src={`https://www.youtube.com/embed/${id}`}
