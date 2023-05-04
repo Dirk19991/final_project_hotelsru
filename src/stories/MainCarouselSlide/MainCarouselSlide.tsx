@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
 import Image from 'next/image'
 import styles from './MainCarouselSlide.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
@@ -11,7 +11,7 @@ interface SlideProps {
     label: string
 }
 
-const MainCarouselSlide:FC<SlideProps> = ({
+const MainCarouselSlide: FC<SlideProps> = ({
     mainImage,
     mainText,
     titleImage,

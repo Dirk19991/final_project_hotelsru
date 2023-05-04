@@ -6,13 +6,12 @@ import data from '@/data/mockDataFilm.json'
 import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
 import FilmTrailer from '../FilmTrailer/FilmTrailer'
 import FilmDescription from '../FilmDescription/FilmDescription'
-import DefaultCarousel from '../DefaultCarousel/DefaultCarousel'
-
 import useMediaQuery from '@/hooks/useMediaQuery'
 import FilmMobile from '../FilmMobile/FilmMobile'
 import { useI18nContext } from '@/context/i18n'
 import 'swiper/scss'
 import 'swiper/css/bundle'
+import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 
 const Film = () => {
     const { language, i18n } = useI18nContext()

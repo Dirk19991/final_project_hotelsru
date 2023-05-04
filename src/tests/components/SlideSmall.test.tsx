@@ -1,11 +1,11 @@
-import DefaultCarouselSlide from '@/components/DefaultCarouselSlide/DefaultCarouselSlide'
+import SlideSmall from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
 describe('Testing Default Carousel Slide', () => {
     it('hovers on buttons work correctly', () => {
         render(
-            <DefaultCarouselSlide
+            <SlideSmall
                 image="/"
                 href="/"
                 year={2000}
@@ -46,7 +46,7 @@ describe('Testing Default Carousel Slide', () => {
 
     it('hover on card shows rating', () => {
         render(
-            <DefaultCarouselSlide
+            <SlideSmall
                 image="/"
                 href="/"
                 year={2000}

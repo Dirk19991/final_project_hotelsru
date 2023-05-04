@@ -3,7 +3,6 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import { ButtonActor } from '@/stories/Button/ButtonActor'
 import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
-import DefaultCarousel from '../DefaultCarousel/DefaultCarousel'
 import { IMovie } from '@/types/ComponentProps/IMovie'
 import toHoursAndMinutes from '@/util/toHoursAndMinutes'
 import { useState } from 'react'
@@ -11,6 +10,7 @@ import FilmBreadcrumbs from '../FilmBreadcrumbs/FilmBreadcrumbs'
 import FilmTrailer from '../FilmTrailer/FilmTrailer'
 import styles from './FilmMobile.module.scss'
 import classNames from 'classnames/bind'
+import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 
 interface IFilmMobile {
     filmData: IMovie
