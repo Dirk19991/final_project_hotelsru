@@ -5,9 +5,14 @@ import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
 import SortingPanel from '@/components/SortingPanel/SortingPanel'
 import Filters from '@/components/Filters/Filters'
 import MoviesList from '@/components/MoviesList/MoviesList'
+import { useRouter } from 'next/router'
 
 const MoviesFilters = () => {
     const { i18n, language } = useI18nContext()
+    const { query } = useRouter()
+
+    console.log(query)
+
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
 
     const breadcrumbsData = [
