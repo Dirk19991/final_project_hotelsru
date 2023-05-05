@@ -3,14 +3,19 @@ import styles from './AdminPanelFilm.module.scss'
 import data from '@/data/mockData'
 import { ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
 import React from 'react'
-import Select from 'react-select'
+import Select, { MultiValue } from 'react-select'
 
 const AdminPanelFilm = () => {
     const [inputValue, setInputValue] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
     const [notFound, setNotFound] = useState<boolean>(false)
     const [saved, setSaved] = useState<boolean>(false)
-    const [addititonalGenres, setAdditonalGenres] = useState<number[]>([])
+    const [chosenGenres, setChosenGenres] = useState<
+        MultiValue<{
+            value: string
+            label: string
+        }>
+    >([])
     const [foundFilm, setFoundFilm] = useState<ISmallSliderMovie | null>(null)
 
     const genres = [
@@ -64,18 +69,7 @@ const AdminPanelFilm = () => {
         e.preventDefault()
 
         const formData = new FormData(e.target)
-
-        const genres = []
-        let counter = 0
-        while (formData.get(`genre${counter}`)) {
-            genres.push(formData.get(`genre${counter}`))
-            counter++
-        }
-        counter = 0
-        while (formData.get(`additional${counter}`)) {
-            genres.push(formData.get(`additional${counter}`))
-            counter++
-        }
+        const genres = chosenGenres ? chosenGenres : foundFilm?.genre
 
         const updatedFilm = {
             ...foundFilm,
@@ -87,7 +81,6 @@ const AdminPanelFilm = () => {
         console.log(updatedFilm)
         setSaved(true)
         setFoundFilm(null)
-        setAdditonalGenres([])
     }
 
     return (
@@ -135,7 +128,12 @@ const AdminPanelFilm = () => {
                                     backgroundColor: '#312b45',
                                 }),
                             }}
-                            defaultValue={[genres[0], genres[1]]}
+                            defaultValue={genres.filter((genre) =>
+                                foundFilm.genre
+                                    .map((elem) => elem.name)
+                                    .includes(genre.value)
+                            )}
+                            onChange={(choice) => setChosenGenres(choice)}
                             isMulti
                             name="genres"
                             options={genres}
