@@ -1,0 +1,42 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    width: 320px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: $accent-color;
+}
+
+.input {
+    width: 200px;
+    padding: 8px 16px;
+    height: 30px;
+    background-color: $secondary-bg-color;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    color: $accent-color;
+    &::placeholder {
+        color: $link-color;
+    }
+}
+
+.button {
+    width: fit-content;
+    padding: 0 10px;
+    height: 30px;
+    background-color: $secondary-bg-color;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    color: $accent-color;
+    cursor: pointer;
+    transition: 0.3s all;
+    &::placeholder {
+        color: $link-color;
+    }
+}

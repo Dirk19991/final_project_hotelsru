@@ -4,6 +4,7 @@ import data from '@/data/mockData'
 import { ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
 import AdminPanelFilm from '../AdminPanelFilm/AdminPanelFilm'
 import { Button } from '@/stories/Button/ButtonStandard'
+import AdminPanelGenre from '../AdminPanelGenre/AdminPanelGenre'
 
 const AdminPanel = () => {
     const [screenType, setScreenType] = useState<'buttons' | 'film' | 'genre'>(
@@ -24,12 +25,13 @@ const AdminPanel = () => {
                     <Button
                         href="/admin"
                         label="Редактировать жанр"
-                        onClick={() => {}}
+                        onClick={() => setScreenType('genre')}
                         type="watchSubscription"
                     />
                 </div>
             )}
             {screenType === 'film' && <AdminPanelFilm />}
+            {screenType === 'genre' && <AdminPanelGenre />}
         </div>
     )
 }
