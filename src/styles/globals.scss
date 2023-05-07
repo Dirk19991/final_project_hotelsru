@@ -7,12 +7,14 @@
 
 html {
     font-family: 'Open Sans', sans-serif;
+    overflow: clip;
 }
 
 body {
     background-color: $main-bg-color;
     font-size: 15px;
     position: relative;
+    overflow: clip;
 }
 
 button {
