@@ -70,7 +70,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                             {subMenuData.country.map(
                                 ({ id, nameEn, nameRu, link }: IHeaderLink) => (
                                     <li key={id}>
-                                        <Link href={link}>
+                                        <Link href={link ? link : ''}>
                                             {language === 'ru'
                                                 ? nameRu
                                                 : nameEn}

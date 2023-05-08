@@ -1,5 +1,5 @@
 export interface IHeaderStaticLinks {
-    movies_categories?: ISubMenuData
+    movies_categories: ISubMenuData
     series_categories: ISubMenuData
     animation_categories: ISubMenuData
 }

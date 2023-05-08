@@ -10,7 +10,8 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import { useI18nContext } from '@/context/i18n'
-import headerData from '@/data/headerStaticLinks.json'
+import HeaderStaticLinks from '@/data/headerStaticLinks.json'
+import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
 
 const Header = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
@@ -20,7 +21,8 @@ const Header = () => {
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const [headerStaticLinks, setHeaderStaticLinks] = useState<any>([])
+    const [headerLinks, setHeaderLinks] =
+        useState<IHeaderStaticLinks>(HeaderStaticLinks)
 
     const openSubMenu = () => matchesDesktopSize && setIsHovering(true)
     const closeSubMenu = () => matchesDesktopSize && setIsHovering(false)
@@ -29,18 +31,6 @@ const Header = () => {
         setCurrentTabId(id)
         return expandable ? openSubMenu() : closeSubMenu()
     }
-
-    useEffect(() => {
-        // const fetchHeaderData = async () => {
-        //     const res = await fetch('/api/header-static')
-        //     const data = res.json()
-        //     return data
-        // }
-
-        // fetchHeaderData().then(setHeaderStaticLinks)
-        // локально работает, на деплое - нет
-        setHeaderStaticLinks(headerData)
-    }, [])
 
     return (
         <header className={styles.header} onMouseLeave={closeSubMenu}>
@@ -148,7 +138,7 @@ const Header = () => {
                                             <HeaderDropdownFilters
                                                 data-testid="movies-dropdown"
                                                 subMenuData={
-                                                    headerStaticLinks.movies_categories
+                                                    headerLinks.movies_categories
                                                 }
                                                 type="movie"
                                             />
@@ -156,7 +146,7 @@ const Header = () => {
                                         {currentTabId === 4 && (
                                             <HeaderDropdownFilters
                                                 subMenuData={
-                                                    headerStaticLinks.series_categories
+                                                    headerLinks.series_categories
                                                 }
                                                 type="series"
                                             />
@@ -164,7 +154,7 @@ const Header = () => {
                                         {currentTabId === 5 && (
                                             <HeaderDropdownFilters
                                                 subMenuData={
-                                                    headerStaticLinks.animation_categories
+                                                    headerLinks.animation_categories
                                                 }
                                                 type="cartoon"
                                             />
