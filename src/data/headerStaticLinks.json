@@ -3,135 +3,135 @@
         "genre": [
             {
                 "id": 1,
-                "nameRu": "Биография",
-                "nameEn": "Biography",
-                "link": "/movies/biography"
+                "nameRu": "Драма",
+                "nameEn": "Drama",
+                "link": "/movies/drama"
             },
             {
                 "id": 2,
-                "nameRu": "Боевики",
-                "nameEn": "Militants",
-                "link": "/movies/boeviki"
+                "nameRu": "Боевик",
+                "nameEn": "Action",
+                "link": "/movies/action"
             },
             {
                 "id": 3,
-                "nameRu": "Военные",
-                "nameEn": "War",
-                "link": "/movies/voennye"
-            },
-            {
-                "id": 4,
-                "nameRu": "Детективы",
-                "nameEn": "Detective",
-                "link": "/movies/detective"
-            },
-            {
-                "id": 5,
-                "nameRu": "Для всей семьи",
-                "nameEn": "Family",
-                "link": "/movies/dlya_vsej_semi"
-            },
-            {
-                "id": 6,
-                "nameRu": "Дорамы",
-                "nameEn": "Dorama",
-                "link": "/movies/doramy"
-            },
-            {
-                "id": 7,
-                "nameRu": "Драмы",
-                "nameEn": "Drama",
-                "link": "/movies/dramy"
-            },
-            {
-                "id": 8,
-                "nameRu": "Исторические",
-                "nameEn": "Historical",
-                "link": "/movies/history"
-            },
-            {
-                "id": 9,
-                "nameRu": "Комедийные",
-                "nameEn": "Comedy",
-                "link": "/movies/comedy"
-            },
-            {
-                "id": 10,
-                "nameRu": "Криминальные",
-                "nameEn": "Crime",
-                "link": "/movies/crime"
-            },
-            {
-                "id": 11,
-                "nameRu": "Медицинские",
-                "nameEn": "Medicine",
-                "link": "/movies/medicine"
-            },
-            {
-                "id": 12,
-                "nameRu": "Мелодрамы",
-                "nameEn": "melodramas",
-                "link": "/movies/melodramyi"
-            },
-            {
-                "id": 13,
-                "nameRu": "Мистические",
-                "nameEn": "Mystic",
-                "link": "/movies/misticheskie"
-            },
-            {
-                "id": 14,
-                "nameRu": "Приключения",
-                "nameEn": "Adventures",
-                "link": "/movies/adventures"
-            },
-            {
-                "id": 15,
-                "nameRu": "Романтические",
-                "nameEn": "Romance",
-                "link": "/movies/romanticheskie"
-            },
-            {
-                "id": 16,
-                "nameRu": "Телешоу",
-                "nameEn": "TVShow",
-                "link": "/movies/tvshow"
-            },
-            {
-                "id": 17,
-                "nameRu": "Триллеры",
+                "nameRu": "Триллер",
                 "nameEn": "Thriller",
                 "link": "/movies/thriller"
             },
             {
-                "id": 18,
-                "nameRu": "Турецкие",
-                "nameEn": "Turkish",
-                "link": "/movies/turetskie"
+                "id": 4,
+                "nameRu": "Криминал",
+                "nameEn": "Crime",
+                "link": "/movies/crime"
             },
             {
-                "id": 19,
-                "nameRu": "Документальные",
+                "id": 5,
+                "nameRu": "Комедия",
+                "nameEn": "Comedy",
+                "link": "/movies/comedy"
+            },
+            {
+                "id": 6,
+                "nameRu": "Семейный",
+                "nameEn": "Family",
+                "link": "/movies/family"
+            },
+            {
+                "id": 7,
+                "nameRu": "Мелодрама",
+                "nameEn": "Melodrama",
+                "link": "/movies/melodrama"
+            },
+            {
+                "id": 8,
+                "nameRu": "Военный",
+                "nameEn": "Military",
+                "link": "/movies/military"
+            },
+            {
+                "id": 9,
+                "nameRu": "Детектив",
+                "nameEn": "Detective",
+                "link": "/movies/detective"
+            },
+            {
+                "id": 10,
+                "nameRu": "Спорт",
+                "nameEn": "Sport",
+                "link": "/movies/sport"
+            },
+            {
+                "id": 11,
+                "nameRu": "История",
+                "nameEn": "History",
+                "link": "/movies/history"
+            },
+            {
+                "id": 12,
+                "nameRu": "Фентези",
+                "nameEn": "Fantasy",
+                "link": "/movies/fantasy"
+            },
+            {
+                "id": 13,
+                "nameRu": "Фантастика",
+                "nameEn": "Fiction",
+                "link": "/movies/fiction"
+            },
+            {
+                "id": 14,
+                "nameRu": "Доктументальный",
                 "nameEn": "Documentary",
                 "link": "/movies/documentary"
             },
             {
-                "id": 20,
+                "id": 15,
                 "nameRu": "Ужасы",
                 "nameEn": "Horror",
                 "link": "/movies/horror"
             },
             {
+                "id": 16,
+                "nameRu": "Биография",
+                "nameEn": "Biography",
+                "link": "/movies/biography"
+            },
+            {
+                "id": 17,
+                "nameRu": "Аниме",
+                "nameEn": "Anime",
+                "link": "/movies/anime"
+            },
+            {
+                "id": 18,
+                "nameRu": "Мультфильм",
+                "nameEn": "Cartoon",
+                "link": "/movies/cartoon"
+            },
+            {
+                "id": 19,
+                "nameRu": "Новости",
+                "nameEn": "News",
+                "link": "/movies/news"
+            },
+            {
+                "id": 20,
+                "nameRu": "Приключения",
+                "nameEn": "Adventure",
+                "link": "/movies/adventure"
+            },
+            {
                 "id": 21,
-                "nameRu": "Фантастические",
-                "nameEn": "Fantastic",
-                "link": "/movies/scifi"
+                "nameRu": "Вестерн",
+                "nameEn": "Western",
+                "link": "/movies/western"
             },
             {
                 "id": 22,
-                "nameRu": "Фэнтези",
-                "nameEn": "Fantasy",
-                "link": "/movies/fantasy"
+                "nameRu": "Мюзикл",
+                "nameEn": "Musical",
+                "link": "/movies/musical"
             }
         ],
         "country": [

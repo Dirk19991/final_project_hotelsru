@@ -18,7 +18,7 @@ describe('Testing Default Carousel Slide', () => {
         const similarButton = screen.getByTestId('similar')
         const similarText = screen.queryByText(/похожее/i)
         expect(similarButton).toBeInTheDocument()
-        // expect(similarText).not.toBeVisible() вызывает ошибку
+        expect(similarText).not.toBeVisible()
         fireEvent.mouseOver(similarButton)
         waitFor(() => expect(similarText).toBeVisible())
 

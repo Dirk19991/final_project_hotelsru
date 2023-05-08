@@ -2,18 +2,9 @@ import Layout from '@/components/Layout/Layout'
 import '@/styles/globals.scss'
 import '@/styles/vars.scss'
 import type { AppProps } from 'next/app'
-import { Roboto } from 'next/font/google'
 import { Open_Sans } from 'next/font/google'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
 import { I18nProvider } from '@/context/i18n'
 import Head from 'next/head'
-
-const roboto = Roboto({
-    weight: ['100', '300', '400', '500', '700'],
-    style: ['normal', 'italic'],
-    subsets: ['latin'],
-})
 
 const openSans = Open_Sans({
     weight: ['300', '400', '500', '700'],

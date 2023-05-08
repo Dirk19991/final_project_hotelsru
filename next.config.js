@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
     images: {
@@ -24,8 +23,7 @@ const nextConfig = {
         ],
     },
     env: {
-        LOCAL_API_URL: 'http://localhost:3001',
-        DEPLOY_API_URL: '',
+        DOCKER_API_URL: 'http://localhost:3111',
     },
 }
 
