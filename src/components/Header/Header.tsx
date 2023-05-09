@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './Header.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, FC, useEffect } from 'react'
 import HeaderDropdownFilters from '../HeaderDropdownFilters/HeaderDropdownFilters'
 import HeaderDropdownProfile from '../HeaderDropdownProfile/HeaderDropdownProfile'
 import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDropdownSubscription'
@@ -10,10 +10,10 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import { useI18nContext } from '@/context/i18n'
-import HeaderStaticLinks from '@/data/headerStaticLinks.json'
+import mock from '@/data/navigation.json'
 import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
 
-const Header = () => {
+const Header: FC<any> = ({ headerData }) => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
     const { toggleLanguage, language, i18n } = useI18nContext()
@@ -21,8 +21,7 @@ const Header = () => {
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const [headerLinks, setHeaderLinks] =
-        useState<IHeaderStaticLinks>(HeaderStaticLinks)
+    const [headerLinks, setHeaderLinks] = useState<IHeaderStaticLinks>(mock)
 
     const openSubMenu = () => matchesDesktopSize && setIsHovering(true)
     const closeSubMenu = () => matchesDesktopSize && setIsHovering(false)
@@ -31,6 +30,10 @@ const Header = () => {
         setCurrentTabId(id)
         return expandable ? openSubMenu() : closeSubMenu()
     }
+
+    useEffect(() => {
+        setHeaderLinks(headerData)
+    }, [headerData])
 
     return (
         <header className={styles.header} onMouseLeave={closeSubMenu}>

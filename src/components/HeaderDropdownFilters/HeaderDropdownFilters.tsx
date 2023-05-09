@@ -52,7 +52,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                 <div className={styles.genres}>
                     <h4>{i18n[language].genres}</h4>
                     <ul>
-                        {subMenuData.genre.map(
+                        {subMenuData?.genre.map(
                             ({ id, nameEn, nameRu, link }: IHeaderLink) => (
                                 <li key={id}>
                                     <Link href={link}>
@@ -67,7 +67,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                     <div className={styles.countries}>
                         <h4>{i18n[language].countries}</h4>
                         <ul>
-                            {subMenuData.country.map(
+                            {subMenuData?.country.map(
                                 ({ id, nameEn, nameRu, link }: IHeaderLink) => (
                                     <li key={id}>
                                         <Link href={link ? link : ''}>
@@ -83,7 +83,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                     <div className={styles.years}>
                         <h4>{i18n[language].years}</h4>
                         <ul>
-                            {subMenuData.year.map(
+                            {subMenuData?.year.map(
                                 ({ id, year, link }: IHeaderLink) => (
                                     <li key={id}>
                                         <Link href={link}>
@@ -103,7 +103,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
             <div className={styles.sidebar}>
                 <div className={styles.tabs}>
                     <ul>
-                        {subMenuData.selection.map(
+                        {subMenuData?.selection.map(
                             ({ id, nameEn, nameRu, link }: IHeaderLink) => (
                                 <li key={id}>
                                     <Link href={link}>

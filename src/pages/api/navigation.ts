@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import headerStaticLink from '@/data/headerStaticLinks.json'
+import headerStaticLink from '@/data/navigation.json'
 import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
 
 export default function handler(
