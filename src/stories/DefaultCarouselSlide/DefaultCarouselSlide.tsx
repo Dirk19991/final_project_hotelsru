@@ -41,15 +41,18 @@ const DefaultCarouselSlide: FC<IDefaultCarouselSlide> = ({
     const AGE_BADGE_SRC =
         'https://solea-parent.dfs.ivi.ru/picture/ffffff!0.48,000000!0.48/age18.svg'
     const CHARTS = [33, 35, 20, 33]
-    const PROGRESS = 64
-    const TRAIT = 'сюжет'
+    const TRAIT = 'оценка'
     const DURATION = '110 минут'
     const PRICE_TYPE = 'Бесплатно'
 
     const info = `${year}, ${genre.sort((a, b) => a.id - b.id)[0].name}, ${
         country[0].name
     }`
-    const [integerRating, fractionalRating] = rating.split('.')
+    const [integerRating, fractionalRating] = parseFloat(rating)
+        .toFixed(1)
+        .toString()
+        .split('.')
+    const progress = Number(rating.slice(0, 3)) * 10
 
     const { language, i18n } = useI18nContext()
 
@@ -123,7 +126,7 @@ const DefaultCarouselSlide: FC<IDefaultCarouselSlide> = ({
                                     {integerRating}
                                 </span>
                                 <span className={styles.number__fractional}>
-                                    ,{fractionalRating.slice(0, 2)}
+                                    ,{fractionalRating}
                                 </span>
                             </div>
                             <div className={styles.charts}>
@@ -141,7 +144,7 @@ const DefaultCarouselSlide: FC<IDefaultCarouselSlide> = ({
                         </div>
                         <ProgressBar
                             className={styles.progressbar}
-                            progress={PROGRESS}
+                            progress={progress}
                         />
                         <div className={styles.text}>{info}</div>
                         <div className={styles.text}>{DURATION}</div>

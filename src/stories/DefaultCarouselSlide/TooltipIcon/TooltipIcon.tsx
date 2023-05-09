@@ -3,6 +3,10 @@ import styles from './TooltipIcon.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { createPortal } from 'react-dom'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+
+config.autoAddCss = false
 
 export interface ITooltipIcon {
     icon: IconDefinition
