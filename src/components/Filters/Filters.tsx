@@ -6,12 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useI18nContext } from '@/context/i18n'
 
-const Filters: FC<any> = () => {
+const Filters: FC<any> = ({ genres }) => {
     const [currentModal, setCurrentModal] = useState<string>('')
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
 
     const { language, i18n } = useI18nContext()
+
 
     return (
         <div className={styles.filters}>
@@ -22,6 +23,7 @@ const Filters: FC<any> = () => {
                             filterType="genres"
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
+                            genres={genres}
                         />
                         <FilterSelect
                             filterType="countries"

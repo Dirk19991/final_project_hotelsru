@@ -2,12 +2,13 @@ import Filters from '@/components/Filters/Filters'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
 import { useI18nContext } from '@/context/i18n'
+import { FC } from 'react'
 import Head from 'next/head'
-import MoviesList from '@/components/MoviesList/MoviesList'
 import 'swiper/scss'
+import { GetStaticProps } from 'next'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 
-export default function Movies() {
+const Movies: FC<any> = ({ genres }) => {
     const { i18n, language } = useI18nContext()
 
     const breadcrumbsData = [
@@ -25,7 +26,7 @@ export default function Movies() {
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <MoviesTitle />
-            <Filters />
+            <Filters genres={genres} />
 
             <DefaultCarousel
                 type="endpoint"
@@ -39,4 +40,17 @@ export default function Movies() {
             />
         </>
     )
+}
+
+export default Movies
+
+export const getStaticProps: GetStaticProps = async () => {
+    const genresResponse = await fetch(process.env.DOCKER_API_URL + '/genres')
+    const genres = await genresResponse.json()
+
+    return {
+        props: {
+            genres,
+        },
+    }
 }
