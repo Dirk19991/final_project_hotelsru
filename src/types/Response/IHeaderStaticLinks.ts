@@ -18,3 +18,9 @@ export interface IHeaderLink {
     year?: string
     link: string
 }
+
+export interface IGenresResponse {
+    id: number
+    nameEn: string
+    nameRu: string
+}
