@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 import Head from 'next/head'
 import { useI18nContext } from '@/context/i18n'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
@@ -7,11 +7,9 @@ import Filters from '@/components/Filters/Filters'
 import MoviesList from '@/components/MoviesList/MoviesList'
 import { useRouter } from 'next/router'
 
-const MoviesFilters = () => {
+const MoviesFilters: FC<any> = ({ genres }) => {
     const { i18n, language } = useI18nContext()
     const { query } = useRouter()
-
-    console.log(query)
 
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
 
@@ -44,11 +42,29 @@ const MoviesFilters = () => {
                 setCurrentSorting={setCurrentSorting}
                 currentSorting={currentSorting}
             />
-            <Filters />
+            <Filters genres={genres} />
 
             <MoviesList />
         </>
     )
+}
+
+export const getStaticPaths = async () => {
+    return {
+        paths: [],
+        fallback: false,
+    }
+}
+
+export const getServerSideProps = async () => {
+    const genresResponse = await fetch(process.env.DOCKER_API_URL + '/genres')
+    const genres = await genresResponse.json()
+
+    return {
+        props: {
+            genres,
+        },
+    }
 }
 
 export default MoviesFilters
