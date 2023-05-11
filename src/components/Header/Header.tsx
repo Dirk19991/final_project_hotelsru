@@ -31,10 +31,6 @@ const Header: FC<any> = ({ headerData }) => {
         return expandable ? openSubMenu() : closeSubMenu()
     }
 
-    useEffect(() => {
-        setHeaderLinks(headerData)
-    }, [headerData])
-
     return (
         <header className={styles.header} onMouseLeave={closeSubMenu}>
             <div

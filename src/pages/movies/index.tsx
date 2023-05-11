@@ -45,12 +45,12 @@ const Movies: FC<any> = ({ genres }) => {
 export default Movies
 
 export const getStaticProps: GetStaticProps = async () => {
-    const genresResponse = await fetch(process.env.DOCKER_API_URL + '/genres')
-    const genres = await genresResponse.json()
+    // const genresResponse = await fetch(process.env.DOCKER_API_URL + '/genres')
+    // const genres = await genresResponse.json()
 
     return {
         props: {
-            genres,
+            // genres,
         },
     }
 }

@@ -1,7 +1,16 @@
 import { IGenresResponse } from '@/types/Response/IHeaderStaticLinks'
-import engNameToLink from '@/util/engNameToLink'
 
 const baseurl = process.env.DOCKER_API_URL
+
+const engNameToLink = (engName: string) => {
+    let name = engName
+
+    if (name.match(/\s/)) {
+        return name.toLowerCase().split(' ').join('-')
+    }
+
+    return (name = name.toLowerCase())
+}
 
 export default class MovieService {
     static async getHeaderLinks() {
@@ -9,7 +18,7 @@ export default class MovieService {
             const linksResponse = await fetch('/api/navigation')
             const genresResponse = await fetch(baseurl + `/genres`)
 
-            if (genresResponse.status !== 200) {
+            if (!genresResponse.ok) {
                 return linksResponse.json()
             }
 

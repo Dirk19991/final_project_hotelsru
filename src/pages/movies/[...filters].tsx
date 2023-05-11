@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 import Head from 'next/head'
 import { useI18nContext } from '@/context/i18n'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
@@ -6,7 +6,6 @@ import SortingPanel from '@/components/SortingPanel/SortingPanel'
 import Filters from '@/components/Filters/Filters'
 import MoviesList from '@/components/MoviesList/MoviesList'
 import { useRouter } from 'next/router'
-import { GetStaticPaths, GetStaticProps } from 'next'
 
 const MoviesFilters: FC<any> = ({ genres }) => {
     const { i18n, language } = useI18nContext()
@@ -57,7 +56,7 @@ export const getStaticPaths = async () => {
     }
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps = async () => {
     const genresResponse = await fetch(process.env.DOCKER_API_URL + '/genres')
     const genres = await genresResponse.json()
 
