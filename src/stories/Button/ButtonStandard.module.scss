@@ -161,3 +161,13 @@
         border: 1px solid $accent-color;
     }
 }
+
+.connectDevices {
+    width: 215px;
+    height: 40px;
+    background-color: $danger-zone-color;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 0;
+}

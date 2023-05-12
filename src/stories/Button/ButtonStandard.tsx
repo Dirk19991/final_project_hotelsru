@@ -19,6 +19,7 @@ export interface ButtonProps {
         | 'watch'
         | 'rating'
         | 'showMore'
+        | 'connectDevices'
     src?: string
     width?: number
     height?: number
