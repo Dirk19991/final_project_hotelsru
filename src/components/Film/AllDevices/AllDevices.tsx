@@ -1,26 +1,28 @@
 import React, { FC } from 'react'
 import styles from './AllDevices.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
+import { useI18nContext } from '@/context/i18n'
 
 export interface IAllDevices {
     name: string
 }
 
 const AllDevices: FC<IAllDevices> = ({ name }) => {
+    const { language, i18n } = useI18nContext()
+
     return (
         <section className={styles.allDevices}>
             <div className={styles.allDevices_link}>
                 <p className={styles.allDevices_link_title}>
-                    {`Cмотреть «${name}» на всех устройствах`}
+                    {`${i18n[language].watchAllDevices.title.start} «${name}» ${i18n[language].watchAllDevices.title.end}`}
                 </p>
                 <p className={styles.allDevices_link_subTitle}>
-                    Приложение доступно для скачивания на iOS, Android, SmartTV
-                    и приставках
+                    {i18n[language].watchAllDevices.subtitle}
                 </p>
                 <Button
                     href={'https://www.ivi.ru/devices'}
                     type="connectDevices"
-                    label="Подключить устройства"
+                    label={i18n[language].watchAllDevices.buttonLabel}
                     width={215}
                 />
             </div>
