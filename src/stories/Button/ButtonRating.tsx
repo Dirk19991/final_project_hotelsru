@@ -15,10 +15,7 @@ export const ButtonRating = ({
     rating,
 }: ButtonRatingProps) => {
     return (
-        <div
-            style={{ width: width, height: height }}
-            className={styles.button}
-        >
+        <div style={{ width: width, height: height }} className={styles.button}>
             <div
                 style={{ fontSize: `${fontSize}px` }}
                 className={styles.rating}

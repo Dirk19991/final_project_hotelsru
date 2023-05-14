@@ -7,5 +7,5 @@ export default function toHoursAndMinutes(totalMinutes: number) {
 
     return language === 'en'
         ? `${hours} h.${minutes > 0 ? ` ${minutes} m.` : ''}`
-        : `${hours} ч.${minutes > 0 ? ` ${minutes} м.` : ''}`
+        : `${hours} ч.${minutes > 0 ? ` ${minutes} мин.` : ''}`
 }

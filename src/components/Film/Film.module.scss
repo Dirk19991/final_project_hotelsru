@@ -1,16 +1,49 @@
 @import '@/styles/vars.scss';
 
 .wrapper {
-    margin-top: 20px;
-    margin-bottom: 100px;
-}
-
-.flex {
     display: flex;
     gap: 50px;
     margin-bottom: 30px;
+    margin-top: 20px;
 }
 
-.slider {
-    margin-top: -60px;
+.trailer {
+    position: relative;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        position: sticky;
+        top: 32px;
+    }
+}
+
+.video {
+    width: 720px;
+    height: 405px;
+}
+
+.icons {
+    display: flex;
+    gap: 10px;
+
+    > a > div {
+        color: rgba(255, 255, 255, 0.68);
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 0 20px;
 }

@@ -137,6 +137,9 @@ export interface I18nContextType {
                 composer: string
             }
             actorsAndCreators: string
+            showDetails: string
+            hideDetails: string
+            freeMovies: string
         }
     }
 }
@@ -291,6 +294,9 @@ const i18n: I18nContextType['i18n'] = {
             composer: 'Composer',
         },
         actorsAndCreators: 'Actors and creators',
+        showDetails: 'Show details',
+        hideDetails: 'Hide details',
+        freeMovies: 'Free movies',
     },
 
     ru: {
@@ -443,6 +449,9 @@ const i18n: I18nContextType['i18n'] = {
             composer: 'Композитор',
         },
         actorsAndCreators: 'Актеры и создатели',
+        showDetails: 'Детали о фильме',
+        hideDetails: 'Свернуть детали',
+        freeMovies: 'Бесплатные фильмы',
     },
 }
 

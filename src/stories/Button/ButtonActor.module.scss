@@ -1,5 +1,19 @@
 @import '@/styles/vars.scss';
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-align: center;
+    width: 90px;
+
+    @media (max-width: 599px) {
+        width: 72px;
+    }
+}
+
 .button {
     display: flex;
     align-items: center;
@@ -11,11 +25,15 @@
     width: 56px;
     height: 56px;
     cursor: pointer;
-
     transition: all 0.3s;
 
-    &:hover {
-        background-color: #5c5b5ead;
+    @media (max-width: 599px) {
+        width: 44px;
+        height: 44px;
+    }
+
+    &_hover {
+        background-color: $actor-bg-hover-color;
     }
 }
 
@@ -24,10 +42,27 @@
     height: 44px;
     border-radius: 8px;
     overflow: hidden;
+    position: relative;
 
-    > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    @media (max-width: 599px) {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+.text {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0 10px;
+    color: $link-color;
+    transition: all 0.3s;
+
+    @media (max-width: 599px) {
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    &_hover {
+        color: $accent-color;
     }
 }

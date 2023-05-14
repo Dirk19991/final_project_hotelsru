@@ -1,0 +1,40 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &_center {
+        text-align: center;
+        align-items: center;
+    }
+
+    &_left {
+        text-align: left;
+        align-items: flex-start;
+    }
+}
+
+.name {
+    color: $accent-color;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 44px;
+    margin-bottom: 20px;
+}
+
+.production {
+    cursor: default;
+    color: $film-description-color;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 20px;
+
+    &__year {
+        transition-duration: 0.4s;
+        &:hover {
+            color: $accent-color;
+            cursor: pointer;
+        }
+    }
+}
