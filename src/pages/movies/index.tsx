@@ -8,7 +8,7 @@ import 'swiper/scss'
 import { GetStaticProps } from 'next'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 
-const Movies: FC<any> = ({ genres }) => {
+const Movies: FC<any> = ({ dramas, comedies }) => {
     const { i18n, language } = useI18nContext()
 
     const breadcrumbsData = [
@@ -26,17 +26,17 @@ const Movies: FC<any> = ({ genres }) => {
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <MoviesTitle />
-            <Filters genres={genres} />
+            <Filters genres={[]} />
 
             <DefaultCarousel
-                type="endpoint"
-                endpoint="http://localhost:3001/movies?year=2021"
-                headerText="Остросюжетные боевики"
+                title={'Лучшие комедии'}
+                link={'/movies/comedy'}
+                dataList={dramas}
             />
             <DefaultCarousel
-                type="endpoint"
-                endpoint="http://localhost:3001/movies?year=2021"
-                headerText="Остросюжетные боевики"
+                title={'Лучшие комедии'}
+                link={'/movies/comedy'}
+                dataList={comedies}
             />
         </>
     )
@@ -45,12 +45,12 @@ const Movies: FC<any> = ({ genres }) => {
 export default Movies
 
 export const getStaticProps: GetStaticProps = async () => {
-    // const genresResponse = await fetch(process.env.DOCKER_API_URL + '/genres')
-    // const genres = await genresResponse.json()
+    const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
+
+    const response = await fetch(`${baseURL}/api/movies-list`)
+    const data = await response.json()
 
     return {
-        props: {
-            // genres,
-        },
+        props: { dramas: data, comedies: data },
     }
 }

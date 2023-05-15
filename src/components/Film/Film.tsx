@@ -52,7 +52,7 @@ const Film = () => {
                         </div>
                     </div>
                     <div className={styles.slider}>
-                        <DefaultCarousel
+                        {/* <DefaultCarousel
                             type="similarMovie"
                             similarMovies={filmData.similarMovies}
                             headerText={
@@ -60,7 +60,7 @@ const Film = () => {
                                     ? 'Similar movies:'
                                     : `С фильмом "${filmData.nameRu}" смотрят:`
                             }
-                        />
+                        /> */}
                     </div>
                 </>
             )}
