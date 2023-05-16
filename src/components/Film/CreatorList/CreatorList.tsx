@@ -49,6 +49,7 @@ const CreatorsList: FC<ICreatorsList> = ({
 
     useEffect(() => {
         window.addEventListener('resize', onResize)
+        onResize()
     }, [])
 
     const onResize = () => {
@@ -62,7 +63,7 @@ const CreatorsList: FC<ICreatorsList> = ({
     }
 
     return (
-        <>
+        <div>
             {/* TODO onClick open modal */}
             <h2 className={styles.title}>{i18n[language].actorsAndCreators}</h2>
             <ul className={styles.list}>
@@ -86,7 +87,7 @@ const CreatorsList: FC<ICreatorsList> = ({
                     <span className={styles.more__text}>Ещё</span>
                 </li>
             </ul>
-        </>
+        </div>
     )
 }
 

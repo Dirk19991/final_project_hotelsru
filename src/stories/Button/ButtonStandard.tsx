@@ -19,7 +19,9 @@ export interface ButtonProps {
         | 'watch'
         | 'rating'
         | 'showMore'
-        | 'connectDevices'
+        | 'freeMovies'
+        | 'trailerControls'
+        | 'allDevices'
     src?: string
     width?: number
     height?: number

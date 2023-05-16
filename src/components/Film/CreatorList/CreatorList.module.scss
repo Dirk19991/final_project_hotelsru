@@ -18,7 +18,14 @@
 
 .list {
     display: flex;
-    gap: 24px;
+}
+
+.item {
+    padding-right: 24px;
+
+    @media (max-width: 599px) {
+        padding-right: 16px;
+    }
 }
 
 .more {

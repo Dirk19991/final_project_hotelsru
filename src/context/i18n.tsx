@@ -140,6 +140,8 @@ export interface I18nContextType {
             showDetails: string
             hideDetails: string
             freeMovies: string
+            loadingMovie: string
+            noMovie: string
         }
     }
 }
@@ -297,6 +299,8 @@ const i18n: I18nContextType['i18n'] = {
         showDetails: 'Show details',
         hideDetails: 'Hide details',
         freeMovies: 'Free movies',
+        loadingMovie: 'Loading movie...',
+        noMovie: 'No movie',
     },
 
     ru: {
@@ -452,6 +456,8 @@ const i18n: I18nContextType['i18n'] = {
         showDetails: 'Детали о фильме',
         hideDetails: 'Свернуть детали',
         freeMovies: 'Бесплатные фильмы',
+        loadingMovie: 'Загрузка фильма...',
+        noMovie: 'Нет фильма',
     },
 }
 

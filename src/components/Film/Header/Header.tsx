@@ -8,23 +8,16 @@ import cn from 'classnames'
 
 interface IHeader {
     film: IMovie
-    align?: 'left' | 'center'
 }
 
 const Header: FC<IHeader> = ({
-    align,
     film: { startYear, type, nameRu, nameEn, genres, duration },
 }) => {
     const { language, i18n } = useI18nContext()
     const time = toHoursAndMinutes(duration)
 
     return (
-        <div
-            className={cn(styles.wrapper, {
-                [styles.wrapper_center]: align === 'center',
-                [styles.wrapper_left]: align === 'left',
-            })}
-        >
+        <div className={cn(styles.wrapper, {})}>
             <h2 className={styles.name}>
                 {language === 'en' ? nameEn : nameRu} (
                 {i18n[language][type as 'movie' | 'tv-series' | 'cartoon']}{' '}

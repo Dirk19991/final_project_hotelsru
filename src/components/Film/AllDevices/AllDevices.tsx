@@ -11,44 +11,45 @@ const AllDevices: FC<IAllDevices> = ({ name }) => {
     const { language, i18n } = useI18nContext()
 
     return (
-        <section className={styles.allDevices}>
-            <div className={styles.allDevices_link}>
-                <p className={styles.allDevices_link_title}>
+        <div className={styles.wrapper}>
+            <div className={styles.info}>
+                <h2 className={styles.info__title}>
                     {`${i18n[language].watchAllDevices.title.start} «${name}» ${i18n[language].watchAllDevices.title.end}`}
-                </p>
-                <p className={styles.allDevices_link_subTitle}>
+                </h2>
+                <h3 className={styles.info__subtitle}>
                     {i18n[language].watchAllDevices.subtitle}
-                </p>
-                <Button
-                    href={'https://www.ivi.ru/devices'}
-                    type="connectDevices"
-                    label={i18n[language].watchAllDevices.buttonLabel}
-                    width={215}
-                />
+                </h3>
+                <div className={styles.info__button}>
+                    <Button
+                        href={'https://www.ivi.ru/devices'}
+                        type="allDevices"
+                        label={i18n[language].watchAllDevices.buttonLabel}
+                    />
+                </div>
             </div>
-            <div className={styles.allDevices_image}>
+            <div className={styles.image}>
                 <img
-                    className={styles.allDevices_image_tv}
+                    className={styles.image__tv}
                     src="https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png"
                     alt="Устройства для просмотра Иви"
                 />
                 <img
-                    className={styles.allDevices_image_tablet}
+                    className={styles.image__tablet}
                     src="https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png"
                     alt="Устройства для просмотра Иви"
                 />
                 <img
-                    className={styles.allDevices_image_tvPoster}
+                    className={styles.image__tvPoster}
                     src="https://thumbs.dfs.ivi.ru/storage4/contents/d/c/cc65d2c26e7b791d4d1ce29f75881b.jpg/400x226/"
                     alt="Постер"
                 />
                 <img
-                    className={styles.allDevices_image_tabletPoster}
+                    className={styles.image__tabletPoster}
                     src="https://thumbs.dfs.ivi.ru/storage4/contents/d/c/cc65d2c26e7b791d4d1ce29f75881b.jpg/400x226/"
                     alt="Постер"
                 />
             </div>
-        </section>
+        </div>
     )
 }
 

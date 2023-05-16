@@ -2,7 +2,7 @@ import { IMovie } from '@/types/ComponentProps/IMovie'
 import { FC } from 'react'
 import styles from './Film.module.scss'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import FilmMobile from '../FilmMobile/FilmMobile'
+import FilmMobile from './FilmMobile/FilmMobile'
 import { useI18nContext } from '@/context/i18n'
 import FilmHeader from './Header/Header'
 import FilmDescription from './Description/Description'
@@ -12,8 +12,7 @@ import 'swiper/css/bundle'
 import { ButtonActor } from '@/stories/Button/ButtonActor'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
 import Image from 'next/image'
-import { ButtonFooter } from '@/stories/Button/ButtonFooter'
-import { ButtonRound } from '@/stories/Button/ButtonRound'
+import { Button } from '@/stories/Button/ButtonStandard'
 
 export interface IFilm {
     film: IMovie
@@ -21,7 +20,7 @@ export interface IFilm {
 
 const Film: FC<IFilm> = ({ film }) => {
     const { language, i18n } = useI18nContext()
-    const isMobile = useMediaQuery('(max-width: 1200px)')
+    const isMobile = useMediaQuery('(max-width: 1159px)')
 
     const { actors, rating, description, ratingCount } = film
     const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
@@ -35,59 +34,61 @@ const Film: FC<IFilm> = ({ film }) => {
                 <div data-testId="film" className={styles.wrapper}>
                     <div className={styles.trailer}>
                         <div className={styles.trailer__content}>
-                            <iframe
-                                width="720"
-                                height="405"
-                                src={`https://www.youtube.com/embed/${id}`}
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                title="Embedded youtube"
-                                className={styles.video}
-                            />
+                            <div className={styles.video}>
+                                <iframe
+                                    width={'100%'}
+                                    height={'100%'}
+                                    src={`https://www.youtube.com/embed/${id}`}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    title="Embedded youtube"
+                                />
+                            </div>
                             <div data-testid="buttons" className={styles.icons}>
-                                <ButtonFooter
-                                    height={20}
-                                    href="/"
-                                    label={i18n[language].trailer}
-                                    src="/icons/play.svg"
-                                    type="grey"
-                                    width={20}
-                                />
-                                <ButtonRound
-                                    height={20}
-                                    href="/"
-                                    src="/icons/bookmark.svg"
-                                    type="grey"
-                                    width={20}
-                                />
-                                <ButtonRound
-                                    height={20}
-                                    href="/"
-                                    src="/icons/bell.svg"
-                                    type="grey"
-                                    width={20}
-                                />
-                                <ButtonRound
-                                    height={20}
-                                    href="/"
-                                    src="/icons/download.svg"
-                                    type="grey"
-                                    width={20}
-                                />
-                                <ButtonFooter
-                                    height={20}
-                                    href="/"
-                                    label={i18n[language].freeMovies}
-                                    src="/icons/allDevices.svg"
-                                    type="grey"
-                                    width={20}
-                                />
+                                <div className={styles.icons_left}>
+                                    <Button
+                                        type={'trailerControls'}
+                                        src="/icons/play.svg"
+                                        label={i18n[language].trailer}
+                                        height={20}
+                                        width={28}
+                                    />
+                                </div>
+                                <div className={styles.icons_center}>
+                                    <Button
+                                        type={'trailerControls'}
+                                        src="/icons/bookmark.svg"
+                                        height={20}
+                                        width={28}
+                                    />
+                                    <Button
+                                        type={'trailerControls'}
+                                        src="/icons/bell.svg"
+                                        height={20}
+                                        width={28}
+                                    />
+                                    <Button
+                                        type={'trailerControls'}
+                                        src="/icons/download.svg"
+                                        height={20}
+                                        width={28}
+                                    />
+                                </div>
+                                <div className={styles.icons_right}>
+                                    <Button
+                                        type={'freeMovies'}
+                                        label={i18n[language].freeMovies}
+                                        src="/icons/play.svg"
+                                        height={20}
+                                        width={28}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className={styles.info}>
-                        <FilmHeader film={film} align="center" />
+                        <FilmHeader film={film} />
                         <div className={styles.buttons}>
                             <ButtonActor
                                 image={

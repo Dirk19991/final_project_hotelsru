@@ -1,0 +1,33 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-top: 24px;
+}
+
+.noFilm {
+    color: $accent-color;
+    font-size: 32px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.loading {
+    color: $accent-color;
+    font-size: 48px;
+    text-align: center;
+    padding: 50px;
+    transition-duration: 0.4s;
+    animation: loadingAnimation 0.4s alternate-reverse infinite;
+}
+
+@keyframes loadingAnimation {
+    from {
+        color: $accent-color;
+    }
+    to {
+        color: $link-color;
+    }
+}

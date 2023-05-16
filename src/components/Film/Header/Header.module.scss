@@ -3,13 +3,10 @@
 .wrapper {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
 
-    &_center {
-        text-align: center;
-        align-items: center;
-    }
-
-    &_left {
+    @media (min-width: 880px) and (max-width: 1159px) {
         text-align: left;
         align-items: flex-start;
     }
@@ -21,6 +18,16 @@
     font-size: 42px;
     line-height: 44px;
     margin-bottom: 20px;
+
+    @media (max-width: 1159px) {
+        font-size: 56px;
+        line-height: 56px;
+    }
+
+    @media (max-width: 599px) {
+        font-size: 32px;
+        line-height: 36px;
+    }
 }
 
 .production {
