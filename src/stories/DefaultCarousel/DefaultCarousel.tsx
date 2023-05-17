@@ -1,69 +1,37 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react'
+import React, { CSSProperties, useRef, useState, FC } from 'react'
 import styles from './DefaultCarousel.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 import cn from 'classnames'
-import data from '../../data/mockData'
 import Link from 'next/link'
-
 import Image from 'next/image'
-import { ISimilarMovie, ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
+import { ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 
-interface WithEndpoint {
-    type: 'endpoint'
-    endpoint: string
-    headerText: string
+interface IDefaultCarousel {
+    title: string
+    link?: string
+    dataList: ISmallSliderMovie[]
 }
 
-interface WithData {
-    type: 'similarMovie'
-    similarMovies: ISimilarMovie[]
-    headerText: string
-}
-
-type ISliderSmall = WithEndpoint | WithData
-
-const DefaultCarousel = (props: ISliderSmall) => {
-    const [moviesData, setMoviesData] = useState<ISmallSliderMovie[] | null>(
-        null
-    )
+const DefaultCarousel: FC<IDefaultCarousel> = ({ dataList, title, link }) => {
+    const [moviesData, setMoviesData] = useState<ISmallSliderMovie[]>(dataList)
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
-
-    useEffect(() => {
-        if (props.type === 'similarMovie') {
-            return
-        }
-
-        fetch(props.endpoint)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json()
-                }
-
-                throw new Error('Error')
-            })
-            .then((res) => setMoviesData(res.slice(0, 20)))
-            .catch((error) => setMoviesData(data))
-    }, [props])
 
     return (
         <section className={styles.section}>
             <div className={'container'}>
                 <div className={styles.wrapper}>
                     <div
-                        className={cn(
-                            styles.title,
-                            props.type === 'similarMovie' && styles.simpleText
-                        )}
+                        className={cn(styles.title, !link && styles.simpleText)}
                     >
-                        {props.type === 'similarMovie' ? (
-                            <span>{props.headerText}</span>
+                        {!link ? (
+                            <span>{title}</span>
                         ) : (
                             <Link href="/movies/">
-                                <span>{props.headerText}</span>
+                                <span>{title}</span>
                             </Link>
                         )}
                     </div>
@@ -139,35 +107,6 @@ const DefaultCarousel = (props: ISliderSmall) => {
                                             country={movie.country}
                                             genre={movie.genre}
                                             name={movie.name}
-                                        />
-                                    </SwiperSlide>
-                                ))}
-                            {props.type === 'similarMovie' &&
-                                props.similarMovies.map((movie) => (
-                                    <SwiperSlide
-                                        style={{
-                                            margin: '0px 0px',
-                                        }}
-                                        key={movie.Movie_id}
-                                    >
-                                        <DefaultCarouselSlide
-                                            rating={movie.Movie_rating}
-                                            year={movie.Movie_year}
-                                            href={`/watch/${movie.Movie_id}`}
-                                            image={movie.Movie_previewPoster}
-                                            country={[
-                                                {
-                                                    id: 1,
-                                                    name: 'США',
-                                                },
-                                            ]}
-                                            genre={[
-                                                {
-                                                    id: 1,
-                                                    name: 'боевик',
-                                                },
-                                            ]}
-                                            name={movie.Movie_name}
                                         />
                                     </SwiperSlide>
                                 ))}

@@ -4,8 +4,10 @@ import MediumCarousel from '@/components/MediumCarousel/MediumCarousel'
 import PromoButtons from '@/components/PromoButtons/PromoButtons'
 import Head from 'next/head'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
+import { GetStaticProps } from 'next'
+import { FC } from 'react'
 
-export default function Home() {
+const Home: FC<any> = ({ dramas, comedies }) => {
     return (
         <>
             <Head>
@@ -18,16 +20,30 @@ export default function Home() {
             <PromoButtons />
             <Promo />
             <MediumCarousel />
+
             <DefaultCarousel
-                type="endpoint"
-                endpoint="http://localhost:3001/movies?year=2020"
-                headerText="Лучшие комедии"
+                title={'Лучшие комедии'}
+                link={'/movies/comedy'}
+                dataList={dramas}
             />
             <DefaultCarousel
-                type="endpoint"
-                endpoint="http://localhost:3001/movies?year=2021"
-                headerText="Остросюжетные боевики"
+                title={'Лучшие комедии'}
+                link={'/movies/comedy'}
+                dataList={comedies}
             />
         </>
     )
+}
+
+export default Home
+
+export const getStaticProps: GetStaticProps = async () => {
+    const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
+
+    const response = await fetch(`${baseURL}/api/movies-list`)
+    const data = await response.json()
+
+    return {
+        props: { dramas: data, comedies: data },
+    }
 }

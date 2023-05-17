@@ -2,6 +2,7 @@ import React, { useEffect, useState, FC } from 'react'
 import styles from './FilterSelect.module.scss'
 import { useI18nContext } from '@/context/i18n'
 import cn from 'classnames'
+import engNameToLink from '@/util/engNameToLink'
 
 interface IFilterSelect {
     filterType: string
@@ -11,6 +12,7 @@ const FilterSelect: FC<any> = ({
     filterType,
     currentModal,
     setCurrentModal,
+    genres,
 }) => {
     const { language, i18n } = useI18nContext()
 
@@ -48,116 +50,76 @@ const FilterSelect: FC<any> = ({
                 {currentModal === 'genres' && filterType === 'genres' && (
                     <div className={styles.genresDropdown}>
                         <ul>
+                            {genres &&
+                                genres.map(({ id, nameEn, nameRu }: any) => {
+                                    return (
+                                        <li key={id}>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value={engNameToLink(
+                                                        nameEn
+                                                    )}
+                                                />
+                                                <div>
+                                                    {language === 'ru'
+                                                        ? nameRu
+                                                        : nameEn}
+                                                </div>
+                                            </label>
+                                        </li>
+                                    )
+                                })}
+                        </ul>
+                    </div>
+                )}
+                {currentModal === 'countries' && filterType === 'countries' && (
+                    <div className={styles.countriesDropdown}>
+                        <ul>
                             <li>
                                 <label>
-                                    <input type="checkbox" value="Детективы" />
-                                    <div>Детективы</div>
+                                    <input type="checkbox" value="Австралия" />
+                                    <div>Австралия</div>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
-                                    <input type="checkbox" value="Боевики" />
-                                    <div>Боевики</div>
+                                    <input type="checkbox" value="Аргентина" />
+                                    <div>Аргентина</div>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
-                                    <input type="checkbox" value="Драмы" />
-                                    <div>Драмы</div>
+                                    <input type="checkbox" value="Албания" />
+                                    <div>Албания</div>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
-                                    <input type="checkbox" value="Детективы" />
-                                    <div>Детективы</div>
+                                    <input type="checkbox" value="Австралия" />
+                                    <div>Австралия</div>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
-                                    <input type="checkbox" value="Боевики" />
-                                    <div>Боевики</div>
+                                    <input type="checkbox" value="Аргентина" />
+                                    <div>Аргентина</div>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
-                                    <input type="checkbox" value="Драмы" />
-                                    <div>Драмы</div>
+                                    <input type="checkbox" value="Албания" />
+                                    <div>Албания</div>
                                 </label>
                             </li>
                         </ul>
                     </div>
                 )}
-                {currentModal === 'countries' &&
-                    filterType === 'countries' && (
-                        <div className={styles.countriesDropdown}>
-                            <ul>
-                                <li>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value="Австралия"
-                                        />
-                                        <div>Австралия</div>
-                                    </label>
-                                </li>
-
-                                <li>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value="Аргентина"
-                                        />
-                                        <div>Аргентина</div>
-                                    </label>
-                                </li>
-
-                                <li>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value="Албания"
-                                        />
-                                        <div>Албания</div>
-                                    </label>
-                                </li>
-
-                                <li>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value="Австралия"
-                                        />
-                                        <div>Австралия</div>
-                                    </label>
-                                </li>
-
-                                <li>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value="Аргентина"
-                                        />
-                                        <div>Аргентина</div>
-                                    </label>
-                                </li>
-
-                                <li>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            value="Албания"
-                                        />
-                                        <div>Албания</div>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
                 {currentModal === 'years' && filterType === 'years' && (
                     <div className={styles.yearsDropdown}>
                         <ul>

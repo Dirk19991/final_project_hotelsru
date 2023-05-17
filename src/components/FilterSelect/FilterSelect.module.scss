@@ -216,6 +216,20 @@
                             border-color: $accent-color;
                         }
                     }
+                    &:checked + div:hover {
+                        color: $accent-color;
+                        &::after {
+                            opacity: 1;
+                            border-color: $accent-color;
+                        }
+                    }
+                    &:not(:checked) + div:hover {
+                        color: $accent-color;
+                        &::after {
+                            opacity: 1;
+                            color: $link-color;
+                        }
+                    }
                 }
                 div {
                     position: relative;
@@ -230,13 +244,6 @@
                         transform: scaleX(1.1);
                         right: 0px;
                         background-color: transparent;
-                    }
-                    &:hover {
-                        color: $accent-color;
-                        &::after {
-                            opacity: 1;
-                            color: $accent-color;
-                        }
                     }
                 }
             }
