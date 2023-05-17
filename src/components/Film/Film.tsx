@@ -56,24 +56,21 @@ const Film: FC<IFilm> = ({ film }) => {
                                     />
                                 </div>
                                 <div className={styles.icons_center}>
-                                    <Button
-                                        type={'trailerControls'}
-                                        src="/icons/bookmark.svg"
-                                        height={20}
-                                        width={28}
-                                    />
-                                    <Button
-                                        type={'trailerControls'}
-                                        src="/icons/bell.svg"
-                                        height={20}
-                                        width={28}
-                                    />
-                                    <Button
-                                        type={'trailerControls'}
-                                        src="/icons/download.svg"
-                                        height={20}
-                                        width={28}
-                                    />
+                                    {[
+                                        '/icons/bookmark.svg',
+                                        '/icons/bell.svg',
+                                        '/icons/download.svg',
+                                    ].map((src, i) => {
+                                        return (
+                                            <Button
+                                                type={'trailerControls'}
+                                                src={src}
+                                                key={i}
+                                                height={20}
+                                                width={28}
+                                            />
+                                        )
+                                    })}
                                 </div>
                                 <div className={styles.icons_right}>
                                     <Button
@@ -109,6 +106,7 @@ const Film: FC<IFilm> = ({ film }) => {
                                             ? actor.enName
                                             : actor.name
                                     }
+                                    key={actor.id}
                                     image={
                                         <Image
                                             alt={actor.enName}

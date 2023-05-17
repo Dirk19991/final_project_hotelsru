@@ -9,16 +9,18 @@
 
 .noFilm {
     color: $accent-color;
-    font-size: 32px;
+    font-size: 48px;
     text-transform: uppercase;
     text-align: center;
+    font-weight: 700;
+    padding-top: 50px;
 }
 
 .loading {
     color: $accent-color;
     font-size: 48px;
     text-align: center;
-    padding: 50px;
+    padding-top: 50px;
     transition-duration: 0.4s;
     animation: loadingAnimation 0.4s alternate-reverse infinite;
 }

@@ -103,6 +103,7 @@
         width: 337px;
         height: 192px;
         border-radius: 2px;
+        object-fit: cover;
 
         @media (max-width: 859px) {
             width: 168px;
@@ -120,6 +121,7 @@
         height: 102px;
         border-radius: 4px;
         z-index: 1;
+        object-fit: cover;
 
         @media (max-width: 859px) {
             width: 94px;

@@ -34,6 +34,7 @@ const FilmPage = () => {
             .then((res) => setFilm(res))
             .catch((error) => {
                 setFilm(JSON.parse(JSON.stringify(data)) as IMovie)
+                setIsLoading(false)
             })
     }, [filmID, router.isReady])
 
@@ -71,7 +72,7 @@ const FilmPage = () => {
                         bold
                     />
                     <Film film={film} />
-                    <div className={styles.slider}>
+                    {/* <div className={styles.slider}>
                         <DefaultCarousel
                             type="similarMovie"
                             similarMovies={film.similarMovies}
@@ -81,23 +82,22 @@ const FilmPage = () => {
                                 language === 'en' ? film.nameEn : film.nameRu
                             }» ${i18n[language].similarMovies.end}:`}
                         />
-                    </div>
+                    </div> */}
                     <CommentsCarousel />
                     <CreatorsList film={film} />
                     <AllDevices
                         name={language === 'en' ? film.nameEn : film.nameRu}
+                        src={film.poster}
                     />
                 </div>
             )}
             {isLoading && (
-                <div className={styles.loading}>
+                <h1 className={styles.loading}>
                     {i18n[language].loadingMovie}
-                </div>
+                </h1>
             )}
             {!film && !isLoading && (
-                <div className="container">
-                    <h1 className={styles.noFilm}>{i18n[language].noMovie}</h1>
-                </div>
+                <h1 className={styles.noFilm}>{i18n[language].noMovie}</h1>
             )}
         </main>
     )

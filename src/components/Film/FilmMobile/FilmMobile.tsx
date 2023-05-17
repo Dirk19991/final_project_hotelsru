@@ -39,7 +39,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
 
     return (
         <div className={styles.wrapper}>
-            <FilmHeader film={film} align="left" />
+            <FilmHeader film={film} />
             <div className={styles.video}>
                 <iframe
                     className={styles.video__frame}
@@ -77,6 +77,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                                             ? actor.enName
                                             : actor.name
                                     }
+                                    key={actor.id}
                                     image={
                                         <Image
                                             alt={actor.enName}
@@ -107,24 +108,21 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                         width={28}
                     />
                     <div className={styles.info__buttons_bottom}>
-                        <Button
-                            type={'trailerControls'}
-                            src="/icons/bookmark.svg"
-                            height={20}
-                            width={28}
-                        />
-                        <Button
-                            type={'trailerControls'}
-                            src="/icons/bell.svg"
-                            height={20}
-                            width={28}
-                        />
-                        <Button
-                            type={'trailerControls'}
-                            src="/icons/download.svg"
-                            height={20}
-                            width={28}
-                        />
+                        {[
+                            '/icons/bookmark.svg',
+                            '/icons/bell.svg',
+                            '/icons/download.svg',
+                        ].map((src, i) => {
+                            return (
+                                <Button
+                                    type={'trailerControls'}
+                                    src={src}
+                                    height={20}
+                                    width={28}
+                                    key={i}
+                                />
+                            )
+                        })}
                     </div>
                 </div>
             </div>

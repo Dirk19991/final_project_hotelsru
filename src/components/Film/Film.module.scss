@@ -3,8 +3,6 @@
 .wrapper {
     display: flex;
     gap: 50px;
-    // margin-bottom: 30px;
-    // margin-top: 20px;
 }
 
 .trailer {
@@ -34,17 +32,12 @@
     gap: 16px;
     justify-content: start;
 
-    &_left {
-        //width: 133px;
-    }
-
     &_center {
         display: flex;
         gap: 16px;
     }
 
     &_right {
-        //width: 228px;
         margin-left: auto;
     }
 }
@@ -61,9 +54,5 @@
 
 .buttons {
     display: flex;
-    // width: 100%;
     justify-content: space-between;
-    // margin-bottom: 10px;
-    // margin-top: 10px;
-    // padding: 0 20px;
 }

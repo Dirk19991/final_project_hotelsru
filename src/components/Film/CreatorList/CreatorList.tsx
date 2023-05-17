@@ -3,6 +3,7 @@ import styles from './CreatorList.module.scss'
 import { IMovie, IPerson } from '@/types/ComponentProps/IMovie'
 import CreatorMedallion from '../CreatorMedallion/CreatorMedallion'
 import { useI18nContext } from '@/context/i18n'
+import CreatorModal from '../CreatorModal/CreatorModal'
 
 export interface ICreatorsList {
     film: IMovie
@@ -16,19 +17,12 @@ type profession =
     | 'producer'
     | 'screenwriter'
 
-const CreatorsList: FC<ICreatorsList> = ({
-    film: {
-        actors,
-        cineatographer,
-        composer,
-        director,
-        producer,
-        screenwriter,
-    },
-}) => {
+const CreatorsList: FC<ICreatorsList> = ({ film }) => {
     const { language, i18n } = useI18nContext()
 
     const itemsRef = useRef<Array<HTMLLIElement | null>>([])
+
+    const [isModalOpened, setIsModalOpened] = useState(false)
 
     const addProffesion = (arr: IPerson[], profession: profession) => {
         return arr.map((el) => {
@@ -37,12 +31,12 @@ const CreatorsList: FC<ICreatorsList> = ({
     }
 
     const allPersons = [
-        ...addProffesion(director, 'director'),
-        ...addProffesion(actors, 'actor'),
-        ...addProffesion(producer, 'producer'),
-        ...addProffesion(cineatographer, 'cineatographer'),
-        ...addProffesion(screenwriter, 'screenwriter'),
-        ...addProffesion(composer, 'composer'),
+        ...addProffesion(film.director, 'director'),
+        ...addProffesion(film.actors, 'actor'),
+        ...addProffesion(film.producer, 'producer'),
+        ...addProffesion(film.cineatographer, 'cineatographer'),
+        ...addProffesion(film.screenwriter, 'screenwriter'),
+        ...addProffesion(film.composer, 'composer'),
     ]
 
     const [persons, setPersons] = useState(allPersons.slice(0, 10))
@@ -51,6 +45,14 @@ const CreatorsList: FC<ICreatorsList> = ({
         window.addEventListener('resize', onResize)
         onResize()
     }, [])
+
+    useEffect(() => {
+        if (isModalOpened) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+    }, [isModalOpened])
 
     const onResize = () => {
         if (itemsRef.current && itemsRef.current[0]) {
@@ -64,8 +66,9 @@ const CreatorsList: FC<ICreatorsList> = ({
 
     return (
         <div>
-            {/* TODO onClick open modal */}
-            <h2 className={styles.title}>{i18n[language].actorsAndCreators}</h2>
+            <h2 className={styles.title} onClick={() => setIsModalOpened(true)}>
+                {i18n[language].actorsAndCreators}
+            </h2>
             <ul className={styles.list}>
                 {persons.map((p, index) => (
                     <li
@@ -82,11 +85,19 @@ const CreatorsList: FC<ICreatorsList> = ({
                         />
                     </li>
                 ))}
-                {/* TODO onClick open modal */}
-                <li className={styles.more}>
+                <li
+                    className={styles.more}
+                    onClick={() => setIsModalOpened(true)}
+                >
                     <span className={styles.more__text}>Ещё</span>
                 </li>
             </ul>
+            {isModalOpened && (
+                <CreatorModal
+                    film={film}
+                    close={() => setIsModalOpened(false)}
+                />
+            )}
         </div>
     )
 }

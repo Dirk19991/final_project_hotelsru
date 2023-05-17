@@ -2,12 +2,14 @@ import React, { FC } from 'react'
 import styles from './AllDevices.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useI18nContext } from '@/context/i18n'
+import Image from 'next/image'
 
 export interface IAllDevices {
     name: string
+    src: string
 }
 
-const AllDevices: FC<IAllDevices> = ({ name }) => {
+const AllDevices: FC<IAllDevices> = ({ name, src }) => {
     const { language, i18n } = useI18nContext()
 
     return (
@@ -28,25 +30,39 @@ const AllDevices: FC<IAllDevices> = ({ name }) => {
                 </div>
             </div>
             <div className={styles.image}>
-                <img
+                <Image
+                    loader={() =>
+                        'https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png'
+                    }
+                    src={src}
+                    alt="Устройства для просмотра Иви"
+                    width={536}
+                    height={272}
                     className={styles.image__tv}
-                    src="https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png"
-                    alt="Устройства для просмотра Иви"
                 />
-                <img
+                <Image
+                    loader={() =>
+                        'https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png'
+                    }
+                    src={src}
+                    alt="Устройства для просмотра Иви"
+                    width={200}
+                    height={136}
                     className={styles.image__tablet}
-                    src="https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png"
-                    alt="Устройства для просмотра Иви"
                 />
-                <img
+                <Image
+                    src={src}
+                    alt="Постер"
+                    width={337}
+                    height={192}
                     className={styles.image__tvPoster}
-                    src="https://thumbs.dfs.ivi.ru/storage4/contents/d/c/cc65d2c26e7b791d4d1ce29f75881b.jpg/400x226/"
-                    alt="Постер"
                 />
-                <img
-                    className={styles.image__tabletPoster}
-                    src="https://thumbs.dfs.ivi.ru/storage4/contents/d/c/cc65d2c26e7b791d4d1ce29f75881b.jpg/400x226/"
+                <Image
+                    src={src}
                     alt="Постер"
+                    width={188}
+                    height={102}
+                    className={styles.image__tabletPoster}
                 />
             </div>
         </div>
