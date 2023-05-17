@@ -1,0 +1,27 @@
+@import '@/styles/vars.scss';
+
+.description {
+    line-height: 20px;
+    color: $film-description-color;
+    font-weight: 500;
+
+    &_closed {
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.details {
+    text-align: left;
+    color: $link-color;
+    cursor: pointer;
+    margin-top: 8px;
+
+    &:hover {
+        color: $accent-color;
+        transition: all 0.3s;
+    }
+}

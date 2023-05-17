@@ -1,0 +1,84 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    position: relative;
+
+    @media (max-width: 879px) {
+        display: none;
+    }
+}
+
+.image {
+    position: relative;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 128px;
+    aspect-ratio: 1/1.53;
+
+    @media (max-width: 1279px) {
+        max-width: 155px;
+        min-width: 110px;
+    }
+
+    &:hover {
+        transform: scale(1.04);
+    }
+
+    &__background {
+        border-radius: 8px;
+    }
+}
+
+.info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: $promo-color;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.number {
+    color: $accent-color;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+
+    &__integer {
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    &__fractional {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+.charts {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    &__progressbar {
+        width: 20px;
+        height: 2px;
+    }
+}
+
+.description {
+    text-transform: capitalize;
+}
+
+.duration {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}

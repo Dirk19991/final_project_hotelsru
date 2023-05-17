@@ -1,0 +1,62 @@
+@import '@/styles/vars.scss';
+
+.title {
+    box-shadow: 0 1px 0 $title-shadow-color, inset 0 0 0 $title-shadow-color;
+    color: $accent-color;
+    display: inline-block;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 700;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-bottom: 25px;
+
+    &:hover {
+        box-shadow: 0 1px 0 $accent-color, inset 0 0 0 $accent-color;
+    }
+}
+
+.list {
+    display: flex;
+}
+
+.item {
+    padding-right: 24px;
+
+    @media (max-width: 599px) {
+        padding-right: 16px;
+    }
+}
+
+.more {
+    width: 88px;
+    height: 88px;
+    min-width: 88px;
+    min-height: 88px;
+    background-color: $active-menu-color;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $movies-title-color;
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $progressbar-bg-color;
+        color: $accent-color;
+    }
+
+    @media (max-width: 599px) {
+        width: 72px;
+        height: 72px;
+        min-width: 72px;
+        min-height: 72px;
+    }
+
+    &__text {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+}

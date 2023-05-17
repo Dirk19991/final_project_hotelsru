@@ -122,6 +122,28 @@ export interface I18nContextType {
             similar: string
             alreadyWatched: string
             dontLikeIt: string
+            similarMovies: { start: string; end: string }
+            watchAllDevices: {
+                title: { start: string; end: string }
+                subtitle: string
+                buttonLabel: string
+            }
+            profession: {
+                director: string
+                actor: string
+                producer: string
+                cineatographer: string
+                screenwriter: string
+                composer: string
+            }
+            actorsAndCreators: string
+            showDetails: string
+            hideDetails: string
+            freeMovies: string
+            loadingMovie: string
+            noMovie: string
+            toMovie: string
+            creators: string
         }
     }
 }
@@ -260,6 +282,29 @@ const i18n: I18nContextType['i18n'] = {
         similar: 'Similar',
         alreadyWatched: 'Already watched, rate',
         dontLikeIt: `Don't like it`,
+        similarMovies: { start: 'Similar movies to', end: '' },
+        watchAllDevices: {
+            title: { start: 'Watch', end: 'on all devices' },
+            subtitle:
+                'The application is available for download on iOS, Android, SmartTV and consoles',
+            buttonLabel: 'Connect devices',
+        },
+        profession: {
+            director: 'Director',
+            actor: 'Actor',
+            producer: 'Producer',
+            cineatographer: 'Cineatographer',
+            screenwriter: 'Screenwriter',
+            composer: 'Composer',
+        },
+        actorsAndCreators: 'Actors and creators',
+        showDetails: 'Show details',
+        hideDetails: 'Hide details',
+        freeMovies: 'Free movies',
+        loadingMovie: 'Loading movie...',
+        noMovie: 'No movie',
+        toMovie: 'To movie',
+        creators: 'Creators',
     },
 
     ru: {
@@ -396,6 +441,29 @@ const i18n: I18nContextType['i18n'] = {
         similar: 'Похожие',
         alreadyWatched: 'Уже смотрел, оценить',
         dontLikeIt: 'Не нравится такое',
+        similarMovies: { start: 'С фильмом', end: 'смотрят' },
+        watchAllDevices: {
+            title: { start: 'Cмотреть', end: 'на всех устройствах' },
+            subtitle:
+                'Приложение доступно для скачивания на iOS, Android, SmartTV и приставках',
+            buttonLabel: 'Подключить устройства',
+        },
+        profession: {
+            director: 'Режиссер',
+            actor: 'Актер',
+            producer: 'Продюсер',
+            cineatographer: 'Оператор',
+            screenwriter: 'Сценарист',
+            composer: 'Композитор',
+        },
+        actorsAndCreators: 'Актеры и создатели',
+        showDetails: 'Детали о фильме',
+        hideDetails: 'Свернуть детали',
+        freeMovies: 'Бесплатные фильмы',
+        loadingMovie: 'Загрузка фильма...',
+        noMovie: 'Нет фильма',
+        toMovie: 'К фильму',
+        creators: 'Создатели',
     },
 }
 
