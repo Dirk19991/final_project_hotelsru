@@ -12,8 +12,9 @@ import { ButtonRound } from '@/stories/Button/ButtonRound'
 import { useI18nContext } from '@/context/i18n'
 import mock from '@/data/navigation.json'
 import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
+import { useRouter } from 'next/router'
 
-const Header: FC<any> = ({ headerData }) => {
+const Header: FC<any> = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
     const { toggleLanguage, language, i18n } = useI18nContext()
@@ -23,12 +24,19 @@ const Header: FC<any> = ({ headerData }) => {
 
     const [headerLinks, setHeaderLinks] = useState<IHeaderStaticLinks>(mock)
 
+    const { locale, locales, push } = useRouter()
+
     const openSubMenu = () => matchesDesktopSize && setIsHovering(true)
     const closeSubMenu = () => matchesDesktopSize && setIsHovering(false)
 
     const handleMouseOver = (id: number, expandable: boolean) => {
         setCurrentTabId(id)
         return expandable ? openSubMenu() : closeSubMenu()
+    }
+
+    const toggleLangHandler = (locale: string | undefined) => {
+        const lang = locale === "ru" ? "en" : "ru" 
+        push('/', undefined, {locale: lang})
     }
 
     return (
@@ -96,12 +104,10 @@ const Header: FC<any> = ({ headerData }) => {
                                             data-testid="lang-button"
                                         >
                                             <ButtonRound
-                                                onClick={toggleLanguage}
+                                                onClick={() => toggleLangHandler(locale)}
                                                 type="language"
                                             >
-                                                {language === 'en'
-                                                    ? 'EN'
-                                                    : 'RU'}
+                                                {locale?.toUpperCase()}
                                             </ButtonRound>
                                         </div>
                                     )}

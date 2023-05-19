@@ -30,7 +30,7 @@ const DefaultCarousel: FC<IDefaultCarousel> = ({ dataList, title, link }) => {
                         {!link ? (
                             <span>{title}</span>
                         ) : (
-                            <Link href="/movies/">
+                            <Link href={link}>
                                 <span>{title}</span>
                             </Link>
                         )}

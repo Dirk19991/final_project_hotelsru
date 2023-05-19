@@ -4,14 +4,17 @@ import Link from 'next/link'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 
 const FooterNavigation = () => {
     const { i18n, language } = useI18nContext()
 
+    const { t } = useTranslation('footer')
+
     return (
         <div className={styles.wrapper} data-testid="footer-navigation">
             <div className={styles.list} data-testid="about-section">
-                <h4>{i18n[language].aboutUs}</h4>
+                <h4>{t('aboutUs')}</h4>
                 <ul>
                     <li>
                         <Link href="https://corp.ivi.ru/">

@@ -3,9 +3,13 @@ import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import styles from './FooterContacts.module.scss'
 import { useI18nContext } from '@/context/i18n'
+import { useRouter } from 'next/router'
 
 const FooterContacts = () => {
     const { i18n, language } = useI18nContext()
+    const {locale, locales, push} = useRouter()
+    
+        
 
     return (
         <div className={styles.contacts} data-testid="footer-contacts">

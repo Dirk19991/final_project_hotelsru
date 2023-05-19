@@ -6,6 +6,7 @@ import Head from 'next/head'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { GetStaticProps } from 'next'
 import { FC } from 'react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Home: FC<any> = ({ dramas, comedies }) => {
     return (
@@ -22,8 +23,8 @@ const Home: FC<any> = ({ dramas, comedies }) => {
             <MediumCarousel />
 
             <DefaultCarousel
-                title={'Лучшие комедии'}
-                link={'/movies/comedy'}
+                title={'Лучшие драмы'}
+                link={'/movies/drama'}
                 dataList={dramas}
             />
             <DefaultCarousel
@@ -37,13 +38,17 @@ const Home: FC<any> = ({ dramas, comedies }) => {
 
 export default Home
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
     const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
 
     const response = await fetch(`${baseURL}/api/movies-list`)
     const data = await response.json()
 
     return {
-        props: { dramas: data, comedies: data },
+        props: {
+            dramas: data,
+            comedies: data,
+            ...(await serverSideTranslations(locale, ['common', 'footer'])),
+        },
     }
 }
