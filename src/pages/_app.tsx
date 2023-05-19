@@ -5,6 +5,8 @@ import type { AppProps } from 'next/app'
 import { Open_Sans } from 'next/font/google'
 import { I18nProvider } from '@/context/i18n'
 import Head from 'next/head'
+import { appWithTranslation } from 'next-i18next'
+import { FC } from 'react'
 
 const openSans = Open_Sans({
     weight: ['300', '400', '500', '700'],
@@ -12,7 +14,7 @@ const openSans = Open_Sans({
     subsets: ['latin'],
 })
 
-export default function App({ Component, pageProps }: AppProps) {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
             <Head>
@@ -39,3 +41,5 @@ export default function App({ Component, pageProps }: AppProps) {
         </>
     )
 }
+
+export default appWithTranslation(App)

@@ -26,8 +26,8 @@ export interface ButtonProps {
     width?: number
     height?: number
     onClick?: () => void
-    label?: string
-    sublabel?: string
+    label?: string | null
+    sublabel?: string | null
     href?: string
     disabled?: boolean | undefined
 }

@@ -10,6 +10,7 @@ import styles from './[filmName].module.scss'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { useI18nContext } from '@/context/i18n'
 import FilmBreadcrumbs from '@/components/Film/Breadcrumbs/Breadcrumbs'
+import mock from '@/data/mockData'
 
 const FilmPage = () => {
     const { language, i18n } = useI18nContext()
@@ -72,19 +73,12 @@ const FilmPage = () => {
                         bold
                     />
                     <Film film={film} />
-                    {/* <div className={styles.slider}>
-                        <DefaultCarousel
-                            type="similarMovie"
-                            similarMovies={film.similarMovies}
-                            headerText={`${
-                                i18n[language].similarMovies.start
-                            } «${
-                                language === 'en' ? film.nameEn : film.nameRu
-                            }» ${i18n[language].similarMovies.end}:`}
-                        />
-                    </div> */}
-                    <CommentsCarousel />
+                    <DefaultCarousel
+                        title={'C этии фильмом также смотрят:'}
+                        dataList={mock}
+                    />
                     <CreatorsList film={film} />
+                    <CommentsCarousel />
                     <AllDevices
                         name={language === 'en' ? film.nameEn : film.nameRu}
                         src={film.poster}
