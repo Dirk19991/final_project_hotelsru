@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './FooterMobile.module.scss'
 import Link from 'next/link'
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 const FooterMobile = () => {
-    const { language, i18n } = useI18nContext()
     const { asPath } = useRouter()
+    const { t } = useTranslation(['common'])
 
     return (
         <div className={styles.footerMobile} data-testid="footer-mobile">
@@ -25,7 +25,7 @@ const FooterMobile = () => {
                                     d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                                 />
                             </svg>
-                            <span>{i18n[language].myIvi}</span>
+                            <span>{t('myIvi')}</span>
                         </Link>
                     </li>
                     <li className={asPath === '/movies' ? styles.active : ''}>
@@ -47,7 +47,7 @@ const FooterMobile = () => {
                                 />
                             </svg>
 
-                            <span>{i18n[language].catalog}</span>
+                            <span>{t('catalog')}</span>
                         </Link>
                     </li>
                     <li
@@ -67,7 +67,7 @@ const FooterMobile = () => {
                                     d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                                 />
                             </svg>
-                            <span>{i18n[language].search}</span>
+                            <span>{t('search')}</span>
                         </div>
                     </li>
                     <li>
@@ -99,7 +99,7 @@ const FooterMobile = () => {
                                     d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                                 />
                             </svg>
-                            <span>{i18n[language].more}</span>
+                            <span>{t('more')}</span>
                         </Link>
                     </li>
                 </ul>

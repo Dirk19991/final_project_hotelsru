@@ -11,8 +11,8 @@ export interface ButtonFooterProps {
     width: number
     height: number
     onClick?: () => void
-    label?: string
-    sublabel?: string
+    label?: string | null
+    sublabel?: string | null
     href: string
     type: 'black' | 'grey' | 'long'
     buttonWidth?: string

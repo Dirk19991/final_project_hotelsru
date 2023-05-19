@@ -13,6 +13,7 @@ import { useI18nContext } from '@/context/i18n'
 import mock from '@/data/navigation.json'
 import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 const Header: FC<any> = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
@@ -38,6 +39,8 @@ const Header: FC<any> = () => {
         const lang = locale === "ru" ? "en" : "ru" 
         push('/', undefined, {locale: lang})
     }
+
+    const { t } = useTranslation(['common'])
 
     return (
         <header className={styles.header} onMouseLeave={closeSubMenu}>
@@ -92,7 +95,7 @@ const Header: FC<any> = () => {
                                         >
                                             <button>
                                                 <div>
-                                                    {i18n[language].search}
+                                                    {t("search")}
                                                 </div>
                                             </button>
                                         </div>

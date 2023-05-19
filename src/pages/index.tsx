@@ -7,8 +7,11 @@ import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { GetStaticProps } from 'next'
 import { FC } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 const Home: FC<any> = ({ dramas, comedies }) => {
+    const { t } = useTranslation(['common'])
+
     return (
         <>
             <Head>
@@ -23,12 +26,12 @@ const Home: FC<any> = ({ dramas, comedies }) => {
             <MediumCarousel />
 
             <DefaultCarousel
-                title={'Лучшие драмы'}
+                title={t("bestDramas")}
                 link={'/movies/drama'}
                 dataList={dramas}
             />
             <DefaultCarousel
-                title={'Лучшие комедии'}
+                title={t("bestComedies")}
                 link={'/movies/comedy'}
                 dataList={comedies}
             />

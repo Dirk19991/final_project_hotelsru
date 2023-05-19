@@ -2,14 +2,10 @@ import React from 'react'
 import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import styles from './FooterContacts.module.scss'
-import { useI18nContext } from '@/context/i18n'
-import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 const FooterContacts = () => {
-    const { i18n, language } = useI18nContext()
-    const {locale, locales, push} = useRouter()
-    
-        
+    const { t } = useTranslation(['footer'])
 
     return (
         <div className={styles.contacts} data-testid="footer-contacts">
@@ -20,7 +16,7 @@ const FooterContacts = () => {
                         href="https://go.onelink.me/app/devicesiOS"
                         label="App Store"
                         src="/icons/apple.svg"
-                        sublabel={i18n[language].downloadIn}
+                        sublabel={t('downloadIn')}
                         width={20}
                         type="black"
                     />
@@ -29,7 +25,7 @@ const FooterContacts = () => {
                         href="https://go.onelink.me/app/devicesAndroid"
                         label="Google Play"
                         src="/icons/googlePlay.svg"
-                        sublabel={i18n[language].availableIn}
+                        sublabel={t('availableIn')}
                         width={20}
                         type="black"
                     />
@@ -39,7 +35,7 @@ const FooterContacts = () => {
                         href="https://www.ivi.ru/pages/tvsmart"
                         label="Smart TV"
                         src="/icons/smartTV.svg"
-                        sublabel={i18n[language].watchOn}
+                        sublabel={t('watchOn')}
                         width={20}
                         type="black"
                     />
@@ -47,13 +43,16 @@ const FooterContacts = () => {
                     <ButtonFooter
                         height={20}
                         href="https://www.ivi.ru/devices"
-                        label={i18n[language].allDevices}
+                        label={t('allDevices')}
                         src="/icons/allDevices.svg"
                         width={20}
                         type="black"
                     />
                 </div>
-                <div className={styles.buttonGroup} data-testid="footer-socials">
+                <div
+                    className={styles.buttonGroup}
+                    data-testid="footer-socials"
+                >
                     <ButtonRound
                         height={16}
                         href="https://vk.com/iviru?crc=fa4448c13e06e69ba9e814e8743c7e2e"
@@ -103,7 +102,7 @@ const FooterContacts = () => {
                 </div>
             </div>
             <div className={styles.info} data-testid="footer-copyright">
-                <p>© 2023 {i18n[language].LLC}</p>
+                <p>© 2023 {t('LLC')}</p>
                 <p>
                     HBO ® and related service marks are the property of Home Box
                     Office, Inc
