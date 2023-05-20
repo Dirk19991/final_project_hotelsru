@@ -1,154 +1,6 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react'
 
-export type Language = 'en' | 'ru'
-
-export interface I18nContextType {
-    language: Language
-    setLanguage: (language: Language) => void
-    toggleLanguage: () => void
-    i18n: {
-        [key in Language]: {
-            sortBy: string
-            byRating: string
-            byRatesAmount: string
-            byReleaseDate: string
-            byAlphabet: string
-            genres: string
-            countries: string
-            years: string
-            aboutUs: string
-            aboutCompany: string
-            vacancies: string
-            betaTestingProgram: string
-            informationForPartners: string
-            advertising: string
-            userAgreement: string
-            privacyPolicy: string
-            compliance: string
-            sections: string
-            myIvi: string
-            whatsNew: string
-            movies: string
-            tvSeries: string
-            cartoons: string
-            whatToWatch: string
-            activateCertificate: string
-            thirtyDays1Rouble: string
-            support: string
-            readyToHelp: string
-            ourOperators: string
-            openChat: string
-            FAQ: string
-            watchFilms: string
-            downloadIn: string
-            availableIn: string
-            watchOn: string
-            allDevices: string
-            LLC: string
-            onlineCinema: string
-            everyDay: string
-            videoLibrary: string
-            expand: string
-            hide: string
-            onlineCinemaIvi: string
-            uniqueRecommendation: string
-            oneTouch: string
-            opportunityToDownload: string
-            uniqueConditions: string
-            advancedNotification: string
-            opportunityToAdd: string
-            content: string
-            watchingOnlineContent: string
-            discoverOpportunity: string
-            thisWeek: string
-            search: string
-            watch30days: string
-            watchOnSmartTV: string
-            iviSubscription: string
-            subscriptionCost: string
-            brandNewTVSeries: string
-            andMovies: string
-            weeklyUpdates: string
-            moviesAndTVSeries: string
-            moviesWithoutAds: string
-            familyAccount: string
-            downloadMobile: string
-            unsubscribe: string
-            anyMoment: string
-            subscribeAndWatch: string
-            catalog: string
-            more: string
-            movie: string
-            cartoon: string
-            'tv-series': string
-            back: string
-            notEnoughRatings: string
-            iviRating: string
-            fullFilmography: string
-            watch: string
-            trailer: string
-            filmDetails: string
-            iviRatingNoColon: string
-            interestingPlot: string
-            rate: string
-            ratings: string
-            watchLater: string
-            watchMoviesOnline: string
-            doYouLikeWatching: string
-            theSelectionOfFilms: string
-            inOurCatalog: string
-            ifYouAreInterested: string
-            doNotMiss: string
-            ratingFrom: string
-            resetFilters: string
-            numberOfRatings: string
-            searchByDirector: string
-            searchByActor: string
-            showMore: string
-            subscribe: string
-            youCanCancel: string
-            from189: string
-            purchases: string
-            browsingHistory: string
-            subscriptions: string
-            activate: string
-            certificateActivation: string
-            logInWithCode: string
-            purchaseMethods: string
-            settings: string
-            help: string
-            logInOrSignUp: string
-            otherSubscriptions: string
-            similar: string
-            alreadyWatched: string
-            dontLikeIt: string
-            similarMovies: { start: string; end: string }
-            watchAllDevices: {
-                title: { start: string; end: string }
-                subtitle: string
-                buttonLabel: string
-            }
-            profession: {
-                director: string
-                actor: string
-                producer: string
-                cineatographer: string
-                screenwriter: string
-                composer: string
-            }
-            actorsAndCreators: string
-            showDetails: string
-            hideDetails: string
-            freeMovies: string
-            loadingMovie: string
-            noMovie: string
-            toMovie: string
-            creators: string
-        }
-    }
-}
-
-const i18n: I18nContextType['i18n'] = {
+const i18n = {
     en: {
         sortBy: 'Sort by',
         byRating: 'Rating',
@@ -188,7 +40,7 @@ const i18n: I18nContextType['i18n'] = {
         availableIn: 'Available in',
         watchOn: 'Watch on',
         allDevices: 'All devices',
-        LLC: 'LLC «Ivi.ru»',
+        LLC: 'LLC «ivi.ru»',
         onlineCinema:
             'Online Cinema Ivi: good quality movies always bring real pleasure',
         everyDay:
@@ -265,9 +117,6 @@ const i18n: I18nContextType['i18n'] = {
         searchByDirector: 'Search by director',
         searchByActor: 'Search by actor',
         showMore: 'Show more',
-        subscribe: 'Subscribe',
-        youCanCancel: 'You can cancel the subscription any time',
-        from189: 'From 189 rb/month',
         purchases: 'Purchases',
         browsingHistory: 'Browsing history',
         subscriptions: 'Subscriptions',
@@ -317,64 +166,7 @@ const i18n: I18nContextType['i18n'] = {
         countries: 'Страны',
         years: 'Годы',
         more: 'Ещё',
-        catalog: 'Каталог',
-        aboutUs: 'О нас',
-        aboutCompany: 'О компании',
-        vacancies: 'Вакансии',
-        betaTestingProgram: 'Программа бета-тестирования',
-        informationForPartners: 'Информация для партнёров',
-        advertising: 'Размещение рекламы',
-        userAgreement: 'Пользовательское соглашение',
-        privacyPolicy: 'Политика конфиденциальности',
-        compliance: 'Комплаенс',
-        sections: 'Разделы',
-        myIvi: 'Мой Иви',
-        whatsNew: 'Что нового',
-        movies: 'Фильмы',
-        tvSeries: 'Сериалы',
-        cartoons: 'Мультфильмы',
-        whatToWatch: 'Что посмотреть',
-        activateCertificate: 'Активировать сертификат',
-        thirtyDays1Rouble: '30 дней подписки за 1 ₽',
-        support: 'Служба поддержки',
-        readyToHelp: 'Мы всегда готовы вам помочь.',
-        ourOperators: 'Наши операторы онлайн 24/7',
-        openChat: 'Написать в чате',
-        FAQ: 'Ответы на вопросы',
         watchFilms: 'Смотрите фильмы, сериалы и мультфильмы без рекламы',
-        downloadIn: 'Загрузить в',
-        availableIn: 'Доступно в',
-        watchOn: 'Смотрите на',
-        allDevices: 'Все устройства',
-        LLC: 'ООО «Иви.ру»',
-        onlineCinema:
-            'Онлайн-кинотеатр Иви: фильмы в хорошем качестве всегда приносят настоящее удовольствие',
-        everyDay:
-            'Каждый день миллионы людей ищут фильмы онлайн, и никто не хочет усложнять себе жизнь – и вы наверняка один из них! А раз так, то Иви – это именно тот ресурс, который вам нужен. От лучших кинолент в HD-качестве вас отделяет буквально один клик. Мы не просто освобождаем от необходимости идти в кинотеатр или изучать программу телепередач – у посетителей нашего ресурса гораздо больше возможностей.',
-        videoLibrary:
-            'Видеотека Иви – это постоянно пополняющаяся коллекция в рунете, которая насчитывает более 60 тысяч отечественного и зарубежного контента, доступного для просмотра онлайн. Мы первыми в России подписали контракты с крупнейшими голливудскими студиями (Walt Disney, Warner Bros., Sony, 20th Century Fox, Universal, Paramount, MGM и другими) и на постоянной основе сотрудничаем с крупнейшими российскими компаниями и телеканалами.',
-        expand: 'Развернуть',
-        hide: 'Скрыть',
-        onlineCinemaIvi: 'Онлайн-кинотеатр ivi.ru – это:',
-        uniqueRecommendation:
-            'уникальная рекомендательная система, учитывающая ваши предпочтения и предлагающая посмотреть именно то, что точно придется вам по душе;',
-        oneTouch:
-            'просмотр в одно касание на любом из устройств, подключенном к вашему Иви-аккаунту – от смартфонов до телевизоров с технологией Smart TV;',
-        opportunityToDownload:
-            'возможность скачивать в память мобильного устройства лицензионный контент и смотреть его без доступа к Интернету;',
-
-        uniqueConditions:
-            'уникальные условия и преимущества для обладателей подписки Иви, делающей кинопросмотр комфортным и приятным;',
-        advancedNotification:
-            'удобная и продвинутая система уведомлений, вы не пропустите выход крутого обсуждаемого блокбастера – мы известим о появлении подходящим для вас способом;',
-        opportunityToAdd:
-            'возможность добавлять фильмы в «смотреть позже», чтобы вернуться к ним в свободное время;',
-        content:
-            'контент, для просмотра которого не требуется устанавливать видеоплееры или искать кодеки;',
-        watchingOnlineContent:
-            'просмотр онлайн контента хорошего разрешения без регистрации и смс.',
-        discoverOpportunity:
-            'Откройте для себя возможность смотреть фильмы онлайн бесплатно в отличном качестве с кинотеатром Иви!',
         thisWeek: 'за неделю',
         search: 'Поиск',
         watch30days: 'Смотреть 30 дней бесплатно',
@@ -424,18 +216,6 @@ const i18n: I18nContextType['i18n'] = {
         searchByDirector: 'Поиск по режиссеру',
         searchByActor: 'Поиск по актеру',
         showMore: 'Показать еще',
-        subscribe: 'Подключить',
-        youCanCancel: 'Отключить можно в любой момент',
-        from189: 'От 189 руб. за месяц',
-        purchases: 'Покупки',
-        browsingHistory: 'История просмотров',
-        subscriptions: 'Подписки',
-        activate: 'Подключить',
-        certificateActivation: 'Активация сертификата',
-        logInWithCode: 'Вход по коду',
-        purchaseMethods: 'Способы оплаты',
-        settings: 'Настройки',
-        help: 'Помощь',
         logInOrSignUp: 'Войти или зарегистрироваться',
         otherSubscriptions: 'Другие подписки',
         similar: 'Похожие',
@@ -467,7 +247,7 @@ const i18n: I18nContextType['i18n'] = {
     },
 }
 
-export const I18nContext = createContext<I18nContextType>({
+export const I18nContext = createContext<any>({
     language: 'ru',
     setLanguage: () => {},
     toggleLanguage: () => {},
@@ -476,24 +256,15 @@ export const I18nContext = createContext<I18nContextType>({
 
 export const useI18nContext = () => useContext(I18nContext)
 
-interface I18nProviderProps {
-    children: ReactNode
-}
 
-interface I18nProviderProps {
-    children: ReactNode
-}
-
-// Create Provider component
-export const I18nProvider = ({ children }: I18nProviderProps) => {
-    const [language, setLanguage] = useState<Language>('ru')
+export const I18nProvider = ({ children }: any) => {
+    const [language, setLanguage] = useState<any>('ru')
 
     const toggleLanguage = () => {
         setLanguage(language === 'en' ? 'ru' : 'en')
     }
 
     return (
-        // Provide i18n context to all child components
         <I18nContext.Provider
             value={{ language, setLanguage, toggleLanguage, i18n }}
         >

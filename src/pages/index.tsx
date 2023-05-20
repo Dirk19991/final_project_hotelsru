@@ -9,7 +9,7 @@ import { FC } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
-const Home: FC<any> = ({ dramas, comedies }) => {
+const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
     const { t } = useTranslation(['common'])
 
     return (
@@ -20,7 +20,7 @@ const Home: FC<any> = ({ dramas, comedies }) => {
                     смотреть онлайн бесплатно в хорошем качестве
                 </title>
             </Head>
-            <MainCarousel />
+            <MainCarousel data={mainCarouselMovies} />
             <PromoButtons />
             <Promo />
             <MediumCarousel />
@@ -44,17 +44,22 @@ export default Home
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
 
-    const response = await fetch(`${baseURL}/api/movies-list`)
-    const data = await response.json()
+    const MainCarouselRes = await fetch(`${baseURL}/api/main-carousel`)
+    const mainCarouselMovies = await MainCarouselRes.json()
+
+    const moviesListRes = await fetch(`${baseURL}/api/movies-list`)
+    const mockMovies = await moviesListRes.json()
 
     return {
         props: {
-            dramas: data,
-            comedies: data,
+            dramas: mockMovies,
+            comedies: mockMovies,
+            mainCarouselMovies,
             ...(await serverSideTranslations(locale as string, [
                 'common',
                 'footer',
                 'promo',
+                'header',
             ])),
         },
     }

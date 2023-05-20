@@ -2,38 +2,39 @@ import React, { FC } from 'react'
 import Image from 'next/image'
 import styles from './MainCarouselSlide.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
+import { useTranslation } from 'next-i18next'
 
 interface SlideProps {
-    mainImage: string
-    mainText: string
-    titleImage?: string
+    img: string
+    text: string
+    titleImg?: string
     titleText?: string
-    label: string
 }
 
 const MainCarouselSlide: FC<SlideProps> = ({
-    mainImage,
-    mainText,
-    titleImage,
+    img,
+    text,
+    titleImg,
     titleText,
-    label,
 }) => {
+    const { t } = useTranslation(['common'])
+
     return (
         <div className={styles.slide}>
             <div className={styles.wrapper}>
                 <Image
                     priority
                     className={styles.image}
-                    src={mainImage}
+                    src={img}
                     alt="slide"
                     fill
                 />
                 <div className={styles.text}>
-                    {titleImage ? (
+                    {titleImg ? (
                         <Image
                             priority
                             className={styles.titleImage}
-                            src={titleImage}
+                            src={titleImg}
                             alt=""
                             width={460}
                             height={159}
@@ -41,11 +42,11 @@ const MainCarouselSlide: FC<SlideProps> = ({
                     ) : (
                         <div className={styles.titleText}>{titleText}</div>
                     )}
-                    <span>{mainText}</span>
+                    <span>{text}</span>
                     <div className={styles.button}>
                         <Button
                             href="/"
-                            label={label}
+                            label={t('subscribeAndWatch')}
                             type="watchSubscription"
                         ></Button>
                     </div>

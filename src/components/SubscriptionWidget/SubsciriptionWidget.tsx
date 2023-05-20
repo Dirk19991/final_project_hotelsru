@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import styles from './SubscriptionWidget.module.scss'
 import data from '@/data/mockData'
 import { ButtonFooter } from '@/stories/Button/ButtonFooter'
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import Image from 'next/image'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 
 const SubsciriptionWidget = () => {
-    const { i18n, language } = useI18nContext()
+    const { t } = useTranslation(['header'])
 
     const [isHovering, setIsHovering] = useState<boolean>(false)
 
@@ -62,11 +62,11 @@ const SubsciriptionWidget = () => {
                             src="/icons/ivi-subscription-logo.png"
                             width={50}
                             height={50}
-                            alt="Подписка"
+                            alt={t('subscription')}
                         />
                         <div>
-                            <p>{i18n[language].iviSubscription}</p>
-                            <span>{i18n[language].from189}</span>
+                            <p>{t('iviSubscription')}</p>
+                            <span>{t('from189')}</span>
                         </div>
                     </div>
 
@@ -76,9 +76,9 @@ const SubsciriptionWidget = () => {
                                 push('https://www.ivi.ru/profile/subscription')
                             }
                         >
-                            {i18n[language].subscribe}
+                            {t('subscribe')}
                         </button>
-                        <small>{i18n[language].youCanCancel}</small>
+                        <small>{t('youCanCancel')}</small>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@ const SubsciriptionWidget = () => {
                 <ButtonFooter
                     height={20}
                     href="/"
-                    label={i18n[language].watchOnSmartTV}
+                    label={t('watchOnSmartTV')}
                     src="/icons/smartTV.svg"
                     type="long"
                     width={20}

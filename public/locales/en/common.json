@@ -1,5 +1,4 @@
 {
-
     "myIvi": "My IVI",
     "catalog": "Catalog",
     "search": "Search",
@@ -9,5 +8,10 @@
     "tvSeries": "Series",
     "cartoons": "Cartoons",
     "bestComedies": "The Best comedies",
-    "bestDramas": "The Best Dramas"
+    "bestDramas": "The Best Dramas",
+    "watch30days": "Watch 30 days for free",
+    "genres": "Genres",
+    "countries": "Countries",
+    "years": "Years",
+    "subscribeAndWatch": "Subscribe and watch"
 }
