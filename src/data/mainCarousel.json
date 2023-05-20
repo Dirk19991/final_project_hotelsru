@@ -1,0 +1,32 @@
+{
+    "movies": [
+        {
+            "id": 1,
+            "img": "/slides/1/main.jpg",
+            "textRU": "An FSB officer with a shady past defends his country. Detective with Sergei Bezrukov",
+            "textEN": "",
+            "titleImg": "/slides/1/title.png"
+        },
+        {
+            "id": 2,
+            "img": "/slides/2/main.jpg",
+            "textRU": "Ваши любимые Джейсон Стэйтем и Хью Грант спасают мир в шпионской комедии вашего любимого Гая Ричи",
+            "textEN": "Your favorite Jason Statham and Hugh Grant save the world in your favorite Guy Ritchie spy comedy",
+            "titleImg": "/slides/2/title.png"
+        },
+        {
+            "id": 3,
+            "img": "/slides/3/main.jpg",
+            "textRU": "Кай и Герда находят новый друзей и вновь спасают мир. Долгожданное возвращение любимых героев",
+            "textEN": "Kai and Gerda find new friends and save the world again. The long-awaited return of our favorite characters",
+            "titleImg": "/slides/3/title.png"
+        },
+        {
+            "id": 4,
+            "img": "/slides/4/main.jpg",
+            "textRU": "Дети пытаются помирить поссорившихся родителей. Семейная комедия с Сергеем Жуковым и Helen Yes",
+            "textEN": "Children try to reconcile their quarreling parents. A family comedy with Sergei Zhukov and Helen Yes",
+            "titleImg": "/slides/4/title.png"
+        }
+    ]
+}
