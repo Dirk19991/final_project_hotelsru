@@ -4,11 +4,11 @@ import styles from './MediumCarousel.module.scss'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import cn from 'classnames'
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 import { MediumCarouselSlide } from '@/stories/MediumCarouselSlide/MediumCarouselSlide'
 
 const MediumCarousel = () => {
-    const { i18n, language } = useI18nContext()
+    const { t } = useTranslation(['common'])
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
@@ -27,7 +27,7 @@ const MediumCarousel = () => {
                                 src="/icons/top10.svg"
                             />
                         </div>
-                        <span>{i18n[language].thisWeek}</span>
+                        <span>{t("thisWeek")}</span>
                     </div>
                     <div className={cn(styles.topTen, 'medium__slider')}>
                         <Swiper
