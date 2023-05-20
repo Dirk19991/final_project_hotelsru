@@ -11,9 +11,15 @@ import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { useI18nContext } from '@/context/i18n'
 import FilmBreadcrumbs from '@/components/Film/Breadcrumbs/Breadcrumbs'
 import mock from '@/data/mockData'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
+import { GetStaticProps } from 'next'
+
+// тут нужно будет убрать useeffect и перенести получение данных в getStaticProps и getStaticPaths когда появится бэкенд
 
 const FilmPage = () => {
     const { language, i18n } = useI18nContext()
+    const { t } = useTranslation(['film'])
 
     const router = useRouter()
 
@@ -74,7 +80,7 @@ const FilmPage = () => {
                     />
                     <Film film={film} />
                     <DefaultCarousel
-                        title={'C этии фильмом также смотрят:'}
+                        title={'C этим фильмом также смотрят:'}
                         dataList={mock}
                     />
                     <CreatorsList film={film} />
@@ -98,3 +104,25 @@ const FilmPage = () => {
 }
 
 export default FilmPage
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale as string, ['film'])),
+        },
+    }
+}
+
+export async function getStaticPaths() {
+    return {
+        paths: [
+            {
+                params: {
+                    filmName: '1',
+                },
+            },
+        ],
+
+        fallback: true,
+    }
+}

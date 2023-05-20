@@ -1,74 +1,61 @@
 import { useState } from 'react'
 import styles from './Promo.module.scss'
-import { useI18nContext } from '@/context/i18n'
+
+import { useTranslation } from 'next-i18next'
 
 const Promo = () => {
     const [open, setOpen] = useState(false)
-    const { i18n, language } = useI18nContext()
+    const { t } = useTranslation(['promo'])
 
     return (
         <div className="container">
             <div className={styles.promo}>
-                <h4 className={styles.header}>{i18n[language].onlineCinema}</h4>
+                <h4 className={styles.header}>{t('onlineCinema')}</h4>
                 {!open && (
                     <div className={styles.text}>
-                        <p className={styles.ellipsis}>
-                            {i18n[language].everyDay}
-                        </p>
+                        <p className={styles.ellipsis}>{t('everyDay')}</p>
                     </div>
                 )}
                 {open && (
                     <div className={styles.text}>
-                        <p>{i18n[language].everyDay}</p>
-                        <p>{i18n[language].videoLibrary}</p>
-                        <p>{i18n[language].onlineCinemaIvi}</p>
+                        <p>{t('everyDay')}</p>
+                        <p>{t('videoLibrary')}</p>
+                        <p>{t('onlineCinemaIvi')}</p>
                         <ul className={styles.list}>
                             <li>
                                 {' '}
-                                <span>
-                                    {' '}
-                                    {i18n[language].uniqueRecommendation}
-                                </span>
+                                <span> {t('uniqueRecommendation')}</span>
                             </li>
                             <li>
                                 {' '}
-                                <span>{i18n[language].oneTouch}</span>
+                                <span>{t('oneTouch')}</span>
                             </li>
                             <li>
                                 {' '}
-                                <span>
-                                    {' '}
-                                    {i18n[language].opportunityToDownload}
-                                </span>
+                                <span> {t('opportunityToDownload')}</span>
                             </li>
                             <li>
                                 {' '}
-                                <span> {i18n[language].uniqueConditions}</span>
+                                <span> {t('uniqueConditions')}</span>
                             </li>
                             <li>
                                 {' '}
-                                <span>
-                                    {' '}
-                                    {i18n[language].advancedNotification}
-                                </span>
+                                <span> {t('advancedNotification')}</span>
                             </li>
                             <li>
                                 {' '}
-                                <span>{i18n[language].opportunityToAdd}</span>
+                                <span>{t('opportunityToAdd')}</span>
                             </li>
                             <li>
                                 {' '}
-                                <span>{i18n[language].content}</span>
+                                <span>{t('content')}</span>
                             </li>
                             <li>
                                 {' '}
-                                <span>
-                                    {' '}
-                                    {i18n[language].watchingOnlineContent}
-                                </span>
+                                <span> {t('watchingOnlineContent')}</span>
                             </li>
                         </ul>
-                        <p>{i18n[language].discoverOpportunity}</p>
+                        <p>{t('discoverOpportunity')}</p>
                     </div>
                 )}
 
@@ -76,7 +63,7 @@ const Promo = () => {
                     className={styles.button}
                     onClick={() => setOpen((prev) => !prev)}
                 >
-                    {open ? i18n[language].hide : i18n[language].expand}
+                    {open ? t('hide') : t('expand')}
                 </button>
             </div>
         </div>

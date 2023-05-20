@@ -26,12 +26,12 @@ const Home: FC<any> = ({ dramas, comedies }) => {
             <MediumCarousel />
 
             <DefaultCarousel
-                title={t("bestDramas")}
+                title={t('bestDramas')}
                 link={'/movies/drama'}
                 dataList={dramas}
             />
             <DefaultCarousel
-                title={t("bestComedies")}
+                title={t('bestComedies')}
                 link={'/movies/comedy'}
                 dataList={comedies}
             />
@@ -41,7 +41,7 @@ const Home: FC<any> = ({ dramas, comedies }) => {
 
 export default Home
 
-export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
 
     const response = await fetch(`${baseURL}/api/movies-list`)
@@ -51,7 +51,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
         props: {
             dramas: data,
             comedies: data,
-            ...(await serverSideTranslations(locale, ['common', 'footer'])),
+            ...(await serverSideTranslations(locale as string, [
+                'common',
+                'footer',
+                'promo',
+            ])),
         },
     }
 }
