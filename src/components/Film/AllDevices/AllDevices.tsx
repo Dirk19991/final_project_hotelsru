@@ -3,6 +3,7 @@ import styles from './AllDevices.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useI18nContext } from '@/context/i18n'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 
 export interface IAllDevices {
     name: string
@@ -11,21 +12,20 @@ export interface IAllDevices {
 
 const AllDevices: FC<IAllDevices> = ({ name, src }) => {
     const { language, i18n } = useI18nContext()
+    const { t } = useTranslation(['film'])
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.info}>
                 <h2 className={styles.info__title}>
-                    {`${i18n[language].watchAllDevices.title.start} «${name}» ${i18n[language].watchAllDevices.title.end}`}
+                    {`${t('titleStart')} «${name}» ${t('titleEnd')}`}
                 </h2>
-                <h3 className={styles.info__subtitle}>
-                    {i18n[language].watchAllDevices.subtitle}
-                </h3>
+                <h3 className={styles.info__subtitle}>{t('subtitle')}</h3>
                 <div className={styles.info__button}>
                     <Button
                         href={'https://www.ivi.ru/devices'}
                         type="allDevices"
-                        label={i18n[language].watchAllDevices.buttonLabel}
+                        label={t('buttonLabel')}
                     />
                 </div>
             </div>

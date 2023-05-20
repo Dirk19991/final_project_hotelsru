@@ -25,7 +25,7 @@ const Header: FC<any> = () => {
 
     const [headerLinks, setHeaderLinks] = useState<IHeaderStaticLinks>(mock)
 
-    const { locale, locales, push } = useRouter()
+    const { locale, locales, push, asPath } = useRouter()
 
     const openSubMenu = () => matchesDesktopSize && setIsHovering(true)
     const closeSubMenu = () => matchesDesktopSize && setIsHovering(false)
@@ -36,11 +36,13 @@ const Header: FC<any> = () => {
     }
 
     const toggleLangHandler = (locale: string | undefined) => {
-        const lang = locale === "ru" ? "en" : "ru" 
-        push('/', undefined, {locale: lang})
+        const lang = locale === 'ru' ? 'en' : 'ru'
+        push(asPath, undefined, { locale: lang })
     }
 
     const { t } = useTranslation(['common'])
+
+    console.log(asPath)
 
     return (
         <header className={styles.header} onMouseLeave={closeSubMenu}>
@@ -94,9 +96,7 @@ const Header: FC<any> = () => {
                                             data-testid="search-button"
                                         >
                                             <button>
-                                                <div>
-                                                    {t("search")}
-                                                </div>
+                                                <div>{t('search')}</div>
                                             </button>
                                         </div>
                                     )}
@@ -107,7 +107,9 @@ const Header: FC<any> = () => {
                                             data-testid="lang-button"
                                         >
                                             <ButtonRound
-                                                onClick={() => toggleLangHandler(locale)}
+                                                onClick={() =>
+                                                    toggleLangHandler(locale)
+                                                }
                                                 type="language"
                                             >
                                                 {locale?.toUpperCase()}
