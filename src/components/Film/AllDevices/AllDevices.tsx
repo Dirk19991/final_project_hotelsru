@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import styles from './AllDevices.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
-import { useI18nContext } from '@/context/i18n'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 
@@ -11,7 +10,6 @@ export interface IAllDevices {
 }
 
 const AllDevices: FC<IAllDevices> = ({ name, src }) => {
-    const { language, i18n } = useI18nContext()
     const { t } = useTranslation(['film'])
 
     return (
