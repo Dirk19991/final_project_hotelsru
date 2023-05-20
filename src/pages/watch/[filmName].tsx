@@ -108,7 +108,11 @@ export default FilmPage
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale as string, ['film'])),
+            ...(await serverSideTranslations(locale as string, [
+                'film',
+                'common',
+                'footer',
+            ])),
         },
     }
 }

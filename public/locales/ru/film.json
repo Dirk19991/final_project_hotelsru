@@ -2,5 +2,18 @@
     "titleStart": "Cмотреть",
     "titleEnd": "на всех устройствах",
     "subtitle": "Приложение доступно для скачивания на iOS, Android, SmartTV и приставках",
-    "buttonLabel": "Подключить устройства"
+    "buttonLabel": "Подключить устройства",
+    "trailer": "Трейлер",
+    "freeMovies": "Бесплатные фильмы",
+    "iviRatingNoColon": "Рейтинг Иви",
+    "actorsAndCreators": "Актеры и создатели",
+    "profession": {
+        "director": "Режиссер",
+        "actor": "Актер",
+        "producer": "Продюсер",
+        "cineatographer": "Оператор",
+        "screenwriter": "Сценарист",
+        "composer": "Композитор"
+    },
+    "more": "Еще"
 }

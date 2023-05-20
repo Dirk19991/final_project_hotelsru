@@ -3,7 +3,6 @@ import { FC } from 'react'
 import styles from './Film.module.scss'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import FilmMobile from './FilmMobile/FilmMobile'
-import { useI18nContext } from '@/context/i18n'
 import FilmHeader from './Header/Header'
 import FilmDescription from './Description/Description'
 import FilmRating from './Rating/Rating'
@@ -13,19 +12,21 @@ import { ButtonActor } from '@/stories/Button/ButtonActor'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
 import Image from 'next/image'
 import { Button } from '@/stories/Button/ButtonStandard'
+import { useTranslation } from 'next-i18next'
 
 export interface IFilm {
     film: IMovie
 }
 
 const Film: FC<IFilm> = ({ film }) => {
-    const { language, i18n } = useI18nContext()
     const isMobile = useMediaQuery('(max-width: 1159px)')
+    const { t, i18n } = useTranslation(['film'])
 
     const { actors, rating, description, ratingCount } = film
     const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
     const fixedRating = +parseFloat(rating).toFixed(1)
     const id = film.trailer.split('/').at(-1)
+    console.log(i18n)
 
     return (
         <>
@@ -50,7 +51,7 @@ const Film: FC<IFilm> = ({ film }) => {
                                     <Button
                                         type={'trailerControls'}
                                         src="/icons/play.svg"
-                                        label={i18n[language].trailer}
+                                        label={t('trailer')}
                                         height={20}
                                         width={28}
                                     />
@@ -75,7 +76,7 @@ const Film: FC<IFilm> = ({ film }) => {
                                 <div className={styles.icons_right}>
                                     <Button
                                         type={'freeMovies'}
-                                        label={i18n[language].freeMovies}
+                                        label={t('freeMovies')}
                                         src="/icons/play.svg"
                                         height={20}
                                         width={28}
@@ -96,13 +97,13 @@ const Film: FC<IFilm> = ({ film }) => {
                                         width={44}
                                     />
                                 }
-                                text={i18n[language].iviRatingNoColon}
+                                text={t('iviRatingNoColon')}
                             />
                             {mainActors.map((actor) => (
                                 <ButtonActor
                                     href={`/person/${actor.id}`}
                                     text={
-                                        language === 'en'
+                                        i18n.language === 'en'
                                             ? actor.enName
                                             : actor.name
                                     }

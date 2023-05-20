@@ -4,6 +4,7 @@ import { IMovie, IPerson } from '@/types/ComponentProps/IMovie'
 import CreatorMedallion from '../CreatorMedallion/CreatorMedallion'
 import { useI18nContext } from '@/context/i18n'
 import CreatorModal from '../CreatorModal/CreatorModal'
+import { useTranslation } from 'next-i18next'
 
 export interface ICreatorsList {
     film: IMovie
@@ -18,7 +19,7 @@ type profession =
     | 'screenwriter'
 
 const CreatorsList: FC<ICreatorsList> = ({ film }) => {
-    const { language, i18n } = useI18nContext()
+    const { t, i18n } = useTranslation(['film'])
 
     const itemsRef = useRef<Array<HTMLLIElement | null>>([])
 
@@ -67,29 +68,33 @@ const CreatorsList: FC<ICreatorsList> = ({ film }) => {
     return (
         <div>
             <h2 className={styles.title} onClick={() => setIsModalOpened(true)}>
-                {i18n[language].actorsAndCreators}
+                {t('actorsAndCreators')}
             </h2>
             <ul className={styles.list}>
-                {persons.map((p, index) => (
-                    <li
-                        key={p.id + index}
-                        className={styles.item}
-                        ref={(el) => (itemsRef.current[index] = el)}
-                    >
-                        <CreatorMedallion
-                            size={'small'}
-                            name={language === 'en' ? p.enName : p.name}
-                            subtitle={i18n[language].profession[p.profession]}
-                            src={p.photo}
-                            href={`person/${p.id}`}
-                        />
-                    </li>
-                ))}
+                {persons.map((p, index) => {
+                    return (
+                        <li
+                            key={p.id + index}
+                            className={styles.item}
+                            ref={(el) => (itemsRef.current[index] = el)}
+                        >
+                            <CreatorMedallion
+                                size={'small'}
+                                name={
+                                    i18n.language === 'en' ? p.enName : p.name
+                                }
+                                subtitle={t(`profession.${p.profession}`)}
+                                src={p.photo}
+                                href={`person/${p.id}`}
+                            />
+                        </li>
+                    )
+                })}
                 <li
                     className={styles.more}
                     onClick={() => setIsModalOpened(true)}
                 >
-                    <span className={styles.more__text}>Ещё</span>
+                    <span className={styles.more__text}>{t('more')}</span>
                 </li>
             </ul>
             {isModalOpened && (

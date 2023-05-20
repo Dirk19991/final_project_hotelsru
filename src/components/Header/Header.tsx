@@ -42,8 +42,6 @@ const Header: FC<any> = () => {
 
     const { t } = useTranslation(['common'])
 
-    console.log(asPath)
-
     return (
         <header className={styles.header} onMouseLeave={closeSubMenu}>
             <div

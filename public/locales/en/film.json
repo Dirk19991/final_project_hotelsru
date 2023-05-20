@@ -2,5 +2,18 @@
     "titleStart": "Watch",
     "titleEnd": "on all devices",
     "subtitle": "The application is available for download on iOS, Android, SmartTV and consoles",
-    "buttonLabel": "Connect devices"
+    "buttonLabel": "Connect devices",
+    "trailer": "Trailer",
+    "freeMovies": "Free movies",
+    "iviRatingNoColon": "IVI rating",
+    "actorsAndCreators": "Actors and creators",
+    "profession": {
+        "director": "Director",
+        "actor": "Actor",
+        "producer": "Producer",
+        "cineatographer": "Cinematographer",
+        "screenwriter": "Screenwriter",
+        "composer": "Composer"
+    },
+    "more": "More"
 }
