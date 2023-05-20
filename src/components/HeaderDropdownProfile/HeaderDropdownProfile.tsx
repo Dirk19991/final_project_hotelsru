@@ -3,11 +3,11 @@ import styles from './HeaderDropdownProfile.module.scss'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Button } from '@/stories/Button/ButtonStandard'
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 
 const HeaderDropdownProfile = () => {
-    const { i18n, language } = useI18nContext()
     const { push } = useRouter()
+    const { t } = useTranslation(['header'])
 
     return (
         <div className={styles.wrapper} data-testid="dropdown-profile">
@@ -33,7 +33,7 @@ const HeaderDropdownProfile = () => {
                                     </svg>
                                 </div>
                                 <div className={styles.text}>
-                                    {i18n[language].purchases}
+                                    {t('purchases')}
                                 </div>
                             </div>
                         </Link>
@@ -58,7 +58,7 @@ const HeaderDropdownProfile = () => {
                                     </svg>
                                 </div>
                                 <div className={styles.text}>
-                                    {i18n[language].watchLater}
+                                    {t('watchLater')}
                                 </div>
                             </div>
                         </Link>
@@ -83,7 +83,7 @@ const HeaderDropdownProfile = () => {
                                     </svg>
                                 </div>
                                 <div className={styles.text}>
-                                    {i18n[language].browsingHistory}
+                                    {t('browsingHistory')}
                                 </div>
                             </div>
                         </Link>
@@ -108,8 +108,8 @@ const HeaderDropdownProfile = () => {
                                     </svg>
                                 </div>
                                 <div className={styles.text}>
-                                    {i18n[language].subscriptions}{' '}
-                                    <span>{i18n[language].activate}</span>
+                                    {t('subscriptions')}
+                                    <span>{t('activate')}</span>
                                 </div>
                             </div>
                         </Link>
@@ -134,7 +134,7 @@ const HeaderDropdownProfile = () => {
                                     </svg>
                                 </div>
                                 <div className={styles.text}>
-                                    {i18n[language].certificateActivation}
+                                    {t('certificateActivation')}
                                 </div>
                             </div>
                         </Link>
@@ -159,7 +159,7 @@ const HeaderDropdownProfile = () => {
                                     </svg>
                                 </div>
                                 <div className={styles.text}>
-                                    {i18n[language].logInWithCode}
+                                    {t('logInWithCode')}
                                 </div>
                             </div>
                         </Link>
@@ -184,7 +184,7 @@ const HeaderDropdownProfile = () => {
                                     </svg>
                                 </div>
                                 <div className={styles.text}>
-                                    {i18n[language].purchaseMethods}
+                                    {t('purchaseMethods')}
                                 </div>
                             </div>
                         </Link>
@@ -193,7 +193,7 @@ const HeaderDropdownProfile = () => {
             </div>
             <div className={styles.sideContent}>
                 <Button
-                    label={i18n[language].logInOrSignUp}
+                    label={t('logInOrSignUp')}
                     onClick={() => push('/authorization')}
                     type="register"
                 />
@@ -202,13 +202,11 @@ const HeaderDropdownProfile = () => {
                     <ul>
                         <li>
                             <Link href="https://www.ivi.ru/profile/settings">
-                                {i18n[language].settings}
+                                {t('settings')}
                             </Link>
                         </li>
                         <li>
-                            <Link href="https://ask.ivi.ru/">
-                                {i18n[language].help}
-                            </Link>
+                            <Link href="https://ask.ivi.ru/">{t('help')}</Link>
                         </li>
                     </ul>
                 </div>

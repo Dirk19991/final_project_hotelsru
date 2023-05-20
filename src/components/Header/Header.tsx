@@ -18,14 +18,13 @@ import { useTranslation } from 'next-i18next'
 const Header: FC<any> = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
-    const { toggleLanguage, language, i18n } = useI18nContext()
-
+    
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
     const [headerLinks, setHeaderLinks] = useState<IHeaderStaticLinks>(mock)
 
-    const { locale, locales, push, asPath } = useRouter()
+    const { locale, push, asPath } = useRouter()
 
     const openSubMenu = () => matchesDesktopSize && setIsHovering(true)
     const closeSubMenu = () => matchesDesktopSize && setIsHovering(false)
@@ -81,7 +80,7 @@ const Header: FC<any> = () => {
                                         data-testid="subscription-button"
                                     >
                                         <Button
-                                            label={i18n[language].watch30days}
+                                            label={t("watch30days")}
                                             onClick={() => {}}
                                             type="headerThirtyDays"
                                         />

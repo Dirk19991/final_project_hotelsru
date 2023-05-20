@@ -1,18 +1,18 @@
 import { Button } from '@/stories/Button/ButtonStandard'
 import React from 'react'
 import styles from './HeaderDropdownSubscription.module.scss'
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 import HeaderMoviesCarousel from '../HeaderMoviesCarousel/HeaderMoviesCarousel'
 import Link from 'next/link'
 
 const HeaderDropdownSubscription = () => {
-    const { i18n, language } = useI18nContext()
+    const { t } = useTranslation(['header'])
 
     return (
         <div className={styles.wrapper} data-testid="dropdown-subscription">
             <div className={styles.content}>
-                <h1>{i18n[language].iviSubscription}</h1>
-                <p>{i18n[language].subscriptionCost}</p>
+                <h1>{t('iviSubscription')}</h1>
+                <p>{t('subscriptionCost')}</p>
                 <div>
                     <ul className={styles.list}>
                         <li>
@@ -33,8 +33,8 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                {i18n[language].brandNewTVSeries} <br />
-                                {i18n[language].andMovies}
+                                {t('brandNewTVSeries')} <br />
+                                {t('andMovies')}
                             </div>
                         </li>
 
@@ -56,8 +56,8 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                {i18n[language].weeklyUpdates} <br />{' '}
-                                {i18n[language].moviesAndTVSeries}
+                                {t('weeklyUpdates')} <br />
+                                {t('moviesAndTVSeries')}
                             </div>
                         </li>
 
@@ -84,7 +84,7 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                {i18n[language].moviesWithoutAds}
+                                {t('moviesWithoutAds')}
                             </div>
                         </li>
 
@@ -106,7 +106,7 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                {i18n[language].familyAccount}
+                                {t('familyAccount')}
                             </div>
                         </li>
 
@@ -128,20 +128,19 @@ const HeaderDropdownSubscription = () => {
                                 </svg>
                             </div>
                             <div className={styles.text}>
-                                {i18n[language].downloadMobile}
+                                {t('downloadMobile')}
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div className={styles.subscriptionBtn}>
                     <Button
-                        label={i18n[language].watch30days}
+                        label={t('watch30days')}
                         onClick={() => {}}
                         type="bigThirtyDays"
                     />
                     <span>
-                        {i18n[language].unsubscribe} <br />{' '}
-                        {i18n[language].anyMoment}
+                        {t('unsubscribe')} <br /> {t('anyMoment')}
                     </span>
                 </div>
             </div>
@@ -150,7 +149,7 @@ const HeaderDropdownSubscription = () => {
 
                 <div className={styles.otherSubscriptions}>
                     <Link href="https://www.ivi.ru/profile/subscriptions">
-                        {i18n[language].otherSubscriptions}
+                        {t('otherSubscriptions')}
                     </Link>
                 </div>
             </div>

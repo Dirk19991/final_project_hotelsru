@@ -7,6 +7,7 @@ import Head from 'next/head'
 import 'swiper/scss'
 import { GetStaticProps } from 'next'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Movies: FC<any> = ({ dramas, comedies }) => {
     const { i18n, language } = useI18nContext()
@@ -44,13 +45,21 @@ const Movies: FC<any> = ({ dramas, comedies }) => {
 
 export default Movies
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
     const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
 
     const response = await fetch(`${baseURL}/api/movies-list`)
     const data = await response.json()
 
     return {
-        props: { dramas: data, comedies: data },
+        props: {
+            dramas: data,
+            comedies: data,
+            ...(await serverSideTranslations(locale as string, [
+                'common',
+                'footer',
+                'header',
+            ])),
+        },
     }
 }

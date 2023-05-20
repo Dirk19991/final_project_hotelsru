@@ -55,6 +55,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
                 'common',
                 'footer',
                 'promo',
+                'header',
             ])),
         },
     }

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styles from './HeaderDropdownFilters.module.scss'
 import Link from 'next/link'
 import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 import { ISubMenuData, IHeaderLink } from '@/types/Response/IHeaderStaticLinks'
 
 interface IHeaderDropdownFilters {
@@ -14,7 +14,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
     subMenuData,
     type,
 }) => {
-    const { language, i18n } = useI18nContext()
+    const { t, i18n } = useTranslation(['common'])
 
     const getYearSectionNames = (
         year: string | undefined,
@@ -50,13 +50,15 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
         <div className={styles.wrapper} data-testid="dropdown-filters">
             <div className={styles.categories}>
                 <div className={styles.genres}>
-                    <h4>{i18n[language].genres}</h4>
+                    <h4>{t('genres')}</h4>
                     <ul>
                         {subMenuData?.genre.map(
                             ({ id, nameEn, nameRu, link }: IHeaderLink) => (
                                 <li key={id}>
                                     <Link href={link}>
-                                        {language === 'ru' ? nameRu : nameEn}
+                                        {i18n.language === 'ru'
+                                            ? nameRu
+                                            : nameEn}
                                     </Link>
                                 </li>
                             )
@@ -65,13 +67,13 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                 </div>
                 <div className={styles.singleColumn}>
                     <div className={styles.countries}>
-                        <h4>{i18n[language].countries}</h4>
+                        <h4>{t('countries')}</h4>
                         <ul>
                             {subMenuData?.country.map(
                                 ({ id, nameEn, nameRu, link }: IHeaderLink) => (
                                     <li key={id}>
                                         <Link href={link ? link : ''}>
-                                            {language === 'ru'
+                                            {i18n.language === 'ru'
                                                 ? nameRu
                                                 : nameEn}
                                         </Link>
@@ -81,7 +83,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                         </ul>
                     </div>
                     <div className={styles.years}>
-                        <h4>{i18n[language].years}</h4>
+                        <h4>{t('years')}</h4>
                         <ul>
                             {subMenuData?.year.map(
                                 ({ id, year, link }: IHeaderLink) => (
@@ -89,7 +91,7 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                                         <Link href={link}>
                                             {getYearSectionNames(
                                                 year,
-                                                language,
+                                                i18n.language,
                                                 type
                                             )}
                                         </Link>
@@ -107,7 +109,9 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                             ({ id, nameEn, nameRu, link }: IHeaderLink) => (
                                 <li key={id}>
                                     <Link href={link}>
-                                        {language === 'ru' ? nameRu : nameEn}
+                                        {i18n.language === 'ru'
+                                            ? nameRu
+                                            : nameEn}
                                     </Link>
                                 </li>
                             )
