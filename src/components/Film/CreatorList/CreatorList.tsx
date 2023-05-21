@@ -2,7 +2,6 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import styles from './CreatorList.module.scss'
 import { IMovie, IPerson } from '@/types/ComponentProps/IMovie'
 import CreatorMedallion from '../CreatorMedallion/CreatorMedallion'
-import { useI18nContext } from '@/context/i18n'
 import CreatorModal from '../CreatorModal/CreatorModal'
 import { useTranslation } from 'next-i18next'
 

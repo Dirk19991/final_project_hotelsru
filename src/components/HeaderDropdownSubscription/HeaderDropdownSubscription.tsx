@@ -6,7 +6,7 @@ import HeaderMoviesCarousel from '../HeaderMoviesCarousel/HeaderMoviesCarousel'
 import Link from 'next/link'
 
 const HeaderDropdownSubscription = () => {
-    const { t } = useTranslation(['header'])
+    const { t } = useTranslation(['header', 'common'])
 
     return (
         <div className={styles.wrapper} data-testid="dropdown-subscription">
