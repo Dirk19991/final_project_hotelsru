@@ -1,4 +1,3 @@
-import { useI18nContext } from '@/context/i18n'
 import { ButtonActor } from '@/stories/Button/ButtonActor'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
 import { IMovie } from '@/types/ComponentProps/IMovie'
@@ -8,6 +7,7 @@ import Image from 'next/image'
 import FilmHeader from '../Header/Header'
 import FilmDescription from '../Description/Description'
 import { Button } from '@/stories/Button/ButtonStandard'
+import { useTranslation } from 'next-i18next'
 
 interface IFilmMobile {
     film: IMovie
@@ -15,7 +15,8 @@ interface IFilmMobile {
 
 const FilmMobile = ({ film }: IFilmMobile) => {
     const { description, rating, actors: allActors } = film
-    const { language, i18n } = useI18nContext()
+
+    const { t, i18n } = useTranslation(['film'])
     const [actors, setActors] = useState(allActors.slice(0, 5))
     const actorsRef = useRef<Array<HTMLLIElement | null>>([])
 
@@ -65,7 +66,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                                         width={44}
                                     />
                                 }
-                                text={i18n[language].iviRatingNoColon}
+                                text={t('iviRatingNoColon')}
                             />
                         </li>
                         {actors.map((actor, index) => (
@@ -73,7 +74,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                                 <ButtonActor
                                     href={`/person/${actor.id}`}
                                     text={
-                                        language === 'en'
+                                        i18n.language === 'en'
                                             ? actor.enName
                                             : actor.name
                                     }
@@ -92,7 +93,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                     </ul>
                     <Button
                         type={'freeMovies'}
-                        label={i18n[language].freeMovies}
+                        label={t('freeMovies')}
                         src="/icons/play.svg"
                         height={20}
                         width={28}
@@ -103,7 +104,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                     <Button
                         type={'trailerControls'}
                         src="/icons/play.svg"
-                        label={i18n[language].trailer}
+                        label={t('trailer')}
                         height={20}
                         width={28}
                     />

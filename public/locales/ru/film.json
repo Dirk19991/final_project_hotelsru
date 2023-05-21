@@ -10,10 +10,22 @@
     "profession": {
         "director": "Режиссер",
         "actor": "Актер",
+        "actors": "Актеры",
         "producer": "Продюсер",
         "cineatographer": "Оператор",
         "screenwriter": "Сценарист",
         "composer": "Композитор"
     },
-    "more": "Еще"
+    "more": "Еще",
+    "hideDetails": "Свернуть детали",
+    "showDetails": "Показать детали",
+    "movie": "фильм",
+    "tv-series": "сериал",
+    "cartoon": "мультфильм",
+    "interestingPlot": "Интересный сюжет",
+    "rate": "Оценить",
+    "ratings": "Оценок",
+    "minutes": "минут",
+    "toMovie": "К фильму",
+    "creators": "Создатели"
 }

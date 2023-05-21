@@ -9,7 +9,6 @@ import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDrop
 import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
-import { useI18nContext } from '@/context/i18n'
 import mock from '@/data/navigation.json'
 import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
 import { useRouter } from 'next/router'
@@ -18,7 +17,7 @@ import { useTranslation } from 'next-i18next'
 const Header: FC<any> = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
-    
+
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
@@ -80,7 +79,7 @@ const Header: FC<any> = () => {
                                         data-testid="subscription-button"
                                     >
                                         <Button
-                                            label={t("watch30days")}
+                                            label={t('watch30days')}
                                             onClick={() => {}}
                                             type="headerThirtyDays"
                                         />

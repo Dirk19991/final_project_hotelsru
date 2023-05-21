@@ -112,6 +112,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
                 'film',
                 'common',
                 'footer',
+                'header',
             ])),
         },
     }

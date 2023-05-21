@@ -13,6 +13,7 @@
     "settings": "Настройки",
     "help": "Помощь",
     "logInOrSignUp": "Войти или зарегистрироваться",
+    "otherSubscriptions": "Другие подписки",
     "iviSubscription": "Подписка Иви",
     "subscriptionCost": "Стоимость 189 ₽ в месяц, продление автоматическое",
     "brandNewTVSeries": "Новинки сериалов",
@@ -23,5 +24,7 @@
     "familyAccount": "Семейный аккаунт на 5 устройствах",
     "downloadMobile": "Загрузка на мобильные устройства",
     "unsubscribe": "Отключить можно",
-    "watchOnSmartTV": "Смотрите на Smart TV"
+    "watchOnSmartTV": "Смотрите на Smart TV",
+    "anyMoment": "в любой момент",
+    "watch30days": "Смотреть 30 дней бесплатно"
 }
