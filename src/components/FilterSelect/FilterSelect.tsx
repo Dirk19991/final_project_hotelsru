@@ -3,24 +3,50 @@ import styles from './FilterSelect.module.scss'
 import { useI18nContext } from '@/context/i18n'
 import cn from 'classnames'
 import engNameToLink from '@/util/engNameToLink'
-
-interface IFilterSelect {
-    filterType: string
-}
+import { useRouter } from 'next/router'
 
 const FilterSelect: FC<any> = ({
     filterType,
     currentModal,
     setCurrentModal,
     genres,
+    yearFilter,
 }) => {
     const { language, i18n } = useI18nContext()
+    const { query, push } = useRouter()
 
     const handleCurrentFilter = () => {
         if (filterType === currentModal) {
             setCurrentModal('')
         } else {
             setCurrentModal(filterType)
+        }
+    }
+
+    const yearFilterTitle = (value: string | string[] | undefined) => {
+        if (!value) {
+            return `Все годы`
+        }
+        if (value === '1980') {
+            return `до 1980`
+        }
+        if (value && String(value).match('-')) {
+            return value
+        } else {
+            return `${value} год`
+        }
+    }
+
+    const yearsNavigate = (value: string) => {
+        if (value === '') {
+            delete query.year
+            push({ query: { ...query } }, undefined, {
+                shallow: true,
+            })
+        } else {
+            push({ query: { ...query, year: value } }, undefined, {
+                shallow: true,
+            })
         }
     }
 
@@ -44,7 +70,9 @@ const FilterSelect: FC<any> = ({
                 {filterType === 'countries' && (
                     <span>{'Австралия, Великобритания, Германия'}</span>
                 )}
-                {filterType === 'years' && <span>{'2023 год'}</span>}
+                {filterType === 'years' && (
+                    <span>{yearFilterTitle(query.year)}</span>
+                )}
             </div>
             <div className={styles.dropdown}>
                 {currentModal === 'genres' && filterType === 'genres' && (
@@ -123,56 +151,41 @@ const FilterSelect: FC<any> = ({
                 {currentModal === 'years' && filterType === 'years' && (
                     <div className={styles.yearsDropdown}>
                         <ul>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="years"
-                                        value="all"
-                                    />
-                                    <div>Все годы</div>
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="years"
-                                        value="2022"
-                                    />
-                                    <div>2022 год</div>
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="years"
-                                        value="2021"
-                                    />
-                                    <div>2021 год</div>
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="years"
-                                        value="1980-2000"
-                                    />
-                                    <div>1980-2000</div>
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="years"
-                                        value="<1980"
-                                    />
-                                    <div>до 1980</div>
-                                </label>
-                            </li>
+                            {yearFilter.map(({ id, value }: any) => {
+                                let title
+
+                                if (value.match('-')) {
+                                    title = value
+                                } else {
+                                    title = `${value} год`
+                                }
+                                if (value === '') {
+                                    title = `Все годы`
+                                }
+                                if (value === '1980') {
+                                    title = `до 1980`
+                                }
+
+                                const queryParam = query.year ?? ''
+
+                                return (
+                                    <li key={id}>
+                                        <label
+                                            onClick={() => yearsNavigate(value)}
+                                        >
+                                            <input
+                                                type="radio"
+                                                name="years"
+                                                value={value}
+                                                checked={
+                                                    queryParam === value && true
+                                                }
+                                            />
+                                            <div>{title}</div>
+                                        </label>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                 )}

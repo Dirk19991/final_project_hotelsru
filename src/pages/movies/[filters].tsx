@@ -1,21 +1,17 @@
-import React, { useState, FC, useEffect } from 'react'
+import React, { useState, FC } from 'react'
 import Head from 'next/head'
-import { useI18nContext } from '@/context/i18n'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
 import SortingPanel from '@/components/SortingPanel/SortingPanel'
 import Filters from '@/components/Filters/Filters'
 import MoviesList from '@/components/MoviesList/MoviesList'
-import { useRouter } from 'next/router'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-const MoviesFilters: FC<any> = () => {
-    const { i18n, language } = useI18nContext()
-    const { query } = useRouter()
-
+const MoviesFilters: FC<any> = ({ yearFilter }) => {
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
 
     const breadcrumbsData = [
-        { id: 1, title: i18n[language].myIvi, href: '/' },
-        { id: 2, title: i18n[language].movies, href: '/movies' },
+        { id: 1, title: 'Мой Иви', href: '/' },
+        { id: 2, title: 'Фильмы', href: '/movies' },
         {
             id: 3,
             countries: [
@@ -42,17 +38,30 @@ const MoviesFilters: FC<any> = () => {
                 setCurrentSorting={setCurrentSorting}
                 currentSorting={currentSorting}
             />
-            <Filters genres={[]} />
+            <Filters genres={[]} yearFilter={yearFilter} />
 
             <MoviesList />
         </>
     )
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ params, locale, query }: any) => {
+    const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
+
+    const yearsFilterRes = await fetch(`${baseURL}/api/filters`)
+    const yearFilter = await yearsFilterRes.json()
+
+    console.log(params, query)
 
     return {
         props: {
+            yearFilter: yearFilter.years,
+            ...(await serverSideTranslations(locale as string, [
+                'common',
+                'footer',
+                'header',
+                'movies',
+            ])),
         },
     }
 }

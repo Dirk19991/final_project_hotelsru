@@ -4,15 +4,11 @@ import FilterSelect from '../FilterSelect/FilterSelect'
 import FilterSearch from '../FilterSearch/FilterSearch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useI18nContext } from '@/context/i18n'
 
-const Filters: FC<any> = ({ genres }) => {
+const Filters: FC<any> = ({ genres, yearFilter }) => {
     const [currentModal, setCurrentModal] = useState<string>('')
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
-
-    const { language, i18n } = useI18nContext()
-
 
     return (
         <div className={styles.filters}>
@@ -34,13 +30,14 @@ const Filters: FC<any> = ({ genres }) => {
                             filterType="years"
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
+                            yearFilter={yearFilter}
                         />
                         <FilterSearch searchType="producer" />
                         <FilterSearch searchType="actor" />
                     </div>
                     <div className={styles.ranges}>
                         <div className={styles.range}>
-                            <p>{i18n[language].ratingFrom}</p>
+                            <p>{`Рейтинг:`}</p>
                             <input
                                 type="range"
                                 value={ratingValue}
@@ -52,7 +49,7 @@ const Filters: FC<any> = ({ genres }) => {
                             <span>{ratingValue}</span>
                         </div>
                         <div className={styles.range}>
-                            <p>{i18n[language].numberOfRatings}</p>
+                            <p>{`Количество оценок:`}</p>
                             <input
                                 type="range"
                                 value={ratesAmountValue}
@@ -60,7 +57,7 @@ const Filters: FC<any> = ({ genres }) => {
                                     setRatesAmountValue(e.target.value)
                                 }
                                 min="0"
-                                max="1000"
+                                max="990"
                                 step="10"
                             />
                             <span>{ratesAmountValue}</span>
@@ -70,7 +67,7 @@ const Filters: FC<any> = ({ genres }) => {
                         <div>
                             <FontAwesomeIcon icon={faXmark} size="xl" />
                         </div>
-                        <span>{i18n[language].resetFilters}</span>
+                        <span>{`Сбросить фильтры`}</span>
                     </button>
                 </div>
             </div>
