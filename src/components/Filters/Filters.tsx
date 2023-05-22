@@ -5,6 +5,7 @@ import FilterSearch from '../FilterSearch/FilterSearch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'next-i18next'
+import RangeSlider from '../RangeSlider/RangeSlider'
 
 const Filters: FC<any> = ({ genres, yearFilter }) => {
     const [currentModal, setCurrentModal] = useState<string>('')
@@ -39,37 +40,25 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                         <FilterSearch searchType="actor" />
                     </div>
                     <div className={styles.ranges}>
-                        <div className={styles.range}>
-                            <p>{t('ratingFrom')}</p>
-                            <input
-                                type="range"
-                                value={ratingValue}
-                                onChange={(e) => setRatingValue(e.target.value)}
-                                min="0"
-                                max="10"
-                                step="0.1"
-                            />
-                            <span>{ratingValue}</span>
-                        </div>
-                        <div className={styles.range}>
-                            <p>{t('ratesAmout')}</p>
-                            <input
-                                type="range"
-                                value={ratesAmountValue}
-                                onChange={(e) =>
-                                    setRatesAmountValue(e.target.value)
-                                }
-                                min="0"
-                                max="990"
-                                step="10"
-                            />
-                            <span>{ratesAmountValue}</span>
-                        </div>
+                        <RangeSlider
+                            title={t('ratingFrom')}
+                            sliderValue={ratingValue}
+                            setSliderValue={setRatingValue}
+                            min={0}
+                            max={10}
+                            step={0.1}
+                        />
+                        <RangeSlider
+                            title={t('ratesAmout')}
+                            sliderValue={ratesAmountValue}
+                            setSliderValue={setRatesAmountValue}
+                            min={0}
+                            max={990}
+                            step={10}
+                        />
                     </div>
                     <button className={styles.reset} disabled={true}>
-                        <div>
-                            <FontAwesomeIcon icon={faXmark} size="xl" />
-                        </div>
+                        <FontAwesomeIcon icon={faXmark} size="xl" />
                         <span>{t('resetFilters')}</span>
                     </button>
                 </div>

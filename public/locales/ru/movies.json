@@ -16,5 +16,6 @@
     "byRating": "Рейтингу",
     "byRatesAmount": "Количеству оценок",
     "byReleaseDate": "Дате выхода",
-    "byAlphabet": "Алфавиту"
+    "byAlphabet": "Алфавиту",
+    "showMore": "Показать еще"
 }

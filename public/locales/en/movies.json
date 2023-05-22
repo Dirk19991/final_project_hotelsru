@@ -16,5 +16,6 @@
     "byRating": "Rating",
     "byRatesAmount": "Rates",
     "byReleaseDate": "Release date",
-    "byAlphabet": "Alphabet"
+    "byAlphabet": "Alphabet",
+    "showMore": "Show more"
 }

@@ -5,6 +5,7 @@ import MoviesListSkeleton from '@/components/MoviesListSkeleton/MoviesListSkelet
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useI18nContext } from '@/context/i18n'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
+import { UseTranslation, useTranslation } from 'next-i18next'
 
 interface IMoviesData {
     id: number
@@ -28,8 +29,8 @@ interface IMoviesData {
 }
 
 const MoviesList = () => {
-    const { language, i18n } = useI18nContext()
     const [moviesData, setMoviesData] = useState<IMoviesData[] | null>(null)
+    const { t } = useTranslation(['movies'])
 
     useEffect(() => {
         fetch('http://localhost:3001/movies?year=2020')
@@ -68,9 +69,8 @@ const MoviesList = () => {
                             ))}
                     </ul>
 
-                    {/* Storybook */}
                     <Button
-                        label={i18n[language].showMore}
+                        label={t('showMore')}
                         onClick={() => {}}
                         type="showMore"
                     />
