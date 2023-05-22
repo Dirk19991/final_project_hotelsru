@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 import styles from './Filters.module.scss'
 import FilterSelect from '../FilterSelect/FilterSelect'
 import FilterSearch from '../FilterSearch/FilterSearch'
@@ -6,11 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'next-i18next'
 import RangeSlider from '../RangeSlider/RangeSlider'
+import { useRouter } from 'next/router'
 
 const Filters: FC<any> = ({ genres, yearFilter }) => {
+    const { query } = useRouter()
+
+    const ratingQuery = query.rating ? String(query.rating) : '0'
+    const ratesQuery = query.rates ? String(query.rates) : '0'
+
     const [currentModal, setCurrentModal] = useState<string>('')
-    const [ratingValue, setRatingValue] = useState<string>('0')
-    const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
+    const [ratingValue, setRatingValue] = useState<string>(ratingQuery)
+    const [ratesAmountValue, setRatesAmountValue] = useState<string>(ratesQuery)
 
     const { t } = useTranslation(['movies'])
 
@@ -44,6 +50,7 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                             title={t('ratingFrom')}
                             sliderValue={ratingValue}
                             setSliderValue={setRatingValue}
+                            queryName={'rating'}
                             min={0}
                             max={10}
                             step={0.1}
@@ -52,6 +59,7 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                             title={t('ratesAmout')}
                             sliderValue={ratesAmountValue}
                             setSliderValue={setRatesAmountValue}
+                            queryName={'rates'}
                             min={0}
                             max={990}
                             step={10}

@@ -6,13 +6,7 @@ import engNameToLink from '@/util/engNameToLink'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-const FilterSelect: FC<any> = ({
-    filterType,
-    currentModal,
-    setCurrentModal,
-    genres,
-    yearFilter,
-}) => {
+const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, genres, yearFilter }) => {
     const { language, i18n } = useI18nContext()
     const { query, push } = useRouter()
     const { t } = useTranslation(['common'])
@@ -40,31 +34,31 @@ const FilterSelect: FC<any> = ({
     }
 
     const yearsNavigate = (value: string) => {
+        const pathname = '/movies/[filters]'
+        const filters = query.filters ?? 'all'
+
         if (value === '') {
             delete query.year
             push({
-                pathname: '/movies/[filters]',
-                query: { ...query, filters: query.filters ?? 'all' },
-            })
-        } else {
-            push({
-                pathname: '/movies/[filters]',
-                query: {
-                    ...query,
-                    year: value,
-                    filters: query.filters ?? 'all',
-                },
+                pathname,
+                query: { ...query, filters },
             })
         }
+
+        push({
+            pathname,
+            query: {
+                ...query,
+                year: value,
+                filters,
+            },
+        })
     }
 
     return (
         <div className={styles.wrapper}>
             <div
-                className={cn(
-                    styles.select,
-                    filterType === currentModal && styles.active
-                )}
+                className={cn(styles.select, filterType === currentModal && styles.active)}
                 onClick={handleCurrentFilter}
             >
                 <div>
@@ -72,15 +66,9 @@ const FilterSelect: FC<any> = ({
                     {filterType === 'countries' && t('countries')}
                     {filterType === 'years' && t('years')}
                 </div>
-                {filterType === 'genres' && (
-                    <span>{'Артхаус, Драма, Документальный'}</span>
-                )}
-                {filterType === 'countries' && (
-                    <span>{'Австралия, Великобритания, Германия'}</span>
-                )}
-                {filterType === 'years' && (
-                    <span>{query.filters && yearFilterTitle(query.year)}</span>
-                )}
+                {filterType === 'genres' && <span>{'Артхаус, Драма, Документальный'}</span>}
+                {filterType === 'countries' && <span>{'Австралия, Великобритания, Германия'}</span>}
+                {filterType === 'years' && <span>{query.filters && yearFilterTitle(query.year)}</span>}
             </div>
             <div className={styles.dropdown}>
                 {currentModal === 'genres' && filterType === 'genres' && (
@@ -91,17 +79,8 @@ const FilterSelect: FC<any> = ({
                                     return (
                                         <li key={id}>
                                             <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={engNameToLink(
-                                                        nameEn
-                                                    )}
-                                                />
-                                                <div>
-                                                    {language === 'ru'
-                                                        ? nameRu
-                                                        : nameEn}
-                                                </div>
+                                                <input type="checkbox" value={engNameToLink(nameEn)} />
+                                                <div>{language === 'ru' ? nameRu : nameEn}</div>
                                             </label>
                                         </li>
                                     )
@@ -165,29 +144,25 @@ const FilterSelect: FC<any> = ({
                                 if (value.match('-')) {
                                     title = value
                                 } else {
-                                    title = `${value} год`
+                                    title = `${value} ${t('year')}`
                                 }
                                 if (value === '') {
-                                    title = `Все годы`
+                                    title = t('allYears')
                                 }
                                 if (value === '1980') {
-                                    title = `до 1980`
+                                    title = `${t('before')} 1980`
                                 }
 
                                 const queryParam = query.year ?? ''
 
                                 return (
                                     <li key={id}>
-                                        <label
-                                            onClick={() => yearsNavigate(value)}
-                                        >
+                                        <label onClick={() => yearsNavigate(value)}>
                                             <input
                                                 type="radio"
                                                 name="years"
                                                 value={value}
-                                                checked={
-                                                    queryParam === value && true
-                                                }
+                                                checked={queryParam === value && true}
                                             />
                                             <div>{title}</div>
                                         </label>
