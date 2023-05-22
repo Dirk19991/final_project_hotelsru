@@ -7,6 +7,7 @@ import { I18nProvider } from '@/context/i18n'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { FC } from 'react'
+import { I18nextProvider } from 'react-i18next'
 
 const openSans = Open_Sans({
     weight: ['300', '400', '500', '700'],
@@ -28,6 +29,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                     href="https://gambit-central.dfs.ivi.ru/dist/23.04.05_c1f11edb/storm/images/favicon/64.png"
                 />
             </Head>
+
             <I18nProvider>
                 <Layout>
                     <style jsx global>{`

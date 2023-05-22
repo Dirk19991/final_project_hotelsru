@@ -1,7 +1,6 @@
 import { IMovie } from '@/types/ComponentProps/IMovie'
 import { FC, useState } from 'react'
 import styles from './CreatorModal.module.scss'
-import { useI18nContext } from '@/context/i18n'
 import PosterCard from '../PosterCard/PosterCard'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
