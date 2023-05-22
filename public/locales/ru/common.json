@@ -1,6 +1,5 @@
 {
-    "collapse": "Свернуть",
-    "expand": "Развернуть",
+
     "myIvi": "Мой Иви",
     "catalog": "Каталог",
     "search": "Поиск",
@@ -16,5 +15,9 @@
     "countries": "Страны",
     "years": "Годы",
     "subscribeAndWatch": "Смотреть по подписке",
-    "thisWeek": "за неделю"
+    "thisWeek": "за неделю",
+
+    "allYears": "Все годы",
+    "before": "до",
+    "year": "год"
 }

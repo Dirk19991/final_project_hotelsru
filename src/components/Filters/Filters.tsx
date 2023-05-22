@@ -4,11 +4,14 @@ import FilterSelect from '../FilterSelect/FilterSelect'
 import FilterSearch from '../FilterSearch/FilterSearch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'next-i18next'
 
 const Filters: FC<any> = ({ genres, yearFilter }) => {
     const [currentModal, setCurrentModal] = useState<string>('')
     const [ratingValue, setRatingValue] = useState<string>('0')
     const [ratesAmountValue, setRatesAmountValue] = useState<string>('0')
+
+    const { t } = useTranslation(['movies'])
 
     return (
         <div className={styles.filters}>
@@ -37,7 +40,7 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                     </div>
                     <div className={styles.ranges}>
                         <div className={styles.range}>
-                            <p>{`Рейтинг:`}</p>
+                            <p>{t('ratingFrom')}</p>
                             <input
                                 type="range"
                                 value={ratingValue}
@@ -49,7 +52,7 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                             <span>{ratingValue}</span>
                         </div>
                         <div className={styles.range}>
-                            <p>{`Количество оценок:`}</p>
+                            <p>{t('ratesAmout')}</p>
                             <input
                                 type="range"
                                 value={ratesAmountValue}
@@ -67,7 +70,7 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                         <div>
                             <FontAwesomeIcon icon={faXmark} size="xl" />
                         </div>
-                        <span>{`Сбросить фильтры`}</span>
+                        <span>{t('resetFilters')}</span>
                     </button>
                 </div>
             </div>

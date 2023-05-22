@@ -1,8 +1,20 @@
 {
+    "collapse": "Collapse",
+    "expand": "Expand",
     "watchMoviesOnline": "Watch movies online",
     "doYouLikeWatching": "Do you like watching movies online and spending a lot of time serfing websites looking for something interesting? It is worth checking ivi.ru - the films that we have collected will keep you engaged for a long time. The collection is constantly updated with new films and critically acclaimed masterpieces of the past! You can be a fan of action movies or teen dramas, the abundance of our catalog will make you forget about all other leisure activities and you will rewatch your favorite movies online again and again!",
     "theSelectionOfFilms": "The selection of films is very big and varied, so everyone will find something interesting for themselves, whatever their tastes. Do you prefer only foreign films? We have plenty of them: these are the golden classics of Hollywood, soulful French comedies, hot Italian dramas, and loud Indian musical films. Or maybe you are a patriot and love Russian films? Well, we have a lot of them. What do you like more - good old classics or new films? No matter what your answer is, we've got it all, from early cinema to 2023 films.",
     "inOurCatalog": "In our catalog you can find a movie of any genre. These are romantic films, and detectives, and action films, and westerns, and science fiction, and art house, and hilarious comedies, and films about war, and horror, and thrillers, and documentaries... In addition to full-length films, on the website there are also short films, as well as foreign and Russian TV series.",
     "ifYouAreInterested": "If you are interested in watching iconic movies of a particular genre online, the category system will help you easily navigate and find, for example, the best dramas or the best animated films online.",
-    "doNotMiss": "Do not miss a great opportunity to watch movies online without registration, choosing only what you are really interested in, and when it is convenient for you. It's so easy and enjoyable!"
+    "doNotMiss": "Do not miss a great opportunity to watch movies online without registration, choosing only what you are really interested in, and when it is convenient for you. It's so easy and enjoyable!",
+    "resetFilters": "Reset filters",
+    "ratingFrom": "Rating from:",
+    "ratesAmout": "Rates Amount (K) from:",
+    "searchByProducer": "Search by producer",
+    "searchByActor": "Search by actor",
+    "sortBy": "Sort by:",
+    "byRating": "Rating",
+    "byRatesAmount": "Rates",
+    "byReleaseDate": "Release date",
+    "byAlphabet": "Alphabet"
 }

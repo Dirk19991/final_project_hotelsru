@@ -4,6 +4,7 @@ import { useI18nContext } from '@/context/i18n'
 import cn from 'classnames'
 import engNameToLink from '@/util/engNameToLink'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 const FilterSelect: FC<any> = ({
     filterType,
@@ -14,6 +15,7 @@ const FilterSelect: FC<any> = ({
 }) => {
     const { language, i18n } = useI18nContext()
     const { query, push } = useRouter()
+    const { t } = useTranslation(['common'])
 
     const handleCurrentFilter = () => {
         if (filterType === currentModal) {
@@ -25,27 +27,33 @@ const FilterSelect: FC<any> = ({
 
     const yearFilterTitle = (value: string | string[] | undefined) => {
         if (!value) {
-            return `Все годы`
+            return t('allYears')
         }
         if (value === '1980') {
-            return `до 1980`
+            return `${t('before')} 1980`
         }
         if (value && String(value).match('-')) {
             return value
         } else {
-            return `${value} год`
+            return `${value} ${t('year')}`
         }
     }
 
     const yearsNavigate = (value: string) => {
         if (value === '') {
             delete query.year
-            push({ query: { ...query } }, undefined, {
-                shallow: true,
+            push({
+                pathname: '/movies/[filters]',
+                query: { ...query, filters: query.filters ?? 'all' },
             })
         } else {
-            push({ query: { ...query, year: value } }, undefined, {
-                shallow: true,
+            push({
+                pathname: '/movies/[filters]',
+                query: {
+                    ...query,
+                    year: value,
+                    filters: query.filters ?? 'all',
+                },
             })
         }
     }
@@ -60,9 +68,9 @@ const FilterSelect: FC<any> = ({
                 onClick={handleCurrentFilter}
             >
                 <div>
-                    {filterType === 'genres' && i18n[language].genres}
-                    {filterType === 'countries' && i18n[language].countries}
-                    {filterType === 'years' && i18n[language].years}
+                    {filterType === 'genres' && t('genres')}
+                    {filterType === 'countries' && t('countries')}
+                    {filterType === 'years' && t('years')}
                 </div>
                 {filterType === 'genres' && (
                     <span>{'Артхаус, Драма, Документальный'}</span>
@@ -71,7 +79,7 @@ const FilterSelect: FC<any> = ({
                     <span>{'Австралия, Великобритания, Германия'}</span>
                 )}
                 {filterType === 'years' && (
-                    <span>{yearFilterTitle(query.year)}</span>
+                    <span>{query.filters && yearFilterTitle(query.year)}</span>
                 )}
             </div>
             <div className={styles.dropdown}>

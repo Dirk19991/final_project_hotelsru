@@ -5,13 +5,15 @@ import SortingPanel from '@/components/SortingPanel/SortingPanel'
 import Filters from '@/components/Filters/Filters'
 import MoviesList from '@/components/MoviesList/MoviesList'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 const MoviesFilters: FC<any> = ({ yearFilter }) => {
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
+    const { t } = useTranslation(['common'])
 
     const breadcrumbsData = [
-        { id: 1, title: 'Мой Иви', href: '/' },
-        { id: 2, title: 'Фильмы', href: '/movies' },
+        { id: 1, title: t('myIvi'), href: '/' },
+        { id: 2, title: t('movies'), href: '/movies' },
         {
             id: 3,
             countries: [
@@ -33,13 +35,11 @@ const MoviesFilters: FC<any> = ({ yearFilter }) => {
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
-
             <SortingPanel
                 setCurrentSorting={setCurrentSorting}
                 currentSorting={currentSorting}
             />
             <Filters genres={[]} yearFilter={yearFilter} />
-
             <MoviesList />
         </>
     )

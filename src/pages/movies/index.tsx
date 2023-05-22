@@ -9,7 +9,7 @@ import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
-const Movies: FC<any> = ({ dramas, comedies }) => {
+const Movies: FC<any> = ({ dramas, comedies, yearFilter }) => {
     const { t } = useTranslation(['common'])
 
     const breadcrumbsData = [
@@ -27,16 +27,16 @@ const Movies: FC<any> = ({ dramas, comedies }) => {
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <MoviesTitle />
-            <Filters genres={[]} />
+            <Filters genres={[]} yearFilter={yearFilter} />
 
             <DefaultCarousel
-                title={'Лучшие комедии'}
+                title={t('bestComedies')}
                 link={'/movies/comedy'}
                 dataList={dramas}
             />
             <DefaultCarousel
-                title={'Лучшие комедии'}
-                link={'/movies/comedy'}
+                title={t('bestDramas')}
+                link={'/movies/drama'}
                 dataList={comedies}
             />
         </>
@@ -51,10 +51,14 @@ export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
     const response = await fetch(`${baseURL}/api/movies-list`)
     const data = await response.json()
 
+    const yearsFilterRes = await fetch(`${baseURL}/api/filters`)
+    const yearFilter = await yearsFilterRes.json()
+
     return {
         props: {
             dramas: data,
             comedies: data,
+            yearFilter: yearFilter.years,
             ...(await serverSideTranslations(locale as string, [
                 'common',
                 'footer',
