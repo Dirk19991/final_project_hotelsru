@@ -27,5 +27,7 @@
     "minutes": "minutes",
 
     "toMovie": "To movie",
-    "creators": "Creators"
+    "creators": "Creators",
+    "loadingMovie": "Loading movie...",
+    "noMovie": "No movie"
 }
