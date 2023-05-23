@@ -43,7 +43,7 @@ const NavigationBar: FC<INavigationBar> = ({ handleMouseOver }) => {
             href: 'animation',
             expandable: true,
         },
-        { id: 6, name: 'TV+', href: 'tvplus', expandable: false },
+        { id: 6, name: 'TV+', href: 'tvplus', expandable: true },
     ]
 
     return (

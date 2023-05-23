@@ -24,5 +24,36 @@
     "familyAccount": "Family account on 5 devices",
     "downloadMobile": "Download on your mobile device",
     "unsubscribe": "Unsubscribe",
-    "watchOnSmartTV": "Watch on Smart TV"
+    "watchOnSmartTV": "Watch on Smart TV",
+    "category": {
+        "online": "TV online",
+        "channels": "TV channels",
+        "entertaining": "Entertaining",
+        "children": "Children",
+        "sport": "Sport TV",
+        "documentary": "Documentary"
+    },
+    "TVprogram": "TV program",
+    "federalChannels": "Federal Channels",
+    "sportChannels": "Sports channels",
+    "popular": "Popular broadcasts",
+    "time": {
+        "today": "Today",
+        "tomorrow": "Tomorrow",
+        "inProgress": "In progress"
+    },
+    "player": {
+        "pariNN": "Pari NN",
+        "sochi": "Sochi",
+        "finland": "Finland",
+        "denmark": "Denmark",
+        "canada": "Canada",
+        "norway": "Norway",
+        "germany": "Germany",
+        "france": "France"
+    },
+    "gametype": {
+        "general": "General",
+        "football": "Football"
+    }
 }

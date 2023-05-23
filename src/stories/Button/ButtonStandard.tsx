@@ -22,6 +22,7 @@ export interface ButtonProps {
         | 'freeMovies'
         | 'trailerControls'
         | 'allDevices'
+        | 'tvprogram'
     src?: string
     width?: number
     height?: number
