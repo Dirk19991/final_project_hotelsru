@@ -10,7 +10,7 @@ config.autoAddCss = false
 
 export interface ITooltipIcon {
     icon: IconDefinition
-    text: string
+    text: string | null
 }
 
 const TooltipIcon: FC<ITooltipIcon> = ({ icon, text }) => {

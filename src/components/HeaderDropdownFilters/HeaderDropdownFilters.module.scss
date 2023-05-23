@@ -48,6 +48,19 @@
 }
 .tabs {
     border-left: 1px solid $divider-color;
+    position: relative;
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 20px;
+        content: '';
+        background-color: $accent-color;
+        transition-duration: 0.3s;
+    }
+
     ul {
         user-select: none;
         li {
@@ -58,10 +71,6 @@
             margin-bottom: 7px;
             a {
                 cursor: pointer;
-            }
-            &:hover {
-                border-left: 1px solid $accent-color;
-                color: $accent-color;
             }
         }
     }

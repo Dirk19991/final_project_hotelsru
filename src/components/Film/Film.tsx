@@ -26,7 +26,6 @@ const Film: FC<IFilm> = ({ film }) => {
     const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
     const fixedRating = +parseFloat(rating).toFixed(1)
     const id = film.trailer.split('/').at(-1)
-    console.log(film)
 
     return (
         <>

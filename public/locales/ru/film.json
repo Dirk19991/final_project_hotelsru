@@ -27,5 +27,7 @@
     "ratings": "Оценок",
     "minutes": "минут",
     "toMovie": "К фильму",
-    "creators": "Создатели"
+    "creators": "Создатели",
+    "loadingMovie": "Загрузка фильма...",
+    "noMovie": "Нет фильма"
 }

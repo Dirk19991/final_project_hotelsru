@@ -3,16 +3,17 @@ import styles from './PersonFilm.module.scss'
 import Image from 'next/image'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useRouter } from 'next/router'
-import { useI18nContext } from '@/context/i18n'
 import Link from 'next/link'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import { useTranslation } from 'next-i18next'
 
 const PersonFilm = ({ film }: { film: IPersonMovie }) => {
     const isMobile = useMediaQuery('(max-width: 650px)')
-    const { language, i18n } = useI18nContext()
+
+    const { t } = useTranslation(['person'])
     const fixedRating =
-        +parseFloat(film.rating).toFixed(1) || i18n[language].notEnoughRatings
-    console.log(film)
+        +parseFloat(film.rating).toFixed(1) || t('notEnoughRatings')
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.imageContainer}>
@@ -37,13 +38,13 @@ const PersonFilm = ({ film }: { film: IPersonMovie }) => {
                 </Link>
 
                 <div className={styles.rating}>
-                    {i18n[language].iviRating} {fixedRating}
+                    {t('iviRating')} {fixedRating}
                 </div>
                 {isMobile && (
                     <div className={styles.mobileButton}>
                         <Link href={`../watch/${film.id}`}>
                             <Button
-                                label={i18n[language].watch}
+                                label={t('watch')}
                                 onClick={() => {}}
                                 type="watch"
                             />
@@ -56,7 +57,7 @@ const PersonFilm = ({ film }: { film: IPersonMovie }) => {
                 <div className={styles.button}>
                     <Link href={`../watch/${film.id}`}>
                         <Button
-                            label={i18n[language].watch}
+                            label={t('watch')}
                             onClick={() => {}}
                             type="watch"
                         />

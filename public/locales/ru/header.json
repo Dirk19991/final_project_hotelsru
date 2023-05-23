@@ -25,6 +25,37 @@
     "downloadMobile": "Загрузка на мобильные устройства",
     "unsubscribe": "Отключить можно",
     "watchOnSmartTV": "Смотрите на Smart TV",
+    "category": {
+        "online": "ТВ онлайн",
+        "channels": "ТВ каналы",
+        "entertaining": "Развлекательное",
+        "children": "Дети",
+        "sport": "Спортивное ТВ",
+        "documentary": "Документальное"
+    },
+    "TVprogram": "Телепрограмма",
+    "federalChannels": "Федеральные каналы",
+    "sportChannels": "Спортивные каналы",
+    "popular": "Популярные трансляции",
+    "time": {
+        "today": "Сегодня",
+        "tomorrow": "Завтра",
+        "inProgress": "Трансляция идет"
+    },
+    "player": {
+        "pariNN": "Пари НН",
+        "sochi": "Сочи",
+        "finland": "Финлядния",
+        "denmark": "Дания",
+        "canada": "Канада",
+        "norway": "Норвегия",
+        "germany": "Германия",
+        "france": "Франция"
+    },
+    "gametype": {
+        "general": "Общее",
+        "football": "Футбол"
+    },
     "anyMoment": "в любой момент",
     "watch30days": "Смотреть 30 дней бесплатно"
 }

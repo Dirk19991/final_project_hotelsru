@@ -4,11 +4,10 @@ import CreatorsList from '@/components/Film/CreatorList/CreatorList'
 import Film from '@/components/Film/Film'
 import { IMovie } from '@/types/ComponentProps/IMovie'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import data from '@/data/mockDataFilm.json'
 import styles from './[filmName].module.scss'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
-import { useI18nContext } from '@/context/i18n'
 import FilmBreadcrumbs from '@/components/Film/Breadcrumbs/Breadcrumbs'
 import mock from '@/data/mockData'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -18,8 +17,7 @@ import { GetStaticProps } from 'next'
 // тут нужно будет убрать useeffect и перенести получение данных в getStaticProps и getStaticPaths когда появится бэкенд
 
 const FilmPage = () => {
-    const { language, i18n } = useI18nContext()
-    const { t } = useTranslation(['film'])
+    const { t, i18n } = useTranslation(['film'])
 
     const router = useRouter()
 
@@ -62,12 +60,12 @@ const FilmPage = () => {
                     <FilmBreadcrumbs
                         items={[
                             {
-                                name: i18n[language][
+                                name: t(
                                     film.type as
                                         | 'movie'
                                         | 'tv-series'
                                         | 'cartoon'
-                                ],
+                                ),
                                 href: '/',
                             },
                             {
@@ -86,18 +84,22 @@ const FilmPage = () => {
                     <CreatorsList film={film} />
                     <CommentsCarousel />
                     <AllDevices
-                        name={language === 'en' ? film.nameEn : film.nameRu}
+                        name={
+                            i18n.language === 'en' ? film.nameEn : film.nameRu
+                        }
                         src={film.poster}
                     />
                 </div>
             )}
             {isLoading && (
                 <h1 className={styles.loading}>
-                    {i18n[language].loadingMovie}
+                    {i18n.language === 'en'
+                        ? 'Loading movie...'
+                        : 'Загрузка фильма...'}
                 </h1>
             )}
             {!film && !isLoading && (
-                <h1 className={styles.noFilm}>{i18n[language].noMovie}</h1>
+                <h1 className={styles.noFilm}>{t('noMovie')}</h1>
             )}
         </main>
     )
