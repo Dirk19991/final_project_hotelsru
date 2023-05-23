@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import styles from './HeaderDropdownFilters.module.scss'
 import Link from 'next/link'
 import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
@@ -15,6 +15,8 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
     type,
 }) => {
     const { t, i18n } = useTranslation(['common'])
+
+    const [chosenTab, setChosenTab] = useState(0)
 
     const getYearSectionNames = (
         year: string | undefined,
@@ -104,10 +106,22 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
             </div>
             <div className={styles.sidebar}>
                 <div className={styles.tabs}>
+                    <div style={{ top: `${chosenTab * 28}px` }}></div>
                     <ul>
                         {subMenuData?.selection.map(
-                            ({ id, nameEn, nameRu, link }: IHeaderLink) => (
-                                <li key={id}>
+                            (
+                                { id, nameEn, nameRu, link }: IHeaderLink,
+                                index
+                            ) => (
+                                <li
+                                    key={id}
+                                    onMouseOver={() => setChosenTab(index)}
+                                    style={
+                                        chosenTab === index
+                                            ? { color: 'white' }
+                                            : {}
+                                    }
+                                >
                                     <Link href={link}>
                                         {i18n.language === 'ru'
                                             ? nameRu

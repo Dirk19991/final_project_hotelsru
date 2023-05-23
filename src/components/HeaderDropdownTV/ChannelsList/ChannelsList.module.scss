@@ -1,0 +1,84 @@
+@import '@/styles/vars.scss';
+
+.container {
+    position: relative;
+}
+
+.title {
+    color: $accent-color;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 16px;
+}
+
+.swiper {
+    width: 661px;
+    height: 58px;
+}
+
+.button {
+    display: none;
+    width: 15px;
+    height: 44px;
+    position: absolute;
+    top: calc(40%);
+    cursor: pointer;
+    transform: scaleX(0.5) scaleY(0.7);
+    opacity: 0.5;
+    transition: 0.3s;
+
+    > svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    > img {
+        width: 100%;
+        height: 100%;
+    }
+    &:hover {
+        opacity: 1;
+    }
+
+    &_right {
+        right: -10px;
+    }
+
+    &_left {
+        left: -10px;
+    }
+
+    &_visible {
+        display: block;
+    }
+}
+
+.shadow {
+    z-index: 1;
+    position: absolute;
+    top: 30%;
+    width: 60px;
+    height: 70%;
+
+    &_right {
+        right: 0;
+        background-image: linear-gradient(
+            90deg,
+            $channels-list-bg-color 0,
+            $active-menu-color 80%,
+            $active-menu-color 100%
+        );
+    }
+
+    &_left {
+        left: 0;
+        background-image: linear-gradient(
+            90deg,
+            $active-menu-color 0,
+            $active-menu-color 20%,
+            $channels-list-bg-color 100%
+        );
+    }
+}
