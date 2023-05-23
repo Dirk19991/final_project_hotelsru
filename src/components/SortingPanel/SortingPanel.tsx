@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import styles from './SortingPanel.module.scss'
 import cn from 'classnames'
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 
 interface ISortingPanel {
     currentSorting: string
@@ -18,8 +18,8 @@ const SortingPanel: FC<ISortingPanel> = ({
     currentSorting,
     setCurrentSorting,
 }) => {
+    const { t } = useTranslation(['movies'])
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
-    const { language, i18n } = useI18nContext()
     const [sortingTypes, setSortingTypes] = useState<ISortingType[]>([
         {
             id: 1,
@@ -83,19 +83,17 @@ const SortingPanel: FC<ISortingPanel> = ({
                             />
                         </svg>
                         <span>
-                            {currentSorting === 'byRating' &&
-                                i18n[language].byRating}
+                            {currentSorting === 'byRating' && t('byRating')}
                             {currentSorting === 'byRatesAmount' &&
-                                i18n[language].byRatesAmount}
+                                t('byRatesAmount')}
                             {currentSorting === 'byReleaseDate' &&
-                                i18n[language].byReleaseDate}
-                            {currentSorting === 'byAlphabet' &&
-                                i18n[language].byAlphabet}
+                                t('byReleaseDate')}
+                            {currentSorting === 'byAlphabet' && t('byAlphabet')}
                         </span>
                     </div>
                     {isDropdownOpen && (
                         <div className={styles.dropdown}>
-                            <span>{i18n[language].sortBy}</span>
+                            <span>{t("sortBy")}</span>
                             <ul>
                                 {sortingTypes.map(({ id, active, type }) => (
                                     <li
@@ -103,14 +101,13 @@ const SortingPanel: FC<ISortingPanel> = ({
                                         className={cn(active && styles.active)}
                                         onClick={() => handleSorting(type, id)}
                                     >
-                                        {type === 'byRating' &&
-                                            i18n[language].byRating}
+                                        {type === 'byRating' && t('byRating')}
                                         {type === 'byRatesAmount' &&
-                                            i18n[language].byRatesAmount}
+                                            t('byRatesAmount')}
                                         {type === 'byReleaseDate' &&
-                                            i18n[language].byReleaseDate}
+                                            t('byReleaseDate')}
                                         {type === 'byAlphabet' &&
-                                            i18n[language].byAlphabet}
+                                            t('byAlphabet')}
                                     </li>
                                 ))}
                             </ul>
