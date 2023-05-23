@@ -1,15 +1,13 @@
-import React, { useEffect, useState, FC } from 'react'
+import React, { FC } from 'react'
 import styles from './FilterSelect.module.scss'
-import { useI18nContext } from '@/context/i18n'
 import cn from 'classnames'
 import engNameToLink from '@/util/engNameToLink'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, genres, yearFilter }) => {
-    const { language, i18n } = useI18nContext()
-    const { query, push } = useRouter()
-    const { t } = useTranslation(['common'])
+    const { query, push, asPath } = useRouter()
+    const { t, i18n } = useTranslation(['common'])
 
     const handleCurrentFilter = () => {
         if (filterType === currentModal) {
@@ -45,14 +43,17 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, genr
             })
         }
 
-        push({
-            pathname,
-            query: {
-                ...query,
-                year: value,
-                filters,
-            },
-        })
+        if (value !== '') {
+            push({
+                pathname,
+                query: {
+                    ...query,
+                    year: value,
+                    filters,
+                },
+            })
+        }
+        setCurrentModal('')
     }
 
     return (
@@ -80,7 +81,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, genr
                                         <li key={id}>
                                             <label>
                                                 <input type="checkbox" value={engNameToLink(nameEn)} />
-                                                <div>{language === 'ru' ? nameRu : nameEn}</div>
+                                                <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
                                             </label>
                                         </li>
                                     )
