@@ -17,14 +17,16 @@ const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, st
             })
         }
 
-        push({
-            pathname,
-            query: {
-                ...query,
-                [queryName]: sliderValue,
-                filters,
-            },
-        })
+        if (sliderValue !== '0') {
+            push({
+                pathname,
+                query: {
+                    ...query,
+                    [queryName]: sliderValue,
+                    filters,
+                },
+            })
+        }
     }
 
     return (
