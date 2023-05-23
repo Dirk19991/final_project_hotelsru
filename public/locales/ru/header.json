@@ -13,6 +13,7 @@
     "settings": "Настройки",
     "help": "Помощь",
     "logInOrSignUp": "Войти или зарегистрироваться",
+    "otherSubscriptions": "Другие подписки",
     "iviSubscription": "Подписка Иви",
     "subscriptionCost": "Стоимость 189 ₽ в месяц, продление автоматическое",
     "brandNewTVSeries": "Новинки сериалов",
@@ -54,5 +55,7 @@
     "gametype": {
         "general": "Общее",
         "football": "Футбол"
-    }
+    },
+    "anyMoment": "в любой момент",
+    "watch30days": "Смотреть 30 дней бесплатно"
 }

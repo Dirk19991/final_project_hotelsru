@@ -9,11 +9,25 @@
     "actorsAndCreators": "Actors and creators",
     "profession": {
         "director": "Director",
-        "actor": "Actor",
+        "actors": "Actors",
         "producer": "Producer",
         "cineatographer": "Cinematographer",
         "screenwriter": "Screenwriter",
         "composer": "Composer"
     },
-    "more": "More"
+    "more": "More",
+    "hideDetails": "Hide details",
+    "showDetails": "Show details",
+    "movie": "movie",
+    "tv-series": "tv series",
+    "cartoon": "cartoon",
+    "interestingPlot": "Interesting plot",
+    "rate": "Rate",
+    "ratings": "ratings",
+    "minutes": "minutes",
+
+    "toMovie": "To movie",
+    "creators": "Creators",
+    "loadingMovie": "Loading movie...",
+    "noMovie": "No movie"
 }

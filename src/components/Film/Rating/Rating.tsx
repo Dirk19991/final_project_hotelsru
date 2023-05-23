@@ -1,8 +1,8 @@
-import { useI18nContext } from '@/context/i18n'
 import { Button } from '@/stories/Button/ButtonStandard'
 import styles from './Rating.module.scss'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
 import { FC } from 'react'
+import { useTranslation } from 'next-i18next'
 
 interface IRating {
     ratingCount: number
@@ -10,8 +10,7 @@ interface IRating {
 }
 
 const Rating: FC<IRating> = ({ ratingCount, fixedRating }) => {
-    const { language, i18n } = useI18nContext()
-
+    const { t } = useTranslation(['film'])
     return (
         <div className={styles.wrapper}>
             <ButtonRating
@@ -21,20 +20,14 @@ const Rating: FC<IRating> = ({ ratingCount, fixedRating }) => {
                 width={64}
             />
             <div className={styles.description}>
-                <div className={styles.title}>
-                    {i18n[language].iviRatingNoColon}
-                </div>
-                <div>{i18n[language].interestingPlot}</div>
+                <div className={styles.title}>{t('iviRatingNoColon')}</div>
+                <div>{t('interestingPlot')}</div>
                 <div>
-                    {ratingCount.toLocaleString()} {i18n[language].ratings}
+                    {ratingCount.toLocaleString()} {t('ratings')}
                 </div>
             </div>
             <div className={styles.button}>
-                <Button
-                    label={i18n[language].rate}
-                    onClick={() => {}}
-                    type="rating"
-                />
+                <Button label={t('rate')} onClick={() => {}} type="rating" />
             </div>
         </div>
     )

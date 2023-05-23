@@ -5,13 +5,14 @@ import PersonFilm from '../PersonFilm/PersonFilm'
 import { useRouter } from 'next/router'
 import { IPerson } from '@/types/ComponentProps/IMovie'
 import getFilmWord from '@/util/getFilmWord'
-import { useI18nContext } from '@/context/i18n'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import { useTranslation } from 'next-i18next'
 
 const Person = () => {
     const isTab = useMediaQuery('(max-width: 1160px)')
     const router = useRouter()
-    const { language, i18n } = useI18nContext()
+
+    const { t, i18n } = useTranslation(['person'])
     const [actorData, setActorData] = useState<IPerson | null>(null)
 
     useEffect(() => {
@@ -23,7 +24,9 @@ const Person = () => {
     const name = actorData && actorData.name
     const enName = actorData && actorData.enName
     const numberOfFilms = actorData && actorData.movies.length
-    const filmWord = (numberOfFilms && getFilmWord(numberOfFilms)) || 0
+    const filmWord = numberOfFilms
+        ? getFilmWord(numberOfFilms)
+        : getFilmWord(null)
 
     const sortedMovies = actorData?.movies.sort((a, b) => b.year - a.year)
 
@@ -37,7 +40,7 @@ const Person = () => {
                         src="/icons/arrowLeft.svg"
                         alt="arrowLeft"
                     />
-                    <div>{i18n[language].back}</div>{' '}
+                    <div>{t('back')}</div>{' '}
                 </div>
                 <div className={styles.mainInfo}>
                     <div className={styles.photo}>
@@ -49,13 +52,13 @@ const Person = () => {
                         />
                     </div>
                     <div className={styles.ruName}>
-                        {language === 'en' ? enName : name}
+                        {i18n.language === 'en' ? enName : name}
                     </div>
                     <div className={styles.enName}>
-                        {language === 'ru' && enName}
+                        {i18n.language === 'ru' && enName}
                     </div>
                     <div className={styles.filmography}>
-                        {i18n[language].fullFilmography}{' '}
+                        {t('fullFilmography')}{' '}
                         <span>
                             {numberOfFilms} {filmWord}
                         </span>

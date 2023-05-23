@@ -1,20 +1,21 @@
 import Filters from '@/components/Filters/Filters'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
-import { useI18nContext } from '@/context/i18n'
+
 import { FC } from 'react'
 import Head from 'next/head'
 import 'swiper/scss'
 import { GetStaticProps } from 'next'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 const Movies: FC<any> = ({ dramas, comedies }) => {
-    const { i18n, language } = useI18nContext()
+    const { t } = useTranslation(['common'])
 
     const breadcrumbsData = [
-        { id: 1, title: i18n[language].myIvi, href: '/' },
-        { id: 2, title: i18n[language].movies, href: '/movies' },
+        { id: 1, title: t('myIvi'), href: '/' },
+        { id: 2, title: t('movies'), href: '/movies' },
     ]
 
     return (

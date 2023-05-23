@@ -8,9 +8,9 @@ import {
     faStar,
     faBan,
 } from '@fortawesome/free-solid-svg-icons'
-import { useI18nContext } from '@/context/i18n'
 import TooltipIcon from './TooltipIcon/TooltipIcon'
 import ProgressBar from './ProgressBar/ProgressBar'
+import { useTranslation } from 'next-i18next'
 
 export interface IDefaultCarouselSlide {
     image: string
@@ -54,7 +54,7 @@ const DefaultCarouselSlide: FC<IDefaultCarouselSlide> = ({
         .split('.')
     const progress = Number(rating.slice(0, 3)) * 10
 
-    const { language, i18n } = useI18nContext()
+    const { t } = useTranslation(['common'])
 
     const panelRef = useRef<HTMLDivElement>(null)
     const imgsRef = useRef<HTMLDivElement>(null)
@@ -102,22 +102,13 @@ const DefaultCarouselSlide: FC<IDefaultCarouselSlide> = ({
                 </div>
                 <div ref={panelRef} className={styles.panel}>
                     <div className={styles.panel__icons}>
-                        <TooltipIcon
-                            icon={faBookmark}
-                            text={i18n[language].watchLater}
-                        />
+                        <TooltipIcon icon={faBookmark} text={t('watchLater')} />
                         <TooltipIcon
                             icon={faWandMagicSparkles}
-                            text={i18n[language].similar}
+                            text={t('similar')}
                         />
-                        <TooltipIcon
-                            icon={faStar}
-                            text={i18n[language].alreadyWatched}
-                        />
-                        <TooltipIcon
-                            icon={faBan}
-                            text={i18n[language].dontLikeIt}
-                        />
+                        <TooltipIcon icon={faStar} text={t('alreadyWatched')} />
+                        <TooltipIcon icon={faBan} text={t('dontLikeIt')} />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.rating}>

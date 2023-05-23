@@ -14,5 +14,9 @@
     "countries": "Countries",
     "years": "Years",
     "subscribeAndWatch": "Subscribe and watch",
-    "thisWeek": "this week"
+    "thisWeek": "this week",
+    "watchLater": "Watch later",
+    "similar": "Similar",
+    "alreadyWatched": "Already watched, rate",
+    "dontLikeIt": "Don't like it"
 }

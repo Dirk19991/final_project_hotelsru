@@ -1,7 +1,11 @@
-import { useI18nContext } from '@/context/i18n'
+import { useTranslation } from 'next-i18next'
 
-export default function getFilmWord(number: number) {
-    const { language, i18n } = useI18nContext()
+export default function getFilmWord(number: number | null) {
+    const { i18n } = useTranslation()
+
+    if (number === null) {
+        return
+    }
 
     let lastTwoDigits = 0
     if (number >= 10) {
@@ -9,7 +13,7 @@ export default function getFilmWord(number: number) {
     }
 
     if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-        return language === 'en' ? 'movies' : 'фильмов'
+        return i18n.language === 'en' ? 'movies' : 'фильмов'
     }
 
     const stringifiedNum = number.toString()
@@ -18,12 +22,12 @@ export default function getFilmWord(number: number) {
     let filmWord = ''
     switch (lastDigit) {
         case 1:
-            filmWord = language === 'en' ? 'movie' : 'фильм'
+            filmWord = i18n.language === 'en' ? 'movie' : 'фильм'
             break
         case 2:
         case 3:
         case 4:
-            filmWord = language === 'en' ? 'movies' : 'фильма'
+            filmWord = i18n.language === 'en' ? 'movies' : 'фильма'
             break
         case 5:
         case 6:
@@ -31,7 +35,7 @@ export default function getFilmWord(number: number) {
         case 8:
         case 9:
         case 0:
-            filmWord = language === 'en' ? 'movies' : 'фильмов'
+            filmWord = i18n.language === 'en' ? 'movies' : 'фильмов'
             break
         default:
             break

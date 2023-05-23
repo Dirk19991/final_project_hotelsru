@@ -1,12 +1,12 @@
 import { IMovie } from '@/types/ComponentProps/IMovie'
 import { FC, useState } from 'react'
 import styles from './CreatorModal.module.scss'
-import { useI18nContext } from '@/context/i18n'
 import PosterCard from '../PosterCard/PosterCard'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CreatorMedallion from '../CreatorMedallion/CreatorMedallion'
 import cn from 'classnames'
+import { useTranslation } from 'next-i18next'
 
 interface ICreatorModal {
     film: IMovie
@@ -25,34 +25,34 @@ const CreatorModal: FC<ICreatorModal> = ({ film, close }) => {
         screenwriter,
     } = film
 
-    const { language, i18n } = useI18nContext()
+    const { i18n, t } = useTranslation(['film'])
 
     const [isBackHover, setIsBackHover] = useState(false)
 
     const valuesWithNames = [
         {
             values: director,
-            name: i18n[language].profession.director,
+            name: t('profession.director'),
         },
         {
             values: actors,
-            name: i18n[language].profession.actor,
+            name: t('profession.actors'),
         },
         {
             values: producer,
-            name: i18n[language].profession.producer,
+            name: t('profession.producer'),
         },
         {
             values: cineatographer,
-            name: i18n[language].profession.cineatographer,
+            name: t('profession.cineatographer'),
         },
         {
             values: screenwriter,
-            name: i18n[language].profession.screenwriter,
+            name: t('profession.screenwriter'),
         },
         {
             values: composer,
-            name: i18n[language].profession.composer,
+            name: t('profession.composer'),
         },
     ]
 
@@ -75,21 +75,21 @@ const CreatorModal: FC<ICreatorModal> = ({ film, close }) => {
                             [styles.back__text_hover]: isBackHover,
                         })}
                     >
-                        {i18n[language].toMovie}
+                        {t('toMovie')}
                     </span>
                 </div>
                 <div className={styles.content}>
                     <div className={styles.info}>
                         <h2 className={styles.title}>
-                            {language === 'en' ? nameEn : nameRu}:{' '}
+                            {i18n.language === 'en' ? nameEn : nameRu}:{' '}
                             <span className={styles.title__actors}>
-                                {i18n[language].actorsAndCreators}
+                                {t('actorsAndCreators')}
                             </span>
                         </h2>
                         <ul className={styles.menu}>
                             <li className={styles.menu__item}>
                                 <div className={styles.menu__name}>
-                                    {i18n[language].creators}
+                                    {t('creators')}
                                 </div>
                             </li>
                         </ul>
@@ -106,7 +106,8 @@ const CreatorModal: FC<ICreatorModal> = ({ film, close }) => {
                                                     <CreatorMedallion
                                                         size={'big'}
                                                         name={
-                                                            language === 'en'
+                                                            i18n.language ===
+                                                            'en'
                                                                 ? person.enName
                                                                 : person.name
                                                         }

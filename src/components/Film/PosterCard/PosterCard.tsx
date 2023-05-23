@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHourglass } from '@fortawesome/free-solid-svg-icons'
 import ProgressBar from '@/stories/DefaultCarouselSlide/ProgressBar/ProgressBar'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 
 interface IPosterCard {
     film: IMovie
@@ -18,6 +19,7 @@ const PosterCard: FC<IPosterCard> = ({
         .toFixed(1)
         .toString()
         .split('.')
+    const { t } = useTranslation(['film'])
 
     return (
         <div className={styles.wrapper}>
@@ -54,7 +56,9 @@ const PosterCard: FC<IPosterCard> = ({
                 </div>
                 <div className={styles.duration}>
                     <FontAwesomeIcon icon={faHourglass} color="#ea003d" />
-                    <span>{duration} минут</span>
+                    <span>
+                        {duration} {t('minutes')}
+                    </span>
                 </div>
             </div>
         </div>

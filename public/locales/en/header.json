@@ -55,5 +55,7 @@
     "gametype": {
         "general": "General",
         "football": "Football"
-    }
+    },
+    "anyMoment": "any moment",
+    "watch30days": "Watch 30 days for free"
 }
