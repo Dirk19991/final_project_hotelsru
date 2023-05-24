@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title }) => {
-    const { query, push, asPath, pathname, basePath } = useRouter()
+    const { query, push, asPath } = useRouter()
     const { t, i18n } = useTranslation(['common'])
 
     const handleCurrentFilter = () => {
@@ -68,30 +68,48 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         // })
     }
 
-    const genresNavigation = (nameEn: string, nameRu: string) => {
+    const genresNavigation = (nameEn: string, nameRu: string, id: number) => {
         const genreLink = engNameToLink(nameEn)
-        const queryString = asPath.split('?').length > 1 ? `?${asPath.split('?')[1]}` : ''
-        let genresString = query.genres === 'all' || !query.genres ? '' : String(query.genres)
+        const pathname = '/movies/[genres]'
+        let genresQuery = query.genres === 'all' || !query.genres ? '' : String(query.genres)
 
-        if (!genresString) {
-            genresString = genreLink
-            push(`/movies/${genresString}${queryString}`)
+        if (!genresQuery) {
+            push({
+                pathname,
+                query: {
+                    ...query,
+                    genres: genreLink,
+                },
+            })
         }
 
-        if (genresString) {
-            let genresArr = genresString.split('+')
+        if (genresQuery) {
+            let genresArr = genresQuery.split('+')
 
             if (genresArr.includes(genreLink)) {
                 genresArr = genresArr.filter((el) => el !== genreLink)
 
                 const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
-                push(`/movies/${genresRequest}${queryString}`)
-            } else {
-                genresArr.push(genreLink)
 
-                const genresRequest = genresArr.join('+')
-                push(`/movies/${genresRequest}${queryString}`)
+                push({
+                    pathname,
+                    query: {
+                        ...query,
+                        genres: genresRequest,
+                    },
+                })
+                return
             }
+
+            genresArr.push(genreLink)
+            const genresRequest = genresArr.join('+')
+            push({
+                pathname,
+                query: {
+                    ...query,
+                    genres: genresRequest,
+                },
+            })
         }
     }
 
@@ -111,10 +129,12 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                     <div className={styles.genresDropdown}>
                         <ul>
                             {list.map(({ id, nameEn, nameRu }: any) => {
+                                const isChecked = query.genres?.includes(engNameToLink(nameEn))
+
                                 return (
                                     <li key={id}>
-                                        <label onClick={() => genresNavigation(nameEn, nameRu)}>
-                                            <input type="checkbox" />
+                                        <label onClick={() => genresNavigation(nameEn, nameRu, id)}>
+                                            <input type="checkbox" checked={isChecked} />
                                             <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
                                         </label>
                                     </li>

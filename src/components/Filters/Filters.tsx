@@ -19,10 +19,12 @@ const Filters: FC<any> = ({ allFilters }) => {
     const [ratingValue, setRatingValue] = useState<string>(ratingQuery)
     const [ratingsAmount, setRatingsAmount] = useState<string>(ratingsQuery)
 
-    const [genres, setGenres] = useState<any>([])
+    // const [genres, setGenres] = useState<any>([])
     // const [countries, setCountries] = useState<any>([])
 
-
+    // useEffect(() => {
+    //     console.log(genres)
+    // }, [genres])
 
     const { t } = useTranslation(['movies', 'common'])
 
