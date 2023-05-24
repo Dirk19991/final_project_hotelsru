@@ -8,7 +8,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 
-const MoviesFilters: FC<any> = ({ yearFilter }) => {
+const MoviesFilters: FC<any> = ({ allFilters }) => {
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
     const { t } = useTranslation(['common'])
 
@@ -37,23 +37,32 @@ const MoviesFilters: FC<any> = ({ yearFilter }) => {
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
-            <Filters genres={[]} yearFilter={yearFilter} />
+            <Filters allFilters={allFilters} />
             <MoviesList />
         </Layout>
     )
 }
 
 export const getServerSideProps = async ({ params, locale, query }: any) => {
-    const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
+    const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
+    const dockerBaseUrl = process.env.DOCKER_API_URL
 
-    const yearsFilterRes = await fetch(`${baseURL}/api/filters`)
-    const yearFilter = await yearsFilterRes.json()
+    // FILTERS
+    const filtersRes = await fetch(`${localBaseUrl}/api/filters`)
+    const filters = await filtersRes.json()
 
-    console.log(params, query)
+    const genresRes = await fetch(`${dockerBaseUrl}/genres`)
+    const genres = await genresRes.json()
+
+    const allFilters = filters
+    allFilters.genres = genres
+
+    console.log('params', params)
+    console.log('query', query)
 
     return {
         props: {
-            yearFilter: yearFilter.years,
+            allFilters,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },
     }

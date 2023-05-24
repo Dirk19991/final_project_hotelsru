@@ -8,17 +8,23 @@ import { useTranslation } from 'next-i18next'
 import RangeSlider from '../RangeSlider/RangeSlider'
 import { useRouter } from 'next/router'
 
-const Filters: FC<any> = ({ genres, yearFilter }) => {
+const Filters: FC<any> = ({ allFilters }) => {
     const { query } = useRouter()
 
     const ratingQuery = query.rating ? String(query.rating) : '0'
-    const ratesQuery = query.rates ? String(query.rates) : '0'
+    const ratingsQuery = query.ratings ? String(query.ratings) : '0'
 
     const [currentModal, setCurrentModal] = useState<string>('')
-    const [ratingValue, setRatingValue] = useState<string>(ratingQuery)
-    const [ratesAmountValue, setRatesAmountValue] = useState<string>(ratesQuery)
 
-    const { t } = useTranslation(['movies'])
+    const [ratingValue, setRatingValue] = useState<string>(ratingQuery)
+    const [ratingsAmount, setRatingsAmount] = useState<string>(ratingsQuery)
+
+    const [genres, setGenres] = useState<any>([])
+    // const [countries, setCountries] = useState<any>([])
+
+
+
+    const { t } = useTranslation(['movies', 'common'])
 
     return (
         <div className={styles.filters}>
@@ -26,21 +32,25 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                 <div className={styles.wrapper}>
                     <div className={styles.selects}>
                         <FilterSelect
+                            title={t('genres')}
                             filterType="genres"
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
-                            genres={genres}
+                            list={allFilters.genres}
                         />
                         <FilterSelect
+                            title={t('countries')}
                             filterType="countries"
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
+                            list={allFilters.countries}
                         />
                         <FilterSelect
+                            title={t('years')}
                             filterType="years"
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
-                            yearFilter={yearFilter}
+                            list={allFilters.years}
                         />
                         <FilterSearch searchType="producer" />
                         <FilterSearch searchType="actor" />
@@ -56,10 +66,10 @@ const Filters: FC<any> = ({ genres, yearFilter }) => {
                             step={0.1}
                         />
                         <RangeSlider
-                            title={t('ratesAmout')}
-                            sliderValue={ratesAmountValue}
-                            setSliderValue={setRatesAmountValue}
-                            queryName={'rates'}
+                            title={t('ratingsAmout')}
+                            sliderValue={ratingsAmount}
+                            setSliderValue={setRatingsAmount}
+                            queryName={'ratings'}
                             min={0}
                             max={990}
                             step={10}
