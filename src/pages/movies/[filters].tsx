@@ -6,6 +6,7 @@ import Filters from '@/components/Filters/Filters'
 import MoviesList from '@/components/MoviesList/MoviesList'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import Layout from '@/components/Layout/Layout'
 
 const MoviesFilters: FC<any> = ({ yearFilter }) => {
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
@@ -27,21 +28,18 @@ const MoviesFilters: FC<any> = ({ yearFilter }) => {
     ]
 
     return (
-        <>
+        <Layout>
             <Head>
                 <title>
-                    Смотреть %жанры% онлайн бесплатно в хорошем HD качестве и
-                    без регистрации. Удобный просмотр онлайн фильмов на ivi.ru
+                    Смотреть %жанры% онлайн бесплатно в хорошем HD качестве и без регистрации. Удобный просмотр онлайн
+                    фильмов на ivi.ru
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
-            <SortingPanel
-                setCurrentSorting={setCurrentSorting}
-                currentSorting={currentSorting}
-            />
+            <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters genres={[]} yearFilter={yearFilter} />
             <MoviesList />
-        </>
+        </Layout>
     )
 }
 
@@ -56,12 +54,7 @@ export const getServerSideProps = async ({ params, locale, query }: any) => {
     return {
         props: {
             yearFilter: yearFilter.years,
-            ...(await serverSideTranslations(locale as string, [
-                'common',
-                'footer',
-                'header',
-                'movies',
-            ])),
+            ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },
     }
 }

@@ -13,8 +13,7 @@ import mock from '@/data/mockData'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { GetStaticProps } from 'next'
-
-// тут нужно будет убрать useeffect и перенести получение данных в getStaticProps и getStaticPaths когда появится бэкенд
+import Layout from '@/components/Layout/Layout'
 
 const FilmPage = () => {
     const { t, i18n } = useTranslation(['film'])
@@ -54,54 +53,38 @@ const FilmPage = () => {
     }, [film])
 
     return (
-        <main className="container">
-            {film && (
-                <div className={styles.wrapper}>
-                    <FilmBreadcrumbs
-                        items={[
-                            {
-                                name: t(
-                                    film.type as
-                                        | 'movie'
-                                        | 'tv-series'
-                                        | 'cartoon'
-                                ),
-                                href: '/',
-                            },
-                            {
-                                name: film.genres.sort((a, b) => a.id - b.id)[0]
-                                    .name,
-                                href: '/',
-                            },
-                        ]}
-                        bold
-                    />
-                    <Film film={film} />
-                    <DefaultCarousel
-                        title={'C этим фильмом также смотрят:'}
-                        dataList={mock}
-                    />
-                    <CreatorsList film={film} />
-                    <CommentsCarousel />
-                    <AllDevices
-                        name={
-                            i18n.language === 'en' ? film.nameEn : film.nameRu
-                        }
-                        src={film.poster}
-                    />
-                </div>
-            )}
-            {isLoading && (
-                <h1 className={styles.loading}>
-                    {i18n.language === 'en'
-                        ? 'Loading movie...'
-                        : 'Загрузка фильма...'}
-                </h1>
-            )}
-            {!film && !isLoading && (
-                <h1 className={styles.noFilm}>{t('noMovie')}</h1>
-            )}
-        </main>
+        <Layout>
+            <main className="container">
+                {film && (
+                    <div className={styles.wrapper}>
+                        <FilmBreadcrumbs
+                            items={[
+                                {
+                                    name: t(film.type as 'movie' | 'tv-series' | 'cartoon'),
+                                    href: '/',
+                                },
+                                {
+                                    name: film.genres.sort((a, b) => a.id - b.id)[0].name,
+                                    href: '/',
+                                },
+                            ]}
+                            bold
+                        />
+                        <Film film={film} />
+                        <DefaultCarousel title={'C этим фильмом также смотрят:'} dataList={mock} />
+                        <CreatorsList film={film} />
+                        <CommentsCarousel />
+                        <AllDevices name={i18n.language === 'en' ? film.nameEn : film.nameRu} src={film.poster} />
+                    </div>
+                )}
+                {isLoading && (
+                    <h1 className={styles.loading}>
+                        {i18n.language === 'en' ? 'Loading movie...' : 'Загрузка фильма...'}
+                    </h1>
+                )}
+                {!film && !isLoading && <h1 className={styles.noFilm}>{t('noMovie')}</h1>}
+            </main>
+        </Layout>
     )
 }
 
@@ -110,12 +93,7 @@ export default FilmPage
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale as string, [
-                'film',
-                'common',
-                'footer',
-                'header',
-            ])),
+            ...(await serverSideTranslations(locale as string, ['film', 'common', 'footer', 'header'])),
         },
     }
 }

@@ -8,6 +8,8 @@ import { GetStaticProps } from 'next'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import Layout from '@/components/Layout/Layout'
+
 
 const Movies: FC<any> = ({ dramas, comedies, yearFilter }) => {
     const { t } = useTranslation(['common'])
@@ -18,7 +20,7 @@ const Movies: FC<any> = ({ dramas, comedies, yearFilter }) => {
     ]
 
     return (
-        <>
+        <Layout>
             <Head>
                 <title>
                     Смотреть фильмы онлайн бесплатно в хорошем HD качестве и без
@@ -39,7 +41,7 @@ const Movies: FC<any> = ({ dramas, comedies, yearFilter }) => {
                 link={'/movies/drama'}
                 dataList={comedies}
             />
-        </>
+        </Layout>
     )
 }
 

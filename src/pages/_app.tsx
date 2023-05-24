@@ -25,14 +25,14 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 />
             </Head>
 
-            <Layout>
+            <>
                 <style jsx global>{`
                     html {
                         font-family: ${openSans.style.fontFamily};
                     }
                 `}</style>
                 <Component {...pageProps} />
-            </Layout>
+            </>
         </>
     )
 }
