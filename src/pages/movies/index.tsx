@@ -40,7 +40,8 @@ export default Movies
 
 export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
     const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
-    const dockerBaseUrl = process.env.DOCKER_API_URL
+    // const dockerBaseUrl = process.env.DOCKER_API_URL
+    const deployBaseUrl = process.env.DEPLOY_API_URL
 
     // заменить на рил данные
     const response = await fetch(`${localBaseUrl}/api/movies-list`)
@@ -50,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
     const filtersRes = await fetch(`${localBaseUrl}/api/filters`)
     const filters = await filtersRes.json()
 
-    const genresRes = await fetch(`${dockerBaseUrl}/genres`)
+    const genresRes = await fetch(`${deployBaseUrl}/genres`)
     const genres = await genresRes.json()
 
     const allFilters = filters

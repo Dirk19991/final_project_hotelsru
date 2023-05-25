@@ -7,8 +7,10 @@ import MoviesList from '@/components/MoviesList/MoviesList'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
+import useSWR from 'swr'
 
-const MoviesFilters: FC<any> = ({ allFilters, moviesList }) => {
+const MoviesFilters: FC<any> = ({ allFilters }) => {
+    const [moviesList, setMoviesList] = useState<any>([])
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
     const { t } = useTranslation(['common'])
 
@@ -27,6 +29,14 @@ const MoviesFilters: FC<any> = ({ allFilters, moviesList }) => {
         { id: 4, title: '2004 год', href: '/2021' },
     ]
 
+    const { data, error, isLoading } = useSWR('movies', async () => {
+        const response = await fetch(`${process.env.DEPLOY_API_URL}/movies`)
+        const movies = await response.json()
+
+        // setMoviesList((state: any) => [...state, movies.result])
+        return movies.result
+    })
+
     return (
         <Layout>
             <Head>
@@ -38,35 +48,25 @@ const MoviesFilters: FC<any> = ({ allFilters, moviesList }) => {
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters allFilters={allFilters} />
-            <MoviesList data={moviesList} />
+            <MoviesList data={data || []} isLoading={isLoading} />
         </Layout>
     )
 }
 
-export const getServerSideProps = async ({ params, locale, query }: any) => {
+export const getServerSideProps = async ({ locale, query }: any) => {
     const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
-    const dockerBaseUrl = process.env.DOCKER_API_URL
-    const deplotBaseUrl = process.env.DEPLOY_API_URL
-
-    // MOVIES LIST
-    let movies
-    const moviesResponse = await fetch(`${deplotBaseUrl}/movies`)
-    movies = await moviesResponse.json()
-    // console.log('query', query)
+    const deployBaseUrl = process.env.DEPLOY_API_URL
 
     // FILTERS
     const filtersRes = await fetch(`${localBaseUrl}/api/filters`)
     const filters = await filtersRes.json()
-
-    const genresRes = await fetch(`${dockerBaseUrl}/genres`)
+    const genresRes = await fetch(`${deployBaseUrl}/genres`)
     const genres = await genresRes.json()
-
     const allFilters = filters
     allFilters.genres = genres
 
     return {
         props: {
-            moviesList: movies.result,
             allFilters,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },

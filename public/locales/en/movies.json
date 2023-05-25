@@ -20,5 +20,9 @@
     "byRatesAmount": "Rates",
     "byReleaseDate": "Release date",
     "byAlphabet": "Alphabet",
-    "showMore": "Show more"
+    "showMore": "Show more",
+    "allGenres": "All genres",
+    "allYears": "All years",
+    "before": "before",
+    "year": "year"
 }

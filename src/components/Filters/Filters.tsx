@@ -9,8 +9,9 @@ import RangeSlider from '../RangeSlider/RangeSlider'
 import { useRouter } from 'next/router'
 
 const Filters: FC<any> = ({ allFilters }) => {
-    const { query } = useRouter()
+    const { query, push } = useRouter()
     const { t, i18n } = useTranslation('movies')
+    const isResetDisabled = query.genres === 'all' || !query.genres
 
     const ratingQuery = query.rating ? String(query.rating) : '0'
     const ratingsQuery = query.ratings ? String(query.ratings) : '0'
@@ -32,6 +33,10 @@ const Filters: FC<any> = ({ allFilters }) => {
         return `${value} ${t('year')}`
     }
 
+    const resetFilters = () => {
+        push('/movies/all')
+    }
+
     return (
         <div className={styles.filters}>
             <div className="container">
@@ -40,7 +45,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                         <FilterSelect
                             title={t('genres')}
                             filterType="genres"
-                            selectValue={genresQuery}
+                            selectValue={query.genres === 'all' ? t('allGenres') : genresQuery}
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
                             list={allFilters.genres}
@@ -83,8 +88,10 @@ const Filters: FC<any> = ({ allFilters }) => {
                             step={10}
                         />
                     </div>
-                    <button className={styles.reset} disabled={true}>
-                        <FontAwesomeIcon icon={faXmark} size="xl" />
+                    <button className={styles.reset} disabled={isResetDisabled} onClick={resetFilters}>
+                        <span>
+                            <FontAwesomeIcon icon={faXmark} size="xl" />
+                        </span>
                         <span>{t('resetFilters')}</span>
                     </button>
                 </div>

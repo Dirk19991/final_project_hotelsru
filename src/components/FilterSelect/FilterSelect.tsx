@@ -9,9 +9,8 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
     const { query, push, asPath } = useRouter()
     const { t, i18n } = useTranslation(['movies', 'common'])
 
-    const handleCurrentFilter = () => {
-        return filterType === currentModal ? setCurrentModal('') : setCurrentModal(filterType)
-    }
+    const handleCurrentFilter = () => (filterType === currentModal ? setCurrentModal('') : setCurrentModal(filterType))
+    const isCurrent = (filter: string) => currentModal === filter && filterType === filter
 
     const yearsNavigate = (value: string) => {
         const pathname = '/movies/[genres]'
@@ -79,7 +78,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                 {selectValue && <span>{selectValue}</span>}
             </div>
             <div className={styles.dropdown}>
-                {currentModal === 'genres' && filterType === 'genres' && (
+                {isCurrent('genres') && (
                     <div className={styles.genresDropdown}>
                         <ul>
                             {list.map(({ id, nameEn, nameRu }: any) => {
@@ -97,7 +96,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                         </ul>
                     </div>
                 )}
-                {currentModal === 'countries' && filterType === 'countries' && (
+                {isCurrent('countries') && (
                     <div className={styles.countriesDropdown}>
                         <ul>
                             {list.map(({ id, nameEn, nameRu, shortName }: any) => {
@@ -113,7 +112,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                         </ul>
                     </div>
                 )}
-                {currentModal === 'years' && filterType === 'years' && (
+                {isCurrent('years') && (
                     <div className={styles.yearsDropdown}>
                         <ul>
                             {list.map(({ id, value }: any) => {

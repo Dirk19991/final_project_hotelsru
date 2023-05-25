@@ -25,8 +25,9 @@ const DefaultCarouselSlide: FC<any> = ({ image, href, year, rating, countries, g
     }
 
     const durationText = `${duration} ${minutesDecl(duration, minutesTextForm)}`
-    const country = countries.length ? (i18n.language === 'ru' ? countries[0].nameRu : countries[0].nameEn) : ''
-    const genre = genres.length ? (i18n.language === 'ru' ? genres[0].nameRu : genres[0].nameEn) : ''
+    const country =
+        countries && countries.length ? (i18n.language === 'ru' ? countries[0].nameRu : countries[0].nameEn) : ''
+    const genre = genres && genres.length ? (i18n.language === 'ru' ? genres[0].nameRu : genres[0].nameEn) : ''
     const info = `${year}, ${country}, ${genre}`
 
     const [integerRating, fractionalRating] = parseFloat(rating).toFixed(1).toString().split('.')
