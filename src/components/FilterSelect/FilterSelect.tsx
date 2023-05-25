@@ -5,7 +5,7 @@ import engNameToLink from '@/util/engNameToLink'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title }) => {
+const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title, selectValue }) => {
     const { query, push, asPath } = useRouter()
     const { t, i18n } = useTranslation(['common'])
 
@@ -120,9 +120,9 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                 onClick={handleCurrentFilter}
             >
                 <div>{title}</div>
-                {filterType === 'genres' && <span>{'Артхаус, Драма, Документальный'}</span>}
-                {filterType === 'countries' && <span>{'Австралия, Великобритания, Германия'}</span>}
-                {filterType === 'years' && <span>{query.filters && yearFilterTitle(query.year)}</span>}
+                {selectValue && <span>{selectValue}</span>}
+                {/* {filterType === 'countries' && <span>{'Австралия, Великобритания, Германия'}</span>} */}
+                {/* {filterType === 'years' && <span>{query.filters && yearFilterTitle(query.year)}</span>} */}
             </div>
             <div className={styles.dropdown}>
                 {currentModal === 'genres' && filterType === 'genres' && (

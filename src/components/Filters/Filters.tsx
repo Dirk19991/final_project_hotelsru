@@ -10,23 +10,20 @@ import { useRouter } from 'next/router'
 
 const Filters: FC<any> = ({ allFilters }) => {
     const { query } = useRouter()
+    const { t, i18n } = useTranslation(['movies', 'common'])
 
     const ratingQuery = query.rating ? String(query.rating) : '0'
     const ratingsQuery = query.ratings ? String(query.ratings) : '0'
+    const genresQuery = allFilters.genres
+        .filter((el: any) => String(query.genres).includes(el.nameEn.toLowerCase()))
+        .map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn))
+        .join(', ')
 
     const [currentModal, setCurrentModal] = useState<string>('')
 
     const [ratingValue, setRatingValue] = useState<string>(ratingQuery)
     const [ratingsAmount, setRatingsAmount] = useState<string>(ratingsQuery)
 
-    // const [genres, setGenres] = useState<any>([])
-    // const [countries, setCountries] = useState<any>([])
-
-    // useEffect(() => {
-    //     console.log(genres)
-    // }, [genres])
-
-    const { t } = useTranslation(['movies', 'common'])
 
     return (
         <div className={styles.filters}>
@@ -36,6 +33,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                         <FilterSelect
                             title={t('genres')}
                             filterType="genres"
+                            selectValue={genresQuery}
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
                             list={allFilters.genres}
