@@ -23,5 +23,10 @@
     "dontLikeIt": "Don't like it",
     "allYears": "All years",
     "before": "before",
-    "year": "year"
+    "year": "year",
+    "rating": "rating",
+    "forFree": "For free",
+    "minutes0": "minute",
+    "minutes1": "minutes",
+    "minutes2": "minutes"
 }

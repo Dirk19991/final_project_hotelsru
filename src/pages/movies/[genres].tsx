@@ -8,7 +8,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 
-const MoviesFilters: FC<any> = ({ allFilters }) => {
+const MoviesFilters: FC<any> = ({ allFilters, moviesList }) => {
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
     const { t } = useTranslation(['common'])
 
@@ -38,7 +38,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters allFilters={allFilters} />
-            <MoviesList />
+            <MoviesList data={moviesList} />
         </Layout>
     )
 }
@@ -46,6 +46,13 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
 export const getServerSideProps = async ({ params, locale, query }: any) => {
     const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
     const dockerBaseUrl = process.env.DOCKER_API_URL
+    const deplotBaseUrl = process.env.DEPLOY_API_URL
+
+    // MOVIES LIST
+    let movies
+    const moviesResponse = await fetch(`${deplotBaseUrl}/movies`)
+    movies = await moviesResponse.json()
+    // console.log('query', query)
 
     // FILTERS
     const filtersRes = await fetch(`${localBaseUrl}/api/filters`)
@@ -57,11 +64,9 @@ export const getServerSideProps = async ({ params, locale, query }: any) => {
     const allFilters = filters
     allFilters.genres = genres
 
-    console.log('params', params)
-    console.log('query', query)
-
     return {
         props: {
+            moviesList: movies.result,
             allFilters,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },

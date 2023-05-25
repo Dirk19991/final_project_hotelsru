@@ -18,5 +18,10 @@
     "watchLater": "Смотреть позже",
     "similar": "Похожие",
     "alreadyWatched": "Уже смотрел, оценить",
-    "dontLikeIt": "Не нравится такое"
+    "dontLikeIt": "Не нравится такое",
+    "rating": "оценка",
+    "forFree": "Бесплатно",
+    "minutes0": "минута",
+    "minutes1": "минуты",
+    "minutes2": "минут"
 }
