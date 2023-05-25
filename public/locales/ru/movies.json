@@ -20,5 +20,8 @@
     "byRatesAmount": "Количеству оценок",
     "byReleaseDate": "Дате выхода",
     "byAlphabet": "Алфавиту",
-    "showMore": "Показать еще"
+    "showMore": "Показать еще",
+    "allYears": "Все годы",
+    "before": "до",
+    "year": "год"
 }

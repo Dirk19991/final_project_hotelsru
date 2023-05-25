@@ -20,5 +20,8 @@
     "watchLater": "Watch later",
     "similar": "Similar",
     "alreadyWatched": "Already watched, rate",
-    "dontLikeIt": "Don't like it"
+    "dontLikeIt": "Don't like it",
+    "allYears": "All years",
+    "before": "before",
+    "year": "year"
 }

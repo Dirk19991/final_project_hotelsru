@@ -6,26 +6,17 @@ const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, st
     const { query, push } = useRouter()
 
     const inputChangeHandler = () => {
-        // const genres = query.genres ?? 'all'
-        // const pathname = '/movies/[genres]'
+        const genres = query.genres ?? 'all'
+        const pathname = '/movies/[genres]'
 
-        // if (sliderValue === '0') {
-        //     delete query[queryName]
-        //     push({
-        //         pathname,
-        //         query: { ...query },
-        //     })
-        // }
+        if (sliderValue === '0') {
+            delete query[queryName]
+            push({ pathname, query: { ...query, genres } })
+        }
 
-        // if (sliderValue !== '0') {
-        //     push({
-        //         pathname,
-        //         query: {
-        //             ...query,
-        //             [queryName]: sliderValue,
-        //         },
-        //     })
-        // }
+        if (sliderValue !== '0') {
+            push({ pathname, query: { ...query, [queryName]: sliderValue, genres } })
+        }
     }
 
     return (

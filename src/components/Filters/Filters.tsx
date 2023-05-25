@@ -10,12 +10,12 @@ import { useRouter } from 'next/router'
 
 const Filters: FC<any> = ({ allFilters }) => {
     const { query } = useRouter()
-    const { t, i18n } = useTranslation(['movies', 'common'])
+    const { t, i18n } = useTranslation('movies')
 
     const ratingQuery = query.rating ? String(query.rating) : '0'
     const ratingsQuery = query.ratings ? String(query.ratings) : '0'
     const genresQuery = allFilters.genres
-        .filter((el: any) => String(query.genres).includes(el.nameEn.toLowerCase()))
+        .filter((el: any) => String(query.genres).split('+').includes(el.nameEn.toLowerCase()))
         .map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn))
         .join(', ')
 
@@ -24,6 +24,13 @@ const Filters: FC<any> = ({ allFilters }) => {
     const [ratingValue, setRatingValue] = useState<string>(ratingQuery)
     const [ratingsAmount, setRatingsAmount] = useState<string>(ratingsQuery)
 
+    const yearFilterTitle = (value: string | string[] | undefined) => {
+        if (!value) return t('allYears')
+        if (value === '1980') return `${t('before')} 1980`
+        if (value && String(value).match('-')) return value
+
+        return `${value} ${t('year')}`
+    }
 
     return (
         <div className={styles.filters}>
@@ -48,6 +55,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                         <FilterSelect
                             title={t('years')}
                             filterType="years"
+                            selectValue={query.genres && yearFilterTitle(query.year)}
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
                             list={allFilters.years}
