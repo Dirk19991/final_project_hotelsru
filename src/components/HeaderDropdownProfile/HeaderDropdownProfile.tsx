@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
+import AuthService from '@/services/AuthService'
 
 const HeaderDropdownProfile = () => {
     const { push } = useRouter()
@@ -32,9 +33,7 @@ const HeaderDropdownProfile = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className={styles.text}>
-                                    {t('purchases')}
-                                </div>
+                                <div className={styles.text}>{t('purchases')}</div>
                             </div>
                         </Link>
                     </li>
@@ -57,9 +56,7 @@ const HeaderDropdownProfile = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className={styles.text}>
-                                    {t('watchLater')}
-                                </div>
+                                <div className={styles.text}>{t('watchLater')}</div>
                             </div>
                         </Link>
                     </li>
@@ -82,9 +79,7 @@ const HeaderDropdownProfile = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className={styles.text}>
-                                    {t('browsingHistory')}
-                                </div>
+                                <div className={styles.text}>{t('browsingHistory')}</div>
                             </div>
                         </Link>
                     </li>
@@ -133,9 +128,7 @@ const HeaderDropdownProfile = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className={styles.text}>
-                                    {t('certificateActivation')}
-                                </div>
+                                <div className={styles.text}>{t('certificateActivation')}</div>
                             </div>
                         </Link>
                     </li>
@@ -158,9 +151,7 @@ const HeaderDropdownProfile = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className={styles.text}>
-                                    {t('logInWithCode')}
-                                </div>
+                                <div className={styles.text}>{t('logInWithCode')}</div>
                             </div>
                         </Link>
                     </li>
@@ -183,33 +174,33 @@ const HeaderDropdownProfile = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className={styles.text}>
-                                    {t('purchaseMethods')}
-                                </div>
+                                <div className={styles.text}>{t('purchaseMethods')}</div>
                             </div>
                         </Link>
                     </li>
                 </ul>
             </div>
             <div className={styles.sideContent}>
-                <Button
-                    label={t('logInOrSignUp')}
-                    onClick={() => push('/authorization')}
-                    type="register"
-                />
+                {AuthService.isAuth ? (
+                    <>
+                        <Button label={t('logout')} onClick={() => AuthService.logout()} type="register" />
+                    </>
+                ) : (
+                    <>
+                        <Button label={t('logInOrSignUp')} onClick={() => push('/authorization')} type="register" />
 
-                <div className={styles.links}>
-                    <ul>
-                        <li>
-                            <Link href="https://www.ivi.ru/profile/settings">
-                                {t('settings')}
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="https://ask.ivi.ru/">{t('help')}</Link>
-                        </li>
-                    </ul>
-                </div>
+                        <div className={styles.links}>
+                            <ul>
+                                <li>
+                                    <Link href="https://www.ivi.ru/profile/settings">{t('settings')}</Link>
+                                </li>
+                                <li>
+                                    <Link href="https://ask.ivi.ru/">{t('help')}</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     )

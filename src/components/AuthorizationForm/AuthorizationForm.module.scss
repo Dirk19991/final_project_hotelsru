@@ -20,7 +20,7 @@
     gap: 24px;
 }
 
-.info {
+.title {
     background-color: $secondary-bg-color;
     border-radius: 16px 16px 16px 0px;
     padding: 16px;
@@ -157,6 +157,7 @@
     gap: 8px;
     button {
         display: flex;
+        gap: 6px;
         align-items: center;
         justify-content: center;
         width: 50%;
@@ -176,6 +177,38 @@
         &:hover {
             background-color: darken($accent-color, 10%);
         }
+    }
+}
+
+.error {
+    display: inline-flex;
+    gap: 6px;
+    background-color: $error-bg-color;
+    border-radius: 4px;
+    padding: 12px;
+
+    &_none {
+        display: none;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        width: 240px;
+    }
+
+    &__title {
+        color: $accent-color;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 20px;
+    }
+
+    &__text {
+        color: $error-text-color;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 16px;
     }
 }
 

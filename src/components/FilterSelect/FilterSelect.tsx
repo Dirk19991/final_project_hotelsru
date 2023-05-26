@@ -5,55 +5,67 @@ import engNameToLink from '@/util/engNameToLink'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, genres, yearFilter }) => {
+const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title, selectValue }) => {
     const { query, push, asPath } = useRouter()
-    const { t, i18n } = useTranslation(['common'])
+    const { t, i18n } = useTranslation(['movies', 'common'])
 
-    const handleCurrentFilter = () => {
-        if (filterType === currentModal) {
-            setCurrentModal('')
-        } else {
-            setCurrentModal(filterType)
-        }
-    }
-
-    const yearFilterTitle = (value: string | string[] | undefined) => {
-        if (!value) {
-            return t('allYears')
-        }
-        if (value === '1980') {
-            return `${t('before')} 1980`
-        }
-        if (value && String(value).match('-')) {
-            return value
-        } else {
-            return `${value} ${t('year')}`
-        }
-    }
+    const handleCurrentFilter = () => (filterType === currentModal ? setCurrentModal('') : setCurrentModal(filterType))
+    const isCurrent = (filter: string) => currentModal === filter && filterType === filter
 
     const yearsNavigate = (value: string) => {
-        const pathname = '/movies/[filters]'
-        const filters = query.filters ?? 'all'
-
+        const pathname = '/movies/[genres]'
+        const genres = query.genres ?? 'all'
         if (value === '') {
             delete query.year
-            push({
-                pathname,
-                query: { ...query, filters },
-            })
+            push({ pathname, query: { ...query, genres } })
+            return
+        }
+        push({ pathname, query: { ...query, year: value, genres } })
+
+        setCurrentModal('')
+    }
+
+    const countriesNavigate = (shortName: string) => {
+        // const pathname = '/movies/[genres]'
+        // const genres = query.genres ?? 'all'
+        // const conutriesQuery = String(query.countries)
+        // if (conutriesQuery) {
+        //     conutriesQuery.split('+')
+        // }
+        // const conutriesQuery = query.countries ? `${query.countries}+${shortName}` : shortName
+        // push({
+        //     pathname,
+        //     query: {
+        //         ...query,
+        //         countries: 'uk+br',
+        //         genres,
+        //     },
+        // })
+    }
+
+    const genresNavigate = (nameEn: string) => {
+        const genreLink = engNameToLink(nameEn)
+        const pathname = '/movies/[genres]'
+        let genresQuery = query.genres === 'all' || !query.genres ? '' : String(query.genres)
+
+        if (!genresQuery) {
+            push({ pathname, query: { ...query, genres: genreLink } })
         }
 
-        if (value !== '') {
-            push({
-                pathname,
-                query: {
-                    ...query,
-                    year: value,
-                    filters,
-                },
-            })
+        if (genresQuery) {
+            let genresArr = genresQuery.split('+')
+
+            if (genresArr.includes(genreLink)) {
+                genresArr = genresArr.filter((el) => el !== genreLink)
+                const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
+                push({ pathname, query: { ...query, genres: genresRequest } })
+                return
+            }
+
+            genresArr.push(genreLink)
+            const genresRequest = genresArr.join('+')
+            push({ pathname, query: { ...query, genres: genresRequest } })
         }
-        setCurrentModal('')
     }
 
     return (
@@ -62,84 +74,48 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, genr
                 className={cn(styles.select, filterType === currentModal && styles.active)}
                 onClick={handleCurrentFilter}
             >
-                <div>
-                    {filterType === 'genres' && t('genres')}
-                    {filterType === 'countries' && t('countries')}
-                    {filterType === 'years' && t('years')}
-                </div>
-                {filterType === 'genres' && <span>{'Артхаус, Драма, Документальный'}</span>}
-                {filterType === 'countries' && <span>{'Австралия, Великобритания, Германия'}</span>}
-                {filterType === 'years' && <span>{query.filters && yearFilterTitle(query.year)}</span>}
+                <div>{title}</div>
+                {selectValue && <span>{selectValue}</span>}
             </div>
             <div className={styles.dropdown}>
-                {currentModal === 'genres' && filterType === 'genres' && (
+                {isCurrent('genres') && (
                     <div className={styles.genresDropdown}>
                         <ul>
-                            {genres &&
-                                genres.map(({ id, nameEn, nameRu }: any) => {
-                                    return (
-                                        <li key={id}>
-                                            <label>
-                                                <input type="checkbox" value={engNameToLink(nameEn)} />
-                                                <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
-                                            </label>
-                                        </li>
-                                    )
-                                })}
+                            {list.map(({ id, nameEn, nameRu }: any) => {
+                                const isChecked = String(query.genres).split('+').includes(engNameToLink(nameEn))
+
+                                return (
+                                    <li key={id}>
+                                        <label onClick={() => genresNavigate(nameEn)}>
+                                            <input type="checkbox" checked={isChecked} />
+                                            <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
+                                        </label>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                 )}
-                {currentModal === 'countries' && filterType === 'countries' && (
+                {isCurrent('countries') && (
                     <div className={styles.countriesDropdown}>
                         <ul>
-                            <li>
-                                <label>
-                                    <input type="checkbox" value="Австралия" />
-                                    <div>Австралия</div>
-                                </label>
-                            </li>
-
-                            <li>
-                                <label>
-                                    <input type="checkbox" value="Аргентина" />
-                                    <div>Аргентина</div>
-                                </label>
-                            </li>
-
-                            <li>
-                                <label>
-                                    <input type="checkbox" value="Албания" />
-                                    <div>Албания</div>
-                                </label>
-                            </li>
-
-                            <li>
-                                <label>
-                                    <input type="checkbox" value="Австралия" />
-                                    <div>Австралия</div>
-                                </label>
-                            </li>
-
-                            <li>
-                                <label>
-                                    <input type="checkbox" value="Аргентина" />
-                                    <div>Аргентина</div>
-                                </label>
-                            </li>
-
-                            <li>
-                                <label>
-                                    <input type="checkbox" value="Албания" />
-                                    <div>Албания</div>
-                                </label>
-                            </li>
+                            {list.map(({ id, nameEn, nameRu, shortName }: any) => {
+                                return (
+                                    <li key={id}>
+                                        <label onClick={() => countriesNavigate(shortName)}>
+                                            <input type="checkbox" value={engNameToLink(nameEn)} />
+                                            <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
+                                        </label>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                 )}
-                {currentModal === 'years' && filterType === 'years' && (
+                {isCurrent('years') && (
                     <div className={styles.yearsDropdown}>
                         <ul>
-                            {yearFilter.map(({ id, value }: any) => {
+                            {list.map(({ id, value }: any) => {
                                 let title
 
                                 if (value.match('-')) {

@@ -26,7 +26,8 @@ const nextConfig = {
     },
     i18n,
     env: {
-        DOCKER_API_URL: 'http://localhost:3111',
+        DOCKER_API_URL: 'http://localhost:3100',
+        DEPLOY_API_URL: 'http://193.32.203.137:4000',
     },
 }
 
