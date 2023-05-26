@@ -9,7 +9,7 @@ import RangeSlider from '../RangeSlider/RangeSlider'
 import { useRouter } from 'next/router'
 
 const Filters: FC<any> = ({ allFilters }) => {
-    const { query, replace } = useRouter()
+    const { query, replace, asPath } = useRouter()
     const { t, i18n } = useTranslation('movies')
     const isResetDisabled = !query.genres || (Object.keys(query).length === 1 && query.genres === 'all')
 

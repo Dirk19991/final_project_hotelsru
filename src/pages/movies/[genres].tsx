@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 import Head from 'next/head'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
 import SortingPanel from '@/components/SortingPanel/SortingPanel'
@@ -8,11 +8,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import useSWR from 'swr'
+import { useRouter } from 'next/router'
 
 const MoviesFilters: FC<any> = ({ allFilters }) => {
     const [moviesList, setMoviesList] = useState<any>([])
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
     const { t } = useTranslation(['common'])
+    const { query, replace, asPath } = useRouter()
 
     const breadcrumbsData = [
         { id: 1, title: t('myIvi'), href: '/' },
@@ -36,6 +38,11 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         // setMoviesList((state: any) => [...state, movies.result])
         return movies.result
     })
+
+
+    useEffect(() => {
+        console.log(query)
+    }, [query])
 
     return (
         <Layout>

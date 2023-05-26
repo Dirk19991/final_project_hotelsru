@@ -8,8 +8,6 @@ import { useTranslation } from 'next-i18next'
 const MoviesList: FC<any> = ({ data, isLoading }) => {
     const { t, i18n } = useTranslation(['movies'])
 
-    console.log(data)
-
     return (
         <section>
             <div className="container">
