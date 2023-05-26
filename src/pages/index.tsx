@@ -17,15 +17,13 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
         <Layout>
             <Head>
                 <title>
-                    Онлайн-кинотеатр Иви - фильмы, сериалы и мультфильмы
-                    смотреть онлайн бесплатно в хорошем качестве
+                    Онлайн-кинотеатр Иви - фильмы, сериалы и мультфильмы смотреть онлайн бесплатно в хорошем качестве
                 </title>
             </Head>
             <MainCarousel data={mainCarouselMovies} />
             <PromoButtons />
             <Promo />
             <MediumCarousel />
-
             <DefaultCarousel
                 title={t('bestDramas')}
                 link={'/movies/drama'}
@@ -37,6 +35,7 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
                 dataList={comedies}
             />
         </Layout>
+
     )
 }
 
@@ -56,12 +55,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
             dramas: mockMovies,
             comedies: mockMovies,
             mainCarouselMovies,
-            ...(await serverSideTranslations(locale as string, [
-                'common',
-                'footer',
-                'promo',
-                'header',
-            ])),
+            ...(await serverSideTranslations(locale as string, ['common', 'footer', 'promo', 'header'])),
         },
     }
 }
