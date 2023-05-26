@@ -83,3 +83,49 @@ export interface ISmallSliderMovie {
     genre: IGenreParam[]
     country: ICountryParam[]
 }
+
+export interface IAdminPanelMovie {
+    ageRating: string
+    countries: ICountry[]
+    description: string
+    duration: string
+    genres: IGenre[]
+    id: number
+    nameEn: string
+    nameRu: string
+    poster: string
+    rating: string
+    ratingCount: string
+    similarMovies: {
+        countries: ICountry[]
+        duration: string
+        genres: IGenre[]
+        id: number
+        nameEn: string
+        nameRu: string
+        poster: string
+        rating: string
+        ratingCount: string
+        year: string
+    }[]
+    slogan: string
+    trailer: string
+    year: string
+}
+
+export interface IAdminPanelData {
+    errors: any[]
+    movie: IAdminPanelMovie
+}
+
+export interface IGenre {
+    id: number
+    nameEn: string
+    nameRu: string
+}
+
+export interface ICountry {
+    nameEn: string
+    nameRu: string
+    shortName: string
+}

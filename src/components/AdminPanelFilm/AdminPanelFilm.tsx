@@ -1,42 +1,20 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './AdminPanelFilm.module.scss'
-import data from '@/data/mockData'
-import { ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
 import React from 'react'
 import Select, { MultiValue } from 'react-select'
+import axios from 'axios'
+import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/ComponentProps/IMovie'
+
+const PORT = 'http://193.32.203.137:4000/'
 
 const AdminPanelFilm = () => {
     const [inputValue, setInputValue] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
     const [notFound, setNotFound] = useState<boolean>(false)
     const [saved, setSaved] = useState<boolean>(false)
-    const [chosenGenres, setChosenGenres] = useState<
-        MultiValue<{
-            value: string
-            label: string
-        }>
-    >([])
-    const [foundFilm, setFoundFilm] = useState<ISmallSliderMovie | null>(null)
-
-    const genres = [
-        { value: 'триллер', label: 'триллер' },
-        { value: 'драма', label: 'драма' },
-        { value: 'спорт', label: 'спорт' },
-        { value: 'комедия', label: 'комедия' },
-        { value: 'криминал', label: 'криминал' },
-        { value: 'биография', label: 'биография' },
-        { value: 'военный', label: 'военный' },
-        { value: 'история', label: 'история' },
-        { value: 'фантастика', label: 'фантастика' },
-        { value: 'приключения', label: 'приключения' },
-        { value: 'семейный', label: 'семейный' },
-        { value: 'мюзикл', label: 'мюзикл' },
-        { value: 'мелодрама', label: 'мелодрама' },
-        { value: 'боевик', label: 'боевик' },
-        { value: 'фэнтези', label: 'фэнтези' },
-        { value: 'ужасы', label: 'ужасы' },
-        { value: 'детектив', label: 'детектив' },
-    ]
+    const [chosenGenres, setChosenGenres] = useState<MultiValue<{ value: string; label: string }>>([])
+    const [foundFilm, setFoundFilm] = useState<IAdminPanelMovie | null>(null)
+    const [allGenres, setAllGenres] = useState<{ value: string; label: string; id: number }[] | null>(null)
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setFoundFilm(null)
@@ -46,36 +24,94 @@ const AdminPanelFilm = () => {
         setInputValue(e.target.value)
     }
 
-    const searchSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    const searchSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        let filmsData = data as ISmallSliderMovie[]
-        if (isNaN(+inputValue)) {
-            setError(true)
-            return
-        } else {
-            let film = filmsData.find((film) => film.id === +inputValue)
-            if (film) {
-                setFoundFilm(film)
-                return
+        try {
+            const movieResponse = await axios.get(`${PORT}movie/${inputValue}`)
+            const movieData = (await movieResponse.data) as IAdminPanelData
+            if (movieData.errors.length !== 0) {
+                throw new Error('error')
             } else {
-                setNotFound(true)
-                return
+                setFoundFilm(movieData.movie)
+                setChosenGenres(
+                    movieData.movie.genres.map((genre) => {
+                        return {
+                            label: genre.nameRu,
+                            value: genre.nameEn,
+                        }
+                    })
+                )
             }
+
+            const genreResponse = await axios.get(`${PORT}genres`)
+            const genreData = (await genreResponse.data) as IGenre[]
+            setAllGenres(
+                genreData.map((genre) => {
+                    return {
+                        label: genre.nameRu,
+                        value: genre.nameEn,
+                        id: genre.id,
+                    }
+                })
+            )
+        } catch (error) {
+            setError(true)
         }
     }
 
-    const editSubmitHandler = (e: any) => {
+    const editSubmitHandler = async (e: any) => {
         e.preventDefault()
 
         const formData = new FormData(e.target)
-        const genres = chosenGenres ? chosenGenres : foundFilm?.genre
+        const updatedRuName = formData.get('nameRu')
+        const updatedEnName = formData.get('nameEn')
+        const genreValues = chosenGenres.map((genre) => genre.value)
 
         const updatedFilm = {
-            ...foundFilm,
-            name: formData.get('name'),
-            genre: genres,
+            nameRu: updatedRuName,
+            nameEn: updatedEnName,
+            description: foundFilm?.description,
+            trailer: foundFilm?.trailer,
+            similarMovies: foundFilm?.similarMovies.map((film) => film.id),
+            year: foundFilm?.year,
+            rating: foundFilm?.rating,
+            ratingCount: foundFilm?.ratingCount,
+            ageRating: foundFilm?.ageRating,
+            poster: foundFilm?.poster,
+            duration: foundFilm?.duration,
+            slogan: foundFilm?.slogan,
+            genres: allGenres?.filter((genre) => genreValues.includes(genre.value)).map((genre) => genre.id),
+            countries: foundFilm?.countries.map((country) => country.shortName),
         }
+
+        try {
+            const res = await axios.put(`${PORT}movie/${inputValue}`, updatedFilm)
+        } catch (error) {
+            console.log(error)
+        }
+        // {
+        //     "nameRu": "Идеальные незнакомцы1    ",
+        //     "nameEn": "Perfectos desconocidos",
+        //     "description": "Семь друзей собираются за ужином и решают сыграть в простую игру. Все мобильники выкладываются на стол, чтобы все присутствующие могли видеть и слышать сообщения и звонки, поступающие каждому из них.",
+        //     "trailer": "https://www.youtube.com/v/4m_a2srLn4c",
+        //     "similarMovies": [
+        //       101
+        //     ],
+        //     "year": "2017",
+        //     "rating": "6.9",
+        //     "ratingCount": "14641",
+        //     "ageRating": null,
+        //     "poster": "https://st.kp.yandex.net/images/film_big/1006009.jpg",
+        //     "duration": "97",
+        //     "slogan": "We all have a secret",
+        //     "genres": [
+        //        1
+        //     ],
+        //     "countries": [
+        //        "es"
+        //     ]
+        // }
 
         // на этом этапе отправляем обновленные данные на бэкенд
         console.log(updatedFilm)
@@ -84,7 +120,7 @@ const AdminPanelFilm = () => {
     }
 
     return (
-        <>
+        <div className={styles.container}>
             <form onSubmit={searchSubmitHandler} className={styles.wrapper}>
                 <input
                     className={styles.input}
@@ -97,46 +133,50 @@ const AdminPanelFilm = () => {
                     Найти
                 </button>
             </form>
-            {error && (
-                <div className={styles.error}>Ошибка! Некорректный ID</div>
-            )}
+            {error && <div className={styles.error}>Ошибка! Попробуйте еще раз</div>}
             {notFound && <div className={styles.error}>Ничего не найдено!</div>}
             {saved && <div className={styles.saved}>Сохранено!</div>}
-            {foundFilm && (
+            {foundFilm && allGenres && (
                 <form onSubmit={editSubmitHandler}>
                     <div className={styles.info}>
                         <div>ID</div>
                         <div>{foundFilm.id}</div>
                         <div>Название</div>
-                        <input
-                            name="name"
-                            className={styles.nameInput}
-                            defaultValue={foundFilm.name}
-                        />
+                        <input name="nameRu" className={styles.nameInput} defaultValue={foundFilm.nameRu} />
+                        <div>Название (eng)</div>
+                        <input name="nameEn" className={styles.nameInput} defaultValue={foundFilm.nameEn} />
                         <div>Описание</div>
                         <div>{foundFilm.description}</div>
                         <div>Жанры</div>
 
                         <Select
+                            menuShouldScrollIntoView={false}
                             styles={{
                                 control: (baseStyles, state) => ({
                                     ...baseStyles,
                                     backgroundColor: '#312b45',
+                                    cursor: 'pointer',
                                 }),
                                 option: (baseStyles, state) => ({
                                     ...baseStyles,
                                     backgroundColor: '#312b45',
+                                    cursor: 'pointer',
+                                    '&:hover': { ...styles, backgroundColor: '#a5a1b2' },
+                                }),
+                                menu: (base) => ({
+                                    ...base,
+
+                                    paddingBottom: '50px',
+                                    backgroundColor: '#100e19',
                                 }),
                             }}
-                            defaultValue={genres.filter((genre) =>
-                                foundFilm.genre
-                                    .map((elem) => elem.name)
-                                    .includes(genre.value)
+                            defaultValue={allGenres.filter((genre) =>
+                                foundFilm.genres.map((elem) => elem.nameEn).includes(genre.value)
                             )}
                             onChange={(choice) => setChosenGenres(choice)}
                             isMulti
                             name="genres"
-                            options={genres}
+                            options={allGenres}
                             className="basic-multi-select"
                             classNamePrefix="select"
                         />
@@ -147,7 +187,7 @@ const AdminPanelFilm = () => {
                     </button>
                 </form>
             )}
-        </>
+        </div>
     )
 }
 export default AdminPanelFilm

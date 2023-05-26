@@ -1,18 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './AdminPanel.module.scss'
-import data from '@/data/mockData'
-import { ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
 import AdminPanelFilm from '../AdminPanelFilm/AdminPanelFilm'
 import { Button } from '@/stories/Button/ButtonStandard'
 import AdminPanelGenre from '../AdminPanelGenre/AdminPanelGenre'
 
 const AdminPanel = () => {
-    const [screenType, setScreenType] = useState<'buttons' | 'film' | 'genre'>(
-        'buttons'
-    )
+    const [screenType, setScreenType] = useState<'buttons' | 'film' | 'genre'>('buttons')
 
     return (
-        <div className="container">
+        <div className="container add">
             {screenType === 'buttons' && (
                 <div className={styles.wrapper}>
                     <Button
