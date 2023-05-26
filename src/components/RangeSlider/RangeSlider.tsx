@@ -3,7 +3,7 @@ import styles from './RangeSlider.module.scss'
 import { useRouter } from 'next/router'
 
 const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, step, queryName }) => {
-    const { query, push } = useRouter()
+    const { query, replace } = useRouter()
 
     const inputChangeHandler = () => {
         const genres = query.genres ?? 'all'
@@ -11,11 +11,11 @@ const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, st
 
         if (sliderValue === '0') {
             delete query[queryName]
-            push({ pathname, query: { ...query, genres } })
+            replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
         }
 
         if (sliderValue !== '0') {
-            push({ pathname, query: { ...query, [queryName]: sliderValue, genres } })
+            replace({ pathname, query: { ...query, [queryName]: sliderValue, genres } }, undefined, { shallow: true })
         }
     }
 

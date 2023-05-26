@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title, selectValue }) => {
-    const { query, push, asPath } = useRouter()
+    const { query, push, asPath, replace } = useRouter()
     const { t, i18n } = useTranslation(['movies', 'common'])
 
     const handleCurrentFilter = () => (filterType === currentModal ? setCurrentModal('') : setCurrentModal(filterType))
@@ -17,30 +17,44 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         const genres = query.genres ?? 'all'
         if (value === '') {
             delete query.year
-            push({ pathname, query: { ...query, genres } })
+            replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
             return
         }
-        push({ pathname, query: { ...query, year: value, genres } })
+        replace({ pathname, query: { ...query, year: value, genres } }, undefined, { shallow: true })
 
         setCurrentModal('')
     }
 
     const countriesNavigate = (shortName: string) => {
-        // const pathname = '/movies/[genres]'
-        // const genres = query.genres ?? 'all'
-        // const conutriesQuery = String(query.countries)
-        // if (conutriesQuery) {
-        //     conutriesQuery.split('+')
-        // }
-        // const conutriesQuery = query.countries ? `${query.countries}+${shortName}` : shortName
-        // push({
-        //     pathname,
-        //     query: {
-        //         ...query,
-        //         countries: 'uk+br',
-        //         genres,
-        //     },
-        // })
+        const pathname = '/movies/[genres]'
+        const genres = query.genres ?? 'all'
+        const countries = query.countries ? String(query.countries) : ''
+
+        if (countries === '') {
+            replace({ pathname, query: { ...query, genres, countries: shortName } }, undefined, { shallow: true })
+        } else {
+            let countriesArr = countries.split('+')
+
+            if (countriesArr.includes(shortName)) {
+                countriesArr = countriesArr.filter((el) => el !== shortName)
+
+                if (!countriesArr.length) {
+                    replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
+                    delete query.countries
+                } else {
+                    const countriesRequest = countriesArr.join('+')
+                    replace({ pathname, query: { ...query, genres, countries: countriesRequest } }, undefined, {
+                        shallow: true,
+                    })
+                }
+            } else {
+                countriesArr.push(shortName)
+                const countriesRequest = countriesArr.join('+')
+                replace({ pathname, query: { ...query, genres, countries: countriesRequest } }, undefined, {
+                    shallow: true,
+                })
+            }
+        }
     }
 
     const genresNavigate = (nameEn: string) => {
@@ -49,23 +63,22 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         let genresQuery = query.genres === 'all' || !query.genres ? '' : String(query.genres)
 
         if (!genresQuery) {
-            push({ pathname, query: { ...query, genres: genreLink } })
+            replace({ pathname, query: { ...query, genres: genreLink } }, undefined, { shallow: true })
+            return
         }
 
-        if (genresQuery) {
-            let genresArr = genresQuery.split('+')
+        let genresArr = genresQuery.split('+')
 
-            if (genresArr.includes(genreLink)) {
-                genresArr = genresArr.filter((el) => el !== genreLink)
-                const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
-                push({ pathname, query: { ...query, genres: genresRequest } })
-                return
-            }
-
-            genresArr.push(genreLink)
-            const genresRequest = genresArr.join('+')
-            push({ pathname, query: { ...query, genres: genresRequest } })
+        if (genresArr.includes(genreLink)) {
+            genresArr = genresArr.filter((el) => el !== genreLink)
+            const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
+            replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
+            return
         }
+
+        genresArr.push(genreLink)
+        const genresRequest = genresArr.join('+')
+        replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
     }
 
     return (
@@ -100,10 +113,12 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                     <div className={styles.countriesDropdown}>
                         <ul>
                             {list.map(({ id, nameEn, nameRu, shortName }: any) => {
+                                const isChecked = String(query.countries).split('+').includes(shortName)
+
                                 return (
-                                    <li key={id}>
-                                        <label onClick={() => countriesNavigate(shortName)}>
-                                            <input type="checkbox" value={engNameToLink(nameEn)} />
+                                    <li key={id} onClick={() => countriesNavigate(shortName)}>
+                                        <label>
+                                            <input type="checkbox" checked={isChecked} />
                                             <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
                                         </label>
                                     </li>
