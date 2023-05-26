@@ -8,12 +8,13 @@ import { GetStaticProps } from 'next'
 import { FC } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import Layout from '@/components/Layout/Layout'
 
 const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
     const { t } = useTranslation(['common'])
 
     return (
-        <>
+        <Layout>
             <Head>
                 <title>
                     Онлайн-кинотеатр Иви - фильмы, сериалы и мультфильмы
@@ -35,7 +36,7 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
                 link={'/movies/comedy'}
                 dataList={comedies}
             />
-        </>
+        </Layout>
     )
 }
 

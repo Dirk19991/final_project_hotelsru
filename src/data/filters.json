@@ -19,5 +19,214 @@
         { "id": 18, "value": "1990-2000" },
         { "id": 18, "value": "1980-1990" },
         { "id": 9, "value": "1980" }
+    ],
+    "countries": [
+        {
+            "id": 1,
+            "nameRu": "Австралия",
+            "nameEn": "Australia",
+            "shortName": "as"
+        },
+
+        {
+            "id": 2,
+            "nameRu": "Аргентина",
+            "nameEn": "Argentina",
+            "shortName": "ar"
+        },
+        {
+            "id": 3,
+            "nameRu": "Армения",
+            "nameEn": "Armenia",
+            "shortName": "am"
+        },
+        {
+            "id": 4,
+            "nameRu": "Бельгия",
+            "nameEn": "Belgium",
+            "shortName": "be"
+        },
+        {
+            "id": 5,
+            "nameRu": "Бразилия",
+            "nameEn": "Brazil",
+            "shortName": "br"
+        },
+        {
+            "id": 6,
+            "nameRu": "Беларусь",
+            "nameEn": "Belarus",
+            "shortName": "bo"
+        },
+        {
+            "id": 7,
+            "nameRu": "Великобритания",
+            "nameEn": "United Kingdom",
+            "shortName": "uk"
+        },
+        {
+            "id": 8,
+            "nameRu": "Венгрия",
+            "nameEn": "Hungary",
+            "shortName": "hu"
+        },
+        {
+            "id": 9,
+            "nameRu": "Германия",
+            "nameEn": "Germany",
+            "shortName": "gm"
+        },
+        {
+            "id": 10,
+            "nameRu": "Гонконг",
+            "nameEn": "Hong Kong",
+            "shortName": "hk"
+        },
+        {
+            "id": 11,
+            "nameRu": "Дания",
+            "nameEn": "Denmark",
+            "shortName": "da"
+        },
+        {
+            "id": 12,
+            "nameRu": "Индия",
+            "nameEn": "India",
+            "shortName": "in"
+        },
+        {
+            "id": 13,
+            "nameRu": "Ирландия",
+            "nameEn": "Ireland",
+            "shortName": "ei"
+        },
+        {
+            "id": 14,
+            "nameRu": "Испания",
+            "nameEn": "Spain",
+            "shortName": "sp"
+        },
+        {
+            "id": 15,
+            "nameRu": "Италия",
+            "nameEn": "Italy",
+            "shortName": "it"
+        },
+        { "id": 16, "nameRu": "Казахстан", "nameEn": "Kazakhstan", "shortName": "kz" },
+        {
+            "id": 17,
+            "nameRu": "Канада",
+            "nameEn": "Canada",
+            "shortName": "ca"
+        },
+        {
+            "id": 18,
+            "nameRu": "Китай",
+            "nameEn": "China",
+            "shortName": "ch"
+        },
+        { "id": 19, "nameRu": "Колумбия", "nameEn": "Colombia", "shortName": "co" },
+        {
+            "id": 20,
+            "nameRu": "Мексика",
+            "nameEn": "Mexico",
+            "shortName": "mx"
+        },
+        {
+            "id": 21,
+            "nameRu": "Нидерланды",
+            "nameEn": "Netherlands",
+            "shortName": "nl"
+        },
+        {
+            "id": 22,
+            "nameRu": "Новая Зеландия",
+            "nameEn": "New Zealand",
+            "shortName": "nz"
+        },
+        {
+            "id": 23,
+            "nameRu": "Норвегия",
+            "nameEn": "Norway",
+            "shortName": "no"
+        },
+        {
+            "id": 24,
+            "nameRu": "Польша",
+            "nameEn": "Poland",
+            "shortName": "pl"
+        },
+        {
+            "id": 25,
+            "nameRu": "Россия",
+            "nameEn": "Russia",
+            "shortName": "rs"
+        },
+        {
+            "id": 26,
+            "nameRu": "СССР",
+            "nameEn": "USSR",
+            "shortName": "su"
+        },
+        {
+            "id": 27,
+            "nameRu": "США",
+            "nameEn": "United States",
+            "shortName": "us"
+        },
+        {
+            "id": 28,
+            "nameRu": "Таиланд",
+            "nameEn": "Thailand",
+            "shortName": "th"
+        },
+        {
+            "id": 29,
+            "nameRu": "Турция",
+            "nameEn": "Turkey",
+            "shortName": "tu"
+        },
+        {
+            "id": 30,
+            "nameRu": "Финляндия",
+            "nameEn": "Finland",
+            "shortName": "fi"
+        },
+        {
+            "id": 31,
+            "nameRu": "Франция",
+            "nameEn": "France",
+            "shortName": "fr"
+        },
+        {
+            "id": 32,
+            "nameRu": "Швейцария",
+            "nameEn": "Switzerland",
+            "shortName": "sz"
+        },
+        {
+            "id": 33,
+            "nameRu": "Швеция",
+            "nameEn": "Sweden",
+            "shortName": "sw"
+        },
+        {
+            "id": 34,
+            "nameRu": "Грузия",
+            "nameEn": "Georgia",
+            "shortName": "gg"
+        },
+        {
+            "id": 35,
+            "nameRu": "Южная Корея",
+            "nameEn": "South Korea",
+            "shortName": "ks"
+        },
+        {
+            "id": 36,
+            "nameRu": "Япония",
+            "nameEn": "Japan",
+            "shortName": "ja"
+        }
     ]
 }
