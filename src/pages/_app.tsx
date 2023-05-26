@@ -1,4 +1,3 @@
-import Layout from '@/components/Layout/Layout'
 import '@/styles/globals.scss'
 import '@/styles/vars.scss'
 import type { AppProps } from 'next/app'
@@ -25,14 +24,14 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 />
             </Head>
 
-            <Layout>
+            <>
                 <style jsx global>{`
                     html {
                         font-family: ${openSans.style.fontFamily};
                     }
                 `}</style>
                 <Component {...pageProps} />
-            </Layout>
+            </>
         </>
     )
 }

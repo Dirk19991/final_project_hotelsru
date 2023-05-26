@@ -33,3 +33,11 @@
         border: 1px solid $accent-color;
     }
 }
+
+.notFound {
+    text-align: center;
+    color: $accent-color;
+    font-weight: bold;
+    font-size: 28px;
+    margin-top: 100px;
+}

@@ -8,12 +8,13 @@ import { GetStaticProps } from 'next'
 import { FC } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import Layout from '@/components/Layout/Layout'
 
 const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
     const { t } = useTranslation(['common'])
 
     return (
-        <>
+        <Layout>
             <Head>
                 <title>
                     Онлайн-кинотеатр Иви - фильмы, сериалы и мультфильмы смотреть онлайн бесплатно в хорошем качестве
@@ -23,10 +24,18 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
             <PromoButtons />
             <Promo />
             <MediumCarousel />
+            <DefaultCarousel
+                title={t('bestDramas')}
+                link={'/movies/drama'}
+                dataList={dramas}
+            />
+            <DefaultCarousel
+                title={t('bestComedies')}
+                link={'/movies/comedy'}
+                dataList={comedies}
+            />
+        </Layout>
 
-            <DefaultCarousel title={t('bestDramas')} link={'/movies/drama'} dataList={dramas} />
-            <DefaultCarousel title={t('bestComedies')} link={'/movies/comedy'} dataList={comedies} />
-        </>
     )
 }
 
