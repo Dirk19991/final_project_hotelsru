@@ -57,6 +57,8 @@ export const getServerSideProps = async ({ locale, query }: any) => {
     const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
     const deployBaseUrl = process.env.DEPLOY_API_URL
 
+    console.log(query)
+
     // FILTERS
     const filtersRes = await fetch(`${localBaseUrl}/api/filters`)
     const filters = await filtersRes.json()

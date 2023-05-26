@@ -9,14 +9,19 @@ import RangeSlider from '../RangeSlider/RangeSlider'
 import { useRouter } from 'next/router'
 
 const Filters: FC<any> = ({ allFilters }) => {
-    const { query, push } = useRouter()
+    const { query, replace } = useRouter()
     const { t, i18n } = useTranslation('movies')
-    const isResetDisabled = query.genres === 'all' || !query.genres
+    const isResetDisabled = !query.genres || (Object.keys(query).length === 1 && query.genres === 'all')
 
     const ratingQuery = query.rating ? String(query.rating) : '0'
     const ratingsQuery = query.ratings ? String(query.ratings) : '0'
     const genresQuery = allFilters.genres
         .filter((el: any) => String(query.genres).split('+').includes(el.nameEn.toLowerCase()))
+        .map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn))
+        .join(', ')
+
+    const countriesQuery = allFilters.countries
+        .filter((el: any) => String(query.countries).split('+').includes(el.shortName))
         .map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn))
         .join(', ')
 
@@ -31,10 +36,6 @@ const Filters: FC<any> = ({ allFilters }) => {
         if (value && String(value).match('-')) return value
 
         return `${value} ${t('year')}`
-    }
-
-    const resetFilters = () => {
-        push('/movies/all')
     }
 
     return (
@@ -53,6 +54,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                         <FilterSelect
                             title={t('countries')}
                             filterType="countries"
+                            selectValue={query.genres && !query.countries ? t('allCountries') : countriesQuery}
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
                             list={allFilters.countries}
@@ -88,7 +90,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                             step={10}
                         />
                     </div>
-                    <button className={styles.reset} disabled={isResetDisabled} onClick={resetFilters}>
+                    <button className={styles.reset} disabled={isResetDisabled} onClick={() => replace('/movies/all')}>
                         <span>
                             <FontAwesomeIcon icon={faXmark} size="xl" />
                         </span>

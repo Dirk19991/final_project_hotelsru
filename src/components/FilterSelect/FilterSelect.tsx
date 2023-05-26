@@ -15,12 +15,13 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
     const yearsNavigate = (value: string) => {
         const pathname = '/movies/[genres]'
         const genres = query.genres ?? 'all'
+
         if (value === '') {
             delete query.year
             replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
-            return
+        } else {
+            replace({ pathname, query: { ...query, year: value, genres } }, undefined, { shallow: true })
         }
-        replace({ pathname, query: { ...query, year: value, genres } }, undefined, { shallow: true })
 
         setCurrentModal('')
     }
@@ -39,8 +40,8 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                 countriesArr = countriesArr.filter((el) => el !== shortName)
 
                 if (!countriesArr.length) {
-                    replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
                     delete query.countries
+                    replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
                 } else {
                     const countriesRequest = countriesArr.join('+')
                     replace({ pathname, query: { ...query, genres, countries: countriesRequest } }, undefined, {
@@ -64,21 +65,19 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
 
         if (!genresQuery) {
             replace({ pathname, query: { ...query, genres: genreLink } }, undefined, { shallow: true })
-            return
+        } else {
+            let genresArr = genresQuery.split('+')
+
+            if (genresArr.includes(genreLink)) {
+                genresArr = genresArr.filter((el) => el !== genreLink)
+                const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
+                replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
+            } else {
+                genresArr.push(genreLink)
+                const genresRequest = genresArr.join('+')
+                replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
+            }
         }
-
-        let genresArr = genresQuery.split('+')
-
-        if (genresArr.includes(genreLink)) {
-            genresArr = genresArr.filter((el) => el !== genreLink)
-            const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
-            replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
-            return
-        }
-
-        genresArr.push(genreLink)
-        const genresRequest = genresArr.join('+')
-        replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
     }
 
     return (
@@ -98,9 +97,9 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                                 const isChecked = String(query.genres).split('+').includes(engNameToLink(nameEn))
 
                                 return (
-                                    <li key={id}>
-                                        <label onClick={() => genresNavigate(nameEn)}>
-                                            <input type="checkbox" checked={isChecked} />
+                                    <li key={id} onChange={() => genresNavigate(nameEn)}>
+                                        <label>
+                                            <input type="checkbox" checked={isChecked} name="genres" />
                                             <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
                                         </label>
                                     </li>
@@ -116,9 +115,9 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                                 const isChecked = String(query.countries).split('+').includes(shortName)
 
                                 return (
-                                    <li key={id} onClick={() => countriesNavigate(shortName)}>
+                                    <li key={id} onChange={() => countriesNavigate(shortName)}>
                                         <label>
-                                            <input type="checkbox" checked={isChecked} />
+                                            <input type="checkbox" name="countries" checked={isChecked} />
                                             <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
                                         </label>
                                     </li>
@@ -148,14 +147,9 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                                 const queryParam = query.year ?? ''
 
                                 return (
-                                    <li key={id}>
-                                        <label onClick={() => yearsNavigate(value)}>
-                                            <input
-                                                type="radio"
-                                                name="years"
-                                                value={value}
-                                                checked={queryParam === value && true}
-                                            />
+                                    <li key={id} onClick={() => yearsNavigate(value)}>
+                                        <label>
+                                            <input type="radio" name="years" checked={queryParam === value} />
                                             <div>{title}</div>
                                         </label>
                                     </li>

@@ -38,10 +38,12 @@ const Movies: FC<any> = ({ dramas, comedies, allFilters }) => {
 
 export default Movies
 
-export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
+export const getStaticProps: GetStaticProps = async ({ locale, query }: any) => {
     const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
     // const dockerBaseUrl = process.env.DOCKER_API_URL
     const deployBaseUrl = process.env.DEPLOY_API_URL
+
+    console.log(query)
 
     // заменить на рил данные
     const response = await fetch(`${localBaseUrl}/api/movies-list`)
