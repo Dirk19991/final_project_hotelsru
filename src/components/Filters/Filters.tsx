@@ -38,6 +38,12 @@ const Filters: FC<any> = ({ allFilters }) => {
         return `${value} ${t('year')}`
     }
 
+    const resetFilters = () => {
+        setRatingValue("0")
+        setRatingsAmount("0")
+        replace('/movies/all')
+    }
+
     return (
         <div className={styles.filters}>
             <div className="container">
@@ -90,7 +96,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                             step={10}
                         />
                     </div>
-                    <button className={styles.reset} disabled={isResetDisabled} onClick={() => replace('/movies/all')}>
+                    <button className={styles.reset} disabled={isResetDisabled} onClick={resetFilters}>
                         <span>
                             <FontAwesomeIcon icon={faXmark} size="xl" />
                         </span>

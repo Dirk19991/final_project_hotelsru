@@ -23,26 +23,18 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         if (value === '') {
             delete query.years
             delete queryCopy.years
-            replace(
-                { pathname, query: { ...query, genres } },
-                {
-                    pathname: pathnameCopy,
-                    query: { ...queryCopy },
-                },
-                { shallow: true }
-            )
+
+            const path = { pathname, query: { ...query, genres } }
+            const as = { pathname: pathnameCopy, query: { ...queryCopy } }
+            const config = { shallow: true }
+
+            replace(path, as, config)
         } else {
-            replace(
-                { pathname, query: { ...query, years: value, genres } },
-                {
-                    pathname: pathnameCopy,
-                    query: {
-                        ...queryCopy,
-                        years: value,
-                    },
-                },
-                { shallow: true }
-            )
+            const path = { pathname, query: { ...query, years: value, genres } }
+            const as = { pathname: pathnameCopy, query: { ...queryCopy, years: value } }
+            const config = { shallow: true }
+
+            replace(path, as, config)
         }
 
         setCurrentModal('')
@@ -58,11 +50,11 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         delete queryCopy.genres
 
         if (countries === '') {
-            replace(
-                { pathname, query: { ...query, genres, countries: shortName } },
-                { pathname: pathnameCopy, query: { ...queryCopy, countries: shortName } },
-                { shallow: true }
-            )
+            const path = { pathname, query: { ...query, genres, countries: shortName } }
+            const as = { pathname: pathnameCopy, query: { ...queryCopy, countries: shortName } }
+            const config = { shallow: true }
+
+            replace(path, as, config)
         } else {
             let countriesArr = countries.split(' ')
 
@@ -72,37 +64,30 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                 if (!countriesArr.length) {
                     delete query.countries
                     delete queryCopy.countries
-                    replace(
-                        { pathname, query: { ...query, genres } },
-                        { pathname: pathnameCopy, query: { ...queryCopy } },
-                        { shallow: true }
-                    )
+
+                    const path = { pathname, query: { ...query, genres } }
+                    const as = { pathname: pathnameCopy, query: { ...queryCopy } }
+                    const config = { shallow: true }
+
+                    replace(path, as, config)
                 } else {
                     const countriesRequest = countriesArr.join(' ')
-                    replace(
-                        { pathname, query: { ...query, genres, countries: countriesRequest } },
-                        {
-                            pathname: pathnameCopy,
-                            query: { ...queryCopy, countries: countriesRequest },
-                        },
-                        {
-                            shallow: true,
-                        }
-                    )
+
+                    const path = { pathname, query: { ...query, genres, countries: countriesRequest } }
+                    const as = { pathname: pathnameCopy, query: { ...queryCopy, countries: countriesRequest } }
+                    const config = { shallow: true }
+
+                    replace(path, as, config)
                 }
             } else {
                 countriesArr.push(shortName)
                 const countriesRequest = countriesArr.join(' ')
-                replace(
-                    { pathname, query: { ...query, genres, countries: countriesRequest } },
-                    {
-                        pathname: pathnameCopy,
-                        query: { ...queryCopy, countries: countriesRequest },
-                    },
-                    {
-                        shallow: true,
-                    }
-                )
+
+                const path = { pathname, query: { ...query, genres, countries: countriesRequest } }
+                const as = { pathname: pathnameCopy, query: { ...queryCopy, countries: countriesRequest } }
+                const config = { shallow: true }
+
+                replace(path, as, config)
             }
         }
     }
@@ -121,19 +106,21 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
             if (genresArr.includes(genreLink)) {
                 genresArr = genresArr.filter((el) => el !== genreLink)
                 const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
-                replace(
-                    { pathname, query: { ...query, genres: genresRequest } },
-                    `/movies/${genresRequest}${queryString}`,
-                    { shallow: true }
-                )
+
+                const path = { pathname, query: { ...query, genres: genresRequest } }
+                const as = `/movies/${genresRequest}${queryString}`
+                const config = { shallow: true }
+
+                replace(path, as, config)
             } else {
                 genresArr.push(genreLink)
                 const genresRequest = genresArr.join('+')
-                replace(
-                    { pathname, query: { ...query, genres: genresRequest } },
-                    `/movies/${genresRequest}${queryString}`,
-                    { shallow: true }
-                )
+
+                const path = { pathname, query: { ...query, genres: genresRequest } }
+                const as = `/movies/${genresRequest}${queryString}`
+                const config = { shallow: true }
+
+                replace(path, as, config)
             }
         }
     }

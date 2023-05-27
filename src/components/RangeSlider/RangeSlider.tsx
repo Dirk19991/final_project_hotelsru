@@ -8,7 +8,6 @@ const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, st
     const inputChangeHandler = () => {
         const genres = query.genres ?? 'all'
         const pathname = '/movies/[genres]'
-
         const pathnameCopy = `/movies/${genres}`
         const queryCopy = Object.assign({}, query)
         delete queryCopy.genres
@@ -19,20 +18,17 @@ const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, st
 
             const path = { pathname, query: { ...query, genres } }
             const as = { pathname: pathnameCopy, query: { ...queryCopy } }
-            const params = { shallow: true }
+            const config = { shallow: true }
 
-            replace(path, as, params)
+            replace(path, as, config)
         }
 
         if (sliderValue !== '0') {
             const path = { pathname, query: { ...query, [queryName]: sliderValue, genres } }
-            const as = {
-                pathname: pathnameCopy,
-                query: { ...queryCopy, [queryName]: sliderValue },
-            }
-            const params = { shallow: true }
-            
-            replace(path, as, params)
+            const as = { pathname: pathnameCopy, query: { ...queryCopy, [queryName]: sliderValue } }
+            const config = { shallow: true }
+
+            replace(path, as, config)
         }
     }
 
