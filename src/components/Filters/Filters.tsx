@@ -7,11 +7,13 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'next-i18next'
 import RangeSlider from '../RangeSlider/RangeSlider'
 import { useRouter } from 'next/router'
+import yearFilterTitle from '@/util/yearFilterTitle'
 
 const Filters: FC<any> = ({ allFilters }) => {
-    const { query, replace, asPath } = useRouter()
+    const { query, replace } = useRouter()
     const { t, i18n } = useTranslation('movies')
     const isResetDisabled = !query.genres || (Object.keys(query).length === 1 && query.genres === 'all')
+    const yearTextForms = [t('allYears'), t('before'), t('year')]
 
     const ratingQuery = query.rating ? String(query.rating) : '0'
     const ratingsQuery = query.ratings ? String(query.ratings) : '0'
@@ -30,17 +32,9 @@ const Filters: FC<any> = ({ allFilters }) => {
     const [ratingValue, setRatingValue] = useState<string>(ratingQuery)
     const [ratingsAmount, setRatingsAmount] = useState<string>(ratingsQuery)
 
-    const yearFilterTitle = (value: string | string[] | undefined) => {
-        if (!value) return t('allYears')
-        if (value === '1980') return `${t('before')} 1980`
-        if (value && String(value).match('-')) return value
-
-        return `${value} ${t('year')}`
-    }
-
     const resetFilters = () => {
-        setRatingValue("0")
-        setRatingsAmount("0")
+        setRatingValue('0')
+        setRatingsAmount('0')
         replace('/movies/all')
     }
 
@@ -68,7 +62,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                         <FilterSelect
                             title={t('years')}
                             filterType="years"
-                            selectValue={query.genres && yearFilterTitle(query.years)}
+                            selectValue={query.genres && yearFilterTitle(query.years, yearTextForms)}
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
                             list={allFilters.years}
@@ -90,7 +84,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                             title={t('ratingsAmout')}
                             sliderValue={ratingsAmount}
                             setSliderValue={setRatingsAmount}
-                            queryName={'ratings'}
+                            queryName={'ratingsCount'}
                             min={0}
                             max={990}
                             step={10}

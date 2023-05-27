@@ -4,10 +4,12 @@ import cn from 'classnames'
 import engNameToLink from '@/util/engNameToLink'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import yearFilterTitle from '@/util/yearFilterTitle'
 
 const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title, selectValue }) => {
-    const { query, push, asPath, replace } = useRouter()
+    const { query, asPath, replace } = useRouter()
     const { t, i18n } = useTranslation(['movies', 'common'])
+    const yearTextForms = [t('allYears'), t('before'), t('year')]
 
     const handleCurrentFilter = () => (filterType === currentModal ? setCurrentModal('') : setCurrentModal(filterType))
     const isCurrent = (filter: string) => currentModal === filter && filterType === filter
@@ -175,27 +177,13 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                     <div className={styles.yearsDropdown}>
                         <ul>
                             {list.map(({ id, value }: any) => {
-                                let title
-
-                                if (value.match('-')) {
-                                    title = value
-                                } else {
-                                    title = `${value} ${t('year')}`
-                                }
-                                if (value === '') {
-                                    title = t('allYears')
-                                }
-                                if (value === '1980') {
-                                    title = `${t('before')} 1980`
-                                }
-
                                 const queryParam = query.year ?? ''
 
                                 return (
                                     <li key={id} onClick={() => yearsNavigate(value)}>
                                         <label>
                                             <input type="radio" name="years" checked={queryParam === value} />
-                                            <div>{title}</div>
+                                            <div>{yearFilterTitle(value, yearTextForms)}</div>
                                         </label>
                                     </li>
                                 )

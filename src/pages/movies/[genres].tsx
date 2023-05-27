@@ -7,14 +7,18 @@ import MoviesList from '@/components/MoviesList/MoviesList'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
-import useSWR from 'swr'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 const MoviesFilters: FC<any> = ({ allFilters }) => {
     const [moviesList, setMoviesList] = useState<any>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
     const { t } = useTranslation(['common'])
-    const { query, replace, asPath } = useRouter()
+    const { query } = useRouter()
+    const queryPage = !query.page ? '1' : String(query.page)
+    const [currentPage, setCurrentPage] = useState<string>(queryPage)
+    const [isMoviesEnded, setIsMoviesEnded] = useState<boolean>(false)
 
     const breadcrumbsData = [
         { id: 1, title: t('myIvi'), href: '/' },
@@ -31,18 +35,29 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         { id: 4, title: '2004 год', href: '/2021' },
     ]
 
-    const { data, error, isLoading } = useSWR('movies', async () => {
-        const response = await fetch(`${process.env.DEPLOY_API_URL}/movies`)
-        const movies = await response.json()
-
-        // setMoviesList((state: any) => [...state, movies.result])
-        return movies.result
-    })
-
-
     useEffect(() => {
-        console.log(query)
-        // {genres: 'drama+fiction+cartoon+short-film+concert', countries: 'hk co rs hu br', rating: '5.6', ratings: '630', years: '2018'}
+        const queryCopy = Object.assign({}, query)
+        delete queryCopy.genres
+
+        const fetchMovies = async () => {
+            setIsLoading(true)
+            try {
+                const genresQuery = query.genres === 'all' ? '' : query.genres
+                const response = await axios.get(`${process.env.DEPLOY_API_URL}/movies/${genresQuery}`, {
+                    params: { ...queryCopy },
+                })
+                const movies = await response.data
+                setMoviesList(movies.result)
+                setCurrentPage('1')
+                setIsMoviesEnded(false)
+            } catch (err) {
+                console.log(err)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        fetchMovies()
     }, [query])
 
     return (
@@ -56,7 +71,15 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters allFilters={allFilters} />
-            <MoviesList data={data || []} isLoading={isLoading} />
+            <MoviesList
+                data={moviesList}
+                isLoading={isLoading}
+                setMoviesList={setMoviesList}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                isMoviesEnded={isMoviesEnded}
+                setIsMoviesEnded={setIsMoviesEnded}
+            />
         </Layout>
     )
 }
