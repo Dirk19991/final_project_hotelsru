@@ -23,6 +23,8 @@
     "showMore": "Показать еще",
     "allGenres": "Все жанры",
     "allYears": "Все годы",
+    "allCountries": "Все страны",
     "before": "до",
-    "year": "год"
+    "year": "год",
+    "loading": "Загрузка..."
 }

@@ -157,7 +157,7 @@
     border-radius: 8px;
     font-size: 15px;
     cursor: pointer;
-    &:hover {
+    &:not(:disabled):hover {
         border: 1px solid $accent-color;
     }
 }

@@ -23,6 +23,8 @@
     "showMore": "Show more",
     "allGenres": "All genres",
     "allYears": "All years",
+    "allCountries": "All countries",
     "before": "before",
-    "year": "year"
+    "year": "year",
+    "loading": "Loading..."
 }

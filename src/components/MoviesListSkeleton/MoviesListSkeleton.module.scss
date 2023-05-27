@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(153px, 1fr));
     gap: 24px;
+    margin-bottom: 40px;
     li {
         min-width: 110px;
         max-width: 540px;
