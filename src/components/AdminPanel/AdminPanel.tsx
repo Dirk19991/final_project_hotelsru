@@ -4,6 +4,8 @@ import AdminPanelFilm from '../AdminPanelFilm/AdminPanelFilm'
 import { Button } from '@/stories/Button/ButtonStandard'
 import AdminPanelGenre from '../AdminPanelGenre/AdminPanelGenre'
 
+export const PORT = 'http://193.32.203.137:4000/'
+
 const AdminPanel = () => {
     const [screenType, setScreenType] = useState<'buttons' | 'film' | 'genre'>('buttons')
 
