@@ -4,8 +4,7 @@ import React from 'react'
 import Select, { MultiValue } from 'react-select'
 import axios from 'axios'
 import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/ComponentProps/IMovie'
-
-const PORT = 'http://193.32.203.137:4000/'
+import { PORT } from '../AdminPanel/AdminPanel'
 
 const AdminPanelFilm = () => {
     const [inputValue, setInputValue] = useState<string>('')
@@ -60,10 +59,10 @@ const AdminPanelFilm = () => {
         }
     }
 
-    const editSubmitHandler = async (e: any) => {
+    const editSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const formData = new FormData(e.target)
+        const formData = new FormData(e.currentTarget)
         const updatedRuName = formData.get('nameRu')
         const updatedEnName = formData.get('nameEn')
         const genreValues = chosenGenres.map((genre) => genre.value)
@@ -90,28 +89,6 @@ const AdminPanelFilm = () => {
         } catch (error) {
             console.log(error)
         }
-        // {
-        //     "nameRu": "Идеальные незнакомцы1    ",
-        //     "nameEn": "Perfectos desconocidos",
-        //     "description": "Семь друзей собираются за ужином и решают сыграть в простую игру. Все мобильники выкладываются на стол, чтобы все присутствующие могли видеть и слышать сообщения и звонки, поступающие каждому из них.",
-        //     "trailer": "https://www.youtube.com/v/4m_a2srLn4c",
-        //     "similarMovies": [
-        //       101
-        //     ],
-        //     "year": "2017",
-        //     "rating": "6.9",
-        //     "ratingCount": "14641",
-        //     "ageRating": null,
-        //     "poster": "https://st.kp.yandex.net/images/film_big/1006009.jpg",
-        //     "duration": "97",
-        //     "slogan": "We all have a secret",
-        //     "genres": [
-        //        1
-        //     ],
-        //     "countries": [
-        //        "es"
-        //     ]
-        // }
 
         // на этом этапе отправляем обновленные данные на бэкенд
         console.log(updatedFilm)
