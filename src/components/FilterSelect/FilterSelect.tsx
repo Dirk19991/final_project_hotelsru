@@ -16,11 +16,33 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         const pathname = '/movies/[genres]'
         const genres = query.genres ?? 'all'
 
+        const pathnameCopy = `/movies/${genres}`
+        const queryCopy = Object.assign({}, query)
+        delete queryCopy.genres
+
         if (value === '') {
-            delete query.year
-            replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
+            delete query.years
+            delete queryCopy.years
+            replace(
+                { pathname, query: { ...query, genres } },
+                {
+                    pathname: pathnameCopy,
+                    query: { ...queryCopy },
+                },
+                { shallow: true }
+            )
         } else {
-            replace({ pathname, query: { ...query, year: value, genres } }, undefined, { shallow: true })
+            replace(
+                { pathname, query: { ...query, years: value, genres } },
+                {
+                    pathname: pathnameCopy,
+                    query: {
+                        ...queryCopy,
+                        years: value,
+                    },
+                },
+                { shallow: true }
+            )
         }
 
         setCurrentModal('')
@@ -31,29 +53,56 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         const genres = query.genres ?? 'all'
         const countries = query.countries ? String(query.countries) : ''
 
+        const pathnameCopy = `/movies/${genres}`
+        const queryCopy = Object.assign({}, query)
+        delete queryCopy.genres
+
         if (countries === '') {
-            replace({ pathname, query: { ...query, genres, countries: shortName } }, undefined, { shallow: true })
+            replace(
+                { pathname, query: { ...query, genres, countries: shortName } },
+                { pathname: pathnameCopy, query: { ...queryCopy, countries: shortName } },
+                { shallow: true }
+            )
         } else {
-            let countriesArr = countries.split('+')
+            let countriesArr = countries.split(' ')
 
             if (countriesArr.includes(shortName)) {
                 countriesArr = countriesArr.filter((el) => el !== shortName)
 
                 if (!countriesArr.length) {
                     delete query.countries
-                    replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
+                    delete queryCopy.countries
+                    replace(
+                        { pathname, query: { ...query, genres } },
+                        { pathname: pathnameCopy, query: { ...queryCopy } },
+                        { shallow: true }
+                    )
                 } else {
-                    const countriesRequest = countriesArr.join('+')
-                    replace({ pathname, query: { ...query, genres, countries: countriesRequest } }, undefined, {
-                        shallow: true,
-                    })
+                    const countriesRequest = countriesArr.join(' ')
+                    replace(
+                        { pathname, query: { ...query, genres, countries: countriesRequest } },
+                        {
+                            pathname: pathnameCopy,
+                            query: { ...queryCopy, countries: countriesRequest },
+                        },
+                        {
+                            shallow: true,
+                        }
+                    )
                 }
             } else {
                 countriesArr.push(shortName)
-                const countriesRequest = countriesArr.join('+')
-                replace({ pathname, query: { ...query, genres, countries: countriesRequest } }, undefined, {
-                    shallow: true,
-                })
+                const countriesRequest = countriesArr.join(' ')
+                replace(
+                    { pathname, query: { ...query, genres, countries: countriesRequest } },
+                    {
+                        pathname: pathnameCopy,
+                        query: { ...queryCopy, countries: countriesRequest },
+                    },
+                    {
+                        shallow: true,
+                    }
+                )
             }
         }
     }
@@ -62,6 +111,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
         const genreLink = engNameToLink(nameEn)
         const pathname = '/movies/[genres]'
         let genresQuery = query.genres === 'all' || !query.genres ? '' : String(query.genres)
+        const queryString = asPath.split('?').length > 1 ? `?${asPath.split('?')[1]}` : ''
 
         if (!genresQuery) {
             replace({ pathname, query: { ...query, genres: genreLink } }, undefined, { shallow: true })
@@ -71,11 +121,19 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
             if (genresArr.includes(genreLink)) {
                 genresArr = genresArr.filter((el) => el !== genreLink)
                 const genresRequest = genresArr.length > 0 ? genresArr.join('+') : 'all'
-                replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
+                replace(
+                    { pathname, query: { ...query, genres: genresRequest } },
+                    `/movies/${genresRequest}${queryString}`,
+                    { shallow: true }
+                )
             } else {
                 genresArr.push(genreLink)
                 const genresRequest = genresArr.join('+')
-                replace({ pathname, query: { ...query, genres: genresRequest } }, undefined, { shallow: true })
+                replace(
+                    { pathname, query: { ...query, genres: genresRequest } },
+                    `/movies/${genresRequest}${queryString}`,
+                    { shallow: true }
+                )
             }
         }
     }
@@ -112,7 +170,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                     <div className={styles.countriesDropdown}>
                         <ul>
                             {list.map(({ id, nameEn, nameRu, shortName }: any) => {
-                                const isChecked = String(query.countries).split('+').includes(shortName)
+                                const isChecked = String(query.countries).split(' ').includes(shortName)
 
                                 return (
                                     <li key={id} onChange={() => countriesNavigate(shortName)}>

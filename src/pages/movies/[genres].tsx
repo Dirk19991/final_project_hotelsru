@@ -42,6 +42,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
 
     useEffect(() => {
         console.log(query)
+        // {genres: 'drama+fiction+cartoon+short-film+concert', countries: 'hk co rs hu br', rating: '5.6', ratings: '630', years: '2018'}
     }, [query])
 
     return (

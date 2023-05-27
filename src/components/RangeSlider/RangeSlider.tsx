@@ -9,13 +9,30 @@ const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, st
         const genres = query.genres ?? 'all'
         const pathname = '/movies/[genres]'
 
+        const pathnameCopy = `/movies/${genres}`
+        const queryCopy = Object.assign({}, query)
+        delete queryCopy.genres
+
         if (sliderValue === '0') {
+            delete queryCopy[queryName]
             delete query[queryName]
-            replace({ pathname, query: { ...query, genres } }, undefined, { shallow: true })
+
+            const path = { pathname, query: { ...query, genres } }
+            const as = { pathname: pathnameCopy, query: { ...queryCopy } }
+            const params = { shallow: true }
+
+            replace(path, as, params)
         }
 
         if (sliderValue !== '0') {
-            replace({ pathname, query: { ...query, [queryName]: sliderValue, genres } }, undefined, { shallow: true })
+            const path = { pathname, query: { ...query, [queryName]: sliderValue, genres } }
+            const as = {
+                pathname: pathnameCopy,
+                query: { ...queryCopy, [queryName]: sliderValue },
+            }
+            const params = { shallow: true }
+            
+            replace(path, as, params)
         }
     }
 

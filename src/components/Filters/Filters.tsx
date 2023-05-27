@@ -21,7 +21,7 @@ const Filters: FC<any> = ({ allFilters }) => {
         .join(', ')
 
     const countriesQuery = allFilters.countries
-        .filter((el: any) => String(query.countries).split('+').includes(el.shortName))
+        .filter((el: any) => String(query.countries).split(' ').includes(el.shortName))
         .map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn))
         .join(', ')
 
@@ -62,7 +62,7 @@ const Filters: FC<any> = ({ allFilters }) => {
                         <FilterSelect
                             title={t('years')}
                             filterType="years"
-                            selectValue={query.genres && yearFilterTitle(query.year)}
+                            selectValue={query.genres && yearFilterTitle(query.years)}
                             currentModal={currentModal}
                             setCurrentModal={setCurrentModal}
                             list={allFilters.years}
