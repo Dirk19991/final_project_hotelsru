@@ -1,4 +1,4 @@
-import AdminPanelFilm from '@/components/AdminPanelFilm/AdminPanelFilm'
+import AdminPanelFilm from '@/components/AdminPanelEdit/AdminPanelEdit'
 
 const EditPage = () => {
     return <AdminPanelFilm />
