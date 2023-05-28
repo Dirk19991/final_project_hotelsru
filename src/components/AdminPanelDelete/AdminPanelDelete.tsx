@@ -5,7 +5,7 @@ import axios from 'axios'
 import { IAdminPanelMovie, IAdminPanelData } from '@/types/ComponentProps/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
 
-const AdminPanelFilm = () => {
+const AdminPanelDelete = () => {
     const [inputValue, setInputValue] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
     const [notFound, setNotFound] = useState<boolean>(false)
@@ -36,7 +36,7 @@ const AdminPanelFilm = () => {
         }
     }
 
-    const editSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    const onFormDelete = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         try {
@@ -67,7 +67,7 @@ const AdminPanelFilm = () => {
             {notFound && <div className={styles.error}>Ничего не найдено!</div>}
             {saved && <div className={styles.saved}>Удалено!</div>}
             {foundFilm && (
-                <form onSubmit={editSubmitHandler}>
+                <form onSubmit={onFormDelete}>
                     <div className={styles.info}>
                         <div>ID</div>
                         <div>{foundFilm.id}</div>
@@ -85,4 +85,4 @@ const AdminPanelFilm = () => {
         </div>
     )
 }
-export default AdminPanelFilm
+export default AdminPanelDelete

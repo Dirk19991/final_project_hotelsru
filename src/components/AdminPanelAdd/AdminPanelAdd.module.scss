@@ -9,10 +9,11 @@
 }
 
 .input,
-.nameInput {
+.nameInput,
+.genreInput {
     width: 200px;
     padding: 8px 16px;
-    height: 60px;
+    height: fit-content;
     background-color: $secondary-bg-color;
     border: none;
     border-radius: 4px;
@@ -24,11 +25,16 @@
     }
 }
 
-.nameInput {
+.nameInput,
+.genreInput {
     width: 100%;
     &:focus {
         outline: none;
     }
+}
+
+.genreInput {
+    height: 40px;
 }
 
 .button {
@@ -79,4 +85,18 @@
         font-size: 15px;
         font-weight: bold;
     }
+}
+
+.genres {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.textarea {
+    display: block;
+    overflow: visible;
+    resize: none;
+    min-height: 40px;
+    line-height: 20px;
 }
