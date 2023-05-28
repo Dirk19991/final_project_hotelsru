@@ -1,4 +1,4 @@
-import $auth, { API_URL } from '@/http/auth'
+import $auth from '@/http/auth'
 import axios from 'axios'
 
 export interface AuthError {
@@ -26,7 +26,7 @@ export default class AuthService {
 
     static async loginOrRegister(email: string, password: string): Promise<AuthError | void> {
         try {
-            const response = await axios.post<AuthResponse>(`${API_URL}/profile/login`, {
+            const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/login`, {
                 email,
                 password,
             })
@@ -49,7 +49,7 @@ export default class AuthService {
         try {
             //раскоментить, когда на беке будет проверка токенов
             // const response = await $auth.post('/profile/logout')
-            const response = await axios.post(`${API_URL}/profile/logout`)
+            const response = await axios.post(`${process.env.DEPLOY_API_URL}/profile/logout`)
             localStorage.removeItem('token')
             this.isAuth = false
         } catch (e) {
@@ -59,7 +59,7 @@ export default class AuthService {
 
     private static async register(email: string, password: string): Promise<AuthError | void> {
         try {
-            const response = await axios.post<AuthResponse>(`${API_URL}/profile/registration`, {
+            const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/registration`, {
                 email,
                 password,
             })

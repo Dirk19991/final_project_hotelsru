@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styles from './HeaderDropdownProfile.module.scss'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
 import AuthService from '@/services/AuthService'
 
-const HeaderDropdownProfile = () => {
-    const { push } = useRouter()
+interface IHeaderDropdownProfile {
+    openAuthModal: () => void
+}
+
+const HeaderDropdownProfile: FC<IHeaderDropdownProfile> = ({ openAuthModal }) => {
     const { t } = useTranslation(['header'])
 
     return (
@@ -187,8 +189,7 @@ const HeaderDropdownProfile = () => {
                     </>
                 ) : (
                     <>
-                        <Button label={t('logInOrSignUp')} onClick={() => push('/authorization')} type="register" />
-
+                        <Button label={t('logInOrSignUp')} onClick={openAuthModal} type="register" />
                         <div className={styles.links}>
                             <ul>
                                 <li>
