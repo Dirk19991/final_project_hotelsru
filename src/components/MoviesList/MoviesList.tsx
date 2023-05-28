@@ -5,7 +5,8 @@ import { Button } from '@/stories/Button/ButtonStandard'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import axios from 'axios'
+
+import MovieService from '@/services/MovieService'
 
 const MoviesList: FC<any> = ({
     data,
@@ -22,23 +23,22 @@ const MoviesList: FC<any> = ({
     const isLess = (data && (data.length < 35 || data.length % 35 !== 0)) || isMoviesEnded
 
     const showMoreHanlder = async (pageNumber: string) => {
-        const queryCopy = Object.assign({}, query)
+        const queryCopy = { ...query }
         delete queryCopy.genres
         queryCopy.page = String(Number(pageNumber) + 1)
 
         setIsPageLoading(true)
         try {
-            const genresQuery = query.genres === 'all' ? '' : query.genres
-            const response = await axios.get(`${process.env.DEPLOY_API_URL}/movies/${genresQuery}`, {
-                params: { ...queryCopy },
-            })
-            const movies = await response.data.result
-            if (!movies.length) {
+            const genresQuery = query.genres === 'all' ? '' : String(query.genres)
+
+            const moviesData = await MovieService.getMoviesList(genresQuery, queryCopy)
+
+            if (!moviesData.length) {
                 setIsMoviesEnded(true)
                 return
             }
             setCurrentPage((page: string) => String(Number(page) + 1))
-            setMoviesList((state: any) => [...state, ...movies])
+            setMoviesList((state: any) => [...state, ...moviesData])
         } catch (err) {
             console.log(err)
         } finally {

@@ -5,28 +5,21 @@ import { Navigation } from 'swiper'
 import cn from 'classnames'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ISmallSliderMovie } from '@/types/ComponentProps/IMovie'
+import { useTranslation } from 'next-i18next'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 
-interface IDefaultCarousel {
-    title: string
-    link?: string
-    dataList: ISmallSliderMovie[]
-}
-
-const DefaultCarousel: FC<IDefaultCarousel> = ({ dataList, title, link }) => {
-    const [moviesData, setMoviesData] = useState<ISmallSliderMovie[]>(dataList)
+const DefaultCarousel: FC<any> = ({ dataList, title, link }) => {
+    const [moviesData, setMoviesData] = useState<any>(dataList)
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
+    const { i18n } = useTranslation()
 
     return (
         <section className={styles.section}>
             <div className={'container'}>
                 <div className={styles.wrapper}>
-                    <div
-                        className={cn(styles.title, !link && styles.simpleText)}
-                    >
+                    <div className={cn(styles.title, !link && styles.simpleText)}>
                         {!link ? (
                             <span>{title}</span>
                         ) : (
@@ -92,7 +85,7 @@ const DefaultCarousel: FC<IDefaultCarousel> = ({ dataList, title, link }) => {
                             watchSlidesProgress
                         >
                             {moviesData &&
-                                moviesData.map((movie) => (
+                                moviesData.map((movie: any) => (
                                     <SwiperSlide
                                         style={{
                                             margin: '0px 0px',
@@ -100,38 +93,37 @@ const DefaultCarousel: FC<IDefaultCarousel> = ({ dataList, title, link }) => {
                                         key={movie.id}
                                     >
                                         <DefaultCarouselSlide
+                                            key={movie.id}
                                             rating={movie.rating}
                                             year={movie.year}
                                             href={`/watch/${movie.id}`}
-                                            image={movie.previewPoster}
-                                            country={movie.country}
-                                            genre={movie.genre}
-                                            name={movie.name}
+                                            image={movie.poster}
+                                            countries={movie.countries}
+                                            genres={movie.genres}
+                                            name={i18n.language === 'ru' ? movie.nameRu : movie.nameEn}
+                                            duration={movie.duration}
                                         />
                                     </SwiperSlide>
                                 ))}
+                            {link && (
+                                <SwiperSlide
+                                    style={{
+                                        margin: '0px 0px',
+                                    }}
+                                >
+                                    <Link href={link}>
+                                        <div className={styles.showAll}>
+                                            <span>Посмотреть все</span>
+                                        </div>
+                                    </Link>
+                                </SwiperSlide>
+                            )}
                         </Swiper>
-                        <div
-                            data-testid="leftButton"
-                            className={styles.prevButton}
-                            ref={prevRef}
-                        >
-                            <Image
-                                fill
-                                src="/icons/arrowLeft.svg"
-                                alt="arrowLeft"
-                            />
+                        <div data-testid="leftButton" className={styles.prevButton} ref={prevRef}>
+                            <Image fill src="/icons/arrowLeft.svg" alt="arrowLeft" />
                         </div>
-                        <div
-                            data-testid="rightButton"
-                            className={styles.nextButton}
-                            ref={nextRef}
-                        >
-                            <Image
-                                fill
-                                src="/icons/arrowRight.svg"
-                                alt="arrowRight"
-                            />
+                        <div data-testid="rightButton" className={styles.nextButton} ref={nextRef}>
+                            <Image fill src="/icons/arrowRight.svg" alt="arrowRight" />
                         </div>
                     </div>
                 </div>

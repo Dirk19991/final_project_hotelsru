@@ -9,6 +9,7 @@ import { FC } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
+import MovieService from '@/services/MovieService'
 
 const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
     const { t } = useTranslation(['common'])
@@ -24,7 +25,7 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
             <PromoButtons />
             <Promo />
             <MediumCarousel />
-            <DefaultCarousel title={t('bestDramas')} link={'/movies/drama'} dataList={dramas} />
+            <DefaultCarousel title={t('bestDramas')} link={'/movies/drama?countries=rs&rating=7'} dataList={dramas} />
             <DefaultCarousel title={t('bestComedies')} link={'/movies/comedy'} dataList={comedies} />
         </Layout>
     )
@@ -38,13 +39,12 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const MainCarouselRes = await fetch(`${baseURL}/api/main-carousel`)
     const mainCarouselMovies = await MainCarouselRes.json()
 
-    const moviesListRes = await fetch(`${baseURL}/api/movies-list`)
-    const mockMovies = await moviesListRes.json()
+    const bestRussianDramas = await MovieService.getDefaultCarouselMovies('drama?countries=rs&rating=7')
 
     return {
         props: {
-            dramas: mockMovies,
-            comedies: mockMovies,
+            dramas: bestRussianDramas,
+            comedies: bestRussianDramas,
             mainCarouselMovies,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'promo', 'header'])),
         },
