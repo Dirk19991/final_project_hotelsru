@@ -146,7 +146,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                                 return (
                                     <li key={id} onChange={() => genresNavigate(nameEn)}>
                                         <label>
-                                            <input type="checkbox" checked={isChecked} name="genres" />
+                                            <input type="checkbox" defaultChecked={isChecked} name="genres" />
                                             <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
                                         </label>
                                     </li>
@@ -164,7 +164,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                                 return (
                                     <li key={id} onChange={() => countriesNavigate(shortName)}>
                                         <label>
-                                            <input type="checkbox" name="countries" checked={isChecked} />
+                                            <input type="checkbox" name="countries" defaultChecked={isChecked} />
                                             <div>{i18n.language === 'ru' ? nameRu : nameEn}</div>
                                         </label>
                                     </li>
@@ -182,7 +182,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                                 return (
                                     <li key={id} onClick={() => yearsNavigate(value)}>
                                         <label>
-                                            <input type="radio" name="years" checked={queryParam === value} />
+                                            <input type="radio" name="years" defaultChecked={queryParam === value} />
                                             <div>{yearFilterTitle(value, yearTextForms)}</div>
                                         </label>
                                     </li>
