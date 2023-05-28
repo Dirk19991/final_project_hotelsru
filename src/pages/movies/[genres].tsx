@@ -10,6 +10,7 @@ import Layout from '@/components/Layout/Layout'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
+import MovieService from '@/services/MovieService'
 
 const MoviesFilters: FC<any> = ({ allFilters }) => {
     const [moviesList, setMoviesList] = useState<any>([])
@@ -54,18 +55,15 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
     }, [query.genres, query.countries, query.years])
 
     useEffect(() => {
-        const queryCopy = Object.assign({}, query)
+        const queryCopy = { ...query }
         delete queryCopy.genres
 
         const fetchMovies = async () => {
             setIsLoading(true)
             try {
-                const genresQuery = query.genres === 'all' ? '' : query.genres
-                const response = await axios.get(`${process.env.DEPLOY_API_URL}/movies/${genresQuery}`, {
-                    params: { ...queryCopy },
-                })
-                const movies = await response.data
-                setMoviesList(movies.result)
+                const genresQuery: string = query.genres === 'all' ? '' : String(query.genres)
+                const moviesData = await MovieService.getMoviesList(genresQuery, queryCopy)
+                setMoviesList(moviesData)
                 setCurrentPage('1')
                 setIsMoviesEnded(false)
             } catch (err) {
@@ -88,7 +86,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         }
     }
 
-    const sortedArray = moviesList.sort(byField(currentSorting))
+    const sortedArray = moviesList ? moviesList.sort(byField(currentSorting)) : moviesList
 
     return (
         <Layout>
