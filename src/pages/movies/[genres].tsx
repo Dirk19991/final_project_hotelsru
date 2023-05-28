@@ -27,14 +27,6 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
     const countriesQuery = allFilters.countries.filter((el: any) =>
         String(query.countries).split(' ').includes(el.shortName)
     )
-    const genresString =
-        query.genres === 'all'
-            ? t('movies').toLowerCase()
-            : genresQuery
-                  .map(({ nameEn, nameRu }: any) =>
-                      i18n.language === 'ru' ? nameRu.toLowerCase() : nameEn.toLowerCase()
-                  )
-                  .join(', ')
 
     const breadcrumbsBase = [
         { title: t('myIvi'), href: '/' },
@@ -90,7 +82,8 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         <Layout>
             <Head>
                 <title>
-                    {t('watch')} {genresString} {t('watchMetaHead')}
+                    Смотреть фильмы онлайн бесплатно в хорошем HD качестве и без регистрации. Удобный просмотр онлайн
+                    фильмов на ivi.ru
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={[...breadcrumbsBase, ...dynamicBreadcrumbs]} />
