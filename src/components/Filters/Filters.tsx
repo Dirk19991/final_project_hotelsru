@@ -9,23 +9,22 @@ import RangeSlider from '../RangeSlider/RangeSlider'
 import { useRouter } from 'next/router'
 import yearFilterTitle from '@/util/yearFilterTitle'
 
-const Filters: FC<any> = ({ allFilters }) => {
+const Filters: FC<any> = ({ allFilters, genresValue, countriesValue }) => {
     const { query, replace } = useRouter()
     const { t, i18n } = useTranslation('movies')
     const isResetDisabled = !query.genres || (Object.keys(query).length === 1 && query.genres === 'all')
     const yearTextForms = [t('allYears'), t('before'), t('year')]
 
     const ratingQuery = query.rating ? String(query.rating) : '0'
-    const ratingsQuery = query.ratings ? String(query.ratings) : '0'
-    const genresQuery = allFilters.genres
-        .filter((el: any) => String(query.genres).split('+').includes(el.nameEn.toLowerCase()))
-        .map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn))
-        .join(', ')
+    const ratingsQuery = query.ratingsCount ? String(query.ratingsCount) : '0'
 
-    const countriesQuery = allFilters.countries
-        .filter((el: any) => String(query.countries).split(' ').includes(el.shortName))
-        .map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn))
-        .join(', ')
+    const genresQuery =
+        genresValue &&
+        genresValue.map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
+
+    const countriesQuery =
+        countriesValue &&
+        countriesValue.map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
 
     const [currentModal, setCurrentModal] = useState<string>('')
 

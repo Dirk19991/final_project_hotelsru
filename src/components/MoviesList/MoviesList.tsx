@@ -18,12 +18,8 @@ const MoviesList: FC<any> = ({
 }) => {
     const { t, i18n } = useTranslation(['movies'])
     const { query } = useRouter()
-
     const [isPageLoading, setIsPageLoading] = useState<boolean>(false)
-
-    const isLess = data.length < 35 || data.length % 35 !== 0 || isMoviesEnded
-
-    console.log(data.length, data.length < 35, data.length % 35 !== 0, currentPage)
+    const isLess = (data && (data.length < 35 || data.length % 35 !== 0)) || isMoviesEnded
 
     const showMoreHanlder = async (pageNumber: string) => {
         const queryCopy = Object.assign({}, query)
@@ -37,7 +33,6 @@ const MoviesList: FC<any> = ({
                 params: { ...queryCopy },
             })
             const movies = await response.data.result
-            console.log(movies)
             if (!movies.length) {
                 setIsMoviesEnded(true)
                 return

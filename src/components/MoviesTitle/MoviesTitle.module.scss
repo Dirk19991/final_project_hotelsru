@@ -4,6 +4,18 @@
     margin-bottom: 30px;
 }
 
+.activeTitle {
+    h2 {
+        margin-bottom: 10px;
+    }
+    p {
+        color: $link-color;
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 1.5;
+    }
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;

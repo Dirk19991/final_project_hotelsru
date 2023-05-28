@@ -9,31 +9,49 @@ import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 
 const MoviesFilters: FC<any> = ({ allFilters }) => {
     const [moviesList, setMoviesList] = useState<any>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [currentSorting, setCurrentSorting] = useState<string>('byRating')
-    const { t } = useTranslation(['common'])
-    const { query } = useRouter()
+    const { t, i18n } = useTranslation(['common'])
+    const { query, locale } = useRouter()
     const queryPage = !query.page ? '1' : String(query.page)
     const [currentPage, setCurrentPage] = useState<string>(queryPage)
     const [isMoviesEnded, setIsMoviesEnded] = useState<boolean>(false)
 
-    const breadcrumbsData = [
-        { id: 1, title: t('myIvi'), href: '/' },
-        { id: 2, title: t('movies'), href: '/movies' },
-        {
-            id: 3,
-            countries: [
-                { id: 1, country_name: 'Великобритания', href: '/gb' },
-                { id: 2, country_name: 'США', href: '/us' },
-                { id: 3, country_name: 'Бразилия', href: '/br' },
-                { id: 4, country_name: 'Корея', href: '/kr' },
-            ],
-        },
-        { id: 4, title: '2004 год', href: '/2021' },
+    const genresQuery = allFilters.genres.filter((el: any) =>
+        String(query.genres).split('+').includes(el.nameEn.toLowerCase())
+    )
+    const countriesQuery = allFilters.countries.filter((el: any) =>
+        String(query.countries).split(' ').includes(el.shortName)
+    )
+
+    const breadcrumbsBase = [
+        { title: t('myIvi'), href: '/' },
+        { title: t('movies'), href: '/movies' },
     ]
+
+    const [dynamicBreadcrumbs, setDynamicBreadcrumbs] = useState<any>([])
+
+    useEffect(() => {
+        setDynamicBreadcrumbs([])
+
+        if (genresQuery.length) {
+            setDynamicBreadcrumbs((state: any) => [{ links: genresQuery }, ...state])
+        }
+        if (!genresQuery.length && countriesQuery.length) {
+            setDynamicBreadcrumbs((state: any) => [{ links: countriesQuery }, ...state])
+        }
+
+        if (query.years) {
+            setDynamicBreadcrumbs((state: any) => [
+                ...state,
+                { title: query.years, href: `/movies/all?years=${query.years}` },
+            ])
+        }
+    }, [query.genres, query.countries, query.years])
 
     useEffect(() => {
         const queryCopy = Object.assign({}, query)
@@ -64,13 +82,14 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         <Layout>
             <Head>
                 <title>
-                    Смотреть %жанры% онлайн бесплатно в хорошем HD качестве и без регистрации. Удобный просмотр онлайн
+                    Смотреть фильмы онлайн бесплатно в хорошем HD качестве и без регистрации. Удобный просмотр онлайн
                     фильмов на ivi.ru
                 </title>
             </Head>
-            <Breadcrumbs breadcrumbsData={breadcrumbsData} />
+            <Breadcrumbs breadcrumbsData={[...breadcrumbsBase, ...dynamicBreadcrumbs]} />
+            <MoviesTitle isActive={true} genresValue={genresQuery} countriesValue={countriesQuery} />
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
-            <Filters allFilters={allFilters} />
+            <Filters allFilters={allFilters} genresValue={genresQuery} countriesValue={countriesQuery} />
             <MoviesList
                 data={moviesList}
                 isLoading={isLoading}
