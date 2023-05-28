@@ -14,6 +14,9 @@ import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import HeaderDropdownTV from '../HeaderDropdownTV/HeaderDropdownTV'
+import { createPortal } from 'react-dom'
+import AuthModal from '../AuthModal/AuthModal'
+import cn from 'classnames'
 
 const Header: FC<any> = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
@@ -23,6 +26,17 @@ const Header: FC<any> = () => {
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
     const [headerLinks, setHeaderLinks] = useState<IHeaderStaticLinks>(mock)
+
+    const [isAuthModal, setIsAuthModal] = useState(false)
+
+    useEffect(() => {
+        if (isAuthModal) {
+            document.body.style.overflow = 'hidden'
+            document.body.style.height = '100vh'
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+    }, [isAuthModal])
 
     const { locale, push, asPath } = useRouter()
 
@@ -43,11 +57,7 @@ const Header: FC<any> = () => {
 
     return (
         <header className={styles.header} onMouseLeave={closeSubMenu}>
-            <div
-                className={`${styles.top} ${
-                    isHovering ? styles.topExpanded : styles.topCollapsed
-                }`}
-            >
+            <div className={`${styles.top} ${isHovering ? styles.topExpanded : styles.topCollapsed}`}>
                 <div className={styles.wrapper}>
                     <div className={styles.inner}>
                         <div className={styles.body}>
@@ -66,24 +76,14 @@ const Header: FC<any> = () => {
                                             height={48}
                                         />
                                     </Link>
-                                    {matchesDesktopSize && (
-                                        <NavigationBar
-                                            handleMouseOver={handleMouseOver}
-                                        />
-                                    )}
+                                    {matchesDesktopSize && <NavigationBar handleMouseOver={handleMouseOver} />}
                                 </nav>
                                 <div className={styles.panel}>
                                     <div
-                                        onMouseOver={() =>
-                                            handleMouseOver(10, true)
-                                        }
+                                        onMouseOver={() => handleMouseOver(10, true)}
                                         data-testid="subscription-button"
                                     >
-                                        <Button
-                                            label={t('watch30days')}
-                                            onClick={() => {}}
-                                            type="headerThirtyDays"
-                                        />
+                                        <Button label={t('watch30days')} onClick={() => {}} type="headerThirtyDays" />
                                     </div>
 
                                     {matchesDesktopSize && (
@@ -103,12 +103,7 @@ const Header: FC<any> = () => {
                                             onMouseOver={closeSubMenu}
                                             data-testid="lang-button"
                                         >
-                                            <ButtonRound
-                                                onClick={() =>
-                                                    toggleLangHandler(locale)
-                                                }
-                                                type="language"
-                                            >
+                                            <ButtonRound onClick={() => toggleLangHandler(locale)} type="language">
                                                 {locale?.toUpperCase()}
                                             </ButtonRound>
                                         </div>
@@ -117,9 +112,7 @@ const Header: FC<any> = () => {
                                         <div
                                             className={styles.avatar}
                                             data-testid="profile-button"
-                                            onMouseOver={() =>
-                                                handleMouseOver(11, true)
-                                            }
+                                            onMouseOver={() => handleMouseOver(11, true)}
                                         >
                                             <Link href="https://www.ivi.ru/profile/">
                                                 <div>
@@ -130,59 +123,56 @@ const Header: FC<any> = () => {
                                     )}
                                 </div>
                             </div>
-                            <div
-                                className={`${styles.dropdown} ${
-                                    isHovering ? styles.dropdownExpanded : ''
-                                }`}
-                                onMouseLeave={openSubMenu}
-                            >
-                                {isHovering && matchesDesktopSize && (
-                                    <div
-                                        className={styles.dropdownContent}
-                                        data-testid="dropdown-content"
-                                    >
-                                        {currentTabId === 3 && (
-                                            <HeaderDropdownFilters
-                                                data-testid="movies-dropdown"
-                                                subMenuData={
-                                                    headerLinks.movies_categories
-                                                }
-                                                type="movie"
-                                            />
-                                        )}
-                                        {currentTabId === 4 && (
-                                            <HeaderDropdownFilters
-                                                subMenuData={
-                                                    headerLinks.series_categories
-                                                }
-                                                type="series"
-                                            />
-                                        )}
-                                        {currentTabId === 5 && (
-                                            <HeaderDropdownFilters
-                                                subMenuData={
-                                                    headerLinks.animation_categories
-                                                }
-                                                type="cartoon"
-                                            />
-                                        )}
-                                        {currentTabId === 6 && (
-                                            <HeaderDropdownTV />
-                                        )}
+                            {!isAuthModal && (
+                                <div
+                                    className={cn(styles.dropdown, {
+                                        [styles.dropdownExpanded]: isHovering,
+                                    })}
+                                    onMouseLeave={openSubMenu}
+                                >
+                                    {isHovering && matchesDesktopSize && (
+                                        <div className={styles.dropdownContent} data-testid="dropdown-content">
+                                            {currentTabId === 3 && (
+                                                <HeaderDropdownFilters
+                                                    data-testid="movies-dropdown"
+                                                    subMenuData={headerLinks.movies_categories}
+                                                    type="movie"
+                                                />
+                                            )}
+                                            {currentTabId === 4 && (
+                                                <HeaderDropdownFilters
+                                                    subMenuData={headerLinks.series_categories}
+                                                    type="series"
+                                                />
+                                            )}
+                                            {currentTabId === 5 && (
+                                                <HeaderDropdownFilters
+                                                    subMenuData={headerLinks.animation_categories}
+                                                    type="cartoon"
+                                                />
+                                            )}
+                                            {currentTabId === 6 && <HeaderDropdownTV />}
 
-                                        {currentTabId === 10 && (
-                                            <HeaderDropdownSubscription />
-                                        )}
-                                        {currentTabId === 11 && (
-                                            <HeaderDropdownProfile />
-                                        )}
-                                    </div>
-                                )}
-                            </div>
+                                            {currentTabId === 10 && <HeaderDropdownSubscription />}
+                                            {currentTabId === 11 && (
+                                                <HeaderDropdownProfile
+                                                    openAuthModal={() => {
+                                                        setCurrentTabId(null)
+                                                        setIsHovering(false)
+                                                        closeSubMenu()
+                                                        setIsAuthModal(true)
+                                                    }}
+                                                />
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
+            {isAuthModal && createPortal(<AuthModal close={() => setIsAuthModal(false)} />, document.body)}
         </header>
     )
 }

@@ -24,18 +24,9 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
             <PromoButtons />
             <Promo />
             <MediumCarousel />
-            <DefaultCarousel
-                title={t('bestDramas')}
-                link={'/movies/drama'}
-                dataList={dramas}
-            />
-            <DefaultCarousel
-                title={t('bestComedies')}
-                link={'/movies/comedy'}
-                dataList={comedies}
-            />
+            <DefaultCarousel title={t('bestDramas')} link={'/movies/drama'} dataList={dramas} />
+            <DefaultCarousel title={t('bestComedies')} link={'/movies/comedy'} dataList={comedies} />
         </Layout>
-
     )
 }
 
