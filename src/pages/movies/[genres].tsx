@@ -14,9 +14,9 @@ import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 const MoviesFilters: FC<any> = ({ allFilters }) => {
     const [moviesList, setMoviesList] = useState<any>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [currentSorting, setCurrentSorting] = useState<string>('byRating')
+    const [currentSorting, setCurrentSorting] = useState<string>('rating')
     const { t, i18n } = useTranslation(['common'])
-    const { query, locale } = useRouter()
+    const { query } = useRouter()
     const queryPage = !query.page ? '1' : String(query.page)
     const [currentPage, setCurrentPage] = useState<string>(queryPage)
     const [isMoviesEnded, setIsMoviesEnded] = useState<boolean>(false)
@@ -78,6 +78,18 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         fetchMovies()
     }, [query])
 
+    const byField = (field: string) => {
+        switch (field) {
+            case 'name':
+                const name = i18n.language === 'ru' ? 'nameRu' : 'nameEn'
+                return (a: any, b: any) => (a[name] > b[name] ? 1 : -1)
+            default:
+                return (a: any, b: any) => (Number(a[field]) > Number(b[field]) ? -1 : 1)
+        }
+    }
+
+    const sortedArray = moviesList.sort(byField(currentSorting))
+
     return (
         <Layout>
             <Head>
@@ -91,7 +103,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters allFilters={allFilters} genresValue={genresQuery} countriesValue={countriesQuery} />
             <MoviesList
-                data={moviesList}
+                data={sortedArray}
                 isLoading={isLoading}
                 setMoviesList={setMoviesList}
                 currentPage={currentPage}
