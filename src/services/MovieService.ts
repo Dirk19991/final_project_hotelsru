@@ -11,4 +11,8 @@ export default class MovieService {
         })
         return response.data.result
     }
+    static getDefaultCarouselMovies = async (queryString: string) => {
+        const response = await axios.get(`${process.env.DEPLOY_API_URL}/movies/${queryString}`)
+        return response.data.result
+    }
 }

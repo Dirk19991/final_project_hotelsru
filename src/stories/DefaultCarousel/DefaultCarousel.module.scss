@@ -89,3 +89,27 @@
         left: -22px;
     }
 }
+
+.showAll {
+    min-width: 110px;
+    max-width: 540px;
+    aspect-ratio: 1/1.53;
+    background-color: $active-menu-color;
+    margin: 10px 0px 10px;
+    border-radius: 8px;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.04);
+        background-color: $secondary-bg-color;
+        span {
+            color: $accent-color;
+        }
+    }
+    span {
+        margin: auto;
+        color: $link-color;
+        font-weight: bold;
+    }
+}
