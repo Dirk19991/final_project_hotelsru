@@ -63,7 +63,7 @@ const AdminPanelGenre = () => {
     }
 
     return (
-        <>
+        <div className="container">
             {allGenres && (
                 <form onSubmit={submitForm} className={styles.wrapper}>
                     <Select
@@ -107,7 +107,7 @@ const AdminPanelGenre = () => {
             {error && <div className={styles.error}>Ошибка! Попробуйте еще раз</div>}
 
             {saved && <div className={styles.saved}>Сохранено!</div>}
-        </>
+        </div>
     )
 }
 export default AdminPanelGenre

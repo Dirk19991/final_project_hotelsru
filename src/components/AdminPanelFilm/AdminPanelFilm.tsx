@@ -97,7 +97,7 @@ const AdminPanelFilm = () => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className="container">
             <form onSubmit={searchSubmitHandler} className={styles.wrapper}>
                 <input
                     className={styles.input}

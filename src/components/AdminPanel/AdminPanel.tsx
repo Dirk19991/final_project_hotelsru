@@ -3,6 +3,7 @@ import styles from './AdminPanel.module.scss'
 import AdminPanelFilm from '../AdminPanelFilm/AdminPanelFilm'
 import { Button } from '@/stories/Button/ButtonStandard'
 import AdminPanelGenre from '../AdminPanelGenre/AdminPanelGenre'
+import Link from 'next/link'
 
 export const PORT = 'http://193.32.203.137:4000/'
 
@@ -13,23 +14,25 @@ const AdminPanel = () => {
         <div className="container add">
             {screenType === 'buttons' && (
                 <div className={styles.wrapper}>
-                    <Button
-                        href="/admin"
-                        label="Редактировать фильм"
-                        onClick={() => setScreenType('film')}
-                        type="watchSubscription"
-                    />
-
-                    <Button
-                        href="/admin"
-                        label="Редактировать жанр"
-                        onClick={() => setScreenType('genre')}
-                        type="watchSubscription"
-                    />
+                    <Link href="admin/edit">
+                        <Button
+                            label="Редактировать фильм"
+                            onClick={() => setScreenType('film')}
+                            type="watchSubscription"
+                        />
+                    </Link>
+                    <Link href="admin/delete">
+                        <Button label="Удалить фильм" onClick={() => setScreenType('genre')} type="watchSubscription" />
+                    </Link>
+                    <Link href="admin/genre">
+                        <Button
+                            label="Редактировать жанр"
+                            onClick={() => setScreenType('genre')}
+                            type="watchSubscription"
+                        />
+                    </Link>
                 </div>
             )}
-            {screenType === 'film' && <AdminPanelFilm />}
-            {screenType === 'genre' && <AdminPanelGenre />}
         </div>
     )
 }
