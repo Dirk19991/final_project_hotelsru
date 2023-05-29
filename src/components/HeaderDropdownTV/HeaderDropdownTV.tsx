@@ -91,31 +91,20 @@ const HeaderDropdownTV = () => {
         <div className={styles.container}>
             <div className={styles.categories}>
                 <ul className={styles.categories__list}>
-                    <li className={styles.categories__item}>
-                        {t('category.online')}
-                    </li>
+                    <li className={styles.categories__item}>{t('category.online')}</li>
                     {categories.map((c) => (
                         <li key={c.link} className={styles.categories__item}>
-                            <Link href={`https://www.ivi.ru/tvplus/${c.link}`}>
-                                {t(`category.${c.name}`)}
-                            </Link>
+                            <Link href={`https://www.ivi.ru/tvplus/${c.link}`}>{t(`category.${c.name}`)}</Link>
                         </li>
                     ))}
                 </ul>
-                <Button
-                    type={'tvprogram'}
-                    label={t('TVprogram')}
-                    href="https://www.ivi.ru/tvplus"
-                />
+                <Button type={'tvprogram'} label={t('TVprogram')} href="https://www.ivi.ru/tvplus" />
             </div>
             <div className={styles.channels}>
                 <div className={styles.channels__content}>
                     <ChannelsList
-                        channels={federalChannels.map((channel) => (
-                            <TVCard
-                                channel={channel}
-                                src={`/tv/federal/${channel}.jpg`}
-                            />
+                        channels={federalChannels.map((channel, i) => (
+                            <TVCard key={i} channel={channel} src={`/tv/federal/${channel}.jpg`} />
                         ))}
                         title={t('federalChannels')}
                         slidesPerView={6.5}
@@ -123,11 +112,8 @@ const HeaderDropdownTV = () => {
                         width={88}
                     />
                     <ChannelsList
-                        channels={sportChannels.map((channel) => (
-                            <TVCard
-                                channel={channel}
-                                src={`/tv/sport/${channel}.jpg`}
-                            />
+                        channels={sportChannels.map((channel, i) => (
+                            <TVCard key={i} channel={channel} src={`/tv/sport/${channel}.jpg`} />
                         ))}
                         title={t('sportChannels')}
                         slidesPerView={6.5}
@@ -135,8 +121,8 @@ const HeaderDropdownTV = () => {
                         width={88}
                     />
                     <ChannelsList
-                        channels={broadcasts.map((b) => (
-                            <BroadcastCard broadcast={b} />
+                        channels={broadcasts.map((b, i) => (
+                            <BroadcastCard key={i} broadcast={b} />
                         ))}
                         title={t('popular')}
                         slidesPerView={2.5}

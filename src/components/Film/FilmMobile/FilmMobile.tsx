@@ -22,6 +22,7 @@ const FilmMobile: FC<any> = ({ movie }) => {
     //     onResize()
     // }, [])
 
+
     // const onResize = () => {
     //     if (actorsRef.current && actorsRef.current[0]) {
     //         const maxElements = Math.floor(window.outerWidth / actorsRef.current[0].clientWidth)
