@@ -8,7 +8,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import MovieService from '@/services/MovieService'
 
@@ -52,11 +51,20 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
                 { title: query.years, href: `/movies/all?years=${query.years}` },
             ])
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query.genres, query.countries, query.years])
 
     useEffect(() => {
         const queryCopy = { ...query }
         delete queryCopy.genres
+
+        switch (currentSorting) {
+            case 'name':
+                queryCopy.sort = i18n.language === 'ru' ? 'nameRu' : 'nameEn'
+                break
+            default:
+                queryCopy.sort = currentSorting
+        }
 
         const fetchMovies = async () => {
             setIsLoading(true)
@@ -74,19 +82,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         }
 
         fetchMovies()
-    }, [query])
-
-    const byField = (field: string) => {
-        switch (field) {
-            case 'name':
-                const name = i18n.language === 'ru' ? 'nameRu' : 'nameEn'
-                return (a: any, b: any) => (a[name] > b[name] ? 1 : -1)
-            default:
-                return (a: any, b: any) => (Number(a[field]) > Number(b[field]) ? -1 : 1)
-        }
-    }
-
-    const sortedArray = moviesList ? moviesList.sort(byField(currentSorting)) : moviesList
+    }, [query, currentSorting, i18n.language])
 
     return (
         <Layout>
@@ -101,7 +97,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters allFilters={allFilters} genresValue={genresQuery} countriesValue={countriesQuery} />
             <MoviesList
-                data={sortedArray}
+                data={moviesList}
                 isLoading={isLoading}
                 setMoviesList={setMoviesList}
                 currentPage={currentPage}
@@ -113,17 +109,8 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
     )
 }
 
-export const getServerSideProps = async ({ locale, query }: any) => {
-    const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
-    const deployBaseUrl = process.env.DEPLOY_API_URL
-
-    // FILTERS
-    const filtersRes = await fetch(`${localBaseUrl}/api/filters`)
-    const filters = await filtersRes.json()
-    const genresRes = await fetch(`${deployBaseUrl}/genres`)
-    const genres = await genresRes.json()
-    const allFilters = filters
-    allFilters.genres = genres
+export const getServerSideProps = async ({ locale }: any) => {
+    const allFilters = await MovieService.getMoviesFilters()
 
     return {
         props: {
