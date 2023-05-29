@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, FormEventHandler, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './AdminPanelAdd.module.scss'
 import React from 'react'
 import Select, { MultiValue } from 'react-select'
-import axios from 'axios'
-import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/ComponentProps/IMovie'
+import { IGenre } from '@/types/ComponentProps/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
+import $auth from '@/http/auth'
 
 const AdminPanelAdd = () => {
     const [nameRu, setNameRu] = useState<string>('')
@@ -44,7 +44,7 @@ const AdminPanelAdd = () => {
     const getGenres = async () => {
         try {
             setLoading(true)
-            const genreResponse = await axios.get(`${PORT}genres`)
+            const genreResponse = await $auth.get(`${PORT}/genres`)
             const genreData = (await genreResponse.data) as IGenre[]
             setAllGenres(
                 genreData.map((genre) => {
@@ -57,6 +57,7 @@ const AdminPanelAdd = () => {
             )
             setLoading(false)
         } catch (error) {
+            console.log(error)
             setError(true)
             setLoading(false)
         }
@@ -102,7 +103,7 @@ const AdminPanelAdd = () => {
         console.log(newMovie)
 
         try {
-            const response = await axios.post(`${PORT}movie`, newMovie, {
+            const response = await $auth.post(`${PORT}/movie`, newMovie, {
                 headers: {
                     'content-type': 'application/json',
                 },
