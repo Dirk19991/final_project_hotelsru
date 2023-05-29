@@ -8,7 +8,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import MovieService from '@/services/MovieService'
 
@@ -54,9 +53,19 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         }
     }, [query.genres, query.countries, query.years])
 
+    console.log(currentSorting)
+
     useEffect(() => {
         const queryCopy = { ...query }
         delete queryCopy.genres
+
+        switch (currentSorting) {
+            case 'name':
+                queryCopy.sort = i18n.language === 'ru' ? 'nameRu' : 'nameEn'
+                break
+            default:
+                queryCopy.sort = currentSorting
+        }
 
         const fetchMovies = async () => {
             setIsLoading(true)
@@ -74,19 +83,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
         }
 
         fetchMovies()
-    }, [query])
-
-    const byField = (field: string) => {
-        switch (field) {
-            case 'name':
-                const name = i18n.language === 'ru' ? 'nameRu' : 'nameEn'
-                return (a: any, b: any) => (a[name] > b[name] ? 1 : -1)
-            default:
-                return (a: any, b: any) => (Number(a[field]) > Number(b[field]) ? -1 : 1)
-        }
-    }
-
-    const sortedArray = moviesList ? moviesList.sort(byField(currentSorting)) : moviesList
+    }, [query, currentSorting, i18n.language])
 
     return (
         <Layout>
@@ -101,7 +98,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters allFilters={allFilters} genresValue={genresQuery} countriesValue={countriesQuery} />
             <MoviesList
-                data={sortedArray}
+                data={moviesList}
                 isLoading={isLoading}
                 setMoviesList={setMoviesList}
                 currentPage={currentPage}
