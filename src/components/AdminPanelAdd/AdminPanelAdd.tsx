@@ -27,6 +27,7 @@ const AdminPanelAdd = () => {
     const [allGenres, setAllGenres] = useState<{ value: string; label: string; id: number }[] | null>(null)
 
     const numberRegex = /^(?!0\d)\d*(\.\d+)?$/
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/
 
     function onTextareaChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
         e.target.style.height = ''
@@ -80,6 +81,11 @@ const AdminPanelAdd = () => {
             !numberRegex.test(ageRating) ||
             !numberRegex.test(duration)
         ) {
+            setError(true)
+            return
+        }
+
+        if (!urlRegex.test(poster) || !urlRegex.test(trailer)) {
             setError(true)
             return
         }
