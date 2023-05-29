@@ -5,7 +5,6 @@ import toHoursAndMinutes from '@/util/toHoursAndMinutes'
 import FilmBreadcrumbs from '../Breadcrumbs/Breadcrumbs'
 import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
-import toHoursAndMinutes from '@/util/toHoursAndMinutes'
 
 const Header: FC<any> = ({ year, title, genres, duration }) => {
     const { t, i18n } = useTranslation(['film'])

@@ -34,11 +34,7 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
 export default Home
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-    const baseURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
-
-    const MainCarouselRes = await fetch(`${baseURL}/api/main-carousel`)
-    const mainCarouselMovies = await MainCarouselRes.json()
-
+    const mainCarouselMovies = await MovieService.getMainCarousel()
     const bestRussianDramas = await MovieService.getDefaultCarouselMovies('drama?countries=rs&rating=7')
 
     return {
