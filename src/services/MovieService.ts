@@ -4,6 +4,10 @@ interface IQueryObject {
     [x: string]: string | string[] | undefined
 }
 
+interface INames {
+    [x: string]: string
+}
+
 const serverURL = process.env.DEPLOY_API_URL
 const localURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
 
@@ -14,17 +18,31 @@ export default class MovieService {
         })
         return response.data.result
     }
-    static getDefaultCarouselMovies = async (queryString: string) => {
-        const response = await axios.get(`${serverURL}/movies/${queryString}`)
-        return response.data.result
-    }
     static getMovieById = async (id: string | string[] | undefined) => {
         const response = await axios.get(`${serverURL}/movie/${id}`)
         return response.data.movie
     }
     static getMainCarousel = async () => {
-        const response = await fetch(`${localURL}/api/main-carousel`)
-        const data = await response.json()
-        return data
+        const response = await axios.get(`${localURL}/api/main-carousel`)
+        return response.data
+    }
+    static getMoviesFilters = async () => {
+        const localFilters = await axios.get(`${localURL}/api/filters`)
+        const dynamicGenres = await axios.get(`${serverURL}/genres`)
+        const filters = localFilters.data
+        filters.genres = dynamicGenres.data
+        return filters
+    }
+    static getMoviesByQuery = async (query: string, names: INames) => {
+        const response = await axios.get(`${serverURL}/movies/${query}`)
+        return {
+            link: query,
+            data: response.data.result,
+            names,
+        }
+    }
+    static getTop10Movies = async () => {
+        const response = await axios.get(`${serverURL}/movies/?sort=rating`)
+        return response.data.result.slice(0, 10)
     }
 }

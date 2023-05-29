@@ -51,9 +51,8 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
                 { title: query.years, href: `/movies/all?years=${query.years}` },
             ])
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query.genres, query.countries, query.years])
-
-    console.log(currentSorting)
 
     useEffect(() => {
         const queryCopy = { ...query }
@@ -110,17 +109,8 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
     )
 }
 
-export const getServerSideProps = async ({ locale, query }: any) => {
-    const localBaseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
-    const deployBaseUrl = process.env.DEPLOY_API_URL
-
-    // FILTERS
-    const filtersRes = await fetch(`${localBaseUrl}/api/filters`)
-    const filters = await filtersRes.json()
-    const genresRes = await fetch(`${deployBaseUrl}/genres`)
-    const genres = await genresRes.json()
-    const allFilters = filters
-    allFilters.genres = genres
+export const getServerSideProps = async ({ locale }: any) => {
+    const allFilters = await MovieService.getMoviesFilters()
 
     return {
         props: {

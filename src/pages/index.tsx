@@ -11,8 +11,8 @@ import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
 
-const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
-    const { t } = useTranslation(['common'])
+const Home: FC<any> = ({ carousels, mainCarouselMovies, top10Movies }) => {
+    const { i18n } = useTranslation(['common'])
 
     return (
         <Layout>
@@ -25,8 +25,18 @@ const Home: FC<any> = ({ dramas, comedies, mainCarouselMovies }) => {
             <PromoButtons />
             <Promo />
             <MediumCarousel />
-            <DefaultCarousel title={t('bestDramas')} link={'/movies/drama?countries=rs&rating=7'} dataList={dramas} />
-            <DefaultCarousel title={t('bestComedies')} link={'/movies/comedy'} dataList={comedies} />
+            {carousels &&
+                carousels.map((carousel: any, i: number) => {
+                    const name = i18n.language === 'ru' ? carousel.names.nameRu : carousel.names.nameEn
+                    return (
+                        <DefaultCarousel
+                            key={i}
+                            title={name}
+                            link={`/movies/${carousel.link}`}
+                            dataList={carousel.data}
+                        />
+                    )
+                })}
         </Layout>
     )
 }
@@ -35,12 +45,15 @@ export default Home
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const mainCarouselMovies = await MovieService.getMainCarousel()
-    const bestRussianDramas = await MovieService.getDefaultCarouselMovies('drama?countries=rs&rating=7')
+
+    const carousel1 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
+    const carousel2 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
+    // const carousel3 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
+    // const carousel4 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
 
     return {
         props: {
-            dramas: bestRussianDramas,
-            comedies: bestRussianDramas,
+            carousels: [carousel1, carousel2],
             mainCarouselMovies,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'promo', 'header'])),
         },
