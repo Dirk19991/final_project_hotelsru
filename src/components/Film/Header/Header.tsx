@@ -5,23 +5,15 @@ import { IMovie } from '@/types/ComponentProps/IMovie'
 import FilmBreadcrumbs from '../Breadcrumbs/Breadcrumbs'
 import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
+import toHoursAndMinutes from '@/util/toHoursAndMinutes'
 
 interface IHeader {
     film: IMovie
 }
 
 const Header: FC<IHeader> = ({ film: { year, type, nameRu, nameEn, genres, duration } }) => {
-    function toHoursAndMinutes(totalMinutes: number) {
-        const hours = Math.floor(totalMinutes / 60)
-        const minutes = totalMinutes % 60
-
-        return i18n.language === 'en'
-            ? `${hours} h.${minutes > 0 ? ` ${minutes} m.` : ''}`
-            : `${hours} ч.${minutes > 0 ? ` ${minutes} мин.` : ''}`
-    }
-
     const { t, i18n } = useTranslation(['film'])
-    const time = toHoursAndMinutes(duration)
+    const time = toHoursAndMinutes(duration, i18n)
 
     return (
         <div className={cn(styles.wrapper, {})}>
