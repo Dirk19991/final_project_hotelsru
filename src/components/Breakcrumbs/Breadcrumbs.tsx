@@ -2,26 +2,12 @@ import React, { FC } from 'react'
 import styles from './Breadcrumbs.module.scss'
 import Link from 'next/link'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import { useTranslation } from 'next-i18next'
+import engNameToLink from '@/util/engNameToLink'
 
-interface IBreadcrumbsCoutry {
-    id: number
-    country_name: string
-    href: string
-}
-
-interface IBreadcrumbsData {
-    id: number
-    title?: string
-    countries?: IBreadcrumbsCoutry[]
-    href?: string
-}
-
-interface IBreadcrumbs {
-    breadcrumbsData: IBreadcrumbsData[]
-}
-
-const Breadcrumbs: FC<IBreadcrumbs> = ({ breadcrumbsData }) => {
+const Breadcrumbs: FC<any> = ({ breadcrumbsData }) => {
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
+    const { i18n } = useTranslation(['common'])
 
     return (
         <section className={styles.breadcrumbs}>
@@ -29,59 +15,53 @@ const Breadcrumbs: FC<IBreadcrumbs> = ({ breadcrumbsData }) => {
                 <div className={styles.wrapper}>
                     {matchesTabSize && (
                         <ul className={styles.list}>
-                            {breadcrumbsData.map(
-                                (item: IBreadcrumbsData, i: number) => (
-                                    <li key={item.id}>
-                                        {i === 0 ? '' : '/'}
-                                        {item.countries ? (
-                                            <div
-                                                className={styles.countriesList}
-                                            >
+                            {breadcrumbsData.map((item: any, i: number) => (
+                                <li key={i}>
+                                    {i === 0 ? '' : '/'}
+
+                                    {item.links && (
+                                        <div className={styles.sublist}>
+                                            {item.links.length > 1 && (
                                                 <ul>
-                                                    {item.countries.map(
-                                                        (
-                                                            country: IBreadcrumbsCoutry,
-                                                            i: number
-                                                        ) =>
+                                                    {item.links.map(
+                                                        (link: any, i: number) =>
                                                             i < 3 && (
-                                                                <li
-                                                                    key={
-                                                                        country.id
-                                                                    }
-                                                                >
-                                                                    {i !== 0 &&
-                                                                        `, `}
-                                                                    {
-                                                                        country.country_name
-                                                                    }
+                                                                <li key={link.id}>
+                                                                    {i !== 0 && `, `}
+                                                                    {i18n.language === 'ru' ? link.nameRu : link.nameEn}
                                                                 </li>
                                                             )
                                                     )}
                                                 </ul>
-                                                <small>
-                                                    {item.countries &&
-                                                    item.countries.length > 3
-                                                        ? '...'
-                                                        : ''}
-                                                </small>
-                                            </div>
-                                        ) : (
-                                            <>
-                                                {i + 1 ===
-                                                breadcrumbsData.length ? (
-                                                    <span>{item.title}</span>
-                                                ) : (
-                                                    <Link
-                                                        href={item.href ?? ''}
-                                                    >
-                                                        {item.title}
-                                                    </Link>
-                                                )}
-                                            </>
-                                        )}
-                                    </li>
-                                )
-                            )}
+                                            )}
+                                            {item.links.length === 1 && (
+                                                <Link
+                                                    href={
+                                                        item.links[0].shortName
+                                                            ? `/movies/all?countries=${item.links[0].shortName}`
+                                                            : `/movies/${engNameToLink(item.links[0].nameEn)}`
+                                                    }
+                                                >
+                                                    {i18n.language === 'ru'
+                                                        ? item.links[0].nameRu
+                                                        : item.links[0].nameEn}
+                                                </Link>
+                                            )}
+                                            <small>{item.links && item.links.length > 3 ? '...' : ''}</small>
+                                        </div>
+                                    )}
+
+                                    {!item.links && (
+                                        <>
+                                            {i + 1 === breadcrumbsData.length ? (
+                                                <span>{item.title}</span>
+                                            ) : (
+                                                <Link href={item.href ?? ''}>{item.title}</Link>
+                                            )}
+                                        </>
+                                    )}
+                                </li>
+                            ))}
                         </ul>
                     )}
                 </div>

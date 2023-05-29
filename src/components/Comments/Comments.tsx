@@ -1,65 +1,57 @@
 import styles from './Comments.module.scss'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import data from '@/data/mockDataFilm.json'
 import { IMovie } from '@/types/ComponentProps/IMovie'
-import commentsData from '../../data/mockDataComments.json'
 import Comment from './Comment/Comment'
 import CommentForm from './CommentForm/CommentForm'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
+import { CommentType } from '../CommentsCarousel/CommentsCarousel'
+import { useEffect } from 'react'
 
-const Comments = () => {
-    const router = useRouter()
-    const filmID = router.query.filmName
+interface IComments {
+    comments: CommentType[]
+    film: IMovie
+    setCommentsRefresh: (value: boolean) => void
+}
 
-    const [filmData, setFilmData] = useState<IMovie | null>(null)
+const Comments = ({comments, film, setCommentsRefresh}: IComments) => {
 
     useEffect(() => {
-        fetch(`http://localhost:3001/movies/${filmID}`)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json()
-                }
-
-                throw new Error('Error')
-            })
-            .then((res) => setFilmData(res))
-            .catch((error) =>
-                setFilmData(JSON.parse(JSON.stringify(data)) as IMovie)
-            )
-    }, [filmID])
-
+        window.scroll(0,0) 
+    }, [])
+    
     return (
         <div className="container">
             <div className={styles.wrapper}>
                 <div className={styles.comments}>
                     <h2>
-                        {filmData?.nameRu} (&nbsp;{filmData?.type}&nbsp;
-                        {filmData?.year}&nbsp;)
+                        {film.nameRu} (&nbsp;{film.type}&nbsp;
+                        {film.year}&nbsp;)
                     </h2>
-                    <CommentForm />
+                    <CommentForm movieId={film.id} setCommentsRefresh={setCommentsRefresh}/>
                     <div className={styles.commentsList}>
-                        {commentsData.map((comment) => (
+                        {comments?.map((comment) => (
                             <Comment
                                 key={comment.id}
+                                id={comment.id}
                                 author={comment.author}
                                 text={comment.text}
-                                date={comment.date}
+                                date={comment.date!}
                                 comments={comment.comments}
+                                setCommentsRefresh={setCommentsRefresh}
                             />
                         ))}
                     </div>
                 </div>
                 <div className={styles.banner}>
-                    {filmData && (
+                    {film && (
                         <DefaultCarouselSlide
-                            rating={filmData.rating}
-                            year={filmData.year}
+                            rating={film.rating}
+                            year={film.year}
                             href={`/`}
-                            image={filmData.previewPoster}
+                            image={film.poster}
                             country={[{ id: 1, name: 'США' }]}
-                            genre={filmData.genres}
-                            name={filmData.nameRu}
+                            genre={film.genres}
+                            name={film.nameRu}
+                            duration={film.duration}
                         />
                     )}
                 </div>

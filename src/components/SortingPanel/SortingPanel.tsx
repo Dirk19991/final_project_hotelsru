@@ -14,31 +14,28 @@ interface ISortingType {
     active: boolean
 }
 
-const SortingPanel: FC<ISortingPanel> = ({
-    currentSorting,
-    setCurrentSorting,
-}) => {
+const SortingPanel: FC<ISortingPanel> = ({ currentSorting, setCurrentSorting }) => {
     const { t } = useTranslation(['movies'])
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
     const [sortingTypes, setSortingTypes] = useState<ISortingType[]>([
         {
             id: 1,
-            type: 'byRating',
+            type: 'rating',
             active: true,
         },
         {
             id: 2,
-            type: 'byRatesAmount',
+            type: 'ratingCount',
             active: false,
         },
         {
             id: 3,
-            type: 'byReleaseDate',
+            type: 'year',
             active: false,
         },
         {
             id: 4,
-            type: 'byAlphabet',
+            type: 'name',
             active: false,
         },
     ])
@@ -62,10 +59,7 @@ const SortingPanel: FC<ISortingPanel> = ({
             <div className="container">
                 <div className={styles.wrapper}>
                     <div
-                        className={cn(
-                            styles.select,
-                            isDropdownOpen && styles.active
-                        )}
+                        className={cn(styles.select, isDropdownOpen && styles.active)}
                         onClick={() => setIsDropdownOpen((state) => !state)}
                     >
                         <svg
@@ -83,17 +77,15 @@ const SortingPanel: FC<ISortingPanel> = ({
                             />
                         </svg>
                         <span>
-                            {currentSorting === 'byRating' && t('byRating')}
-                            {currentSorting === 'byRatesAmount' &&
-                                t('byRatesAmount')}
-                            {currentSorting === 'byReleaseDate' &&
-                                t('byReleaseDate')}
-                            {currentSorting === 'byAlphabet' && t('byAlphabet')}
+                            {currentSorting === 'rating' && t('byRating')}
+                            {currentSorting === 'ratingCount' && t('byRatesAmount')}
+                            {currentSorting === 'year' && t('byReleaseDate')}
+                            {currentSorting === 'name' && t('byAlphabet')}
                         </span>
                     </div>
                     {isDropdownOpen && (
                         <div className={styles.dropdown}>
-                            <span>{t("sortBy")}</span>
+                            <span>{t('sortBy')}</span>
                             <ul>
                                 {sortingTypes.map(({ id, active, type }) => (
                                     <li
@@ -101,13 +93,10 @@ const SortingPanel: FC<ISortingPanel> = ({
                                         className={cn(active && styles.active)}
                                         onClick={() => handleSorting(type, id)}
                                     >
-                                        {type === 'byRating' && t('byRating')}
-                                        {type === 'byRatesAmount' &&
-                                            t('byRatesAmount')}
-                                        {type === 'byReleaseDate' &&
-                                            t('byReleaseDate')}
-                                        {type === 'byAlphabet' &&
-                                            t('byAlphabet')}
+                                        {type === 'rating' && t('byRating')}
+                                        {type === 'ratingCount' && t('byRatesAmount')}
+                                        {type === 'year' && t('byReleaseDate')}
+                                        {type === 'name' && t('byAlphabet')}
                                     </li>
                                 ))}
                             </ul>

@@ -27,7 +27,7 @@ const Movies: FC<any> = ({ dramas, comedies, allFilters }) => {
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
-            <MoviesTitle />
+            <MoviesTitle isActive={false} />
             <Filters allFilters={allFilters} />
 
             <DefaultCarousel title={t('bestComedies')} link={'/movies/comedy'} dataList={dramas} />

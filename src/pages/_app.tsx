@@ -4,7 +4,8 @@ import type { AppProps } from 'next/app'
 import { Open_Sans } from 'next/font/google'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
+import AuthService from '@/services/AuthService'
 
 const openSans = Open_Sans({
     weight: ['300', '400', '500', '700'],
@@ -13,6 +14,10 @@ const openSans = Open_Sans({
 })
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
+    useEffect(() => {
+        AuthService.checkAuth()
+    }, [])
+
     return (
         <>
             <Head>

@@ -13,12 +13,15 @@ export interface AuthResponse {
 }
 
 interface IUser {
-    firstName: string
-    lastName: string
-    phone: string
-    login: string
+    firstName?: string
+    lastName?: string
+    phone?: string
+    login?: string
+    id: number
     password: string
     email: string
+    isActivated: boolean
+    activationLink?: string
 }
 
 export default class AuthService {
@@ -26,7 +29,7 @@ export default class AuthService {
 
     static async loginOrRegister(email: string, password: string): Promise<AuthError | void> {
         try {
-            const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/login`, {
+            const response = await $auth.post<AuthResponse>(`/profile/login`, {
                 email,
                 password,
             })
@@ -47,9 +50,7 @@ export default class AuthService {
 
     static async logout(): Promise<void> {
         try {
-            //раскоментить, когда на беке будет проверка токенов
-            // const response = await $auth.post('/profile/logout')
-            const response = await axios.post(`${process.env.DEPLOY_API_URL}/profile/logout`)
+            await $auth.post('/profile/logout')
             localStorage.removeItem('token')
             this.isAuth = false
         } catch (e) {
@@ -57,9 +58,21 @@ export default class AuthService {
         }
     }
 
+    static async checkAuth() {
+        //todo refresh
+        const token = localStorage.getItem('token')
+        if (token) {
+            this.isAuth = true
+        }
+    }
+
     private static async register(email: string, password: string): Promise<AuthError | void> {
         try {
-            const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/registration`, {
+            await $auth.post<AuthResponse>(`/profile/registration`, {
+                email,
+                password,
+            })
+            const response = await $auth.post<AuthResponse>(`/profile/login`, {
                 email,
                 password,
             })

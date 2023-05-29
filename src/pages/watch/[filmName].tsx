@@ -3,8 +3,7 @@ import AllDevices from '@/components/Film/AllDevices/AllDevices'
 import CreatorsList from '@/components/Film/CreatorList/CreatorList'
 import Film from '@/components/Film/Film'
 import { IMovie } from '@/types/ComponentProps/IMovie'
-import { useRouter } from 'next/router'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import data from '@/data/mockDataFilm.json'
 import styles from './[filmName].module.scss'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
@@ -15,43 +14,20 @@ import { useTranslation } from 'next-i18next'
 import { GetStaticProps } from 'next'
 import Layout from '@/components/Layout/Layout'
 
-const FilmPage = () => {
+const FilmPage: FC<any> = ({ filmData }) => { 
     const { t, i18n } = useTranslation(['film'])
-
-    const router = useRouter()
-
-    const filmID = router.query.filmName
-
     const [film, setFilm] = useState<IMovie | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [refreshComments, setCommentsRefresh] = useState(false)
 
     useEffect(() => {
-        if (!router.isReady) return
-        fetch(`http://localhost:3001/movies/${filmID}`)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json()
-                }
-
-                throw new Error('Error')
-            })
-            .then((res) => setFilm(res))
-            .catch((error) => {
-                setFilm(JSON.parse(JSON.stringify(data)) as IMovie)
-                setIsLoading(false)
-            })
-    }, [filmID, router.isReady])
-
-    useEffect(() => {
-        setIsLoading(true)
-    }, [filmID])
-
-    useEffect(() => {
-        if (film) {
+        if (filmData) {
+            const updatedFilm = Object.assign({}, JSON.parse(JSON.stringify(data)) as IMovie, filmData?.movie)
+            setFilm(updatedFilm)
             setIsLoading(false)
         }
-    }, [film])
-
+    }, [filmData])
+    
     return (
         <Layout>
             <main className="container">
@@ -73,7 +49,11 @@ const FilmPage = () => {
                         <Film film={film} />
                         <DefaultCarousel title={'C этим фильмом также смотрят:'} dataList={mock} />
                         <CreatorsList film={film} />
-                        <CommentsCarousel />
+                        <CommentsCarousel
+                            film={film}
+                            refreshComments={refreshComments}
+                            setCommentsRefresh={setCommentsRefresh}
+                        />
                         <AllDevices name={i18n.language === 'en' ? film.nameEn : film.nameRu} src={film.poster} />
                     </div>
                 )}
@@ -90,9 +70,14 @@ const FilmPage = () => {
 
 export default FilmPage
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
+    const deployBaseUrl = process.env.DEPLOY_API_URL
+
+    const film = await fetch(`${deployBaseUrl}/movie/${params?.filmName}`)
+    const filmData = await film.json()
     return {
         props: {
+            filmData,
             ...(await serverSideTranslations(locale as string, ['film', 'common', 'footer', 'header'])),
         },
     }
