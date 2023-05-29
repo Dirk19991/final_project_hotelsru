@@ -72,7 +72,7 @@ export default class AuthService {
                 email,
                 password,
             })
-            const response = await $auth.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/login`, {
+            const response = await $auth.post<AuthResponse>(`/profile/login`, {
                 email,
                 password,
             })
