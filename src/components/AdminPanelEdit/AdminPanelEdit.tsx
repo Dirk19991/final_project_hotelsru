@@ -1,13 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import styles from './AdminPanelFilm.module.scss'
+import styles from './AdminPanelEdit.module.scss'
 import React from 'react'
 import Select, { MultiValue } from 'react-select'
 import axios from 'axios'
 import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/ComponentProps/IMovie'
+import { PORT } from '../AdminPanel/AdminPanel'
 
-const PORT = 'http://193.32.203.137:4000/'
-
-const AdminPanelFilm = () => {
+const AdminPanelEdit = () => {
     const [inputValue, setInputValue] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
     const [notFound, setNotFound] = useState<boolean>(false)
@@ -60,10 +59,10 @@ const AdminPanelFilm = () => {
         }
     }
 
-    const editSubmitHandler = async (e: any) => {
+    const onFormEdit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const formData = new FormData(e.target)
+        const formData = new FormData(e.currentTarget)
         const updatedRuName = formData.get('nameRu')
         const updatedEnName = formData.get('nameEn')
         const genreValues = chosenGenres.map((genre) => genre.value)
@@ -73,7 +72,7 @@ const AdminPanelFilm = () => {
             nameEn: updatedEnName,
             description: foundFilm?.description,
             trailer: foundFilm?.trailer,
-            similarMovies: foundFilm?.similarMovies.map((film) => film.id),
+            similarMovies: foundFilm?.similarMovies?.map((film) => film.id),
             year: foundFilm?.year,
             rating: foundFilm?.rating,
             ratingCount: foundFilm?.ratingCount,
@@ -90,28 +89,6 @@ const AdminPanelFilm = () => {
         } catch (error) {
             console.log(error)
         }
-        // {
-        //     "nameRu": "Идеальные незнакомцы1    ",
-        //     "nameEn": "Perfectos desconocidos",
-        //     "description": "Семь друзей собираются за ужином и решают сыграть в простую игру. Все мобильники выкладываются на стол, чтобы все присутствующие могли видеть и слышать сообщения и звонки, поступающие каждому из них.",
-        //     "trailer": "https://www.youtube.com/v/4m_a2srLn4c",
-        //     "similarMovies": [
-        //       101
-        //     ],
-        //     "year": "2017",
-        //     "rating": "6.9",
-        //     "ratingCount": "14641",
-        //     "ageRating": null,
-        //     "poster": "https://st.kp.yandex.net/images/film_big/1006009.jpg",
-        //     "duration": "97",
-        //     "slogan": "We all have a secret",
-        //     "genres": [
-        //        1
-        //     ],
-        //     "countries": [
-        //        "es"
-        //     ]
-        // }
 
         // на этом этапе отправляем обновленные данные на бэкенд
         console.log(updatedFilm)
@@ -120,7 +97,7 @@ const AdminPanelFilm = () => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className="container">
             <form onSubmit={searchSubmitHandler} className={styles.wrapper}>
                 <input
                     className={styles.input}
@@ -137,7 +114,7 @@ const AdminPanelFilm = () => {
             {notFound && <div className={styles.error}>Ничего не найдено!</div>}
             {saved && <div className={styles.saved}>Сохранено!</div>}
             {foundFilm && allGenres && (
-                <form onSubmit={editSubmitHandler}>
+                <form onSubmit={onFormEdit}>
                     <div className={styles.info}>
                         <div>ID</div>
                         <div>{foundFilm.id}</div>
@@ -190,4 +167,4 @@ const AdminPanelFilm = () => {
         </div>
     )
 }
-export default AdminPanelFilm
+export default AdminPanelEdit

@@ -1,33 +1,29 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './AdminPanel.module.scss'
-import AdminPanelFilm from '../AdminPanelFilm/AdminPanelFilm'
+import AdminPanelFilm from '../AdminPanelEdit/AdminPanelEdit'
 import { Button } from '@/stories/Button/ButtonStandard'
 import AdminPanelGenre from '../AdminPanelGenre/AdminPanelGenre'
+import Link from 'next/link'
+
+export const PORT = 'http://193.32.203.137:4000/'
 
 const AdminPanel = () => {
-    const [screenType, setScreenType] = useState<'buttons' | 'film' | 'genre'>('buttons')
-
     return (
         <div className="container add">
-            {screenType === 'buttons' && (
-                <div className={styles.wrapper}>
-                    <Button
-                        href="/admin"
-                        label="Редактировать фильм"
-                        onClick={() => setScreenType('film')}
-                        type="watchSubscription"
-                    />
-
-                    <Button
-                        href="/admin"
-                        label="Редактировать жанр"
-                        onClick={() => setScreenType('genre')}
-                        type="watchSubscription"
-                    />
-                </div>
-            )}
-            {screenType === 'film' && <AdminPanelFilm />}
-            {screenType === 'genre' && <AdminPanelGenre />}
+            <div className={styles.wrapper}>
+                <Link href="admin/add">
+                    <Button label="Добавить фильм" type="watchSubscription" />
+                </Link>
+                <Link href="admin/edit">
+                    <Button label="Редактировать фильм" type="watchSubscription" />
+                </Link>
+                <Link href="admin/delete">
+                    <Button label="Удалить фильм" type="watchSubscription" />
+                </Link>
+                <Link href="admin/genre">
+                    <Button label="Редактировать жанр" type="watchSubscription" />
+                </Link>
+            </div>
         </div>
     )
 }
