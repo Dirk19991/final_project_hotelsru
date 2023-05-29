@@ -177,7 +177,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                     <div className={styles.yearsDropdown}>
                         <ul>
                             {list.map(({ id, value }: any) => {
-                                const queryParam = query.year ?? ''
+                                const queryParam = query.years ?? ''
 
                                 return (
                                     <li key={id} onClick={() => yearsNavigate(value)}>
