@@ -12,13 +12,7 @@ interface ICreatorMedallion {
     href: string
 }
 
-const CreatorMedallion: FC<ICreatorMedallion> = ({
-    size,
-    name,
-    subtitle,
-    src,
-    href,
-}) => {
+const CreatorMedallion: FC<ICreatorMedallion> = ({ size, name, subtitle, src, href }) => {
     const [isHover, setIsHover] = useState(false)
 
     return (
@@ -34,16 +28,12 @@ const CreatorMedallion: FC<ICreatorMedallion> = ({
                         [styles.img_big]: size === 'big',
                     })}
                 >
-                    <Image
-                        src={src}
-                        alt={name}
-                        fill
-                        className={styles.img__background}
-                    />
+                    <Image src={src} alt={name} fill className={styles.img__background} />
                 </div>
                 <div className={styles.description}>
-                    {name.split(' ').map((el) => (
+                    {name.split(' ').map((el, i) => (
                         <div
+                            key={i}
                             className={cn(styles.name, {
                                 [styles.name_hover]: isHover,
                                 [styles.name_small]: size === 'small',

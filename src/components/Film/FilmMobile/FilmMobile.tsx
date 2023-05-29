@@ -30,9 +30,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
 
     const onResize = () => {
         if (actorsRef.current && actorsRef.current[0]) {
-            const maxElements = Math.floor(
-                window.outerWidth / actorsRef.current[0].clientWidth
-            )
+            const maxElements = Math.floor(window.outerWidth / actorsRef.current[0].clientWidth)
             const needElements = Math.min(5, maxElements - 1)
             setActors(allActors.slice(0, needElements))
         }
@@ -58,26 +56,15 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                     <ul className={styles.actors}>
                         <li>
                             <ButtonActor
-                                image={
-                                    <ButtonRating
-                                        fontSize={15}
-                                        height={44}
-                                        rating={fixedRating}
-                                        width={44}
-                                    />
-                                }
+                                image={<ButtonRating fontSize={15} height={44} rating={fixedRating} width={44} />}
                                 text={t('iviRatingNoColon')}
                             />
                         </li>
                         {actors.map((actor, index) => (
-                            <li ref={(el) => (actorsRef.current[index] = el)}>
+                            <li key={index} ref={(el) => (actorsRef.current[index] = el)}>
                                 <ButtonActor
                                     href={`/person/${actor.id}`}
-                                    text={
-                                        i18n.language === 'en'
-                                            ? actor.enName
-                                            : actor.name
-                                    }
+                                    text={i18n.language === 'en' ? actor.enName : actor.name}
                                     key={actor.id}
                                     image={
                                         <Image
@@ -91,13 +78,7 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                             </li>
                         ))}
                     </ul>
-                    <Button
-                        type={'freeMovies'}
-                        label={t('freeMovies')}
-                        src="/icons/play.svg"
-                        height={20}
-                        width={28}
-                    />
+                    <Button type={'freeMovies'} label={t('freeMovies')} src="/icons/play.svg" height={20} width={28} />
                     <FilmDescription text={description} />
                 </div>
                 <div className={styles.info__buttons}>
@@ -109,20 +90,8 @@ const FilmMobile = ({ film }: IFilmMobile) => {
                         width={28}
                     />
                     <div className={styles.info__buttons_bottom}>
-                        {[
-                            '/icons/bookmark.svg',
-                            '/icons/bell.svg',
-                            '/icons/download.svg',
-                        ].map((src, i) => {
-                            return (
-                                <Button
-                                    type={'trailerControls'}
-                                    src={src}
-                                    height={20}
-                                    width={28}
-                                    key={i}
-                                />
-                            )
+                        {['/icons/bookmark.svg', '/icons/bell.svg', '/icons/download.svg'].map((src, i) => {
+                            return <Button type={'trailerControls'} src={src} height={20} width={28} key={i} />
                         })}
                     </div>
                 </div>
