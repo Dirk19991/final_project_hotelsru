@@ -13,15 +13,11 @@ export default function Layout({ children }: LayoutProps) {
 
     return (
         <>
-            {!urls.includes(asPath) && <Header />}
-            {asPath === '/authorization' && (
-                <AlternativeHeader title={'Вход или регистрация'} />
-            )}
-            {asPath === '/admin' && (
-                <AlternativeHeader title={'Админ-панель'} />
-            )}
+            {!urls.some((url) => asPath.includes(url)) && <Header />}
+            {asPath === '/authorization' && <AlternativeHeader title={'Вход или регистрация'} />}
+            {asPath.includes('/admin') && <AlternativeHeader title={'Админ-панель'} />}
             <main>{children}</main>
-            {!urls.includes(asPath) && <Footer />}
+            {!urls.some((url) => asPath.includes(url)) && <Footer />}
         </>
     )
 }

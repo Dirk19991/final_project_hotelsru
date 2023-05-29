@@ -28,6 +28,7 @@ const AdminPanelEdit = () => {
 
         try {
             const movieResponse = await axios.get(`${PORT}movie/${inputValue}`)
+
             const movieData = (await movieResponse.data) as IAdminPanelData
             if (movieData.errors.length !== 0) {
                 throw new Error('error')

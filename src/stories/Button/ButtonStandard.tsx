@@ -31,18 +31,10 @@ export interface ButtonProps {
     sublabel?: string | null
     href?: string
     disabled?: boolean | undefined
+    backgroundColor?: string
 }
 
-export const Button = ({
-    type,
-    label,
-    src,
-    width,
-    height,
-    href,
-    onClick,
-    disabled,
-}: ButtonProps) => {
+export const Button = ({ type, label, src, width, height, href, onClick, disabled, backgroundColor }: ButtonProps) => {
     // classnames с помощью функции cn собирает общий для всех кнопок класс (.button) и тот, который пришел из пропсов ([type])
     const btnClass = cn(classes.button, classes[type])
 
@@ -54,20 +46,12 @@ export const Button = ({
                 <Link href={href}>
                     <button
                         onClick={onClick}
+                        style={{ backgroundColor: backgroundColor }}
                         type="button"
                         className={btnClass}
                         disabled={disabled !== undefined && disabled}
                     >
-                        {src ? (
-                            <Image
-                                height={height}
-                                width={width}
-                                src={src}
-                                alt={src}
-                            ></Image>
-                        ) : (
-                            ''
-                        )}
+                        {src ? <Image height={height} width={width} src={src} alt={src}></Image> : ''}
 
                         {label}
                     </button>
@@ -76,20 +60,12 @@ export const Button = ({
             {!href && (
                 <button
                     onClick={onClick}
+                    style={{ backgroundColor: backgroundColor }}
                     type="button"
                     className={btnClass}
                     disabled={disabled !== undefined && disabled}
                 >
-                    {src ? (
-                        <Image
-                            height={height}
-                            width={width}
-                            src={src}
-                            alt={src}
-                        ></Image>
-                    ) : (
-                        ''
-                    )}
+                    {src ? <Image height={height} width={width} src={src} alt={src}></Image> : ''}
 
                     {label}
                 </button>

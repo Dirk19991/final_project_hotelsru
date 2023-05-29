@@ -1,9 +1,8 @@
 .wrapper {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
+    margin: 0 auto;
     margin-top: 10px;
-}
-
-.add {
-    padding-bottom: 100px;
 }
