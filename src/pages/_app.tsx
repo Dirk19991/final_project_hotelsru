@@ -5,12 +5,15 @@ import { Open_Sans } from 'next/font/google'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { FC } from 'react'
+import AuthService from '@/services/AuthService'
 
 const openSans = Open_Sans({
     weight: ['300', '400', '500', '700'],
     style: ['normal', 'italic'],
     subsets: ['latin'],
 })
+
+AuthService.checkAuth()
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
