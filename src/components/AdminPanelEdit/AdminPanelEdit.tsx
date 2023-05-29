@@ -2,9 +2,9 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './AdminPanelEdit.module.scss'
 import React from 'react'
 import Select, { MultiValue } from 'react-select'
-import axios from 'axios'
 import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/ComponentProps/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
+import $auth from '@/http/auth'
 
 const AdminPanelEdit = () => {
     const [inputValue, setInputValue] = useState<string>('')
@@ -27,7 +27,8 @@ const AdminPanelEdit = () => {
         e.preventDefault()
 
         try {
-            const movieResponse = await axios.get(`${PORT}movie/${inputValue}`)
+            const movieResponse = await $auth.get(`${PORT}/movie/${inputValue}`)
+
             const movieData = (await movieResponse.data) as IAdminPanelData
             if (movieData.errors.length !== 0) {
                 throw new Error('error')
@@ -43,7 +44,7 @@ const AdminPanelEdit = () => {
                 )
             }
 
-            const genreResponse = await axios.get(`${PORT}genres`)
+            const genreResponse = await $auth.get(`${PORT}/genres`)
             const genreData = (await genreResponse.data) as IGenre[]
             setAllGenres(
                 genreData.map((genre) => {
@@ -85,7 +86,7 @@ const AdminPanelEdit = () => {
         }
 
         try {
-            const res = await axios.put(`${PORT}movie/${inputValue}`, updatedFilm)
+            const res = await $auth.put(`${PORT}/movie/${inputValue}`, updatedFilm)
         } catch (error) {
             console.log(error)
         }

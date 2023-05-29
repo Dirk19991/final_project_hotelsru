@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, FormEventHandler, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './AdminPanelAdd.module.scss'
 import React from 'react'
 import Select, { MultiValue } from 'react-select'
-import axios from 'axios'
-import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/ComponentProps/IMovie'
+import { IGenre } from '@/types/ComponentProps/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
+import $auth from '@/http/auth'
 
 const AdminPanelAdd = () => {
     const [nameRu, setNameRu] = useState<string>('')
@@ -21,16 +21,12 @@ const AdminPanelAdd = () => {
 
     const [error, setError] = useState<boolean>(false)
     const [saved, setSaved] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [requestName, setRequestName] = useState<boolean>(false)
     const [chosenGenres, setChosenGenres] = useState<MultiValue<{ value: string; label: string }>>([])
     const [allGenres, setAllGenres] = useState<{ value: string; label: string; id: number }[] | null>(null)
 
-    function checkInput(input: string, fn: () => void, regex: RegExp) {
-        let invalidChars = /[^0-9]/gi
-        if (regex.test(input)) {
-            return
-        }
-        fn()
-    }
+    const numberRegex = /^(?!0\d)\d*(\.\d+)?$/
 
     function onTextareaChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
         e.target.style.height = ''
@@ -41,11 +37,14 @@ const AdminPanelAdd = () => {
     function onFormChange(e: React.ChangeEvent<HTMLFormElement>) {
         setSaved(false)
         setError(false)
+        setLoading(false)
+        setRequestName(false)
     }
 
     const getGenres = async () => {
         try {
-            const genreResponse = await axios.get(`${PORT}genres`)
+            setLoading(true)
+            const genreResponse = await $auth.get(`${PORT}/genres`)
             const genreData = (await genreResponse.data) as IGenre[]
             setAllGenres(
                 genreData.map((genre) => {
@@ -56,23 +55,38 @@ const AdminPanelAdd = () => {
                     }
                 })
             )
+            setLoading(false)
         } catch (error) {
+            console.log(error)
             setError(true)
+            setLoading(false)
         }
     }
-
-    useEffect(() => {
-        getGenres()
-    }, [])
 
     const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         const genreValues = chosenGenres.map((genre) => genre.value)
 
+        if (!nameRu && !nameEn) {
+            setRequestName(true)
+            return
+        }
+
+        if (
+            !numberRegex.test(year) ||
+            !numberRegex.test(rating) ||
+            !numberRegex.test(ratingCount) ||
+            !numberRegex.test(ageRating) ||
+            !numberRegex.test(duration)
+        ) {
+            setError(true)
+            return
+        }
+
         const newMovie = {
-            nameRu: nameRu,
-            nameEn: nameEn,
+            nameRu: nameRu ? nameRu : nameEn,
+            nameEn: nameEn ? nameEn : nameRu,
             description: description,
             countries: ['ru'],
             genres: allGenres?.filter((genre) => genreValues.includes(genre.value)).map((genre) => genre.id),
@@ -89,14 +103,33 @@ const AdminPanelAdd = () => {
         console.log(newMovie)
 
         try {
-            const response = await axios.post(`${PORT}movie/`, newMovie)
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
+            const response = await $auth.post(`${PORT}/movie`, newMovie, {
+                headers: {
+                    'content-type': 'application/json',
+                },
+            })
 
-        setSaved(true)
+            setSaved(true)
+            setNameRu('')
+            setNameEn('')
+            setDescription('')
+            setTrailer('')
+            setYear('')
+            setRating('')
+            setRatingCount('')
+            setAgeRating('')
+            setPoster('')
+            setDuration('')
+            setSlogan('')
+            setChosenGenres([])
+        } catch (error) {
+            setError(true)
+        }
     }
+
+    useEffect(() => {
+        getGenres()
+    }, [])
 
     return (
         <div className="container">
@@ -135,30 +168,28 @@ const AdminPanelAdd = () => {
                         name="year"
                         className={styles.nameInput}
                         value={year}
-                        onChange={(e) => checkInput(e.target.value, () => setYear(e.target.value), /[^0-9]/gi)}
+                        onChange={(e) => setYear(e.target.value)}
                     />
                     <div>Рейтинг (пример формата: 7.8, 5.05, 9)</div>
                     <input
                         name="rating"
                         className={styles.nameInput}
                         value={rating}
-                        onChange={(e) => checkInput(e.target.value, () => setRating(e.target.value), /[^0-9]\./gi)}
+                        onChange={(e) => setRating(e.target.value)}
                     />
                     <div>Количество оценок</div>
                     <input
                         name="ratingCount"
                         className={styles.nameInput}
                         value={ratingCount}
-                        onChange={(e) => {
-                            checkInput(e.target.value, () => setRatingCount(e.target.value), /[^0-9]/gi)
-                        }}
+                        onChange={(e) => setRatingCount(e.target.value)}
                     />
                     <div>Ограничение по возрасту (до)</div>
                     <input
                         name="ageRating"
                         className={styles.nameInput}
                         value={ageRating}
-                        onChange={(e) => checkInput(e.target.value, () => setAgeRating(e.target.value), /[^0-9]/gi)}
+                        onChange={(e) => setAgeRating(e.target.value)}
                     />
                     <div>Постер (ссылка)</div>
                     <input
@@ -172,7 +203,7 @@ const AdminPanelAdd = () => {
                         name="duration"
                         className={styles.nameInput}
                         value={duration}
-                        onChange={(e) => checkInput(e.target.value, () => setDuration(e.target.value), /[^0-9]/gi)}
+                        onChange={(e) => setDuration(e.target.value)}
                     />
                     <div>Слоган</div>
                     <input
@@ -204,7 +235,6 @@ const AdminPanelAdd = () => {
                                     backgroundColor: '#100e19',
                                 }),
                             }}
-                            defaultValue={allGenres[0]}
                             onChange={(choice) => setChosenGenres(choice)}
                             isMulti
                             name="genres"
@@ -220,7 +250,13 @@ const AdminPanelAdd = () => {
                 </button>
             </form>
 
-            {error && <div className={styles.error}>Ошибка! Попробуйте еще раз</div>}
+            {error && (
+                <div className={styles.error}>
+                    Ошибка! Убедитесь что данные введены в правильном формате и попробуйте еще раз
+                </div>
+            )}
+            {loading && <div className={styles.saved}>Загрузка...</div>}
+            {requestName && <div className={styles.error}>Введите русское или английское название</div>}
             {saved && <div className={styles.saved}>Сохранено!</div>}
         </div>
     )

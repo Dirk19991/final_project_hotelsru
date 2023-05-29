@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './AdminPanelDelete.module.scss'
 import React from 'react'
-import axios from 'axios'
 import { IAdminPanelMovie, IAdminPanelData } from '@/types/ComponentProps/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
+import $auth from '@/http/auth'
 
 const AdminPanelDelete = () => {
     const [inputValue, setInputValue] = useState<string>('')
@@ -24,8 +24,9 @@ const AdminPanelDelete = () => {
         e.preventDefault()
         setSaved(false)
         try {
-            const movieResponse = await axios.get(`${PORT}movie/${inputValue}`)
+            const movieResponse = await $auth.get(`${PORT}/movie/${inputValue}`)
             const movieData = (await movieResponse.data) as IAdminPanelData
+            console.log(`${PORT}/movie/${inputValue}`)
             if (movieData.errors.length !== 0) {
                 throw new Error('error')
             } else {
@@ -40,7 +41,7 @@ const AdminPanelDelete = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.delete(`${PORT}movie/${inputValue}`)
+            const response = await $auth.delete(`${PORT}/movie/${inputValue}`)
         } catch (error) {
             console.log(error)
         }

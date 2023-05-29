@@ -1,9 +1,10 @@
 import styles from './AdminPanelGenre.module.scss'
-import Select, { GroupBase, SingleValue } from 'react-select'
-import { FormEvent, useEffect, useRef, useState } from 'react'
-import axios from 'axios'
+import Select, { SingleValue } from 'react-select'
+import { useEffect, useState } from 'react'
+
 import { PORT } from '../AdminPanel/AdminPanel'
 import { IGenre } from '@/types/ComponentProps/IMovie'
+import $auth from '@/http/auth'
 
 const AdminPanelGenre = () => {
     const [allGenres, setAllGenres] = useState<{ value: string; label: string; id: number }[] | null>(null)
@@ -14,7 +15,7 @@ const AdminPanelGenre = () => {
 
     const fetchGenres = async () => {
         try {
-            const genreResponse = await axios.get(`${PORT}genres`)
+            const genreResponse = await $auth.get(`${PORT}/genres`)
             const genreData = (await genreResponse.data) as IGenre[]
             const sortedGenreData = genreData
                 .map((genre) => {
@@ -44,7 +45,7 @@ const AdminPanelGenre = () => {
             nameRu: inputValue,
             nameEn: allGenres?.filter((genre) => genre.label === chosenGenre)[0].value,
         }
-        const response = await axios.put(`${PORT}genres/${id}`, updatedGenre)
+        const response = await $auth.put(`${PORT}/genres/${id}`, updatedGenre)
         fetchGenres()
         setSaved(true)
     }
