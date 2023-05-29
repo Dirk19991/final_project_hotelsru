@@ -5,56 +5,66 @@ import Film from '@/components/Film/Film'
 import { IMovie } from '@/types/ComponentProps/IMovie'
 import { FC, useEffect, useState } from 'react'
 import data from '@/data/mockDataFilm.json'
-import styles from './[filmName].module.scss'
+import styles from './[id].module.scss'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import FilmBreadcrumbs from '@/components/Film/Breadcrumbs/Breadcrumbs'
 import mock from '@/data/mockData'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import Layout from '@/components/Layout/Layout'
+import MovieService from '@/services/MovieService'
+import engNameToLink from '@/util/engNameToLink'
 
-const FilmPage: FC<any> = ({ filmData }) => { 
+const FilmPage: FC<any> = ({ movieData }) => {
     const { t, i18n } = useTranslation(['film'])
-    const [film, setFilm] = useState<IMovie | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+
+    const [movie, setMovie] = useState<any>(movieData)
     const [refreshComments, setCommentsRefresh] = useState(false)
 
     useEffect(() => {
-        if (filmData) {
-            const updatedFilm = Object.assign({}, JSON.parse(JSON.stringify(data)) as IMovie, filmData?.movie)
-            setFilm(updatedFilm)
+        if (movieData) {
             setIsLoading(false)
+            setMovie(movieData)
         }
-    }, [filmData])
-    
+    }, [movieData])
+
+    const isGenresExist = movieData && movieData.genres.length && movieData.genres[0]
+    const mainGenre = isGenresExist
+        ? i18n.language === 'ru'
+            ? isGenresExist.nameRu
+            : isGenresExist.nameEn
+        : 'Нет жанра'
+    const mainGenreLink = isGenresExist ? engNameToLink(isGenresExist.nameEn) : 'all'
+
     return (
         <Layout>
             <main className="container">
-                {film && (
+                {movie && (
                     <div className={styles.wrapper}>
                         <FilmBreadcrumbs
                             items={[
                                 {
-                                    name: t(film.type as 'movie' | 'tv-series' | 'cartoon'),
+                                    name: t('movies'),
                                     href: '/',
                                 },
                                 {
-                                    name: film.genres.sort((a, b) => a.id - b.id)[0].name,
-                                    href: '/',
+                                    name: mainGenre,
+                                    href: `/movies/${mainGenreLink}`,
                                 },
                             ]}
                             bold
                         />
-                        <Film film={film} />
-                        <DefaultCarousel title={'C этим фильмом также смотрят:'} dataList={mock} />
-                        <CreatorsList film={film} />
+                        <Film movie={movie} />
+                        <DefaultCarousel title={'C этим фильмом также смотрят:'} dataList={movie.similarMovies} />
+                        {/* <CreatorsList film={film} /> */}
                         <CommentsCarousel
-                            film={film}
+                            film={movie}
                             refreshComments={refreshComments}
                             setCommentsRefresh={setCommentsRefresh}
                         />
-                        <AllDevices name={i18n.language === 'en' ? film.nameEn : film.nameRu} src={film.poster} />
+                        <AllDevices name={i18n.language === 'en' ? movie.nameEn : movie.nameRu} src={movie.poster} />
                     </div>
                 )}
                 {isLoading && (
@@ -62,7 +72,7 @@ const FilmPage: FC<any> = ({ filmData }) => {
                         {i18n.language === 'en' ? 'Loading movie...' : 'Загрузка фильма...'}
                     </h1>
                 )}
-                {!film && !isLoading && <h1 className={styles.noFilm}>{t('noMovie')}</h1>}
+                {!movieData && !isLoading && <h1 className={styles.noFilm}>{t('noMovie')}</h1>}
             </main>
         </Layout>
     )
@@ -70,29 +80,22 @@ const FilmPage: FC<any> = ({ filmData }) => {
 
 export default FilmPage
 
-export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
-    const deployBaseUrl = process.env.DEPLOY_API_URL
+export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
+    const movieData = await MovieService.getMovieById(params?.id)
 
-    const film = await fetch(`${deployBaseUrl}/movie/${params?.filmName}`)
-    const filmData = await film.json()
+    console.log(movieData)
+
     return {
         props: {
-            filmData,
+            movieData,
             ...(await serverSideTranslations(locale as string, ['film', 'common', 'footer', 'header'])),
         },
     }
 }
 
-export async function getStaticPaths() {
-    return {
-        paths: [
-            {
-                params: {
-                    filmName: '1',
-                },
-            },
-        ],
-
-        fallback: true,
-    }
-}
+// export async function getStaticPaths() {
+//     return {
+//         paths: [{ params: { id: '1' } }],
+//         fallback: true,
+//     }
+// }

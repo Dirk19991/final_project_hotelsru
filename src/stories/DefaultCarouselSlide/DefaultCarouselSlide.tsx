@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useRef, useState, useEffect, useCallback } from 'react'
 import styles from './DefaultCarouselSlide.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,6 +12,11 @@ const DefaultCarouselSlide: FC<any> = ({ image, href, year, rating, countries, g
     const AGE_BADGE_SRC = 'https://solea-parent.dfs.ivi.ru/picture/ffffff!0.48,000000!0.48/age18.svg'
     const IMAGE_PLACEHOLDER = '/icons/no-image-placeholder.png'
     const CHARTS = [33, 35, 20, 33]
+    const [error, setError] = useState<any>(null)
+
+    useEffect(() => {
+        setError(null)
+    }, [image])
 
     const minutesTextForm = [t('minutes0'), t('minutes1'), t('minutes2')]
 
@@ -62,9 +67,10 @@ const DefaultCarouselSlide: FC<any> = ({ image, href, year, rating, countries, g
                         className={styles.images__background}
                         fill
                         alt="mainImage"
-                        src={image}
+                        src={error ? IMAGE_PLACEHOLDER : image}
                         placeholder="blur"
                         blurDataURL={IMAGE_PLACEHOLDER}
+                        onError={setError}
                     />
                     <Image className={styles.images__age} alt="ageBadge" src={AGE_BADGE_SRC} width={24} height={16} />
                 </div>
@@ -94,7 +100,7 @@ const DefaultCarouselSlide: FC<any> = ({ image, href, year, rating, countries, g
                     </div>
                 </div>
             </div>
-            <div className={styles.title} ref={titleRef}>
+            <div className={styles.title} ref={titleRef} title={name}>
                 {name}
             </div>
             <div className={styles.priceType}>{t('forFree')}</div>
