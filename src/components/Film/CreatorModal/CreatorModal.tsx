@@ -8,22 +8,8 @@ import CreatorMedallion from '../CreatorMedallion/CreatorMedallion'
 import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
 
-interface ICreatorModal {
-    film: IMovie
-    close: () => void
-}
-
-const CreatorModal: FC<ICreatorModal> = ({ film, close }) => {
-    const {
-        nameEn,
-        nameRu,
-        producer,
-        actors,
-        cineatographer,
-        director,
-        composer,
-        screenwriter,
-    } = film
+const CreatorModal: FC<any> = ({ film, close }) => {
+    const { nameEn, nameRu, producer, actors, cineatographer, director, composer, screenwriter } = film
 
     const { i18n, t } = useTranslation(['film'])
 
@@ -38,22 +24,22 @@ const CreatorModal: FC<ICreatorModal> = ({ film, close }) => {
             values: actors,
             name: t('profession.actors'),
         },
-        {
-            values: producer,
-            name: t('profession.producer'),
-        },
-        {
-            values: cineatographer,
-            name: t('profession.cineatographer'),
-        },
-        {
-            values: screenwriter,
-            name: t('profession.screenwriter'),
-        },
-        {
-            values: composer,
-            name: t('profession.composer'),
-        },
+        // {
+        //     values: producer,
+        //     name: t('profession.producer'),
+        // },
+        // {
+        //     values: cineatographer,
+        //     name: t('profession.cineatographer'),
+        // },
+        // {
+        //     values: screenwriter,
+        //     name: t('profession.screenwriter'),
+        // },
+        // {
+        //     values: composer,
+        //     name: t('profession.composer'),
+        // },
     ]
 
     return (
@@ -82,43 +68,25 @@ const CreatorModal: FC<ICreatorModal> = ({ film, close }) => {
                     <div className={styles.info}>
                         <h2 className={styles.title}>
                             {i18n.language === 'en' ? nameEn : nameRu}:{' '}
-                            <span className={styles.title__actors}>
-                                {t('actorsAndCreators')}
-                            </span>
+                            <span className={styles.title__actors}>{t('actorsAndCreators')}</span>
                         </h2>
                         <ul className={styles.menu}>
                             <li className={styles.menu__item}>
-                                <div className={styles.menu__name}>
-                                    {t('creators')}
-                                </div>
+                                <div className={styles.menu__name}>{t('creators')}</div>
                             </li>
                         </ul>
                         {valuesWithNames.map((persons, i) => {
                             return (
                                 <>
-                                    <h3 className={styles.profession}>
-                                        {persons.name}
-                                    </h3>
+                                    <h3 className={styles.profession}>{persons.name}</h3>
                                     <ul key={i} className={styles.persons}>
-                                        {persons.values.map((person, i) => {
+                                        {persons.values.map((person: any, i: number) => {
                                             return (
                                                 <li key={person.id + i}>
                                                     <CreatorMedallion
                                                         size={'big'}
-                                                        name={
-                                                            i18n.language ===
-                                                            'en'
-                                                                ? person.enName
-                                                                : person.name
-                                                        }
-                                                        subtitle={
-                                                            (
-                                                                person.movies
-                                                                    ?.length ||
-                                                                0
-                                                            ).toString() +
-                                                            ' фильмов'
-                                                        }
+                                                        name={i18n.language === 'en' ? person.enName : person.name}
+                                                        subtitle={(person.movies?.length || 0).toString() + ' фильмов'}
                                                         src={person.photo}
                                                         href={'/'}
                                                     />

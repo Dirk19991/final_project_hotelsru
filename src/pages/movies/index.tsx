@@ -32,14 +32,16 @@ const Movies: FC<any> = ({ carousels, allFilters }) => {
 
             {carousels &&
                 carousels.map((carousel: any, i: number) => {
-                    return (
-                        <DefaultCarousel
-                            key={i}
-                            title={t(`${carousel.name}`)}
-                            link={`/movies/${carousel.link}`}
-                            dataList={carousel.data}
-                        />
-                    )
+                    if (carousel.data.length) {
+                        return (
+                            <DefaultCarousel
+                                key={i}
+                                title={t(`${carousel.name}`)}
+                                link={`/movies/${carousel.link}`}
+                                dataList={carousel.data}
+                            />
+                        )
+                    }
                 })}
         </Layout>
     )
