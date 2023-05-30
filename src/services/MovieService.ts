@@ -33,16 +33,16 @@ export default class MovieService {
         filters.genres = dynamicGenres.data
         return filters
     }
-    static getMoviesByQuery = async (query: string, names: INames) => {
+    static getMoviesByQuery = async (query: string, name: string) => {
         const response = await axios.get(`${serverURL}/movies/${query}`)
         return {
             link: query,
             data: response.data.result,
-            names,
+            name
         }
     }
     static getTop10Movies = async () => {
-        const response = await axios.get(`${serverURL}/movies/?sort=rating`)
-        return response.data.result.slice(0, 10)
+        const response = await axios.get(`${localURL}/api/top-10`)
+        return response.data.movies
     }
 }

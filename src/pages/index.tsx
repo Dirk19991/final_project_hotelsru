@@ -12,7 +12,7 @@ import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
 
 const Home: FC<any> = ({ carousels, mainCarouselMovies, top10Movies }) => {
-    const { i18n } = useTranslation(['common'])
+    const { t } = useTranslation(['common'])
 
     return (
         <Layout>
@@ -24,14 +24,13 @@ const Home: FC<any> = ({ carousels, mainCarouselMovies, top10Movies }) => {
             <MainCarousel data={mainCarouselMovies} />
             <PromoButtons />
             <Promo />
-            <MediumCarousel />
+            <MediumCarousel data={top10Movies} />
             {carousels &&
                 carousels.map((carousel: any, i: number) => {
-                    const name = i18n.language === 'ru' ? carousel.names.nameRu : carousel.names.nameEn
                     return (
                         <DefaultCarousel
                             key={i}
-                            title={name}
+                            title={t(`${carousel.name}`)}
                             link={`/movies/${carousel.link}`}
                             dataList={carousel.data}
                         />
@@ -45,15 +44,16 @@ export default Home
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const mainCarouselMovies = await MovieService.getMainCarousel()
+    const top10Movies = await MovieService.getTop10Movies()
 
-    const carousel1 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
-    const carousel2 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
-    // const carousel3 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
-    // const carousel4 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
+    const carousel1 = await MovieService.getMoviesByQuery('all?rating=8?sort=rating', 'bestMovies')
+    const carousel2 = await MovieService.getMoviesByQuery('action?years=1990-2000', 'action90s')
+    const carousel3 = await MovieService.getMoviesByQuery('action?countries=ja', 'japanAction')
 
     return {
         props: {
-            carousels: [carousel1, carousel2],
+            carousels: [carousel1, carousel2, carousel3],
+            top10Movies,
             mainCarouselMovies,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'promo', 'header'])),
         },

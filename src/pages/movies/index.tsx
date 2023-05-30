@@ -12,7 +12,7 @@ import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
 
 const Movies: FC<any> = ({ carousels, allFilters }) => {
-    const { t, i18n } = useTranslation(['common', 'movies'])
+    const { t } = useTranslation(['common'])
     const breadcrumbsData = [
         { id: 1, title: t('myIvi'), href: '/' },
         { id: 2, title: t('movies'), href: '/movies' },
@@ -32,11 +32,10 @@ const Movies: FC<any> = ({ carousels, allFilters }) => {
 
             {carousels &&
                 carousels.map((carousel: any, i: number) => {
-                    const name = i18n.language === 'ru' ? carousel.names.nameRu : carousel.names.nameEn
                     return (
                         <DefaultCarousel
                             key={i}
-                            title={name}
+                            title={t(`${carousel.name}`)}
                             link={`/movies/${carousel.link}`}
                             dataList={carousel.data}
                         />
@@ -51,14 +50,13 @@ export default Movies
 export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
     const allFilters = await MovieService.getMoviesFilters()
 
-    const carousel1 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
-    const carousel2 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
-    // const carousel3 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
-    // const carousel4 = await MovieService.getMoviesByQuery('drama', { nameEn: 'Best dramas', nameRu: 'Лучшие драмы' })
+    const carousel1 = await MovieService.getMoviesByQuery('all?years=2000-2010', 'remember00s')
+    const carousel2 = await MovieService.getMoviesByQuery('comedy?countries=us', 'americanComedies')
+    const carousel3 = await MovieService.getMoviesByQuery('sport', 'sportMovies')
 
     return {
         props: {
-            carousels: [carousel1, carousel2],
+            carousels: [carousel1, carousel2, carousel3],
             allFilters: allFilters,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },
