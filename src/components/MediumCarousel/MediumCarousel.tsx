@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef, useState } from 'react'
+import React, { CSSProperties, useRef, useState, FC } from 'react'
 import Image from 'next/image'
 import styles from './MediumCarousel.module.scss'
 import { Navigation } from 'swiper'
@@ -7,12 +7,11 @@ import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { MediumCarouselSlide } from '@/stories/MediumCarouselSlide/MediumCarouselSlide'
 
-const MediumCarousel = () => {
+const MediumCarousel: FC<any> = ({ data }) => {
     const { t } = useTranslation(['common'])
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
         <section className={styles.carouselContainer}>
@@ -20,14 +19,9 @@ const MediumCarousel = () => {
                 <div className={styles.wrapper}>
                     <div className={styles.header}>
                         <div>
-                            <Image
-                                alt="top10"
-                                width={116}
-                                height={28}
-                                src="/icons/top10.svg"
-                            />
+                            <Image alt="top10" width={116} height={28} src="/icons/top10.svg" />
                         </div>
-                        <span>{t("thisWeek")}</span>
+                        <span>{t('thisWeek')}</span>
                     </div>
                     <div className={cn(styles.topTen, 'medium__slider')}>
                         <Swiper
@@ -64,35 +58,23 @@ const MediumCarousel = () => {
                                 nextEl: nextRef.current,
                             }}
                         >
-                            {numbers.map((number) => (
-                                <SwiperSlide key={number}>
+                            {data.map((el: any, i: number) => (
+                                <SwiperSlide key={el.id}>
                                     <MediumCarouselSlide
-                                        href="/"
-                                        mainImage={`/topTen/${number}/main.jpg`}
-                                        numberImage={`/topTen/${number}/number.svg`}
-                                        titleImage={`/topTen/${number}/title.png`}
-                                        numberImage2={
-                                            number === 10
-                                                ? `/topTen/${number}/number2.svg`
-                                                : ''
-                                        }
+                                        href={el.link}
+                                        mainImage={el.image}
+                                        titleImage={el.titleImg}
+                                        numberImage={`/topTen/${i + 1}/number.svg`}
+                                        numberImage2={i + 1 === 10 ? `/topTen/${i + 1}/number2.svg` : ''}
                                     />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
                         <div className={styles.prevButton} ref={prevRef}>
-                            <Image
-                                fill
-                                src="./icons/arrowLeft.svg"
-                                alt="arrowLeft"
-                            />
+                            <Image fill src="./icons/arrowLeft.svg" alt="arrowLeft" />
                         </div>
                         <div className={styles.nextButton} ref={nextRef}>
-                            <Image
-                                fill
-                                src="./icons/arrowRight.svg"
-                                alt="arrowRight"
-                            />
+                            <Image fill src="./icons/arrowRight.svg" alt="arrowRight" />
                         </div>
                     </div>
                 </div>

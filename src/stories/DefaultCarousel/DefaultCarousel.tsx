@@ -9,6 +9,7 @@ import { useTranslation } from 'next-i18next'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 
 const DefaultCarousel: FC<any> = ({ dataList, title, link }) => {
+    const { t } = useTranslation('common')
     const [moviesData, setMoviesData] = useState<any>(dataList)
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
@@ -113,7 +114,7 @@ const DefaultCarousel: FC<any> = ({ dataList, title, link }) => {
                                 >
                                     <Link href={link}>
                                         <div className={styles.showAll}>
-                                            <span>Посмотреть все</span>
+                                            <span>{t('watchMore')}</span>
                                         </div>
                                     </Link>
                                 </SwiperSlide>

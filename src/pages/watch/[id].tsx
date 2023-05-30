@@ -59,7 +59,7 @@ const FilmPage: FC<any> = ({ movieData }) => {
                         />
                         <Film movie={movie} />
                         <DefaultCarousel title={'C этим фильмом также смотрят:'} dataList={movie.similarMovies} />
-                        {/* <CreatorsList film={film} /> */}
+                        <CreatorsList data={movie} />
                         <CommentsCarousel
                             film={movie}
                             refreshComments={refreshComments}

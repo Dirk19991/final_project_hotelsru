@@ -31,7 +31,7 @@ const CreatorMedallion: FC<ICreatorMedallion> = ({ size, name, subtitle, src, hr
                     <Image src={src} alt={name} fill className={styles.img__background} />
                 </div>
                 <div className={styles.description}>
-                    {name.split(' ').map((el, i) => (
+                    {/* {name.split(' ').map((el, i) => (
                         <div
                             key={i}
                             className={cn(styles.name, {
@@ -42,7 +42,7 @@ const CreatorMedallion: FC<ICreatorMedallion> = ({ size, name, subtitle, src, hr
                         >
                             {el}
                         </div>
-                    ))}
+                    ))} */}
                     <div className={styles.info}>{subtitle}</div>
                 </div>
             </div>
