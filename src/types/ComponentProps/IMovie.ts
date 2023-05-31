@@ -88,12 +88,16 @@ export interface IAdminPanelMovie {
     ageRating: string
     countries: ICountry[]
     description: string
+    director: IActor[]
     duration: string
+    editor: IActor[]
     genres: IGenre[]
     id: number
     nameEn: string
     nameRu: string
+    operator: IActor[]
     poster: string
+    producer: IActor[]
     rating: string
     ratingCount: string
     similarMovies: {
@@ -128,4 +132,13 @@ export interface ICountry {
     nameEn: string
     nameRu: string
     shortName: string
+}
+
+export interface IActor {
+    biography: string
+    description: string
+    nameEn: string
+    nameRu: string
+    personId: 1
+    photo: string
 }
