@@ -11,9 +11,9 @@
         "director": "Director",
         "actors": "Actors",
         "producer": "Producer",
-        "cineatographer": "Cinematographer",
-        "screenwriter": "Screenwriter",
-        "composer": "Composer"
+        "composer": "Composer",
+        "operator": "Operator",
+        "editor": "Editor"
     },
     "more": "More",
     "hideDetails": "Hide details",

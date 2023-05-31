@@ -4,15 +4,7 @@ import styles from './CreatorMedallion.module.scss'
 import cn from 'classnames'
 import Link from 'next/link'
 
-interface ICreatorMedallion {
-    size: 'small' | 'big'
-    name: string
-    subtitle: string
-    src: string
-    href: string
-}
-
-const CreatorMedallion: FC<ICreatorMedallion> = ({ size, name, subtitle, src, href }) => {
+const CreatorMedallion: FC<any> = ({ size, name, src, href }) => {
     const [isHover, setIsHover] = useState(false)
 
     return (
@@ -31,7 +23,8 @@ const CreatorMedallion: FC<ICreatorMedallion> = ({ size, name, subtitle, src, hr
                     <Image src={src} alt={name} fill className={styles.img__background} />
                 </div>
                 <div className={styles.description}>
-                    {/* {name.split(' ').map((el, i) => (
+                    Х
+                    {name.split(' ').map((el: any, i: number) => (
                         <div
                             key={i}
                             className={cn(styles.name, {
@@ -42,8 +35,7 @@ const CreatorMedallion: FC<ICreatorMedallion> = ({ size, name, subtitle, src, hr
                         >
                             {el}
                         </div>
-                    ))} */}
-                    <div className={styles.info}>{subtitle}</div>
+                    ))}
                 </div>
             </div>
         </Link>

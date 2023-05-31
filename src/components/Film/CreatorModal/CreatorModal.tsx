@@ -1,4 +1,3 @@
-import { IMovie } from '@/types/ComponentProps/IMovie'
 import { FC, useState } from 'react'
 import styles from './CreatorModal.module.scss'
 import PosterCard from '../PosterCard/PosterCard'
@@ -9,7 +8,7 @@ import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
 
 const CreatorModal: FC<any> = ({ film, close }) => {
-    const { nameEn, nameRu, producer, actors, cineatographer, director, composer, screenwriter } = film
+    const { nameEn, nameRu, producer, actors, operator, director, composer, editor } = film
 
     const { i18n, t } = useTranslation(['film'])
 
@@ -24,23 +23,25 @@ const CreatorModal: FC<any> = ({ film, close }) => {
             values: actors,
             name: t('profession.actors'),
         },
-        // {
-        //     values: producer,
-        //     name: t('profession.producer'),
-        // },
-        // {
-        //     values: cineatographer,
-        //     name: t('profession.cineatographer'),
-        // },
-        // {
-        //     values: screenwriter,
-        //     name: t('profession.screenwriter'),
-        // },
-        // {
-        //     values: composer,
-        //     name: t('profession.composer'),
-        // },
+        {
+            values: producer,
+            name: t('profession.producer'),
+        },
+        {
+            values: composer,
+            name: t('profession.composer'),
+        },
+        {
+            values: operator,
+            name: t('profession.operator'),
+        },
+        {
+            values: editor,
+            name: t('profession.editor'),
+        },
     ]
+
+    console.log(valuesWithNames)
 
     return (
         <div className={styles.wrapper}>
@@ -81,14 +82,14 @@ const CreatorModal: FC<any> = ({ film, close }) => {
                                     <h3 className={styles.profession}>{persons.name}</h3>
                                     <ul key={i} className={styles.persons}>
                                         {persons.values.map((person: any, i: number) => {
+                                            const personName = i18n.language === 'en' ? person.nameEn : person.nameRu
                                             return (
                                                 <li key={person.id + i}>
                                                     <CreatorMedallion
                                                         size={'big'}
-                                                        name={i18n.language === 'en' ? person.enName : person.name}
-                                                        subtitle={(person.movies?.length || 0).toString() + ' фильмов'}
+                                                        name={personName}
                                                         src={person.photo}
-                                                        href={'/'}
+                                                        href={`/person/${person.personId}`}
                                                     />
                                                 </li>
                                             )
