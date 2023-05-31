@@ -34,15 +34,22 @@ export default class MovieService {
         return filters
     }
     static getMoviesByQuery = async (query: string, name: string) => {
-        const response = await axios.get(`${serverURL}/movies/${query}`)
+        const queryArray = query.split('?')
+        const queryStr = query.split('?')[0] === 'all' ? `?${queryArray[1]}` : query
+
+        const response = await axios.get(`${serverURL}/movies/${queryStr}`)
         return {
             link: query,
             data: response.data.result,
-            name
+            name,
         }
     }
     static getTop10Movies = async () => {
         const response = await axios.get(`${localURL}/api/top-10`)
         return response.data.movies
+    }
+    static getPersonByName = async (type: string, name: string) => {
+        const response = await axios.get(`${serverURL}/persons/name/search?position=${type}&personName=${name}`)
+        return response.data
     }
 }

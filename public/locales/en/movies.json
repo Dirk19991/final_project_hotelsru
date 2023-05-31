@@ -28,7 +28,11 @@
     "before": "before",
     "year": "year",
     "loading": "Loading...",
+    "searching": "Searching...",
+    "noResults": "No results",
     "ratingAbove": "Rating above",
     "amountOfRatingsMore": "Amount of ratings more than",
-    "thousand": "thousand"
+    "thousand": "thousand",
+    "asDirector": "As a director",
+    "asActor": "As an actor"
 }

@@ -37,14 +37,12 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
 
     useEffect(() => {
         setDynamicBreadcrumbs([])
-
         if (genresQuery.length) {
             setDynamicBreadcrumbs((state: any) => [{ links: genresQuery }, ...state])
         }
         if (!genresQuery.length && countriesQuery.length) {
             setDynamicBreadcrumbs((state: any) => [{ links: countriesQuery }, ...state])
         }
-
         if (query.years) {
             setDynamicBreadcrumbs((state: any) => [
                 ...state,
@@ -57,7 +55,6 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
     useEffect(() => {
         const queryCopy = { ...query }
         delete queryCopy.genres
-
         switch (currentSorting) {
             case 'name':
                 queryCopy.sort = i18n.language === 'ru' ? 'nameRu' : 'nameEn'
@@ -65,7 +62,6 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
             default:
                 queryCopy.sort = currentSorting
         }
-
         const fetchMovies = async () => {
             setIsLoading(true)
             try {
