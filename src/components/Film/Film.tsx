@@ -12,8 +12,13 @@ import { ButtonRating } from '@/stories/Button/ButtonRating'
 import Image from 'next/image'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
+import { IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
 
-const Film: FC<any> = ({ movie }) => {
+interface FilmProps {
+    movie: IAdminPanelMovie
+}
+
+const Film = ({ movie }: FilmProps) => {
     const isMobile = useMediaQuery('(max-width: 1159px)')
     const { t, i18n } = useTranslation(['film'])
 
@@ -78,6 +83,7 @@ const Film: FC<any> = ({ movie }) => {
                                 image={<ButtonRating fontSize={15} height={44} rating={fixedRating} width={44} />}
                                 text={t('iviRatingNoColon')}
                             />
+
                             {mainActors.map((actor: any) => {
                                 const name = i18n.language === 'en' ? actor.nameEn : actor.nameRu
 

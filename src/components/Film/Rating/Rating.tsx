@@ -5,7 +5,7 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 
 interface IRating {
-    ratingCount: number
+    ratingCount: string
     fixedRating: number
 }
 
@@ -13,12 +13,7 @@ const Rating: FC<IRating> = ({ ratingCount, fixedRating }) => {
     const { t } = useTranslation(['film'])
     return (
         <div className={styles.wrapper}>
-            <ButtonRating
-                fontSize={25}
-                height={64}
-                rating={fixedRating}
-                width={64}
-            />
+            <ButtonRating fontSize={25} height={64} rating={fixedRating} width={64} />
             <div className={styles.description}>
                 <div className={styles.title}>{t('iviRatingNoColon')}</div>
                 <div>{t('interestingPlot')}</div>

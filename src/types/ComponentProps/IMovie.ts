@@ -85,6 +85,7 @@ export interface ISmallSliderMovie {
 }
 
 export interface IAdminPanelMovie {
+    actors: IActor[]
     ageRating: string
     countries: ICountry[]
     description: string
@@ -96,6 +97,7 @@ export interface IAdminPanelMovie {
     nameEn: string
     nameRu: string
     operator: IActor[]
+    personId: number
     poster: string
     producer: IActor[]
     rating: string

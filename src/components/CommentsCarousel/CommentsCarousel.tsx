@@ -8,9 +8,9 @@ import { Button } from '@/stories/Button/ButtonStandard'
 import Comments from '../Comments/Comments'
 import commentsData from '../../data/mockDataComments.json'
 import CommentSlide from '@/stories/CommentSlide/CommentSlide'
-import { IMovie } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie, IMovie } from '@/types/ComponentProps/IMovie'
 
-const url = process.env.DEPLOY_API_URL 
+const url = process.env.DEPLOY_API_URL
 
 export type CommentType = {
     id?: number
@@ -29,7 +29,7 @@ export type CommentType = {
 }
 
 interface ICommentsCarousel {
-    film: IMovie
+    film: IAdminPanelMovie
     refreshComments: boolean
     setCommentsRefresh: (value: boolean) => void
 }
@@ -49,7 +49,7 @@ const CommentsCarousel = ({ film, refreshComments, setCommentsRefresh }: ICommen
                 }
                 throw new Error('Error')
             })
-            .then((res) => {         
+            .then((res) => {
                 if (res.length) {
                     setComments(res)
                 }

@@ -1,3 +1,4 @@
+import { IActor, IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
 import axios from 'axios'
 
 interface IQueryObject {
@@ -6,6 +7,13 @@ interface IQueryObject {
 
 interface INames {
     [x: string]: string
+}
+
+interface GetActorResponse {
+    person: IActor
+    movies: {
+        result: IAdminPanelMovie[]
+    }
 }
 
 const serverURL = process.env.DEPLOY_API_URL
@@ -50,6 +58,10 @@ export default class MovieService {
     }
     static getPersonByName = async (type: string, name: string) => {
         const response = await axios.get(`${serverURL}/persons/name/search?position=${type}&personName=${name}`)
+        return response.data
+    }
+    static getPersonById = async (id: string) => {
+        const response = await axios.get<GetActorResponse>(`${serverURL}/persons/${id}`)
         return response.data
     }
 }
