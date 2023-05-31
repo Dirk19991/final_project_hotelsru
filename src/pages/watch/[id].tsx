@@ -12,8 +12,14 @@ import { GetServerSideProps } from 'next'
 import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
 import engNameToLink from '@/util/engNameToLink'
+import updateTrailer from '@/util/updateTrailer'
+import { IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
 
-const FilmPage: FC<any> = ({ movieData }) => {
+interface FilmPageProps {
+    movieData: IAdminPanelMovie
+}
+
+const FilmPage: FC<any> = ({ movieData }: FilmPageProps) => {
     const { t, i18n } = useTranslation(['film'])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -25,7 +31,7 @@ const FilmPage: FC<any> = ({ movieData }) => {
     useEffect(() => {
         if (movieData) {
             setIsLoading(false)
-            setMovie(movieData)
+            setMovie(updateTrailer(movieData))
             const isGenresExist = movie.genres.length && movie.genres[0]
             const mainGenreValue = isGenresExist
                 ? i18n.language === 'ru'
@@ -83,8 +89,6 @@ export default FilmPage
 
 export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
     const movieData = await MovieService.getMovieById(params?.id)
-
-    console.log(movieData)
 
     return {
         props: {

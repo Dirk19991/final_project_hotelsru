@@ -27,7 +27,7 @@ const Home: FC<any> = ({ carousels, mainCarouselMovies, top10Movies }) => {
             <MediumCarousel data={top10Movies} />
             {carousels &&
                 carousels.map((carousel: any, i: number) => {
-                    if (carousel.data.length) {
+                    if (carousel.data?.length) {
                         return (
                             <DefaultCarousel
                                 key={i}
