@@ -25,13 +25,12 @@ const Film = ({ movie }: FilmProps) => {
     const { trailer, description, rating, ratingCount, year, nameEn, nameRu, duration, genres, actors } = movie
     const fixedRating = +parseFloat(rating).toFixed(1)
     const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
-    console.log(movie)
 
     return (
         <>
             {isMobile && <FilmMobile movie={movie} />}
             {!isMobile && (
-                <div data-testId="film" className={styles.wrapper}>
+                <div data-testid="film" className={styles.wrapper}>
                     <div className={styles.trailer}>
                         <div className={styles.trailer__content}>
                             <div className={styles.video}>
@@ -84,15 +83,17 @@ const Film = ({ movie }: FilmProps) => {
                                 image={<ButtonRating fontSize={15} height={44} rating={fixedRating} width={44} />}
                                 text={t('iviRatingNoColon')}
                             />
-                            {mainActors.map((actor) => {
-                                console.log(actor)
+
+                            {mainActors.map((actor: any) => {
+                                const name = i18n.language === 'en' ? actor.nameEn : actor.nameRu
+
                                 return (
                                     <ButtonActor
                                         href={`/person/${actor.personId}`}
-                                        text={i18n.language === 'en' ? actor.nameEn : actor.nameRu}
+                                        text={name}
                                         key={actor.personId}
                                         image={
-                                            <img
+                                            <Image
                                                 alt={actor.nameEn}
                                                 src={actor.photo}
                                                 width={44}

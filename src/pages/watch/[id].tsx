@@ -26,7 +26,7 @@ const FilmPage: FC<any> = ({ movieData }: FilmPageProps) => {
     const [movie, setMovie] = useState<any>(movieData)
     const [refreshComments, setCommentsRefresh] = useState(false)
     const [mainGenre, setMainGenre] = useState<string>('')
-    const [mainGenreLink, setMainGenreLink] = useState<string>('/')
+    const [mainGenreLink, setMainGenreLink] = useState<string>('')
 
     useEffect(() => {
         if (movieData) {
@@ -47,40 +47,43 @@ const FilmPage: FC<any> = ({ movieData }: FilmPageProps) => {
 
     return (
         <Layout>
-            <main className="container">
-                {movie && (
-                    <div className={styles.wrapper}>
-                        <FilmBreadcrumbs
-                            items={[
-                                {
-                                    name: t('movies'),
-                                    href: '/',
-                                },
-                                {
-                                    name: mainGenre,
-                                    href: `/movies/${mainGenreLink}`,
-                                },
-                            ]}
-                            bold
-                        />
-                        <Film movie={movie} />
-                        <DefaultCarousel title={'C этим фильмом также смотрят:'} dataList={movie.similarMovies} />
-                        <CreatorsList data={movie} />
-                        <CommentsCarousel
-                            film={movie}
-                            refreshComments={refreshComments}
-                            setCommentsRefresh={setCommentsRefresh}
-                        />
-                        <AllDevices name={i18n.language === 'en' ? movie.nameEn : movie.nameRu} src={movie.poster} />
-                    </div>
-                )}
+            <div className={styles.wrapper}>
+                <div className="container">
+                    <FilmBreadcrumbs
+                        items={[
+                            {
+                                name: t('movies'),
+                                href: '/',
+                            },
+                            {
+                                name: mainGenre,
+                                href: `/movies/${mainGenreLink}`,
+                            },
+                        ]}
+                        bold
+                    />
+                    <Film movie={movie} />
+                </div>
+                <DefaultCarousel title={'C этим фильмом также смотрят:'} dataList={movie.similarMovies} />
+                <div className="container">
+                    <CreatorsList data={movie} />
+                    <CommentsCarousel
+                        film={movie}
+                        refreshComments={refreshComments}
+                        setCommentsRefresh={setCommentsRefresh}
+                    />
+                    <AllDevices name={i18n.language === 'en' ? movie.nameEn : movie.nameRu} src={movie.poster} />
+                </div>
+            </div>
+
+            <div className="container">
                 {isLoading && (
                     <h1 className={styles.loading}>
                         {i18n.language === 'en' ? 'Loading movie...' : 'Загрузка фильма...'}
                     </h1>
                 )}
                 {!movieData && !isLoading && <h1 className={styles.noFilm}>{t('noMovie')}</h1>}
-            </main>
+            </div>
         </Layout>
     )
 }

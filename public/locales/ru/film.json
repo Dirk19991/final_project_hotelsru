@@ -13,8 +13,8 @@
         "actors": "Актеры",
         "producer": "Продюсер",
         "cineatographer": "Оператор",
-        "screenwriter": "Сценарист",
-        "composer": "Композитор"
+        "operator": "Оператор",
+        "editor": "Редактор"
     },
     "more": "Еще",
     "hideDetails": "Свернуть детали",

@@ -7,15 +7,13 @@
 
 html {
     font-family: 'Open Sans', sans-serif;
-    overflow-y: overlay;
-    //overflow: clip;
 }
 
 body {
     background-color: $main-bg-color;
     font-size: 15px;
     position: relative;
-    //overflow: clip;
+    overflow-y: overlay;
 }
 
 button {
