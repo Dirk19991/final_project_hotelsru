@@ -17,16 +17,15 @@ const Film: FC<any> = ({ movie }) => {
     const isMobile = useMediaQuery('(max-width: 1159px)')
     const { t, i18n } = useTranslation(['film'])
 
-    const { trailer, description, rating, ratingCount, year, nameEn, nameRu, duration, genres } = movie
+    const { trailer, description, rating, ratingCount, year, nameEn, nameRu, duration, genres, actors } = movie
     const fixedRating = +parseFloat(rating).toFixed(1)
-    // const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
-    console.log(movie)
+    const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
 
     return (
         <>
             {isMobile && <FilmMobile movie={movie} />}
             {!isMobile && (
-                <div data-testId="film" className={styles.wrapper}>
+                <div data-testid="film" className={styles.wrapper}>
                     <div className={styles.trailer}>
                         <div className={styles.trailer__content}>
                             <div className={styles.video}>
@@ -79,22 +78,26 @@ const Film: FC<any> = ({ movie }) => {
                                 image={<ButtonRating fontSize={15} height={44} rating={fixedRating} width={44} />}
                                 text={t('iviRatingNoColon')}
                             />
-                            {/* {mainActors.map((actor) => (
-                                <ButtonActor
-                                    href={`/person/${actor.id}`}
-                                    text={i18n.language === 'en' ? actor.enName : actor.name}
-                                    key={actor.id}
-                                    image={
-                                        <Image
-                                            alt={actor.enName}
-                                            src={actor.photo}
-                                            width={44}
-                                            height={44}
-                                            style={{ objectFit: 'cover' }}
-                                        />
-                                    }
-                                />
-                            ))} */}
+                            {mainActors.map((actor: any) => {
+                                const name = i18n.language === 'en' ? actor.nameEn : actor.nameRu
+
+                                return (
+                                    <ButtonActor
+                                        href={`/person/${actor.personId}`}
+                                        text={name}
+                                        key={actor.personId}
+                                        image={
+                                            <Image
+                                                alt={actor.nameEn}
+                                                src={actor.photo}
+                                                width={44}
+                                                height={44}
+                                                style={{ objectFit: 'cover' }}
+                                            />
+                                        }
+                                    />
+                                )
+                            })}
                         </div>
                         <FilmDescription text={description} />
                         <FilmRating ratingCount={ratingCount} fixedRating={fixedRating} />
