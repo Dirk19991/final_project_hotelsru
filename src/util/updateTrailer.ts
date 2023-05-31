@@ -8,7 +8,8 @@ export default function updateTrailer(movieData: IAdminPanelMovie) {
     }
 
     const trailer = movieData.trailer
-    if (!trailer.includes('youtube') || trailer.includes('embed')) {
+
+    if (!trailer.includes('youtu') || trailer.includes('embed')) {
         return movieData
     } else {
         const id = youtube_parser(trailer)
