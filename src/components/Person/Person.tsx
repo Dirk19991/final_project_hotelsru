@@ -3,32 +3,42 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import PersonFilm from '../PersonFilm/PersonFilm'
 import { useRouter } from 'next/router'
-import { IPerson } from '@/types/ComponentProps/IMovie'
+import { IActor, IAdminPanelMovie, IPerson } from '@/types/ComponentProps/IMovie'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { useTranslation } from 'next-i18next'
 import getFilmWord from '@/util/getFilmWord'
+import $auth from '@/http/auth'
+import { PORT } from '../AdminPanel/AdminPanel'
 
-const Person = () => {
+interface PersonProps {
+    personData: GetActorResponse
+}
+
+export interface GetActorResponse {
+    person: IActor
+    movies: {
+        result: IAdminPanelMovie[]
+    }
+}
+
+const Person = ({ personData }: PersonProps) => {
     const isTab = useMediaQuery('(max-width: 1160px)')
     const router = useRouter()
 
     const { t, i18n } = useTranslation(['person'])
-    const [actorData, setActorData] = useState<IPerson | null>(null)
+    const [actorData, setActorData] = useState<GetActorResponse | null>(null)
+    const [loading, setLoading] = useState<boolean>(true)
 
-    useEffect(() => {
-        fetch('http://localhost:3001/person/1337')
-            .then((res) => res.json())
-            .then((data) => setActorData(data))
-    }, [])
+    console.log(personData)
 
-    const name = actorData && actorData.name
-    const enName = actorData && actorData.enName
-    const numberOfFilms = actorData && actorData.movies.length
+    const name = personData && personData.person.nameRu
+    const enName = personData && personData.person.nameEn
+    const numberOfFilms = personData && personData.movies.result.length
     const filmWord = numberOfFilms ? getFilmWord(numberOfFilms, i18n) : getFilmWord(null)
 
-    const sortedMovies = actorData?.movies.sort((a, b) => b.year - a.year)
+    const sortedMovies = personData?.movies.result.sort((a, b) => +b.year - +a.year)
 
-    return actorData ? (
+    return personData ? (
         <div className="container">
             <div className={styles.wrapper}>
                 <div onClick={() => router.back()} className={styles.back}>
@@ -37,7 +47,7 @@ const Person = () => {
                 </div>
                 <div className={styles.mainInfo}>
                     <div className={styles.photo}>
-                        <Image layout="fill" objectFit="cover" src={actorData.photo} alt="photo" />
+                        <Image layout="fill" objectFit="cover" src={personData.person.photo} alt="photo" />
                     </div>
                     <div className={styles.ruName}>{i18n.language === 'en' ? enName : name}</div>
                     <div className={styles.enName}>{i18n.language === 'ru' && enName}</div>
