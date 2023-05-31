@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const mainCarouselMovies = await MovieService.getMainCarousel()
     const top10Movies = await MovieService.getTop10Movies()
 
-    const carousel1 = await MovieService.getMoviesByQuery('all?rating=8?sort=rating', 'bestMovies')
+    const carousel1 = await MovieService.getMoviesByQuery('all', 'bestMovies')
     const carousel2 = await MovieService.getMoviesByQuery('action?years=1990-2000', 'action90s')
     const carousel3 = await MovieService.getMoviesByQuery('action?countries=ja', 'japanAction')
 

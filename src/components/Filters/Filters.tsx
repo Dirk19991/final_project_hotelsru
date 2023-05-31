@@ -66,8 +66,8 @@ const Filters: FC<any> = ({ allFilters, genresValue, countriesValue }) => {
                             setCurrentModal={setCurrentModal}
                             list={allFilters.years}
                         />
-                        <FilterSearch searchType="producer" />
-                        <FilterSearch searchType="actor" />
+                        <FilterSearch queryName="director" />
+                        <FilterSearch queryName="actor" />
                     </div>
                     <div className={styles.ranges}>
                         <RangeSlider

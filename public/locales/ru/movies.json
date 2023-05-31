@@ -28,7 +28,11 @@
     "before": "до",
     "year": "год",
     "loading": "Загрузка...",
+    "searching": "Идет поиск...",
+    "noResults": "Не найдено",
     "ratingAbove": "Рейтинг больше",
     "amountOfRatingsMore": "Количество оценок больше",
-    "thousand": "тысяч"
+    "thousand": "тысяч",
+    "asDirector": "Как режиссер",
+    "asActor": "Как актер"
 }
