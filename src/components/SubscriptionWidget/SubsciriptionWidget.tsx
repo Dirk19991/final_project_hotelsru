@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styles from './SubscriptionWidget.module.scss'
-import data from '@/data/mockData'
 import { ButtonFooter } from '@/stories/Button/ButtonFooter'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
@@ -13,10 +12,10 @@ const SubsciriptionWidget = () => {
 
     const [isHovering, setIsHovering] = useState<boolean>(false)
 
-    const sliceStep = Math.floor(data.length / 3)
-    const movies1 = data.slice(0, sliceStep + 1)
-    const movies2 = data.slice(sliceStep + 2, (sliceStep + 1) * 2)
-    const movies3 = data.slice((sliceStep + 1) * 2 + 1)
+    // const sliceStep = Math.floor(data.length / 3)
+    // const movies1 = data.slice(0, sliceStep + 1)
+    // const movies2 = data.slice(sliceStep + 2, (sliceStep + 1) * 2)
+    // const movies3 = data.slice((sliceStep + 1) * 2 + 1)  
 
     const { push } = useRouter()
 
@@ -29,7 +28,7 @@ const SubsciriptionWidget = () => {
         >
             <div className={styles.carousel}>
                 <div className={styles.wrapper}>
-                    {[movies1, movies2, movies3].map((list, idx) => {
+                    {/* {[movies1, movies2, movies3].map((list, idx) => {
                         return (
                             <div className={styles.column} key={idx}>
                                 {list.map((movie) => {
@@ -49,7 +48,7 @@ const SubsciriptionWidget = () => {
                                 })}
                             </div>
                         )
-                    })}
+                    })} */}
                 </div>
                 <div
                     className={cn(
