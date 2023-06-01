@@ -31,5 +31,7 @@
     "loadingMovie": "Loading movie...",
     "noMovie": "No movie",
     "comments": "Comments",
-    "leaveAComment": "Leave a comment"
+    "leaveAComment": "Leave a comment",
+    "send": "Send",
+    "commentValidation": "10 symbols minimum, need to send:"
 }

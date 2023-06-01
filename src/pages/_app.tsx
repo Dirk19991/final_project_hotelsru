@@ -24,8 +24,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link
                     rel="icon"
-                    type="image/png"
-                    href="https://gambit-central.dfs.ivi.ru/dist/23.04.05_c1f11edb/storm/images/favicon/64.png"
+                    type="image/svg+xml"
+                    href="https://gambit-central.dfs.ivi.ru/dist/23.05.11_589f787c/storm/images/favicon/favicon.svg"
                 />
             </Head>
 

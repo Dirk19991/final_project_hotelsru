@@ -31,5 +31,7 @@
     "loadingMovie": "Загрузка фильма...",
     "noMovie": "Нет фильма",
     "comments": "Комментарии",
-    "leaveAComment": "Оставить комментарий"
+    "leaveAComment": "Оставить комментарий",
+    "send": "Отправить",
+    "commentValidation": "Минимум 10 сиволов, введите еще"
 }

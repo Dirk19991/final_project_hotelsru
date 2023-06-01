@@ -1,6 +1,7 @@
 import styles from './CommentForm.module.scss'
 import { ChangeEvent, useState } from 'react'
 import { Button } from '@/stories/Button/ButtonStandard'
+import { useTranslation } from 'react-i18next'
 
 const url = process.env.DEPLOY_API_URL
 
@@ -8,13 +9,14 @@ interface ICommentForm {
     commentId?: number
     movieId?: number
     toggleIsAnswerOpen?: (value: boolean) => void
-    setCommentsRefresh: (value: boolean) => void 
+    setCommentsRefresh: (value: boolean) => void
 }
 
 const CommentForm = ({ commentId, movieId, toggleIsAnswerOpen, setCommentsRefresh }: ICommentForm) => {
     const [comment, setComment] = useState('')
     const [error, setError] = useState('')
     const [hand] = useState(movieId ? `movieId=${movieId}` : `commentId=${commentId}`)
+    const { t } = useTranslation('film')
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
@@ -65,10 +67,10 @@ const CommentForm = ({ commentId, movieId, toggleIsAnswerOpen, setCommentsRefres
                     onChange={handleChange}
                 />
                 <label className={styles.float} htmlFor="comment">
-                    Введите комментарий
+                    {t("leaveAComment")}
                 </label>
             </label>
-            <Button onClick={handleSubmit} type="watchSubscription" label="Отправить" />
+            <Button onClick={handleSubmit} type="watchSubscription" label={t('send')} />
             <span className={styles.error}>{error}</span>
         </form>
     )
