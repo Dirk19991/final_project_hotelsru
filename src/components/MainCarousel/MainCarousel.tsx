@@ -10,8 +10,6 @@ import MainCarouselSlide from '@/stories/MainCarouselSlide/MainCarouselSlide'
 const MainCarousel: FC<any> = ({ data }) => {
     const { i18n } = useTranslation()
 
-    console.log(data)
-
     return (
         <section className={styles.carousel}>
             <div className={styles.container}>
