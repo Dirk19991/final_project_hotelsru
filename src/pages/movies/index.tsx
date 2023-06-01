@@ -10,8 +10,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
+import AppService from '@/services/AppService'
 
-const Movies: FC<any> = ({ carousels, allFilters }) => {
+const Movies: FC<any> = ({ carousels, allFilters, navigation }) => {
     const { t } = useTranslation(['common'])
     const breadcrumbsData = [
         { id: 1, title: t('myIvi'), href: '/' },
@@ -19,7 +20,7 @@ const Movies: FC<any> = ({ carousels, allFilters }) => {
     ]
 
     return (
-        <Layout>
+        <Layout navigation={navigation}>
             <Head>
                 <title>
                     Смотреть фильмы онлайн бесплатно в хорошем HD качестве и без регистрации. Удобный просмотр онлайн
@@ -50,8 +51,8 @@ const Movies: FC<any> = ({ carousels, allFilters }) => {
 export default Movies
 
 export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
-    const allFilters = await MovieService.getMoviesFilters()
-
+    const navigation = await AppService.getNavigation()
+    const allFilters = await AppService.getFilters()
     const carousel1 = await MovieService.getMoviesByQuery('all?years=2000-2010', 'remember00s')
     const carousel2 = await MovieService.getMoviesByQuery('comedy?countries=us', 'americanComedies')
     const carousel3 = await MovieService.getMoviesByQuery('sport', 'sportMovies')
@@ -60,6 +61,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
         props: {
             carousels: [carousel1, carousel2, carousel3],
             allFilters: allFilters,
+            navigation,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },
     }
