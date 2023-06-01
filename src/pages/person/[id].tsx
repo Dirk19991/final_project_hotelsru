@@ -19,10 +19,7 @@ const PersonPage = ({ personData }: PersonPageProps) => {
 export default PersonPage
 
 export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
-    let personData = null
-    try {
-        personData = await MovieService.getPersonById(params?.personID as string)
-    } catch (err) {}
+    const personData = await MovieService.getPersonById(params?.id as string)
 
     return {
         props: {
