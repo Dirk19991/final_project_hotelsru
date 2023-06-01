@@ -1,6 +1,6 @@
 import { Country, Genre } from './MovieResponse'
 
-interface Movies {
+export interface Movies {
     id: number
     nameEn: string
     nameRu: string

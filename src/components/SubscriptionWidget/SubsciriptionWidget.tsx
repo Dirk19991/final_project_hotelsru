@@ -14,6 +14,7 @@ const SubsciriptionWidget = () => {
     const { push } = useRouter()
     const [moviesList, setMoviesList] = useState<any>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const IMAGE_PLACEHOLDER = '/icons/no-image-placeholder.png'
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -71,6 +72,8 @@ const SubsciriptionWidget = () => {
                                                         alt={movie.description}
                                                         width={76}
                                                         height={110}
+                                                        placeholder="blur"
+                                                        blurDataURL={IMAGE_PLACEHOLDER}
                                                     />
                                                 </Link>
                                             )
