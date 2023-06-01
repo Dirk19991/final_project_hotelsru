@@ -14,10 +14,8 @@ type Story = StoryObj<typeof ButtonActor>
 
 export const Actor: Story = {
     args: {
-        src: '/icons/mockActor.webp',
-        width: 44,
-        height: 44,
-        href: '/',
+        href: '/icons/mockActor.webp',
         image: true,
+        text: 'Tom Cruise',
     },
 }
