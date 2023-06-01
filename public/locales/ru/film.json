@@ -12,7 +12,7 @@
         "actor": "Актер",
         "actors": "Актеры",
         "producer": "Продюсер",
-        "cineatographer": "Оператор",
+        "composer": "Композитор",
         "operator": "Оператор",
         "editor": "Редактор"
     },
@@ -29,5 +29,7 @@
     "toMovie": "К фильму",
     "creators": "Создатели",
     "loadingMovie": "Загрузка фильма...",
-    "noMovie": "Нет фильма"
+    "noMovie": "Нет фильма",
+    "comments": "Комментарии",
+    "leaveAComment": "Оставить комментарий"
 }

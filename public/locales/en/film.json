@@ -9,6 +9,7 @@
     "actorsAndCreators": "Actors and creators",
     "profession": {
         "director": "Director",
+        "actor": "Actor",
         "actors": "Actors",
         "producer": "Producer",
         "composer": "Composer",
@@ -25,9 +26,10 @@
     "rate": "Rate",
     "ratings": "ratings",
     "minutes": "minutes",
-
     "toMovie": "To movie",
     "creators": "Creators",
     "loadingMovie": "Loading movie...",
-    "noMovie": "No movie"
+    "noMovie": "No movie",
+    "comments": "Comments",
+    "leaveAComment": "Leave a comment"
 }
