@@ -1,5 +1,6 @@
 import { IActor, IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
 import axios from 'axios'
+import staticFilters from '@/data/filters.json'
 
 interface IQueryObject {
     [x: string]: string | string[] | undefined
@@ -30,14 +31,11 @@ export default class MovieService {
         const response = await axios.get(`${serverURL}/movie/${id}`)
         return response.data.movie
     }
-    static getMainCarousel = async () => {
-        const response = await axios.get(`${localURL}/api/main-carousel`)
-        return response.data
-    }
+
     static getMoviesFilters = async () => {
-        const localFilters = await axios.get(`${localURL}/api/filters`)
+        // const localFilters = await axios.get(`${localURL}/api/filters`)
         const dynamicGenres = await axios.get(`${serverURL}/genres`)
-        const filters = localFilters.data
+        const filters: any = staticFilters
         filters.genres = dynamicGenres.data
         return filters
     }
@@ -52,10 +50,14 @@ export default class MovieService {
             name,
         }
     }
-    static getTop10Movies = async () => {
-        const response = await axios.get(`${localURL}/api/top-10`)
-        return response.data.movies
-    }
+    // static getTop10Movies = async () => {
+    //     const response = await axios.get(`${localURL}/api/top-10`)
+    //     return response.data.movies
+    // }
+    // static getMainCarousel = async () => {
+    //     const response = await axios.get(`${localURL}/api/main-carousel`)
+    //     return response.data
+    // }
     static getPersonByName = async (type: string, name: string) => {
         const response = await axios.get(`${serverURL}/persons/name/search?position=${type}&personName=${name}`)
         return response.data

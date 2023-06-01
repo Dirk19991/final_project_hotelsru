@@ -10,6 +10,8 @@ import MainCarouselSlide from '@/stories/MainCarouselSlide/MainCarouselSlide'
 const MainCarousel: FC<any> = ({ data }) => {
     const { i18n } = useTranslation()
 
+    console.log(data)
+
     return (
         <section className={styles.carousel}>
             <div className={styles.container}>
@@ -30,16 +32,17 @@ const MainCarousel: FC<any> = ({ data }) => {
                         loop={true}
                         navigation
                     >
-                        {data.movies.map(({ img, titleImg, textRU, textEN, id, link }: any) => (
-                            <SwiperSlide key={id}>
-                                <MainCarouselSlide
-                                    img={img}
-                                    text={i18n.language === 'ru' ? textRU : textEN}
-                                    titleImg={titleImg}
-                                    link={link}
-                                />
-                            </SwiperSlide>
-                        ))}
+                        {data &&
+                            data.map(({ img, titleImg, textRU, textEN, id, link }: any) => (
+                                <SwiperSlide key={id}>
+                                    <MainCarouselSlide
+                                        img={img}
+                                        text={i18n.language === 'ru' ? textRU : textEN}
+                                        titleImg={titleImg}
+                                        link={link}
+                                    />
+                                </SwiperSlide>
+                            ))}
                     </Swiper>
                 </div>
             </div>
