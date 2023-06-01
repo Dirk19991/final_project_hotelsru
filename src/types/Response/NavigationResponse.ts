@@ -13,7 +13,7 @@ interface Category {
     selection: Subcategory[]
 }
 
-export interface INavigation {
+export default interface NavigationResponse {
     movies_categories?: Category
     series_categories?: Category
     animation_categories?: Category

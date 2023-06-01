@@ -7,14 +7,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
+import { Movies } from '@/types/Response/MoviesResponse'
 
-const DefaultCarousel: FC<any> = ({ dataList, title, link }) => {
-    const { t } = useTranslation('common')
-    const [moviesData, setMoviesData] = useState<any>(dataList)
+interface DefaultCarousel {
+    dataList: Movies[]
+    title?: string
+    link?: string
+}
+
+const DefaultCarousel: FC<DefaultCarousel> = ({ dataList, title, link }) => {
+    const { t, i18n } = useTranslation('common')
+    const [moviesData, setMoviesData] = useState<Movies[]>(dataList)
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
     const nextRef = useRef(null)
-    const { i18n } = useTranslation()
 
     return (
         <section className={styles.section}>
@@ -86,7 +92,7 @@ const DefaultCarousel: FC<any> = ({ dataList, title, link }) => {
                             watchSlidesProgress
                         >
                             {moviesData &&
-                                moviesData.map((movie: any) => (
+                                moviesData.map((movie: Movies) => (
                                     <SwiperSlide
                                         style={{
                                             margin: '0px 0px',
