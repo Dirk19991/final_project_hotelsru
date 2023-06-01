@@ -2,7 +2,7 @@ import FilmDescription from '@/components/FilmDescription/FilmDescription'
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import data from '@/data/mockDataFilm.json'
-import { IMovie } from '@/types/ComponentProps/IMovie'
+import { IMovie } from '@/types/Component/IMovie'
 
 jest.mock('next/router', () => ({
     useRouter() {

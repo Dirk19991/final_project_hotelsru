@@ -1,5 +1,5 @@
 import styles from './Comments.module.scss'
-import { IAdminPanelMovie, IMovie } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie, IMovie } from '@/types/Component/IMovie'
 import Comment from './Comment/Comment'
 import CommentForm from './CommentForm/CommentForm'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'

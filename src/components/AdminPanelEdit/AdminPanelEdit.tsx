@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './AdminPanelEdit.module.scss'
 import React from 'react'
 import Select, { MultiValue } from 'react-select'
-import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/Component/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
 import $auth from '@/http/auth'
 
@@ -92,7 +92,6 @@ const AdminPanelEdit = () => {
         }
 
         // на этом этапе отправляем обновленные данные на бэкенд
-        console.log(updatedFilm)
         setSaved(true)
         setFoundFilm(null)
     }

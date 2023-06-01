@@ -1,4 +1,4 @@
-import { IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie } from '@/types/Component/IMovie'
 
 export default function updateTrailer(movieData: IAdminPanelMovie) {
     function youtube_parser(url: string) {

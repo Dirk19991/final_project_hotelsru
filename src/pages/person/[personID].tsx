@@ -21,7 +21,6 @@ export default PersonPage
 
 export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
     let personData = null
-    console.log(params)
     try {
         personData = await MovieService.getPersonById(params?.personID as string)
     } catch (err) {}

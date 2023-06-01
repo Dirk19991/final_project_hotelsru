@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import styles from './Film.module.scss'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import FilmMobile from './FilmMobile/FilmMobile'
@@ -12,13 +12,8 @@ import { ButtonRating } from '@/stories/Button/ButtonRating'
 import Image from 'next/image'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
-import { IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
 
-interface FilmProps {
-    movie: IAdminPanelMovie
-}
-
-const Film = ({ movie }: FilmProps) => {
+const Film: FC<any> = ({ movie }) => {
     const isMobile = useMediaQuery('(max-width: 1159px)')
     const { t, i18n } = useTranslation(['film'])
 

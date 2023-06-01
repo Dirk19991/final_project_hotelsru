@@ -3,26 +3,13 @@ import styles from './HeaderDropdownFilters.module.scss'
 import Link from 'next/link'
 import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
 import { useTranslation } from 'next-i18next'
-import { ISubMenuData, IHeaderLink } from '@/types/Response/IHeaderStaticLinks'
 
-interface IHeaderDropdownFilters {
-    subMenuData: ISubMenuData
-    type: string
-}
-
-const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
-    subMenuData,
-    type,
-}) => {
+const HeaderDropdownFilters: FC<any> = ({ subMenuData, type }) => {
     const { t, i18n } = useTranslation(['common'])
 
     const [chosenTab, setChosenTab] = useState(0)
 
-    const getYearSectionNames = (
-        year: string | undefined,
-        lang: string,
-        type: string
-    ) => {
+    const getYearSectionNames = (year: string | undefined, lang: string, type: string) => {
         if (lang === 'en') {
             switch (type) {
                 case 'series':
@@ -54,52 +41,32 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                 <div className={styles.genres}>
                     <h4>{t('genres')}</h4>
                     <ul>
-                        {subMenuData?.genre.map(
-                            ({ id, nameEn, nameRu, link }: IHeaderLink) => (
-                                <li key={id}>
-                                    <Link href={link}>
-                                        {i18n.language === 'ru'
-                                            ? nameRu
-                                            : nameEn}
-                                    </Link>
-                                </li>
-                            )
-                        )}
+                        {subMenuData?.genre.map(({ id, nameEn, nameRu, link }: any) => (
+                            <li key={id}>
+                                <Link href={link}>{i18n.language === 'ru' ? nameRu : nameEn}</Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <div className={styles.singleColumn}>
                     <div className={styles.countries}>
                         <h4>{t('countries')}</h4>
                         <ul>
-                            {subMenuData?.country.map(
-                                ({ id, nameEn, nameRu, link }: IHeaderLink) => (
-                                    <li key={id}>
-                                        <Link href={link ? link : ''}>
-                                            {i18n.language === 'ru'
-                                                ? nameRu
-                                                : nameEn}
-                                        </Link>
-                                    </li>
-                                )
-                            )}
+                            {subMenuData?.country.map(({ id, nameEn, nameRu, link }: any) => (
+                                <li key={id}>
+                                    <Link href={link ? link : ''}>{i18n.language === 'ru' ? nameRu : nameEn}</Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className={styles.years}>
                         <h4>{t('years')}</h4>
                         <ul>
-                            {subMenuData?.year.map(
-                                ({ id, year, link }: IHeaderLink) => (
-                                    <li key={id}>
-                                        <Link href={link}>
-                                            {getYearSectionNames(
-                                                year,
-                                                i18n.language,
-                                                type
-                                            )}
-                                        </Link>
-                                    </li>
-                                )
-                            )}
+                            {subMenuData?.year.map(({ id, year, link }: any) => (
+                                <li key={id}>
+                                    <Link href={link}>{getYearSectionNames(year, i18n.language, type)}</Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
@@ -108,28 +75,15 @@ const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({
                 <div className={styles.tabs}>
                     <div style={{ top: `${chosenTab * 28}px` }}></div>
                     <ul>
-                        {subMenuData?.selection.map(
-                            (
-                                { id, nameEn, nameRu, link }: IHeaderLink,
-                                index
-                            ) => (
-                                <li
-                                    key={id}
-                                    onMouseOver={() => setChosenTab(index)}
-                                    style={
-                                        chosenTab === index
-                                            ? { color: 'white' }
-                                            : {}
-                                    }
-                                >
-                                    <Link href={link}>
-                                        {i18n.language === 'ru'
-                                            ? nameRu
-                                            : nameEn}
-                                    </Link>
-                                </li>
-                            )
-                        )}
+                        {subMenuData?.selection.map(({ id, nameEn, nameRu, link }: any, index: number) => (
+                            <li
+                                key={id}
+                                onMouseOver={() => setChosenTab(index)}
+                                style={chosenTab === index ? { color: 'white' } : {}}
+                            >
+                                <Link href={link}>{i18n.language === 'ru' ? nameRu : nameEn}</Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <SubsciriptionWidget />

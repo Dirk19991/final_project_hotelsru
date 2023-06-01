@@ -10,7 +10,6 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import mock from '@/data/navigation.json'
-import { IHeaderStaticLinks } from '@/types/Response/IHeaderStaticLinks'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import HeaderDropdownTV from '../HeaderDropdownTV/HeaderDropdownTV'
@@ -25,7 +24,7 @@ const Header: FC<any> = () => {
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const [headerLinks, setHeaderLinks] = useState<IHeaderStaticLinks>(mock)
+    const [headerLinks, setHeaderLinks] = useState<any>(mock)
 
     const [isAuthModal, setIsAuthModal] = useState(false)
 
