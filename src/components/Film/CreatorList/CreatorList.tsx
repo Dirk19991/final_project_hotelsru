@@ -33,8 +33,8 @@ const CreatorsList: FC<any> = ({ data }) => {
 
     const cachedOnResize = useCallback(() => {
         if (itemsRef.current && itemsRef.current[0]) {
-            const maxElements = Math.floor(window.outerWidth / itemsRef.current[0].clientWidth)
-            const needElements = Math.min(10, maxElements - 1)
+            const maxElements = Math.floor(window.innerWidth / itemsRef.current[0].clientWidth)
+            const needElements = Math.min(10, maxElements - 2)
             setPersons(allPersons.slice(0, needElements))
         }
     }, [allPersons])

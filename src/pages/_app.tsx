@@ -22,11 +22,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         <>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
                 <link
                     rel="icon"
-                    type="image/png"
-                    href="https://gambit-central.dfs.ivi.ru/dist/23.04.05_c1f11edb/storm/images/favicon/64.png"
+                    type="image/svg+xml"
+                    href="https://gambit-central.dfs.ivi.ru/dist/23.05.11_589f787c/storm/images/favicon/favicon.svg"
                 />
             </Head>
 

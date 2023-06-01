@@ -1,5 +1,6 @@
 import { ReactNode, SyntheticEvent } from 'react'
 import styles from './Modal.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface ModalProps {
     toggle: (isOpen: boolean) => void
@@ -7,6 +8,8 @@ interface ModalProps {
 }
 
 const Modal = ({ toggle, children }: ModalProps) => {
+    const {t} = useTranslation("common")
+
     return (
         <div className={styles.modal}>
             <span
@@ -15,7 +18,7 @@ const Modal = ({ toggle, children }: ModalProps) => {
                     toggle(false)
                 }}
             >
-                назад
+                {t("back")}
             </span>
             <div
                 className={styles.content}

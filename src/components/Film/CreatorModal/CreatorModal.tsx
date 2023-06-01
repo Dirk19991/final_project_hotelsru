@@ -78,9 +78,9 @@ const CreatorModal: FC<any> = ({ film, close }) => {
                         </ul>
                         {valuesWithNames.map((persons, i) => {
                             return (
-                                <>
+                                <div key={i}>
                                     <h3 className={styles.profession}>{persons.name}</h3>
-                                    <ul key={i} className={styles.persons}>
+                                    <ul className={styles.persons}>
                                         {persons.values.map((person: any, i: number) => {
                                             const personName = i18n.language === 'en' ? person.nameEn : person.nameRu
                                             return (
@@ -95,7 +95,7 @@ const CreatorModal: FC<any> = ({ film, close }) => {
                                             )
                                         })}
                                     </ul>
-                                </>
+                                </div>
                             )
                         })}
                     </div>

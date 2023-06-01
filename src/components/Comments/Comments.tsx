@@ -20,13 +20,15 @@ const Comments = ({ comments, film, setCommentsRefresh }: IComments) => {
 
     const { i18n } = useTranslation()
     const mainGenre = i18n.language === 'en' ? film.genres[0].nameEn : film.genres[0].nameRu
+    const movieName = i18n.language === 'en' ? film.nameEn : film.nameRu
+
     return (
         <div className="container">
             <div className={styles.wrapper}>
                 <div className={styles.comments}>
                     <h2>
-                        {film.nameRu} (&nbsp;{mainGenre}&nbsp;
-                        {film.year}&nbsp;)
+                        {movieName} ({mainGenre}&nbsp;
+                        {film.year})
                     </h2>
                     <CommentForm movieId={film.id} setCommentsRefresh={setCommentsRefresh} />
                     <div className={styles.commentsList}>
@@ -48,11 +50,11 @@ const Comments = ({ comments, film, setCommentsRefresh }: IComments) => {
                         <DefaultCarouselSlide
                             rating={film.rating}
                             year={film.year}
-                            href={`/`}
+                            href={`/watch/${film.id}`}
                             image={film.poster}
-                            country={[{ id: 1, name: 'США' }]}
-                            genre={film.genres}
-                            name={film.nameRu}
+                            country={"CША"}
+                            genre={"Фантастика"}
+                            name={movieName}
                             duration={film.duration}
                         />
                     )}
