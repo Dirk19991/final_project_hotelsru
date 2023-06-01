@@ -13,7 +13,7 @@ import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
 import engNameToLink from '@/util/engNameToLink'
 import updateTrailer from '@/util/updateTrailer'
-import { IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie } from '@/types/Component/IMovie'
 
 interface FilmPageProps {
     movieData: IAdminPanelMovie

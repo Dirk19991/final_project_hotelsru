@@ -1,4 +1,4 @@
-import { IActor, IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
+import { IActor, IAdminPanelMovie } from '@/types/Component/IMovie'
 import axios from 'axios'
 import staticFilters from '@/data/filters.json'
 

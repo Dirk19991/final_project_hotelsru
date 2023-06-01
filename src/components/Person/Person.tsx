@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import PersonFilm from '../PersonFilm/PersonFilm'
 import { useRouter } from 'next/router'
-import { IActor, IAdminPanelMovie, IPerson } from '@/types/ComponentProps/IMovie'
+import { IActor, IAdminPanelMovie, IPerson } from '@/types/Component/IMovie'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { useTranslation } from 'next-i18next'
 import getFilmWord from '@/util/getFilmWord'
@@ -28,8 +28,6 @@ const Person = ({ personData }: PersonProps) => {
     const { t, i18n } = useTranslation(['person'])
     const [actorData, setActorData] = useState<GetActorResponse | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
-
-    console.log(personData)
 
     const name = personData && personData.person.nameRu
     const enName = personData && personData.person.nameEn

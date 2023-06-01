@@ -6,9 +6,8 @@ import { CSSProperties, useEffect, useRef, useState } from 'react'
 import Modal from '../Modal/Modal'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Comments from '../Comments/Comments'
-import commentsData from '../../data/mockDataComments.json'
 import CommentSlide from '@/stories/CommentSlide/CommentSlide'
-import { IAdminPanelMovie } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie } from '@/types/Component/IMovie'
 import { useTranslation } from 'next-i18next'
 
 const url = process.env.DEPLOY_API_URL
@@ -56,7 +55,6 @@ const CommentsCarousel = ({ film, refreshComments, setCommentsRefresh }: ICommen
                     setComments(res)
                 }
             })
-            .catch((error) => setComments(JSON.parse(JSON.stringify(commentsData))))
 
         setCommentsRefresh(false)
     }, [film.id, refreshComments, setCommentsRefresh])

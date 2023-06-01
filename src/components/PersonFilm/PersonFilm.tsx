@@ -1,4 +1,4 @@
-import { IAdminPanelMovie, IMovie, IPersonMovie } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie, IMovie, IPersonMovie } from '@/types/Component/IMovie'
 import styles from './PersonFilm.module.scss'
 import Image from 'next/image'
 import { Button } from '@/stories/Button/ButtonStandard'

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from './AdminPanelAdd.module.scss'
 import React from 'react'
 import Select, { MultiValue } from 'react-select'
-import { IGenre } from '@/types/ComponentProps/IMovie'
+import { IGenre } from '@/types/Component/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
 import $auth from '@/http/auth'
 

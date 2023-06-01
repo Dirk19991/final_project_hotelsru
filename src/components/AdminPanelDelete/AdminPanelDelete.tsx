@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './AdminPanelDelete.module.scss'
 import React from 'react'
-import { IAdminPanelMovie, IAdminPanelData } from '@/types/ComponentProps/IMovie'
+import { IAdminPanelMovie, IAdminPanelData } from '@/types/Component/IMovie'
 import { PORT } from '../AdminPanel/AdminPanel'
 import $auth from '@/http/auth'
 
@@ -26,7 +26,6 @@ const AdminPanelDelete = () => {
         try {
             const movieResponse = await $auth.get(`${PORT}/movie/${inputValue}`)
             const movieData = (await movieResponse.data) as IAdminPanelData
-            console.log(`${PORT}/movie/${inputValue}`)
             if (movieData.errors.length !== 0) {
                 throw new Error('error')
             } else {

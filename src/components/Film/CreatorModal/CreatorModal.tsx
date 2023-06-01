@@ -41,8 +41,6 @@ const CreatorModal: FC<any> = ({ film, close }) => {
         },
     ]
 
-    console.log(valuesWithNames)
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.modal}>

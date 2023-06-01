@@ -1,4 +1,4 @@
-import { IMovie } from '@/types/ComponentProps/IMovie'
+import { IMovie } from '@/types/Component/IMovie'
 import { FC } from 'react'
 import styles from './PosterCard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
