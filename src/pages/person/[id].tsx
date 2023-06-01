@@ -6,11 +6,12 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 interface PersonPageProps {
     personData: GetActorResponse
+    navigation?: any
 }
 
-const PersonPage = ({ personData }: PersonPageProps) => {
+const PersonPage = ({ personData, navigation }: PersonPageProps) => {
     return (
-        <Layout>
+        <Layout navigation={navigation}>
             <Person personData={personData} />
         </Layout>
     )
@@ -19,11 +20,13 @@ const PersonPage = ({ personData }: PersonPageProps) => {
 export default PersonPage
 
 export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
+    const navigation = await MovieService.getNavigation()
     const personData = await MovieService.getPersonById(params?.id as string)
 
     return {
         props: {
             personData,
+            navigation,
             ...(await serverSideTranslations(locale as string, ['person', 'common', 'footer', 'header'])),
         },
     }

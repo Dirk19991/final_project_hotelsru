@@ -17,14 +17,14 @@ import { createPortal } from 'react-dom'
 import AuthModal from '../AuthModal/AuthModal'
 import cn from 'classnames'
 
-const Header: FC<any> = () => {
+const Header: FC<any> = ({ navigation }) => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
 
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const [headerLinks, setHeaderLinks] = useState<any>(mock)
+    const [headerLinks, setHeaderLinks] = useState<any>(navigation)
 
     const [isAuthModal, setIsAuthModal] = useState(false)
 
@@ -33,7 +33,7 @@ const Header: FC<any> = () => {
             document.body.style.overflow = 'hidden'
             document.body.style.height = '100vh'
         } else {
-            document.body.style.overflow = 'unset'
+            document.body.style.overflow = 'overlay'
         }
     }, [isAuthModal])
 

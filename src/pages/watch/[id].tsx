@@ -13,13 +13,8 @@ import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
 import engNameToLink from '@/util/engNameToLink'
 import updateTrailer from '@/util/updateTrailer'
-import { IAdminPanelMovie } from '@/types/Component/IMovie'
 
-interface FilmPageProps {
-    movieData: IAdminPanelMovie
-}
-
-const FilmPage: FC<any> = ({ movieData }: FilmPageProps) => {
+const FilmPage: FC<any> = ({ movieData, navigation }) => {
     const { t, i18n } = useTranslation(['film'])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -46,7 +41,7 @@ const FilmPage: FC<any> = ({ movieData }: FilmPageProps) => {
     }, [movieData, i18n.language, movie.genres])
 
     return (
-        <Layout>
+        <Layout navigation={navigation}>
             <div className={styles.wrapper}>
                 <div className="container">
                     <FilmBreadcrumbs
@@ -92,10 +87,12 @@ export default FilmPage
 
 export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
     const movieData = await MovieService.getMovieById(params?.id)
+    const navigation = await MovieService.getNavigation()
 
     return {
         props: {
             movieData,
+            navigation,
             ...(await serverSideTranslations(locale as string, ['film', 'common', 'footer', 'header'])),
         },
     }

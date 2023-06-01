@@ -6,10 +6,6 @@ interface IQueryObject {
     [x: string]: string | string[] | undefined
 }
 
-interface INames {
-    [x: string]: string
-}
-
 interface GetActorResponse {
     person: IActor
     movies: {
@@ -18,7 +14,6 @@ interface GetActorResponse {
 }
 
 const serverURL = process.env.DEPLOY_API_URL
-const localURL = process.env.VERCEL_URL ?? 'http://localhost:3000'
 
 export default class MovieService {
     static getMoviesList = async (genresQuery: string, queryObject: IQueryObject) => {
@@ -31,9 +26,7 @@ export default class MovieService {
         const response = await axios.get(`${serverURL}/movie/${id}`)
         return response.data.movie
     }
-
     static getMoviesFilters = async () => {
-        // const localFilters = await axios.get(`${localURL}/api/filters`)
         const dynamicGenres = await axios.get(`${serverURL}/genres`)
         const filters: any = staticFilters
         filters.genres = dynamicGenres.data
@@ -50,14 +43,6 @@ export default class MovieService {
             name,
         }
     }
-    // static getTop10Movies = async () => {
-    //     const response = await axios.get(`${localURL}/api/top-10`)
-    //     return response.data.movies
-    // }
-    // static getMainCarousel = async () => {
-    //     const response = await axios.get(`${localURL}/api/main-carousel`)
-    //     return response.data
-    // }
     static getPersonByName = async (type: string, name: string) => {
         const response = await axios.get(`${serverURL}/persons/name/search?position=${type}&personName=${name}`)
         return response.data
@@ -65,5 +50,9 @@ export default class MovieService {
     static getPersonById = async (id: string) => {
         const response = await axios.get<GetActorResponse>(`${serverURL}/persons/${id}`)
         return response.data
+    }
+    static getNavigation = async () => {
+        const respnse = await axios.get(`${serverURL}/navigation`)
+        return respnse.data
     }
 }

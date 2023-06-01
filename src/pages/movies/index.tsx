@@ -11,7 +11,7 @@ import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
 
-const Movies: FC<any> = ({ carousels, allFilters }) => {
+const Movies: FC<any> = ({ carousels, allFilters, navigation }) => {
     const { t } = useTranslation(['common'])
     const breadcrumbsData = [
         { id: 1, title: t('myIvi'), href: '/' },
@@ -19,7 +19,7 @@ const Movies: FC<any> = ({ carousels, allFilters }) => {
     ]
 
     return (
-        <Layout>
+        <Layout navigation={navigation}>
             <Head>
                 <title>
                     Смотреть фильмы онлайн бесплатно в хорошем HD качестве и без регистрации. Удобный просмотр онлайн
@@ -50,6 +50,7 @@ const Movies: FC<any> = ({ carousels, allFilters }) => {
 export default Movies
 
 export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
+    const navigation = await MovieService.getNavigation()
     const allFilters = await MovieService.getMoviesFilters()
 
     const carousel1 = await MovieService.getMoviesByQuery('all?years=2000-2010', 'remember00s')
@@ -60,6 +61,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
         props: {
             carousels: [carousel1, carousel2, carousel3],
             allFilters: allFilters,
+            navigation,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },
     }

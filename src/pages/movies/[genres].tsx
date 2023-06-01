@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import MovieService from '@/services/MovieService'
 
-const MoviesFilters: FC<any> = ({ allFilters }) => {
+const MoviesFilters: FC<any> = ({ allFilters, navigation }) => {
     const [moviesList, setMoviesList] = useState<any>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [currentSorting, setCurrentSorting] = useState<string>('rating')
@@ -81,7 +81,7 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
     }, [query, currentSorting, i18n.language])
 
     return (
-        <Layout>
+        <Layout navigation={navigation}>
             <Head>
                 <title>
                     Смотреть фильмы онлайн бесплатно в хорошем HD качестве и без регистрации. Удобный просмотр онлайн
@@ -106,11 +106,13 @@ const MoviesFilters: FC<any> = ({ allFilters }) => {
 }
 
 export const getServerSideProps = async ({ locale }: any) => {
+    const navigation = await MovieService.getNavigation()
     const allFilters = await MovieService.getMoviesFilters()
 
     return {
         props: {
             allFilters,
+            navigation,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'header', 'movies'])),
         },
     }
