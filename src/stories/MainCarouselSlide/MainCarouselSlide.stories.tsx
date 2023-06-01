@@ -13,11 +13,8 @@ type Story = StoryObj<typeof Slide>
 
 export const ExampleSlide: Story = {
     args: {
-        mainImage: '/slides/1/main.jpg',
-        titleImage: '/slides/1/title.png',
-        mainText:
-            'Целый вагон впечатлений и тележка эмоций: все проекты производства Иви в одном месте. Запрыгивай!',
-
-        label: 'Смотреть по подписке',
+        img: '/slides/1/main.jpg',
+        titleImg: '/slides/1/title.png',
+        text: 'Целый вагон впечатлений и тележка эмоций: все проекты производства Иви в одном месте. Запрыгивай!',
     },
 }
