@@ -31,16 +31,16 @@ export interface IPerson {
 }
 
 export interface ISimilarMovie {
-    Movie_description: string
-    Movie_director: string
-    Movie_id: number
-    Movie_name: string
-    Movie_poster: string
-    Movie_previewPoster: string
-    Movie_rating: string
-    Movie_slogan: string | null
-    Movie_type: string
-    Movie_year: number
+    countries: ICountry[]
+    duration: string
+    genres: IGenre[]
+    id: number
+    nameEn: string
+    nameRu: string
+    poster: string
+    rating: string
+    ratingCount: string
+    year: string
 }
 
 export interface IMovie {
@@ -100,18 +100,7 @@ export interface IAdminPanelMovie {
     producer: IActor[]
     rating: string
     ratingCount: string
-    similarMovies: {
-        countries: ICountry[]
-        duration: string
-        genres: IGenre[]
-        id: number
-        nameEn: string
-        nameRu: string
-        poster: string
-        rating: string
-        ratingCount: string
-        year: string
-    }[]
+    similarMovies: ISimilarMovie[]
     slogan: string
     trailer: string
     year: string
