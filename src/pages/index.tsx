@@ -10,6 +10,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
+import AppService from '@/services/AppService'
 import mainCarouselMock from '@/data/mainCarousel.json'
 import top10CarouselMock from '@/data/top10Movies.json'
 
@@ -47,8 +48,7 @@ const Home: FC<any> = ({ carousels, navigation }) => {
 export default Home
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-    const navigation = await MovieService.getNavigation()
-
+    const navigation = await AppService.getNavigation()
     const carousel1 = await MovieService.getMoviesByQuery('all', 'bestMovies')
     const carousel2 = await MovieService.getMoviesByQuery('action?years=1990-2000', 'action90s')
     const carousel3 = await MovieService.getMoviesByQuery('action?countries=ja', 'japanAction')

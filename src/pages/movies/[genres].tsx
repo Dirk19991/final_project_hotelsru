@@ -10,6 +10,7 @@ import Layout from '@/components/Layout/Layout'
 import { useRouter } from 'next/router'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import MovieService from '@/services/MovieService'
+import AppService from '@/services/AppService'
 
 const MoviesFilters: FC<any> = ({ allFilters, navigation }) => {
     const [moviesList, setMoviesList] = useState<any>([])
@@ -106,8 +107,8 @@ const MoviesFilters: FC<any> = ({ allFilters, navigation }) => {
 }
 
 export const getServerSideProps = async ({ locale }: any) => {
-    const navigation = await MovieService.getNavigation()
-    const allFilters = await MovieService.getMoviesFilters()
+    const navigation = await AppService.getNavigation()
+    const allFilters = await AppService.getFilters()
 
     return {
         props: {

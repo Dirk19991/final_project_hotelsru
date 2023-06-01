@@ -1,6 +1,8 @@
 import Layout from '@/components/Layout/Layout'
 import Person, { GetActorResponse } from '@/components/Person/Person'
 import MovieService from '@/services/MovieService'
+import PersonService from '@/services/PersonService'
+import AppService from '@/services/AppService'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -20,8 +22,8 @@ const PersonPage = ({ personData, navigation }: PersonPageProps) => {
 export default PersonPage
 
 export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
-    const navigation = await MovieService.getNavigation()
-    const personData = await MovieService.getPersonById(params?.id as string)
+    const navigation = await AppService.getNavigation()
+    const personData = await PersonService.getPersonById(params?.id as string)
 
     return {
         props: {

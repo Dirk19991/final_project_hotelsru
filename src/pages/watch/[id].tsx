@@ -11,6 +11,7 @@ import { useTranslation } from 'next-i18next'
 import { GetServerSideProps } from 'next'
 import Layout from '@/components/Layout/Layout'
 import MovieService from '@/services/MovieService'
+import AppService from '@/services/AppService'
 import engNameToLink from '@/util/engNameToLink'
 import updateTrailer from '@/util/updateTrailer'
 
@@ -87,7 +88,7 @@ export default FilmPage
 
 export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
     const movieData = await MovieService.getMovieById(params?.id)
-    const navigation = await MovieService.getNavigation()
+    const navigation = await AppService.getNavigation()
 
     return {
         props: {
