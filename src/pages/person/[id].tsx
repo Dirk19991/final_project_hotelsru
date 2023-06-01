@@ -1,14 +1,14 @@
 import Layout from '@/components/Layout/Layout'
 import Person, { GetActorResponse } from '@/components/Person/Person'
-import MovieService from '@/services/MovieService'
 import PersonService from '@/services/PersonService'
 import AppService from '@/services/AppService'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import NavigationResponse from '@/types/Response/NavigationResponse'
 
 interface PersonPageProps {
     personData: GetActorResponse
-    navigation?: any
+    navigation?: NavigationResponse
 }
 
 const PersonPage = ({ personData, navigation }: PersonPageProps) => {

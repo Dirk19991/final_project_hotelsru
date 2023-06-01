@@ -5,6 +5,8 @@ import engNameToLink from '@/util/engNameToLink'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import yearFilterTitle from '@/util/yearFilterTitle'
+import { Genre, Country } from '@/types/Response/MovieResponse'
+import { Years } from '@/types/Response/FiltersResponse'
 
 const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title, selectValue }) => {
     const { query, asPath, replace } = useRouter()
@@ -140,7 +142,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                 {isCurrent('genres') && (
                     <div className={styles.genresDropdown}>
                         <ul>
-                            {list.map(({ id, nameEn, nameRu }: any) => {
+                            {list.map(({ id, nameEn, nameRu }: Genre) => {
                                 const isChecked = String(query.genres).split('+').includes(engNameToLink(nameEn))
 
                                 return (
@@ -158,7 +160,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                 {isCurrent('countries') && (
                     <div className={styles.countriesDropdown}>
                         <ul>
-                            {list.map(({ id, nameEn, nameRu, shortName }: any) => {
+                            {list.map(({ id, nameEn, nameRu, shortName }: Country) => {
                                 const isChecked = String(query.countries).split(' ').includes(shortName)
 
                                 return (
@@ -176,7 +178,7 @@ const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list
                 {isCurrent('years') && (
                     <div className={styles.yearsDropdown}>
                         <ul>
-                            {list.map(({ id, value }: any) => {
+                            {list.map(({ id, value }: Years) => {
                                 const queryParam = query.years ?? ''
 
                                 return (

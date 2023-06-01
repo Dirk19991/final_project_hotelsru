@@ -11,9 +11,19 @@ import { useRouter } from 'next/router'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import MovieService from '@/services/MovieService'
 import AppService from '@/services/AppService'
+import FiltersResponse from '@/types/Response/FiltersResponse'
+import NavigationResponse from '@/types/Response/NavigationResponse'
+import { Genre, Country } from '@/types/Response/MovieResponse'
+import { GetServerSideProps } from 'next'
+import { Movies } from '@/types/Response/MoviesResponse'
 
-const MoviesFilters: FC<any> = ({ allFilters, navigation }) => {
-    const [moviesList, setMoviesList] = useState<any>([])
+interface IMoviesFilters {
+    allFilters: FiltersResponse
+    navigation: NavigationResponse
+}
+
+const MoviesFilters: FC<IMoviesFilters> = ({ allFilters, navigation }) => {
+    const [moviesList, setMoviesList] = useState<Movies[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [currentSorting, setCurrentSorting] = useState<string>('rating')
     const { t, i18n } = useTranslation(['common'])
@@ -22,10 +32,10 @@ const MoviesFilters: FC<any> = ({ allFilters, navigation }) => {
     const [currentPage, setCurrentPage] = useState<string>(queryPage)
     const [isMoviesEnded, setIsMoviesEnded] = useState<boolean>(false)
 
-    const genresQuery = allFilters.genres.filter((el: any) =>
+    const genresQuery = allFilters.genres.filter((el: Genre) =>
         String(query.genres).split('+').includes(el.nameEn.toLowerCase())
     )
-    const countriesQuery = allFilters.countries.filter((el: any) =>
+    const countriesQuery = allFilters.countries.filter((el: Country) =>
         String(query.countries).split(' ').includes(el.shortName)
     )
 
@@ -106,7 +116,7 @@ const MoviesFilters: FC<any> = ({ allFilters, navigation }) => {
     )
 }
 
-export const getServerSideProps = async ({ locale }: any) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
     const navigation = await AppService.getNavigation()
     const allFilters = await AppService.getFilters()
 

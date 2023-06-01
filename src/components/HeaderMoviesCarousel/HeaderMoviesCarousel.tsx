@@ -3,9 +3,10 @@ import styles from './HeaderMoviesCarousel.module.scss'
 import Image from 'next/image'
 import MovieService from '@/services/MovieService'
 import Link from 'next/link'
+import { Movies } from '@/types/Response/MoviesResponse'
 
 const HeaderMoviesCarousel = () => {
-    const [moviesList, setMoviesList] = useState<any>([])
+    const [moviesList, setMoviesList] = useState<Movies[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useEffect(() => {
@@ -34,7 +35,7 @@ const HeaderMoviesCarousel = () => {
             <div className={styles.wrapper}>
                 {isLoading && (
                     <>
-                        {[...Array(3)].map((el, i) => (
+                        {[...Array(3)].map((el, i: number) => (
                             <div className={styles.column} key={i}>
                                 {[...Array(3)].map((el, j) => (
                                     <Link href="/" key={j}>
@@ -49,15 +50,10 @@ const HeaderMoviesCarousel = () => {
                     return (
                         <div className={styles.column} key={idx}>
                             {!isLoading &&
-                                list.map((movie: any) => {
+                                list.map((movie: Movies) => {
                                     return (
                                         <Link href={`/watch/${movie.id}`} key={movie.id}>
-                                            <Image
-                                                src={movie.poster}
-                                                alt={movie.description}
-                                                width={112}
-                                                height={160}
-                                            />
+                                            <Image src={movie.poster} alt={movie.nameEn} width={112} height={160} />
                                         </Link>
                                     )
                                 })}

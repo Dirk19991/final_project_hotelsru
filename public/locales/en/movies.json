@@ -34,5 +34,6 @@
     "amountOfRatingsMore": "Amount of ratings more than",
     "thousand": "thousand",
     "asDirector": "As a director",
-    "asActor": "As an actor"
+    "asActor": "As an actor",
+    "moviesNotFound": "No movies found"
 }

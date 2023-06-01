@@ -22,7 +22,8 @@ type Story = StoryObj<typeof DefaultCarousel>
 
 export const ExampleSlider: Story = {
     args: {
-        endpoint: 'http://localhost:3001/movies?year=2020',
-        headerText: 'Лучшие комедии',
+        dataList: [],
+        title: 'Stasdf',
+        link: '/',
     },
 }

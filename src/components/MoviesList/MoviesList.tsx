@@ -5,10 +5,21 @@ import { Button } from '@/stories/Button/ButtonStandard'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { Movies } from '@/types/Response/MoviesResponse'
 
 import MovieService from '@/services/MovieService'
 
-const MoviesList: FC<any> = ({
+interface IMoviesList {
+    data: Movies[]
+    isLoading: boolean
+    setCurrentPage: any
+    setMoviesList: any
+    currentPage: string
+    setIsMoviesEnded: (value: boolean) => void
+    isMoviesEnded: boolean
+}
+
+const MoviesList: FC<IMoviesList> = ({
     data,
     isLoading,
     setMoviesList,
@@ -38,7 +49,7 @@ const MoviesList: FC<any> = ({
                 return
             }
             setCurrentPage((page: string) => String(Number(page) + 1))
-            setMoviesList((state: any) => [...state, ...moviesData])
+            setMoviesList((state: Movies[]) => [...state, ...moviesData])
         } catch (err) {
             console.log(err)
         } finally {
@@ -50,12 +61,12 @@ const MoviesList: FC<any> = ({
         <section>
             <div className="container">
                 <div className={styles.wrapper}>
-                    {!data?.length && !isLoading && <h1 className={styles.notFound}>Фильмов не найдено</h1>}
+                    {!data?.length && !isLoading && <h1 className={styles.notFound}>{t('moviesNotFound')}</h1>}
                     {isLoading && <MoviesListSkeleton />}
 
                     {!isLoading && data && (
                         <ul className={styles.list}>
-                            {data.map((movie: any) => (
+                            {data.map((movie: Movies) => (
                                 <li className={styles.movie} key={movie.id}>
                                     <DefaultCarouselSlide
                                         key={movie.id}

@@ -66,6 +66,7 @@ const DefaultCarouselSlide: FC<any> = ({ image, href, year, rating, countries, g
                     <Image
                         className={styles.images__background}
                         fill
+                        sizes={'(max-width: 768px) 100vw'}
                         alt="mainImage"
                         src={error ? IMAGE_PLACEHOLDER : image}
                         placeholder="blur"

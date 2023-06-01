@@ -7,7 +7,20 @@ import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
 import MainCarouselSlide from '@/stories/MainCarouselSlide/MainCarouselSlide'
 
-const MainCarousel: FC<any> = ({ data }) => {
+interface MainCarouselMovie {
+    id: number
+    img: string
+    titleImg: string
+    link: string
+    textRU: string
+    textEN: string
+}
+
+interface IMainCarousel {
+    data: MainCarouselMovie[]
+}
+
+const MainCarousel: FC<IMainCarousel> = ({ data }) => {
     const { i18n } = useTranslation()
 
     return (
@@ -31,7 +44,7 @@ const MainCarousel: FC<any> = ({ data }) => {
                         navigation
                     >
                         {data &&
-                            data.map(({ img, titleImg, textRU, textEN, id, link }: any) => (
+                            data.map(({ img, titleImg, textRU, textEN, id, link }: MainCarouselMovie) => (
                                 <SwiperSlide key={id}>
                                     <MainCarouselSlide
                                         img={img}
