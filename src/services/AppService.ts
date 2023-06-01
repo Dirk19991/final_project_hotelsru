@@ -12,9 +12,7 @@ export default class AppService {
         return filters
     }
     static getNavigation = async () => {
-        // const response = await axios.get(`${serverURL}/navigation`)
-        // после апдейта навигейщена разкомментить
-        // return response.data
-        return staticHeader
+        const response = await axios.get(`${serverURL}/navigation`)
+        return response.data
     }
 }

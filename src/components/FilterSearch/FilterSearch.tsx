@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import styles from './FilterSearch.module.scss'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
-import MovieService from '@/services/MovieService'
+import PersonService from '@/services/PersonService'
 import { useRouter } from 'next/router'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,7 +24,7 @@ const FilterSearch: FC<any> = ({ queryName }) => {
         setIsLoading(true)
         const queryNameCopy = 'actor' ? 'actors' : queryName
         try {
-            const persons = await MovieService.getPersonByName(queryNameCopy, inputValue)
+            const persons = await PersonService.getPersonByName(queryNameCopy, inputValue)
             setPersonsList(persons)
         } catch (err) {
             console.log(err)
