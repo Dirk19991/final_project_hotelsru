@@ -7,7 +7,18 @@ import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { MediumCarouselSlide } from '@/stories/MediumCarouselSlide/MediumCarouselSlide'
 
-const MediumCarousel: FC<any> = ({ data }) => {
+interface Top10Movie {
+    id: number
+    image: string
+    titleImg: string
+    link: string
+}
+
+interface IMediumCarousel {
+    data: Top10Movie[]
+}
+
+const MediumCarousel: FC<IMediumCarousel> = ({ data }) => {
     const { t } = useTranslation(['common'])
     const [init, setInit] = useState(false)
     const prevRef = useRef(null)
@@ -58,7 +69,7 @@ const MediumCarousel: FC<any> = ({ data }) => {
                                 nextEl: nextRef.current,
                             }}
                         >
-                            {data.map((el: any, i: number) => (
+                            {data.map((el: Top10Movie, i: number) => (
                                 <SwiperSlide key={el.id}>
                                     <MediumCarouselSlide
                                         href={el.link}

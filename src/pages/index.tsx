@@ -13,8 +13,21 @@ import MovieService from '@/services/MovieService'
 import AppService from '@/services/AppService'
 import mainCarouselMock from '@/data/mainCarousel.json'
 import top10CarouselMock from '@/data/top10Movies.json'
+import { Movies } from '@/types/Response/MoviesResponse'
+import NavigationResponse from '@/types/Response/NavigationResponse'
 
-const Home: FC<any> = ({ carousels, navigation }) => {
+interface Carousel {
+    data: Movies[]
+    name: string
+    link: string
+}
+
+interface IHome {
+    carousels: Carousel[]
+    navigation: NavigationResponse
+}
+
+const Home: FC<IHome> = ({ carousels, navigation }) => {
     const { t } = useTranslation(['common'])
 
     return (
@@ -29,7 +42,7 @@ const Home: FC<any> = ({ carousels, navigation }) => {
             <Promo />
             <MediumCarousel data={top10CarouselMock.movies} />
             {carousels &&
-                carousels.map((carousel: any, i: number) => {
+                carousels.map((carousel: Carousel, i: number) => {
                     if (carousel.data?.length) {
                         return (
                             <DefaultCarousel

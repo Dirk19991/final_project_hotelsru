@@ -3,8 +3,15 @@ import styles from './MoviesTitle.module.scss'
 import { useTranslation } from 'next-i18next'
 import yearFilterTitle from '@/util/yearFilterTitle'
 import { useRouter } from 'next/router'
+import { Genre, Country } from '@/types/Response/MovieResponse'
 
-const MoviesTitle: FC<any> = ({ isActive, genresValue, countriesValue }) => {
+interface IMoviesTitle {
+    isActive: boolean
+    genresValue?: Genre[]
+    countriesValue?: Country[]
+}
+
+const MoviesTitle: FC<IMoviesTitle> = ({ isActive, genresValue, countriesValue }) => {
     const { t, i18n } = useTranslation('movies')
     const [isOpen, toggleIsOpen] = useState(false)
     const yearTextForms = [t('allYears'), t('before'), t('year')]
@@ -12,11 +19,11 @@ const MoviesTitle: FC<any> = ({ isActive, genresValue, countriesValue }) => {
 
     const genresQuery =
         genresValue &&
-        genresValue.map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
+        genresValue.map(({ nameEn, nameRu }: Genre) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
 
     const countriesQuery =
         countriesValue &&
-        countriesValue.map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
+        countriesValue.map(({ nameEn, nameRu }: Country) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
 
     const genresString = query.genres === 'all' ? t('allGenres') : genresQuery
     const countriesString = query.genres && !query.countries ? t('allCountries') : countriesQuery
@@ -32,7 +39,7 @@ const MoviesTitle: FC<any> = ({ isActive, genresValue, countriesValue }) => {
                 <div className={styles.wrapper}>
                     {isActive && (
                         <div className={styles.activeTitle}>
-                            <h2>{t("movies")}</h2>
+                            <h2>{t('movies')}</h2>
                             <p>
                                 {genresString}, {countriesString}, {yearsString}
                                 {ratingString}

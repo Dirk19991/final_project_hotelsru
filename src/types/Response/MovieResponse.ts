@@ -2,6 +2,7 @@ import MoviesResponse from './MoviesResponse'
 import { Person } from './PersonResponse'
 
 export interface Country {
+    id?: number
     nameEn: string
     nameRu: string
     shortName: string

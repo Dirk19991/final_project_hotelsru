@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 
 interface ISortingPanel {
     currentSorting: string
-    setCurrentSorting: any
+    setCurrentSorting: (value: string) => void
 }
 
 interface ISortingType {

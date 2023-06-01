@@ -9,7 +9,6 @@ import HeaderDropdownSubscription from '../HeaderDropdownSubscription/HeaderDrop
 import useMediaQuery from '@/hooks/useMediaQuery'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
-import mock from '@/data/navigation.json'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import HeaderDropdownTV from '../HeaderDropdownTV/HeaderDropdownTV'

@@ -3,11 +3,16 @@ import styles from './HeaderDropdownFilters.module.scss'
 import Link from 'next/link'
 import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
 import { useTranslation } from 'next-i18next'
+import { Subcategory, Category } from '@/types/Response/NavigationResponse'
 
-const HeaderDropdownFilters: FC<any> = ({ subMenuData, type }) => {
+interface IHeaderDropdownFilters {
+    type: string
+    subMenuData: Category
+}
+
+const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({ subMenuData, type }) => {
     const { t, i18n } = useTranslation(['common'])
-
-    const [chosenTab, setChosenTab] = useState(0)
+    const [chosenTab, setChosenTab] = useState<number>(0)
 
     const getYearSectionNames = (year: string | undefined, lang: string, type: string) => {
         if (lang === 'en') {
@@ -41,7 +46,7 @@ const HeaderDropdownFilters: FC<any> = ({ subMenuData, type }) => {
                 <div className={styles.genres}>
                     <h4>{t('genres')}</h4>
                     <ul>
-                        {subMenuData?.genre.map(({ id, nameEn, nameRu, link }: any) => (
+                        {subMenuData?.genre.map(({ id, nameEn, nameRu, link }: Subcategory) => (
                             <li key={id}>
                                 <Link href={link}>{i18n.language === 'ru' ? nameRu : nameEn}</Link>
                             </li>
@@ -52,7 +57,7 @@ const HeaderDropdownFilters: FC<any> = ({ subMenuData, type }) => {
                     <div className={styles.countries}>
                         <h4>{t('countries')}</h4>
                         <ul>
-                            {subMenuData?.country.map(({ id, nameEn, nameRu, link }: any) => (
+                            {subMenuData?.country.map(({ id, nameEn, nameRu, link }: Subcategory) => (
                                 <li key={id}>
                                     <Link href={link ? link : ''}>{i18n.language === 'ru' ? nameRu : nameEn}</Link>
                                 </li>
@@ -62,7 +67,7 @@ const HeaderDropdownFilters: FC<any> = ({ subMenuData, type }) => {
                     <div className={styles.years}>
                         <h4>{t('years')}</h4>
                         <ul>
-                            {subMenuData?.year.map(({ id, year, link }: any) => (
+                            {subMenuData?.year.map(({ id, year, link }: Subcategory) => (
                                 <li key={id}>
                                     <Link href={link}>{getYearSectionNames(year, i18n.language, type)}</Link>
                                 </li>
@@ -75,7 +80,7 @@ const HeaderDropdownFilters: FC<any> = ({ subMenuData, type }) => {
                 <div className={styles.tabs}>
                     <div style={{ top: `${chosenTab * 28}px` }}></div>
                     <ul>
-                        {subMenuData?.selection.map(({ id, nameEn, nameRu, link }: any, index: number) => (
+                        {subMenuData?.selection.map(({ id, nameEn, nameRu, link }: Subcategory, index: number) => (
                             <li
                                 key={id}
                                 onMouseOver={() => setChosenTab(index)}

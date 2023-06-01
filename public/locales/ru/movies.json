@@ -34,5 +34,6 @@
     "amountOfRatingsMore": "Количество оценок больше",
     "thousand": "тысяч",
     "asDirector": "Как режиссер",
-    "asActor": "Как актер"
+    "asActor": "Как актер",
+    "moviesNotFound": "Фильмов не найдено"
 }

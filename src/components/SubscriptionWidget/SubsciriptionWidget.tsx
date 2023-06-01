@@ -7,12 +7,13 @@ import Image from 'next/image'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import MovieService from '@/services/MovieService'
+import { Movies } from '@/types/Response/MoviesResponse'
 
 const SubsciriptionWidget = () => {
     const { t } = useTranslation(['header'])
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const { push } = useRouter()
-    const [moviesList, setMoviesList] = useState<any>([])
+    const [moviesList, setMoviesList] = useState<Movies[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const IMAGE_PLACEHOLDER = '/icons/no-image-placeholder.png'
 
@@ -64,12 +65,12 @@ const SubsciriptionWidget = () => {
                             return (
                                 <div className={styles.column} key={idx}>
                                     {list &&
-                                        list.map((movie: any) => {
+                                        list.map((movie: Movies) => {
                                             return (
                                                 <Link href={`/watch/${movie.id}`} key={movie.id}>
                                                     <Image
                                                         src={movie.poster}
-                                                        alt={movie.description}
+                                                        alt={movie.nameRu}
                                                         width={76}
                                                         height={110}
                                                         placeholder="blur"

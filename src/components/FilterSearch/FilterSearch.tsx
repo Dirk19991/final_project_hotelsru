@@ -6,6 +6,7 @@ import PersonService from '@/services/PersonService'
 import { useRouter } from 'next/router'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Person } from '@/types/Response/PersonResponse'
 
 const FilterSearch: FC<any> = ({ queryName }) => {
     const { t, i18n } = useTranslation(['movies'])
@@ -84,7 +85,7 @@ const FilterSearch: FC<any> = ({ queryName }) => {
                     {!personsList.length && !isLoading && <span>{t('noResults')}</span>}
                     <ul>
                         {personsList &&
-                            personsList.map(({ personId, photo, nameEn, nameRu }: any) => {
+                            personsList.map(({ personId, photo, nameEn, nameRu }: Person) => {
                                 const name = i18n.language === 'ru' ? nameRu : nameEn
 
                                 return (

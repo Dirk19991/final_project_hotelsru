@@ -11,7 +11,7 @@ import { Movies } from '@/types/Response/MoviesResponse'
 
 interface DefaultCarousel {
     dataList: Movies[]
-    title?: string
+    title?: string | null
     link?: string
 }
 

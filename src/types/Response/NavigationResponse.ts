@@ -1,4 +1,4 @@
-interface Subcategory {
+export interface Subcategory {
     id: number
     nameRu?: string
     year?: string
@@ -6,7 +6,7 @@ interface Subcategory {
     link: string
 }
 
-interface Category {
+export interface Category {
     genre: Subcategory[]
     country: Subcategory[]
     year: Subcategory[]

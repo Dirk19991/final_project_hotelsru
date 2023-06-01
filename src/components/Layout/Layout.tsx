@@ -3,10 +3,11 @@ import Footer from '../Footer/Footer'
 import React, { ReactNode, FC } from 'react'
 import { useRouter } from 'next/router'
 import AlternativeHeader from '../AlternativeHeader/AlternativeHeader'
+import NavigationResponse from '@/types/Response/NavigationResponse'
 
 interface LayoutProps {
     children: ReactNode
-    navigation?: any
+    navigation?: NavigationResponse
 }
 
 const Layout: FC<LayoutProps> = ({ children, navigation }) => {
