@@ -22,18 +22,21 @@ export const ExampleSlide: Story = {
     args: {
         image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/0fce9930-2c17-446f-8445-9a89d5636f5d/360',
         href: '/',
-        year: 2020,
+        year: '2020',
         rating: '6.777',
-        country: [
+        countries: [
             {
                 id: 1,
-                name: 'Франция',
+                nameRu: 'Франция',
+                nameEn: 'France',
+                shortName: 'fr',
             },
         ],
-        genre: [
+        genres: [
             {
                 id: 1,
-                name: 'Комедия',
+                nameRu: 'Комедия',
+                nameEn: 'Comedy',
             },
         ],
     },

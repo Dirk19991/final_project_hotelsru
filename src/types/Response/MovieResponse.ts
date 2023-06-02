@@ -14,7 +14,7 @@ export interface Genre {
     nameEn: string
 }
 
-interface Movie {
+export interface Movie {
     id: number
     nameEn: string
     nameRu: string

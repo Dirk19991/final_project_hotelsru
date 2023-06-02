@@ -12,8 +12,14 @@ import { ButtonRating } from '@/stories/Button/ButtonRating'
 import Image from 'next/image'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
+import { Movie } from '@/types/Response/MovieResponse'
+import { Person } from '@/types/Response/PersonResponse'
 
-const Film: FC<any> = ({ movie }) => {
+interface Film {
+    movie: Movie
+}
+
+const Film: FC<Film> = ({ movie }) => {
     const isMobile = useMediaQuery('(max-width: 1159px)')
     const { t, i18n } = useTranslation(['film'])
 
@@ -79,7 +85,7 @@ const Film: FC<any> = ({ movie }) => {
                                 text={t('iviRatingNoColon')}
                             />
 
-                            {mainActors.map((actor: any) => {
+                            {mainActors.map((actor: Person) => {
                                 const name = i18n.language === 'en' ? actor.nameEn : actor.nameRu
 
                                 return (

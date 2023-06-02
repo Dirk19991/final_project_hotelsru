@@ -3,13 +3,21 @@ import styles from './CreatorList.module.scss'
 import CreatorMedallion from '../CreatorMedallion/CreatorMedallion'
 import CreatorModal from '../CreatorModal/CreatorModal'
 import { useTranslation } from 'next-i18next'
+import { Movie } from '@/types/Response/MovieResponse'
+import { Person } from '@/types/Response/PersonResponse'
 
-const CreatorsList: FC<any> = ({ data }) => {
+interface CreatorsList {
+    data: Movie
+}
+
+const CreatorsList: FC<CreatorsList> = ({ data }) => {
     const { t, i18n } = useTranslation(['film'])
     const itemsRef = useRef<Array<HTMLLIElement | null>>([])
-    const [isModalOpened, setIsModalOpened] = useState(false)
-    const addProffesion = (arr: any, profession: any) =>
-        arr && arr.map((el: any) => ({ ...el, profession: profession }))
+    const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
+
+    const addProffesion = (arr: Person[], profession: string) =>
+        arr && arr.map((el: Person) => ({ ...el, profession: profession }))
+
     const allPersons = useMemo(
         () => [
             ...addProffesion(data.director, 'director'),
@@ -21,7 +29,8 @@ const CreatorsList: FC<any> = ({ data }) => {
         ],
         [data.actors, data.composer, data.director, data.editor, data.operator, data.producer]
     )
-    const [persons, setPersons] = useState<any>(allPersons.slice(0, 10))
+
+    const [persons, setPersons] = useState<any[]>(allPersons.slice(0, 10))
 
     useEffect(() => {
         if (isModalOpened) {

@@ -3,7 +3,6 @@ import Image from 'next/image'
 import styles from './MainCarouselSlide.module.scss'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
-import Link from 'next/link'
 
 interface IMainSlide {
     img: string
@@ -19,14 +18,7 @@ const MainCarouselSlide: FC<IMainSlide> = ({ img, text, titleImg, titleText, lin
     return (
         <div className={styles.slide}>
             <div className={styles.wrapper}>
-                <Image
-                    priority
-                    className={styles.image}
-                    src={img}
-                    alt="slide"
-                    fill
-                    sizes={'(max-width: 768px) 100vw'}
-                />
+                <Image priority className={styles.image} src={img} alt={text} fill sizes={'(max-width: 768px) 100vw'} />
                 <div className={styles.text}>
                     {titleImg ? (
                         <Image priority className={styles.titleImage} src={titleImg} alt="" width={460} height={159} />

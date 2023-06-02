@@ -14,8 +14,15 @@ import MovieService from '@/services/MovieService'
 import AppService from '@/services/AppService'
 import engNameToLink from '@/util/engNameToLink'
 import updateTrailer from '@/util/updateTrailer'
+import { Movie } from '@/types/Response/MovieResponse'
+import NavigationResponse from '@/types/Response/NavigationResponse'
 
-const FilmPage: FC<any> = ({ movieData, navigation }) => {
+interface FilmPage {
+    movieData: Movie | any
+    navigation: NavigationResponse
+}
+
+const FilmPage: FC<FilmPage> = ({ movieData, navigation }) => {
     const { t, i18n } = useTranslation(['film'])
     const [isLoading, setIsLoading] = useState(true)
 

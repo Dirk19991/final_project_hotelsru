@@ -9,7 +9,7 @@ export interface Person {
     biography: string
 }
 
-export interface PersonResponse {
+export default interface PersonResponse {
     person: Person
     movies: MoviesResponse
 }

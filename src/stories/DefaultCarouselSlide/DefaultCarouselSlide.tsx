@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, useEffect, useCallback } from 'react'
+import React, { FC, useRef } from 'react'
 import styles from './DefaultCarouselSlide.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,17 +6,33 @@ import { faBookmark, faWandMagicSparkles, faStar, faBan } from '@fortawesome/fre
 import TooltipIcon from './TooltipIcon/TooltipIcon'
 import ProgressBar from './ProgressBar/ProgressBar'
 import { useTranslation } from 'next-i18next'
+import { Genre, Country } from '@/types/Response/MovieResponse'
 
-const DefaultCarouselSlide: FC<any> = ({ image, href, year, rating, countries, genres, name, duration }) => {
+interface DefaultCarouselSlide {
+    rating: string
+    image: string
+    href: string
+    year: string
+    countries: Country[]
+    genres: Genre[]
+    name: string
+    duration: string
+}
+
+const DefaultCarouselSlide: FC<DefaultCarouselSlide> = ({
+    image,
+    href,
+    year,
+    rating,
+    countries,
+    genres,
+    name,
+    duration,
+}) => {
     const { t, i18n } = useTranslation(['common'])
     const AGE_BADGE_SRC = 'https://solea-parent.dfs.ivi.ru/picture/ffffff!0.48,000000!0.48/age18.svg'
     const IMAGE_PLACEHOLDER = '/icons/no-image-placeholder.png'
     const CHARTS = [33, 35, 20, 33]
-    const [error, setError] = useState<any>(null)
-
-    useEffect(() => {
-        setError(null)
-    }, [image])
 
     const minutesTextForm = [t('minutes0'), t('minutes1'), t('minutes2')]
 
@@ -68,10 +84,9 @@ const DefaultCarouselSlide: FC<any> = ({ image, href, year, rating, countries, g
                         fill
                         sizes={'(max-width: 768px) 100vw'}
                         alt="mainImage"
-                        src={error ? IMAGE_PLACEHOLDER : image}
+                        src={image}
                         placeholder="blur"
                         blurDataURL={IMAGE_PLACEHOLDER}
-                        onError={setError}
                     />
                     <Image className={styles.images__age} alt="ageBadge" src={AGE_BADGE_SRC} width={24} height={16} />
                 </div>
