@@ -10,7 +10,11 @@ const config = {
         'swiper/css': ['<rootDir>/node_modules/swiper/swiper.min.css'],
         'swiper/react': ['<rootDir>/node_modules/swiper/react/swiper-react.js'],
     },
-    transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)'],
+    transformIgnorePatterns: [
+        'node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)',
+        '/node_modules/(?![swiper/react/swiper-react.js])',
+        '/node_modules/(?![swiper/react/swiper.js])',
+    ],
 }
 
 export default createJestConfig(config)

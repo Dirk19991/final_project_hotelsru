@@ -6,7 +6,18 @@ import resizeScreenSize from '@/util/resizeScreenSize'
 import HeaderDropdownFilters from '@/components/HeaderDropdownFilters/HeaderDropdownFilters'
 import HeaderDropdownProfile from '@/components/HeaderDropdownProfile/HeaderDropdownProfile'
 import HeaderDropdownSubscription from '@/components/HeaderDropdownSubscription/HeaderDropdownSubscription'
+import React from 'react'
 
+jest.mock('react-i18next', () => ({
+    useTranslation: () => {
+        return {
+            t: (str: string) => str,
+            i18n: {
+                changeLanguage: () => new Promise(() => {}),
+            },
+        }
+    },
+}))
 const handleMouseOver = jest.fn()
 jest.mock('next/router', () => require('next-router-mock'))
 Object.defineProperty(window, 'matchMedia', {
@@ -68,6 +79,17 @@ const dropdownContentMock = {
     ],
 }
 
+jest.mock('swiper/react', () => ({
+    Swiper: ({ children }: any) => <div data-testid="DefaultCarousel-testId">{children}</div>,
+    SwiperSlide: ({ children }: any) => <div data-testid="DefaultCarouselSlide-testId">{children}</div>,
+}))
+jest.mock('swiper', () => ({
+    Navigation: (props: any) => null,
+    Pagination: (props: any) => null,
+    Scrollbar: (props: any) => null,
+    A11y: (props: any) => null,
+}))
+
 describe('Header nav testing', () => {
     it('renders logo', () => {
         render(<Header />)
@@ -128,12 +150,7 @@ describe('Header nav testing', () => {
     it('renders dropdown filters on mouse over', () => {
         render(<Header />)
         render(<NavigationBar handleMouseOver={handleMouseOver} />)
-        render(
-            <HeaderDropdownFilters
-                subMenuData={dropdownContentMock}
-                type="genre"
-            />
-        )
+        render(<HeaderDropdownFilters subMenuData={dropdownContentMock} type="genre" />)
 
         const navBar = screen.getByTestId('navigation-bar')
         const subscriptionWidget = screen.getByTestId('subscription-widget')
@@ -160,7 +177,7 @@ describe('Header nav testing', () => {
     it('renders dropdownProfile on mouse over', () => {
         resizeScreenSize(1440)
         render(<Header />)
-        render(<HeaderDropdownProfile />)
+        render(<HeaderDropdownProfile openAuthModal={() => {}} />)
 
         const profileButton = screen.getByTestId('profile-button')
         const dropdownProfile = screen.getByTestId('dropdown-profile')

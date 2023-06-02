@@ -13,13 +13,7 @@ interface IChannelsList {
     width: number
 }
 
-const ChannelsList: FC<IChannelsList> = ({
-    title,
-    channels,
-    slidesPerView,
-    slidesPerGroup,
-    width,
-}) => {
+const ChannelsList: FC<IChannelsList> = ({ title, channels, slidesPerView, slidesPerGroup, width }) => {
     const leftButtonRef = useRef(null)
     const rightButtonRef = useRef(null)
 
@@ -27,11 +21,7 @@ const ChannelsList: FC<IChannelsList> = ({
     const [currentSlide, setCurrentSlide] = useState(0)
 
     return (
-        <div
-            className={styles.container}
-            onMouseOver={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
-        >
+        <div className={styles.container} onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
             <h4 className={styles.title}>{title}</h4>
             <Swiper
                 className={styles.swiper}
@@ -49,7 +39,7 @@ const ChannelsList: FC<IChannelsList> = ({
                 }}
                 speed={500}
             >
-                {channels.map((channel, index) => (
+                {channels.map((channel: any, index: number) => (
                     <SwiperSlide key={index} style={{ width: `${width}px` }}>
                         {channel}
                     </SwiperSlide>
@@ -57,10 +47,8 @@ const ChannelsList: FC<IChannelsList> = ({
             </Swiper>
             <div
                 className={cn(styles.shadow, {
-                    [styles.shadow_right]:
-                        currentSlide < channels.length - slidesPerView - 1,
-                    [styles.shadow_left]:
-                        currentSlide >= channels.length - slidesPerView - 1,
+                    [styles.shadow_right]: currentSlide < channels.length - slidesPerView - 1,
+                    [styles.shadow_left]: currentSlide >= channels.length - slidesPerView - 1,
                 })}
             ></div>
             <div
@@ -73,9 +61,7 @@ const ChannelsList: FC<IChannelsList> = ({
             </div>
             <div
                 className={cn(styles.button, styles.button_right, {
-                    [styles.button_visible]:
-                        isHover &&
-                        currentSlide < channels.length - slidesPerView - 1,
+                    [styles.button_visible]: isHover && currentSlide < channels.length - slidesPerView - 1,
                 })}
                 ref={rightButtonRef}
             >
