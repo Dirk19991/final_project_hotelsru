@@ -13,7 +13,7 @@ interface FilterSelect {
     currentModal: string
     setCurrentModal: (value: string) => void
     title: string
-    selectValue: string
+    selectValue: string | undefined | null | string[]
     list: any
 }
 

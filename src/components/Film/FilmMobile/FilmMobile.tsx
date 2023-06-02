@@ -1,6 +1,6 @@
 import { ButtonActor } from '@/stories/Button/ButtonActor'
 import { ButtonRating } from '@/stories/Button/ButtonRating'
-import { useEffect, useRef, useState, FC } from 'react'
+import { useEffect, useRef, useState, FC, useCallback } from 'react'
 import styles from './FilmMobile.module.scss'
 import Image from 'next/image'
 import FilmHeader from '../Header/Header'
@@ -22,18 +22,18 @@ const FilmMobile: FC<FilmMobile> = ({ movie }) => {
 
     const fixedRating = +parseFloat(rating).toFixed(1)
 
-    useEffect(() => {
-        window.addEventListener('resize', onResize)
-        onResize()
-    }, [])
-
-    const onResize = () => {
+    const cachedOnResize = useCallback(() => {
         if (actorsRef.current && actorsRef.current[0]) {
             const maxElements = Math.floor(window.innerWidth / actorsRef.current[0].clientWidth)
             const needElements = Math.min(5, maxElements - 1)
             setActors(allActors.slice(0, needElements))
         }
-    }
+    }, [allActors])
+
+    useEffect(() => {
+        window.addEventListener('resize', cachedOnResize)
+        cachedOnResize()
+    }, [cachedOnResize])
 
     return (
         <div className={styles.wrapper}>

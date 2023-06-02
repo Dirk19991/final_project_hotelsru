@@ -18,7 +18,7 @@ import cn from 'classnames'
 import NavigationResponse from '@/types/Response/NavigationResponse'
 
 interface Header {
-    navigation: NavigationResponse
+    navigation?: NavigationResponse
 }
 
 const Header: FC<Header> = ({ navigation }) => {
@@ -28,7 +28,7 @@ const Header: FC<Header> = ({ navigation }) => {
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const [headerLinks, setHeaderLinks] = useState<NavigationResponse>(navigation)
+    const [headerLinks, setHeaderLinks] = useState<NavigationResponse | undefined>(navigation)
 
     const [isAuthModal, setIsAuthModal] = useState(false)
 
@@ -138,19 +138,19 @@ const Header: FC<Header> = ({ navigation }) => {
                                             {currentTabId === 3 && (
                                                 <HeaderDropdownFilters
                                                     data-testid="movies-dropdown"
-                                                    subMenuData={headerLinks.movies_categories}
+                                                    subMenuData={headerLinks?.movies_categories}
                                                     type="movie"
                                                 />
                                             )}
                                             {currentTabId === 4 && (
                                                 <HeaderDropdownFilters
-                                                    subMenuData={headerLinks.series_categories}
+                                                    subMenuData={headerLinks?.series_categories}
                                                     type="series"
                                                 />
                                             )}
                                             {currentTabId === 5 && (
                                                 <HeaderDropdownFilters
-                                                    subMenuData={headerLinks.animation_categories}
+                                                    subMenuData={headerLinks?.animation_categories}
                                                     type="cartoon"
                                                 />
                                             )}
