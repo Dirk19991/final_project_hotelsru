@@ -1,8 +1,18 @@
 import Footer from '@/components/Footer/Footer'
 import '@testing-library/jest-dom'
-import {render, screen} from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import resizeScreenSize from '@/util/resizeScreenSize'
 
+jest.mock('react-i18next', () => ({
+    useTranslation: () => {
+        return {
+            t: (str: string) => str,
+            i18n: {
+                changeLanguage: () => new Promise(() => {}),
+            },
+        }
+    },
+}))
 jest.mock('next/router', () => require('next-router-mock'))
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
@@ -32,7 +42,7 @@ describe('Testing footer', () => {
         expect(footerMobile).not.toBeInTheDocument()
     })
 
-    it("renders only footer mobile on tab or less screens", () => {
+    it('renders only footer mobile on tab or less screens', () => {
         resizeScreenSize(600)
         render(<Footer />)
 

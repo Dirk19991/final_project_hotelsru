@@ -92,10 +92,10 @@ const DefaultCarouselSlide: FC<DefaultCarouselSlide> = ({
                 </div>
                 <div ref={panelRef} className={styles.panel}>
                     <div className={styles.panel__icons}>
-                        <TooltipIcon icon={faBookmark} text={t('watchLater')} />
-                        <TooltipIcon icon={faWandMagicSparkles} text={t('similar')} />
-                        <TooltipIcon icon={faStar} text={t('alreadyWatched')} />
-                        <TooltipIcon icon={faBan} text={t('dontLikeIt')} />
+                        <TooltipIcon icon={faBookmark} text={t('watchLater')} data-testid="watchLater" />
+                        <TooltipIcon icon={faWandMagicSparkles} text={t('similar')} data-testid="similar" />
+                        <TooltipIcon icon={faStar} text={t('alreadyWatched')} data-testid="simalreadyWatchedilar" />
+                        <TooltipIcon icon={faBan} text={t('dontLikeIt')} data-testid="dislike" />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.rating}>

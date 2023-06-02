@@ -1,5 +1,4 @@
-export function FormatDate(date: string) {
-    
+export function FormatDate(date: string | Date) {
     const dateFormat = new Date(date)
 
     const day = dateFormat.getDate();
