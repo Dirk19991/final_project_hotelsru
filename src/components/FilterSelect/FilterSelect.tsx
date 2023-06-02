@@ -8,7 +8,16 @@ import yearFilterTitle from '@/util/yearFilterTitle'
 import { Genre, Country } from '@/types/Response/MovieResponse'
 import { Years } from '@/types/Response/FiltersResponse'
 
-const FilterSelect: FC<any> = ({ filterType, currentModal, setCurrentModal, list, title, selectValue }) => {
+interface FilterSelect {
+    filterType: string
+    currentModal: string
+    setCurrentModal: (value: string) => void
+    title: string
+    selectValue: string
+    list: any
+}
+
+const FilterSelect: FC<FilterSelect> = ({ filterType, currentModal, setCurrentModal, list, title, selectValue }) => {
     const { query, asPath, replace } = useRouter()
     const { t, i18n } = useTranslation(['movies', 'common'])
     const yearTextForms = [t('allYears'), t('before'), t('year')]

@@ -7,29 +7,33 @@ import FilmHeader from '../Header/Header'
 import FilmDescription from '../Description/Description'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
+import { Movie } from '@/types/Response/MovieResponse'
 
-const FilmMobile: FC<any> = ({ movie }) => {
-    const { trailer, description, rating, year, nameEn, nameRu, duration, genres } = movie
+interface FilmMobile {
+    movie: Movie
+}
+
+const FilmMobile: FC<FilmMobile> = ({ movie }) => {
+    const { trailer, description, rating, year, nameEn, nameRu, duration, genres, actors: allActors } = movie
 
     const { t, i18n } = useTranslation(['film'])
-    // const [actors, setActors] = useState(allActors.slice(0, 5))
-    // const actorsRef = useRef<Array<HTMLLIElement | null>>([])
+    const [actors, setActors] = useState(allActors.slice(0, 5))
+    const actorsRef = useRef<Array<HTMLLIElement | null>>([])
 
     const fixedRating = +parseFloat(rating).toFixed(1)
 
-    // useEffect(() => {
-    //     window.addEventListener('resize', onResize)
-    //     onResize()
-    // }, [])
+    useEffect(() => {
+        window.addEventListener('resize', onResize)
+        onResize()
+    }, [])
 
-
-    // const onResize = () => {
-    //     if (actorsRef.current && actorsRef.current[0]) {
-    //         const maxElements = Math.floor(window.outerWidth / actorsRef.current[0].clientWidth)
-    //         const needElements = Math.min(5, maxElements - 1)
-    //         // setActors(allActors.slice(0, needElements))
-    //     }
-    // }
+    const onResize = () => {
+        if (actorsRef.current && actorsRef.current[0]) {
+            const maxElements = Math.floor(window.innerWidth / actorsRef.current[0].clientWidth)
+            const needElements = Math.min(5, maxElements - 1)
+            setActors(allActors.slice(0, needElements))
+        }
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -58,15 +62,14 @@ const FilmMobile: FC<any> = ({ movie }) => {
                                 text={t('iviRatingNoColon')}
                             />
                         </li>
-                        {/* {actors.map((actor, index) => (
-                            <li ref={(el) => (actorsRef.current[index] = el)}>
+                        {actors.map((actor, index) => (
+                            <li ref={(el) => (actorsRef.current[index] = el)} key={actor.personId}>
                                 <ButtonActor
-                                    href={`/person/${actor.id}`}
-                                    text={i18n.language === 'en' ? actor.enName : actor.name}
-                                    key={actor.id}
+                                    href={`/person/${actor.personId}`}
+                                    text={i18n.language === 'en' ? actor.nameEn : actor.nameRu}
                                     image={
                                         <Image
-                                            alt={actor.enName}
+                                            alt={actor.nameEn}
                                             src={actor.photo}
                                             fill
                                             style={{ objectFit: 'cover' }}
@@ -74,7 +77,7 @@ const FilmMobile: FC<any> = ({ movie }) => {
                                     }
                                 />
                             </li>
-                        ))} */}
+                        ))}
                     </ul>
                     <Button type={'freeMovies'} label={t('freeMovies')} src="/icons/play.svg" height={20} width={28} />
                     <FilmDescription text={description} />

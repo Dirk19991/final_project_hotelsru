@@ -7,7 +7,7 @@ import { Subcategory, Category } from '@/types/Response/NavigationResponse'
 
 interface IHeaderDropdownFilters {
     type: string
-    subMenuData: Category
+    subMenuData?: Category
 }
 
 const HeaderDropdownFilters: FC<IHeaderDropdownFilters> = ({ subMenuData, type }) => {

@@ -60,3 +60,12 @@
     top: calc(50% - 16px);
     left: -30px;
 }
+
+@media screen and (max-width: 600px) {
+    .nextButton {
+        right: -22px;
+    }
+    .prevButton {
+        left: -22px;
+    }
+}

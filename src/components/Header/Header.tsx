@@ -15,15 +15,20 @@ import HeaderDropdownTV from '../HeaderDropdownTV/HeaderDropdownTV'
 import { createPortal } from 'react-dom'
 import AuthModal from '../AuthModal/AuthModal'
 import cn from 'classnames'
+import NavigationResponse from '@/types/Response/NavigationResponse'
 
-const Header: FC<any> = ({ navigation }) => {
+interface Header {
+    navigation: NavigationResponse
+}
+
+const Header: FC<Header> = ({ navigation }) => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const matchesTabSize = useMediaQuery('(min-width: 600px)')
 
     const [isHovering, setIsHovering] = useState<boolean>(false)
     const [currentTabId, setCurrentTabId] = useState<number | null>(null)
 
-    const [headerLinks, setHeaderLinks] = useState<any>(navigation)
+    const [headerLinks, setHeaderLinks] = useState<NavigationResponse>(navigation)
 
     const [isAuthModal, setIsAuthModal] = useState(false)
 

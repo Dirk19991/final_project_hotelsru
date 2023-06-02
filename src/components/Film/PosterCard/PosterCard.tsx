@@ -1,4 +1,4 @@
-import { IMovie } from '@/types/Component/IMovie'
+import { Movies } from '@/types/Response/MoviesResponse'
 import { FC } from 'react'
 import styles from './PosterCard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,7 +7,11 @@ import ProgressBar from '@/stories/DefaultCarouselSlide/ProgressBar/ProgressBar'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 
-const PosterCard: FC<any> = ({ film }) => {
+interface PosterCard {
+    film: Movies
+}
+
+const PosterCard: FC<PosterCard> = ({ film }) => {
     const { poster, rating, year, genres, duration, nameEn, nameRu } = film
     const CHARTS = [33, 35, 20, 33]
     const [integerRating, fractionalRating] = parseFloat(rating).toFixed(1).toString().split('.')
