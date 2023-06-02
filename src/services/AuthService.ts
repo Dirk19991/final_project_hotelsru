@@ -1,28 +1,6 @@
 import $auth from '@/http/auth'
 import axios from 'axios'
-
-export interface AuthError {
-    status: number
-    message?: string
-}
-
-export interface AuthResponse {
-    accessToken: string
-    refreshToken: string
-    user: IUser
-}
-
-interface IUser {
-    firstName?: string
-    lastName?: string
-    phone?: string
-    login?: string
-    id: number
-    password: string
-    email: string
-    isActivated: boolean
-    activationLink?: string
-}
+import { AuthResponse, AuthError } from '@/types/Response/AuthResponse'
 
 export default class AuthService {
     static isAuth = false
