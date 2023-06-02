@@ -2,7 +2,17 @@ import React, { FC } from 'react'
 import styles from './RangeSlider.module.scss'
 import { useRouter } from 'next/router'
 
-const RangeSlider: FC<any> = ({ title, sliderValue, setSliderValue, min, max, step, queryName }) => {
+interface RangeSlider {
+    title: string
+    sliderValue: string
+    min: number
+    max: number
+    step: number
+    queryName: string
+    setSliderValue: (value: string) => void
+}
+
+const RangeSlider: FC<RangeSlider> = ({ title, sliderValue, setSliderValue, min, max, step, queryName }) => {
     const { query, replace } = useRouter()
 
     const inputChangeHandler = () => {

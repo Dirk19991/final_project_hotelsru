@@ -6,8 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CreatorMedallion from '../CreatorMedallion/CreatorMedallion'
 import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
+import { Movie } from '@/types/Response/MovieResponse'
+import { Person } from '@/types/Response/PersonResponse'
 
-const CreatorModal: FC<any> = ({ film, close }) => {
+interface CreatorModal {
+    film: Movie
+    close: () => void
+}
+
+const CreatorModal: FC<CreatorModal> = ({ film, close }) => {
     const { nameEn, nameRu, producer, actors, operator, director, composer, editor } = film
 
     const { i18n, t } = useTranslation(['film'])
@@ -79,10 +86,10 @@ const CreatorModal: FC<any> = ({ film, close }) => {
                                 <div key={i}>
                                     <h3 className={styles.profession}>{persons.name}</h3>
                                     <ul className={styles.persons}>
-                                        {persons.values.map((person: any, i: number) => {
+                                        {persons.values.map((person: Person) => {
                                             const personName = i18n.language === 'en' ? person.nameEn : person.nameRu
                                             return (
-                                                <li key={person.id + i}>
+                                                <li key={person.personId}>
                                                     <CreatorMedallion
                                                         size={'big'}
                                                         name={personName}

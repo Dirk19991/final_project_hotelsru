@@ -1,11 +1,11 @@
 import styles from './Comments.module.scss'
-import { IAdminPanelMovie, IMovie } from '@/types/Component/IMovie'
 import Comment from './Comment/Comment'
 import CommentForm from './CommentForm/CommentForm'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 import { CommentType } from '../CommentsCarousel/CommentsCarousel'
 import { useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
+import { IAdminPanelMovie } from '@/types/Component/IMovie'
 
 interface IComments {
     comments: CommentType[]
@@ -14,13 +14,13 @@ interface IComments {
 }
 
 const Comments = ({ comments, film, setCommentsRefresh }: IComments) => {
-    useEffect(() => {
-        window.scroll(0, 0)
-    }, [])
-
     const { i18n } = useTranslation()
     const mainGenre = i18n.language === 'en' ? film.genres[0].nameEn : film.genres[0].nameRu
     const movieName = i18n.language === 'en' ? film.nameEn : film.nameRu
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
 
     return (
         <div className="container">
@@ -52,8 +52,8 @@ const Comments = ({ comments, film, setCommentsRefresh }: IComments) => {
                             year={film.year}
                             href={`/watch/${film.id}`}
                             image={film.poster}
-                            country={"CША"}
-                            genre={"Фантастика"}
+                            countries={film.countries}
+                            genres={film.genres}
                             name={movieName}
                             duration={film.duration}
                         />

@@ -4,8 +4,16 @@ import styles from './CreatorMedallion.module.scss'
 import cn from 'classnames'
 import Link from 'next/link'
 
-const CreatorMedallion: FC<any> = ({ size, name, src, href }) => {
-    const [isHover, setIsHover] = useState(false)
+interface CreatorMedallion {
+    size: string
+    name: string
+    src: string
+    href: string
+    subtitle?: string | null
+}
+
+const CreatorMedallion: FC<CreatorMedallion> = ({ size, name, src, href }) => {
+    const [isHover, setIsHover] = useState<boolean>(false)
 
     return (
         <Link href={href}>
@@ -24,7 +32,7 @@ const CreatorMedallion: FC<any> = ({ size, name, src, href }) => {
                 </div>
                 <div className={styles.description}>
                     Х
-                    {name.split(' ').map((el: any, i: number) => (
+                    {name.split(' ').map((el: string, i: number) => (
                         <div
                             key={i}
                             className={cn(styles.name, {

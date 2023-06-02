@@ -8,13 +8,17 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Person } from '@/types/Response/PersonResponse'
 
-const FilterSearch: FC<any> = ({ queryName }) => {
+interface FilterSearch {
+    queryName: string
+}
+
+const FilterSearch: FC<FilterSearch> = ({ queryName }) => {
     const { t, i18n } = useTranslation(['movies'])
     const { query, replace } = useRouter()
     const placeholderTitle = queryName === 'director' ? t('searchByProducer') : t('searchByActor')
     const personTitle = queryName === 'director' ? t('asDirector') : t('asActor')
     const [isOpened, setIsOpened] = useState<boolean>(false)
-    const [personsList, setPersonsList] = useState<any>([])
+    const [personsList, setPersonsList] = useState<Person[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [inputValue, setInputValue] = useState<string>('')
 

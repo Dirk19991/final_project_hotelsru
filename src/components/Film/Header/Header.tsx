@@ -5,8 +5,16 @@ import toHoursAndMinutes from '@/util/toHoursAndMinutes'
 import FilmBreadcrumbs from '../Breadcrumbs/Breadcrumbs'
 import cn from 'classnames'
 import { useTranslation } from 'next-i18next'
+import { Genre } from '@/types/Response/MovieResponse'
 
-const Header: FC<any> = ({ year, title, genres, duration }) => {
+interface Header {
+    year: string
+    title: string
+    genres: Genre[]
+    duration: string
+}
+
+const Header: FC<Header> = ({ year, title, genres, duration }) => {
     const { t, i18n } = useTranslation(['film'])
     const time = toHoursAndMinutes(duration, i18n)
 
@@ -21,7 +29,7 @@ const Header: FC<any> = ({ year, title, genres, duration }) => {
                 &nbsp; {'18+'}
             </div>
             <FilmBreadcrumbs
-                items={genres.map((genre: any) => {
+                items={genres.map((genre: Genre) => {
                     const name = i18n.language === 'ru' ? genre.nameRu : genre.nameEn
                     const link = engNameToLink(genre.nameEn)
                     return { name, href: `/movies/${link}` }

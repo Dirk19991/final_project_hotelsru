@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from 'react'
+import React, { useState, FC } from 'react'
 import styles from './Filters.module.scss'
 import FilterSelect from '../FilterSelect/FilterSelect'
 import FilterSearch from '../FilterSearch/FilterSearch'
@@ -8,8 +8,16 @@ import { useTranslation } from 'next-i18next'
 import RangeSlider from '../RangeSlider/RangeSlider'
 import { useRouter } from 'next/router'
 import yearFilterTitle from '@/util/yearFilterTitle'
+import { Genre, Country } from '@/types/Response/MovieResponse'
+import FiltersResponse from '@/types/Response/FiltersResponse'
 
-const Filters: FC<any> = ({ allFilters, genresValue, countriesValue }) => {
+interface Filters {
+    allFilters: FiltersResponse
+    genresValue?: Genre[]
+    countriesValue?: Country[]
+}
+
+const Filters: FC<Filters> = ({ allFilters, genresValue, countriesValue }) => {
     const { query, replace } = useRouter()
     const { t, i18n } = useTranslation('movies')
     const isResetDisabled = !query.genres || (Object.keys(query).length === 1 && query.genres === 'all')
@@ -20,11 +28,11 @@ const Filters: FC<any> = ({ allFilters, genresValue, countriesValue }) => {
 
     const genresQuery =
         genresValue &&
-        genresValue.map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
+        genresValue.map(({ nameEn, nameRu }: Genre) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
 
     const countriesQuery =
         countriesValue &&
-        countriesValue.map(({ nameEn, nameRu }: any) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
+        countriesValue.map(({ nameEn, nameRu }: Country) => (i18n.language === 'ru' ? nameRu : nameEn)).join(', ')
 
     const [currentModal, setCurrentModal] = useState<string>('')
 

@@ -106,8 +106,6 @@ const AdminPanelAdd = () => {
             slogan: slogan,
         }
 
-        console.log(newMovie)
-
         try {
             const response = await $auth.post(`${PORT}/movie`, newMovie, {
                 headers: {
