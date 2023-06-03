@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const $auth = axios.create({
+    withCredentials: true,
     baseURL: process.env.DEPLOY_API_URL,
 })
 
