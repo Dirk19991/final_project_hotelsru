@@ -38,7 +38,7 @@ export default class AuthService {
 
     static async checkAuth() {
         try {
-            const response = await axios.get<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/refreshAccessToken`)
+            const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/refreshAccessToken`)
             this.setToken(response.data.accessToken)
         } catch (e) {
             console.log(e)
