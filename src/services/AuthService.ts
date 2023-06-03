@@ -1,4 +1,5 @@
 import $auth from '@/http/auth'
+import parseJwt from '@/util/parseJwt'
 import axios from 'axios'
 
 export interface AuthError {
@@ -26,6 +27,7 @@ interface IUser {
 
 export default class AuthService {
     static isAuth = false
+    static isAdmin = false
 
     static async loginOrRegister(email: string, password: string): Promise<AuthError | void> {
         try {
@@ -33,8 +35,7 @@ export default class AuthService {
                 email,
                 password,
             })
-            localStorage.setItem('token', response.data.accessToken)
-            this.isAuth = true
+            this.setToken(response.data.accessToken)
         } catch (e) {
             if (axios.isAxiosError(e)) {
                 const code = e?.response?.data?.statusCode
@@ -51,18 +52,18 @@ export default class AuthService {
     static async logout(): Promise<void> {
         try {
             await $auth.post('/profile/logout')
-            localStorage.removeItem('token')
-            this.isAuth = false
+            this.removeToken()
         } catch (e) {
             console.log(e)
         }
     }
 
     static async checkAuth() {
-        //todo refresh
-        const token = localStorage.getItem('token')
-        if (token) {
-            this.isAuth = true
+        try {
+            const response = await axios.get<AuthResponse>(`${process.env.DEPLOY_API_URL}/profile/refreshAccessToken`)
+            this.setToken(response.data.accessToken)
+        } catch (e) {
+            console.log(e)
         }
     }
 
@@ -76,10 +77,24 @@ export default class AuthService {
                 email,
                 password,
             })
-            localStorage.setItem('token', response.data.accessToken)
-            this.isAuth = true
+            this.setToken(response.data.accessToken)
         } catch (e) {
             return { status: 500, message: e?.toString() }
         }
+    }
+
+    private static setToken(token: string) {
+        localStorage.setItem('token', token)
+        this.isAuth = true
+        const data = parseJwt(token)
+        if (data && data.roles.includes('admin')) {
+            this.isAdmin = true
+        }
+    }
+
+    private static removeToken() {
+        localStorage.removeItem('token')
+        this.isAuth = false
+        this.isAdmin = false
     }
 }
