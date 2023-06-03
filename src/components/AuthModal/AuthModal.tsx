@@ -73,6 +73,7 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
                                         type="text"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        data-testid="email-input"
                                     />
                                     <label className={styles.float} htmlFor="email">
                                         {t('auth.typeEmail')}
@@ -86,12 +87,18 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
+                                        data-testid="password-input"
                                     />
                                     <label className={styles.float} htmlFor="password">
                                         {t('auth.typePassword')}
                                     </label>
                                 </label>
-                                <Button onClick={onContinueClick} type="watchSubscription" label={t('auth.continue')} />
+                                <Button
+                                    onClick={onContinueClick}
+                                    type="watchSubscription"
+                                    label={t('auth.continue')}
+                                    testId="login-button"
+                                />
                                 <div className={styles.socials}>
                                     <button onClick={onGoogleClick}>
                                         <Image src="/icons/google.svg" alt={'google-icon'} width={20} height={20} />
@@ -116,7 +123,10 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
                                     <Link href="https://www.ivi.ru/info/agreement">{t('auth.withAgreement')}</Link>
                                 </span>
                             </div>
-                            <div className={cn(styles.error, { [styles.error_none]: !errorMes })}>
+                            <div
+                                className={cn(styles.error, { [styles.error_none]: !errorMes })}
+                                data-testid="login-error"
+                            >
                                 <FontAwesomeIcon icon={faCircleExclamation} fontSize={30} />
                                 <div className={styles.error__info}>
                                     <span className={styles.error__title}>{t('auth.error')}</span>

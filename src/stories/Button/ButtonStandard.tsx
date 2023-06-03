@@ -32,9 +32,21 @@ export interface ButtonProps {
     href?: string
     disabled?: boolean | undefined
     backgroundColor?: string
+    testId?: string
 }
 
-export const Button = ({ type, label, src, width, height, href, onClick, disabled, backgroundColor }: ButtonProps) => {
+export const Button = ({
+    type,
+    label,
+    src,
+    width,
+    height,
+    href,
+    onClick,
+    disabled,
+    backgroundColor,
+    testId,
+}: ButtonProps) => {
     // classnames с помощью функции cn собирает общий для всех кнопок класс (.button) и тот, который пришел из пропсов ([type])
     const btnClass = cn(classes.button, classes[type])
 
@@ -50,6 +62,7 @@ export const Button = ({ type, label, src, width, height, href, onClick, disable
                         type="button"
                         className={btnClass}
                         disabled={disabled !== undefined && disabled}
+                        data-testid={testId}
                     >
                         {src ? <Image height={height} width={width} src={src} alt={src}></Image> : ''}
 
@@ -64,6 +77,7 @@ export const Button = ({ type, label, src, width, height, href, onClick, disable
                     type="button"
                     className={btnClass}
                     disabled={disabled !== undefined && disabled}
+                    data-testid={testId}
                 >
                     {src ? <Image height={height} width={width} src={src} alt={src}></Image> : ''}
 
