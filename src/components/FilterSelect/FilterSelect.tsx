@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next'
 import yearFilterTitle from '@/util/yearFilterTitle'
 import { Genre, Country } from '@/types/Response/MovieResponse'
 import { Years } from '@/types/Response/FiltersResponse'
+import getQueryObject from '@/util/getQueryObject'
 
 interface FilterSelect {
     filterType: string
@@ -26,12 +27,7 @@ const FilterSelect: FC<FilterSelect> = ({ filterType, currentModal, setCurrentMo
     const isCurrent = (filter: string) => currentModal === filter && filterType === filter
 
     const yearsNavigate = (value: string) => {
-        const pathname = '/movies/[genres]'
-        const genres = query.genres ?? 'all'
-
-        const pathnameCopy = `/movies/${genres}`
-        const queryCopy = Object.assign({}, query)
-        delete queryCopy.genres
+        const { genres, pathname, pathnameCopy, queryCopy } = getQueryObject(query)
 
         if (value === '') {
             delete query.years
@@ -57,7 +53,6 @@ const FilterSelect: FC<FilterSelect> = ({ filterType, currentModal, setCurrentMo
         const pathname = '/movies/[genres]'
         const genres = query.genres ?? 'all'
         const countries = query.countries ? String(query.countries) : ''
-
         const pathnameCopy = `/movies/${genres}`
         const queryCopy = Object.assign({}, query)
         delete queryCopy.genres

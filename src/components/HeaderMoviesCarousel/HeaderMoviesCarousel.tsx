@@ -7,6 +7,7 @@ import { Movies } from '@/types/Response/MoviesResponse'
 
 const HeaderMoviesCarousel = () => {
     const [moviesList, setMoviesList] = useState<Movies[]>([])
+    const IMAGE_PLACEHOLDER = '/icons/no-image-placeholder.png'
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useEffect(() => {
@@ -53,7 +54,14 @@ const HeaderMoviesCarousel = () => {
                                 list.map((movie: Movies) => {
                                     return (
                                         <Link href={`/watch/${movie.id}`} key={movie.id}>
-                                            <Image src={movie.poster} alt={movie.nameEn} width={112} height={160} />
+                                            <Image
+                                                src={movie.poster}
+                                                alt={movie.nameEn}
+                                                width={112}
+                                                height={160}
+                                                placeholder="blur"
+                                                blurDataURL={IMAGE_PLACEHOLDER}
+                                            />
                                         </Link>
                                     )
                                 })}
