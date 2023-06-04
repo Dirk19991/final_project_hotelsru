@@ -17,3 +17,19 @@ export default interface MoviesResponse {
     result: Movies[]
     amount: number
 }
+
+export interface Top10Movie {
+    id: number
+    image: string
+    titleImg: string
+    link: string
+}
+
+export interface MainCarouselMovie {
+    id: number
+    img: string
+    textRU: string
+    textEN: string
+    titleImg: string
+    link: string
+}

@@ -13,7 +13,7 @@ import MovieService from '@/services/MovieService'
 import AppService from '@/services/AppService'
 import mainCarouselMock from '@/data/mainCarousel.json'
 import top10CarouselMock from '@/data/top10Movies.json'
-import { Movies } from '@/types/Response/MoviesResponse'
+import { Movies, MainCarouselMovie, Top10Movie } from '@/types/Response/MoviesResponse'
 import NavigationResponse from '@/types/Response/NavigationResponse'
 
 interface Carousel {
@@ -25,9 +25,11 @@ interface Carousel {
 interface IHome {
     carousels: Carousel[]
     navigation: NavigationResponse
+    mainCarousel: MainCarouselMovie[]
+    top10Carousel: Top10Movie[]
 }
 
-const Home: FC<IHome> = ({ carousels, navigation }) => {
+const Home: FC<IHome> = ({ carousels, navigation, mainCarousel, top10Carousel }) => {
     const { t } = useTranslation(['common'])
 
     return (
@@ -37,10 +39,10 @@ const Home: FC<IHome> = ({ carousels, navigation }) => {
                     Онлайн-кинотеатр Иви - фильмы, сериалы и мультфильмы смотреть онлайн бесплатно в хорошем качестве
                 </title>
             </Head>
-            <MainCarousel data={mainCarouselMock.movies} />
+            <MainCarousel data={mainCarousel} />
             <PromoButtons />
             <Promo />
-            <MediumCarousel data={top10CarouselMock.movies} />
+            <MediumCarousel data={top10Carousel} />
             {carousels &&
                 carousels.map((carousel: Carousel, i: number) => {
                     if (carousel.data?.length) {
@@ -65,10 +67,14 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const carousel1 = await MovieService.getMoviesByQuery('all', 'bestMovies')
     const carousel2 = await MovieService.getMoviesByQuery('action?years=1990-2000', 'action90s')
     const carousel3 = await MovieService.getMoviesByQuery('action?countries=ja', 'japanAction')
+    const mainCarousel = mainCarouselMock.movies
+    const top10Carousel = top10CarouselMock.movies
 
     return {
         props: {
             carousels: [carousel1, carousel2, carousel3],
+            mainCarousel,
+            top10Carousel,
             navigation,
             ...(await serverSideTranslations(locale as string, ['common', 'footer', 'promo', 'header'])),
         },
