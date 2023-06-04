@@ -27,6 +27,9 @@ const Film: FC<Film> = ({ movie }) => {
     const fixedRating = +parseFloat(rating).toFixed(1)
     const mainActors = actors.length > 4 ? actors.slice(0, 4) : actors
 
+    const isYoutube = trailer.includes('youtu')
+    console.log(isYoutube)
+
     return (
         <>
             {isMobile && <FilmMobile movie={movie} />}
@@ -35,13 +38,17 @@ const Film: FC<Film> = ({ movie }) => {
                     <div className={styles.trailer}>
                         <div className={styles.trailer__content}>
                             <div className={styles.video}>
-                                <iframe
-                                    width={'100%'}
-                                    height={'100%'}
-                                    src={trailer}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
+                                {isYoutube ? (
+                                    <iframe
+                                        width={'100%'}
+                                        height={'100%'}
+                                        src={trailer}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <div>НЕТ ТРЕЙЛЕРА</div>
+                                )}
                             </div>
                             <div data-testid="buttons" className={styles.icons}>
                                 <div className={styles.icons_left}>
