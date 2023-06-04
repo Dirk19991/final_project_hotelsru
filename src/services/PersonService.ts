@@ -12,9 +12,9 @@ interface GetActorResponse {
 }
 
 export default class PersonService {
-    static getPersonByName = async (type: string, name: string) => {
+    static getPersonByName = async (position: string, name: string) => {
         const response = await axios.get<Person[]>(
-            `${serverURL}/persons/name/search?position=${type}&personName=${name}`
+            `${serverURL}/persons/name/search?position=${position}&personName=${name}`
         )
         return response.data
     }

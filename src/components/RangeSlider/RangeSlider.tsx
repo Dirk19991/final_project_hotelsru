@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styles from './RangeSlider.module.scss'
 import { useRouter } from 'next/router'
+import getQueryObject from '@/util/getQueryObject'
 
 interface RangeSlider {
     title: string
@@ -16,11 +17,7 @@ const RangeSlider: FC<RangeSlider> = ({ title, sliderValue, setSliderValue, min,
     const { query, replace } = useRouter()
 
     const inputChangeHandler = () => {
-        const genres = query.genres ?? 'all'
-        const pathname = '/movies/[genres]'
-        const pathnameCopy = `/movies/${genres}`
-        const queryCopy = Object.assign({}, query)
-        delete queryCopy.genres
+        const { genres, pathname, pathnameCopy, queryCopy } = getQueryObject(query)
 
         if (sliderValue === '0') {
             delete queryCopy[queryName]

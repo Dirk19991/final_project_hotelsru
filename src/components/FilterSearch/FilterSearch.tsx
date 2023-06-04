@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Person } from '@/types/Response/PersonResponse'
+import getQueryObject from '@/util/getQueryObject'
 
 interface FilterSearch {
     queryName: string
@@ -27,7 +28,7 @@ const FilterSearch: FC<FilterSearch> = ({ queryName }) => {
         setPersonsList([])
         setInputValue(e.target.value)
         setIsLoading(true)
-        const queryNameCopy = 'actor' ? 'actors' : queryName
+        const queryNameCopy = queryName === 'actor' ? 'actors' : queryName
         try {
             const persons = await PersonService.getPersonByName(queryNameCopy, inputValue)
             setPersonsList(persons)
@@ -41,12 +42,7 @@ const FilterSearch: FC<FilterSearch> = ({ queryName }) => {
 
     const addToQueryHandler = (personId: number, name: string) => {
         setInputValue(name)
-        const genres = query.genres ?? 'all'
-        const pathname = '/movies/[genres]'
-        const pathnameCopy = `/movies/${genres}`
-        const queryCopy = Object.assign({}, query)
-        delete queryCopy.genres
-
+        const { genres, pathname, pathnameCopy, queryCopy } = getQueryObject(query)
         const path = { pathname, query: { ...query, [queryName]: personId, genres } }
         const as = { pathname: pathnameCopy, query: { ...queryCopy, [queryName]: personId } }
         const config = { shallow: true }
@@ -55,11 +51,7 @@ const FilterSearch: FC<FilterSearch> = ({ queryName }) => {
 
     const resetPerson = () => {
         setInputValue('')
-        const genres = query.genres ?? 'all'
-        const pathname = '/movies/[genres]'
-        const pathnameCopy = `/movies/${genres}`
-        const queryCopy = Object.assign({}, query)
-        delete queryCopy.genres
+        const { genres, pathname, pathnameCopy, queryCopy } = getQueryObject(query)
         delete queryCopy[queryName]
         delete query[queryName]
 
