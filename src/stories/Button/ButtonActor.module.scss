@@ -44,6 +44,10 @@
     overflow: hidden;
     position: relative;
 
+    > img {
+        object-fit: cover;
+    }
+
     @media (max-width: 599px) {
         width: 36px;
         height: 36px;

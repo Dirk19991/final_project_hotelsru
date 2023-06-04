@@ -75,6 +75,13 @@ export const BigThirtyDays: Story = {
         label: 'Смотреть 30 дней бесплатно',
         type: 'bigThirtyDays',
     },
+    decorators: [
+        (Story) => (
+            <div style={{ width: '500px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 }
 
 export const Register: Story = {
@@ -82,6 +89,13 @@ export const Register: Story = {
         label: 'Войти или зарегистрироваться',
         type: 'register',
     },
+    decorators: [
+        (Story) => (
+            <div style={{ width: '325px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 }
 
 export const Watch: Story = {
@@ -103,4 +117,11 @@ export const ShowMore: Story = {
         label: 'Показать еще',
         type: 'showMore',
     },
+    decorators: [
+        (Story) => (
+            <div style={{ width: '325px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 }
