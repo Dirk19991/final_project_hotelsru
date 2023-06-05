@@ -1,0 +1,81 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    height: 240px;
+}
+
+.content {
+    width: 66.66667%;
+    margin-right: 24px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(155px, 1fr));
+    grid-template-rows: repeat(2, auto);
+    gap: 25px;
+    svg {
+        stroke: $link-color;
+    }
+    li {
+        a {
+            > div {
+                height: 108px;
+                background-color: $tile-color;
+                padding: 14px 17px 17px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.4s;
+            }
+        }
+        &:hover {
+            a {
+                > div {
+                    background-color: lighten($tile-color, 10%);
+                }
+            }
+        }
+    }
+}
+.text {
+    font-weight: bold;
+    font-size: 15px;
+    color: $accent-color;
+    line-height: 20px;
+    span {
+        display: block;
+        margin-top: 3px;
+        font-size: 13px;
+        color: $link-color;
+    }
+}
+
+.sideContent {
+    width: 33.33333%;
+    padding-left: 24px;
+    border-left: 1px solid $divider-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.links {
+    ul {
+        li {
+            color: $link-color;
+            transition: 0.4s;
+            font-weight: bold;
+            cursor: pointer;
+            &:first-child {
+                margin-bottom: 13px;
+            }
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}

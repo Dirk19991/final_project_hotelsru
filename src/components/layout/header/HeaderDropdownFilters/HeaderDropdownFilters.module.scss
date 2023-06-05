@@ -1,0 +1,101 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    display: flex;
+    height: 323px;
+}
+
+.categories {
+    display: flex;
+    width: 50%;
+}
+.genres {
+    width: 66.66667%;
+    h4 {
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: $accent-color;
+        font-weight: bold;
+    }
+    ul {
+        width: 326px;
+        height: 304px;
+        column-count: 2;
+        column-fill: auto;
+        column-gap: 24px;
+        li {
+            color: $link-color;
+            margin-bottom: 13px;
+            transition: color 0.3s;
+            a {
+                cursor: pointer;
+            }
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}
+
+.singleColumn {
+    width: 33.33333%;
+}
+
+.sidebar {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+.tabs {
+    border-left: 1px solid $divider-color;
+    position: relative;
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 20px;
+        content: '';
+        background-color: $accent-color;
+        transition-duration: 0.3s;
+    }
+
+    ul {
+        user-select: none;
+        li {
+            padding: 3px 0 3px 15px;
+            margin-left: -1px;
+            color: $link-color;
+            transition: all 0.3s;
+            margin-bottom: 7px;
+            a {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.years,
+.countries {
+    margin-bottom: 30px;
+    h4 {
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: $accent-color;
+        font-weight: bold;
+    }
+    ul {
+        li {
+            color: $link-color;
+            margin-bottom: 13px;
+            transition: color 0.3s;
+            a {
+                cursor: pointer;
+            }
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}

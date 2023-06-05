@@ -1,0 +1,40 @@
+@import '@/styles/vars.scss';
+
+.list {
+    display: flex;
+    flex-direction: row;
+    color: $film-description-color;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 20px;
+
+    &_bold {
+        font-weight: 700;
+    }
+
+    & li:first-child::before {
+        display: none;
+    }
+
+    & li {
+        cursor: pointer;
+        transition-duration: 0.4s;
+        text-transform: capitalize;
+
+        &:hover {
+            color: $accent-color;
+        }
+
+        &::before {
+            content: '';
+            width: 2px;
+            height: 2px;
+            text-align: center;
+            background-color: $film-description-color;
+            margin-left: 6px;
+            margin-right: 6px;
+            margin-bottom: 3px;
+            display: inline-block;
+        }
+    }
+}
