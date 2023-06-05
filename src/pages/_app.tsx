@@ -15,7 +15,10 @@ const openSans = Open_Sans({
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     useEffect(() => {
-        AuthService.checkAuth()
+        const refresh = async () => await AuthService.checkAuth()
+        if (localStorage.getItem('token')) {
+            refresh()
+        }
     }, [])
 
     return (
