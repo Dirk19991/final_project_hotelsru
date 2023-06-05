@@ -21,7 +21,7 @@ const MainCarouselSlide: FC<IMainSlide> = ({ img, text, titleImg, titleText, lin
                 <Image priority className={styles.image} src={img} alt={text} fill sizes={'(max-width: 768px) 100vw'} />
                 <div className={styles.text}>
                     {titleImg ? (
-                        <Image priority className={styles.titleImage} src={titleImg} alt="" width={460} height={159} />
+                        <Image priority className={styles.titleImage} src={titleImg} alt={text} width={460} height={159} />
                     ) : (
                         <div className={styles.titleText}>{titleText}</div>
                     )}

@@ -2,6 +2,7 @@ import $auth from '@/http/auth'
 import parseJwt from '@/util/parseJwt'
 import axios from 'axios'
 import { AuthResponse, AuthError } from '@/types/Response/AuthResponse'
+import { setCookie, destroyCookie } from 'nookies'
 
 export default class AuthService {
     static isAuth = false
@@ -9,11 +10,18 @@ export default class AuthService {
 
     static async loginOrRegister(email: string, password: string): Promise<AuthError | void> {
         try {
-            const response = await $auth.post<AuthResponse>(`/profile/login`, {
+            const response = await $auth.post<AuthResponse>(`/login`, {
                 email,
                 password,
             })
-            this.setToken(response.data.accessToken)
+            const { refreshToken, accessToken } = response.data
+
+            setCookie(null, 'refreshToken', refreshToken, {
+                maxAge: 30 * 24 * 60 * 60,
+                path: '/',
+            })
+
+            this.setToken(accessToken)
         } catch (e) {
             if (axios.isAxiosError(e)) {
                 const code = e?.response?.data?.statusCode
@@ -29,7 +37,7 @@ export default class AuthService {
 
     static async logout(): Promise<void> {
         try {
-            await $auth.post('/profile/logout')
+            await $auth.post('/logout')
             this.removeToken()
         } catch (e) {
             console.log(e)
@@ -38,11 +46,18 @@ export default class AuthService {
 
     static async checkAuth() {
         try {
-            const response = await axios.post<AuthResponse>(
-                `${process.env.DEPLOY_API_URL}/profile/refreshAccessToken`,
-                { withCredentials: true }
-            )
-            this.setToken(response.data.accessToken)
+            const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/refreshAccessToken`, {
+                withCredentials: true,
+            })
+
+            const { refreshToken, accessToken } = response.data
+
+            setCookie(null, 'refreshToken', refreshToken, {
+                maxAge: 30 * 24 * 60 * 60,
+                path: '/',
+            })
+
+            this.setToken(accessToken)
         } catch (e) {
             console.log(e)
         }
@@ -50,15 +65,22 @@ export default class AuthService {
 
     private static async register(email: string, password: string): Promise<AuthError | void> {
         try {
-            await $auth.post<AuthResponse>(`/profile/registration`, {
+            await $auth.post<AuthResponse>(`/registration`, {
                 email,
                 password,
             })
-            const response = await $auth.post<AuthResponse>(`/profile/login`, {
+            const response = await $auth.post<AuthResponse>(`/login`, {
                 email,
                 password,
             })
-            this.setToken(response.data.accessToken)
+            const { refreshToken, accessToken } = response.data
+
+            setCookie(null, 'refreshToken', refreshToken, {
+                maxAge: 30 * 24 * 60 * 60,
+                path: '/',
+            })
+
+            this.setToken(accessToken)
         } catch (e) {
             return { status: 500, message: e?.toString() }
         }
@@ -75,6 +97,7 @@ export default class AuthService {
 
     private static removeToken() {
         localStorage.removeItem('token')
+        destroyCookie(null, 'refreshToken')
         this.isAuth = false
         this.isAdmin = false
     }

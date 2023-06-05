@@ -42,7 +42,7 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
             setErrorMes(t('auth.invalidEmail').toString())
             return false
         }
-        if (password.length < 6) {
+        if (password.length < 5) {
             setErrorMes(t('auth.notEnoughSymbols').toString())
             return false
         }
