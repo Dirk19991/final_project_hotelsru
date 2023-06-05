@@ -1,14 +1,14 @@
 import styles from './Person.module.scss'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import PersonFilm from '../PersonFilm/PersonFilm'
+import PersonFilm from './PersonFilm/PersonFilm'
 import { useRouter } from 'next/router'
 import { IActor, IAdminPanelMovie, IPerson } from '@/types/Component/IMovie'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { useTranslation } from 'next-i18next'
 import getFilmWord from '@/util/getFilmWord'
 import $auth from '@/http/auth'
-import { PORT } from '../AdminPanel/AdminPanel'
+import { PORT } from '../admin/AdminPanel'
 
 interface PersonProps {
     personData: GetActorResponse

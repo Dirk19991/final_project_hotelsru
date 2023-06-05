@@ -1,17 +1,17 @@
 import React, { useState, FC } from 'react'
-import styles from './MoviesTitle.module.scss'
+import styles from './PromoMovies.module.scss'
 import { useTranslation } from 'next-i18next'
 import yearFilterTitle from '@/util/yearFilterTitle'
 import { useRouter } from 'next/router'
 import { Genre, Country } from '@/types/Response/MovieResponse'
 
-interface IMoviesTitle {
+interface IPromoMovies {
     isActive: boolean
     genresValue?: Genre[]
     countriesValue?: Country[]
 }
 
-const MoviesTitle: FC<IMoviesTitle> = ({ isActive, genresValue, countriesValue }) => {
+const PromoMovies: FC<IPromoMovies> = ({ isActive, genresValue, countriesValue }) => {
     const { t, i18n } = useTranslation('movies')
     const [isOpen, toggleIsOpen] = useState(false)
     const yearTextForms = [t('allYears'), t('before'), t('year')]
@@ -75,4 +75,4 @@ const MoviesTitle: FC<IMoviesTitle> = ({ isActive, genresValue, countriesValue }
     )
 }
 
-export default MoviesTitle
+export default PromoMovies

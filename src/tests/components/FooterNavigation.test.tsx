@@ -1,4 +1,4 @@
-import FooterNavigation from '@/components/FooterNavigation/FooterNavigation'
+import FooterNavigation from '@/components/layout/footer/FooterNavigation/FooterNavigation'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 

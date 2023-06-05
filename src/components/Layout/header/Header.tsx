@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import HeaderDropdownTV from './HeaderDropdownTV/HeaderDropdownTV'
 import { createPortal } from 'react-dom'
-import AuthModal from '@/components/AuthModal/AuthModal'
+import AuthModal from '@/components/auth/AuthModal/AuthModal'
 import cn from 'classnames'
 import NavigationResponse from '@/types/Response/NavigationResponse'
 

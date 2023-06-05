@@ -1,6 +1,6 @@
 import Filters from '@/components/filters/Filters'
-import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
-import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
+import PromoMovies from '@/components/promoMovies/PromoMovies'
+import Breadcrumbs from '@/components/breadcrumbsMovies/Breadcrumbs'
 import { FC } from 'react'
 import Head from 'next/head'
 import 'swiper/scss'
@@ -43,7 +43,7 @@ const Movies: FC<IMovies> = ({ carousels, allFilters, navigation }) => {
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
-            <MoviesTitle isActive={false} />
+            <PromoMovies isActive={false} />
             <Filters allFilters={allFilters} />
 
             {carousels &&

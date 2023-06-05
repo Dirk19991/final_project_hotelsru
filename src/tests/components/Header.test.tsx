@@ -1,11 +1,11 @@
-import Header from '@/components/Header/Header'
-import NavigationBar from '@/components/NavigationBar/NavigationBar'
+import Header from '@/components/layout/header/Header'
+import NavigationBar from '@/components/layout/header/NavigationBar/NavigationBar'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import resizeScreenSize from '@/util/resizeScreenSize'
-import HeaderDropdownFilters from '@/components/HeaderDropdownFilters/HeaderDropdownFilters'
-import HeaderDropdownProfile from '@/components/HeaderDropdownProfile/HeaderDropdownProfile'
-import HeaderDropdownSubscription from '@/components/HeaderDropdownSubscription/HeaderDropdownSubscription'
+import HeaderDropdownFilters from '@/components/layout/header/HeaderDropdownFilters/HeaderDropdownFilters'
+import HeaderDropdownProfile from '@/components/layout/header/HeaderDropdownProfile/HeaderDropdownProfile'
+import HeaderDropdownSubscription from '@/components/layout/header/HeaderDropdownSubscription/HeaderDropdownSubscription'
 import React from 'react'
 
 jest.mock('react-i18next', () => ({

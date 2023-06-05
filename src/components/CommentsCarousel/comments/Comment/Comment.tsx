@@ -1,7 +1,7 @@
 import styles from './Comment.module.scss'
 import { useState } from 'react'
 import CommentForm from '../CommentForm/CommentForm'
-import { CommentType } from '@/components/CommentsCarousel/CommentsCarousel'
+import { CommentType } from '@/components/commentsCarousel/CommentsCarousel'
 import { FormatDate } from '@/util/formatDate'
 
 const Comment = ({ author, text, date, comments, id, setCommentsRefresh }: CommentType) => {
@@ -13,7 +13,7 @@ const Comment = ({ author, text, date, comments, id, setCommentsRefresh }: Comme
             <div className={styles.comment}>
                 <span>{author.name}</span>
                 <span>{FormatDate(date!)}</span>
-                <p>{text}</p> 
+                <p>{text}</p>
             </div>
             <div className={styles.likes}>
                 <span className={styles.likeUp}></span>

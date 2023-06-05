@@ -1,14 +1,14 @@
 import React, { useState, FC, useEffect } from 'react'
 import Head from 'next/head'
-import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
-import SortingPanel from '@/components/SortingPanel/SortingPanel'
+import Breadcrumbs from '@/components/breadcrumbsMovies/Breadcrumbs'
+import SortingPanel from '@/components/sortingPanel/SortingPanel'
 import Filters from '@/components/filters/Filters'
-import MoviesList from '@/components/MoviesList/MoviesList'
+import MoviesList from '@/components/moviesList/MoviesList'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/layout/Layout'
 import { useRouter } from 'next/router'
-import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
+import PromoMovies from '@/components/promoMovies/PromoMovies'
 import MovieService from '@/services/MovieService'
 import AppService from '@/services/AppService'
 import FiltersResponse from '@/types/Response/FiltersResponse'
@@ -100,7 +100,7 @@ const MoviesFilters: FC<IMoviesFilters> = ({ allFilters, navigation }) => {
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={[...breadcrumbsBase, ...dynamicBreadcrumbs]} />
-            <MoviesTitle isActive={true} genresValue={genresQuery} countriesValue={countriesQuery} />
+            <PromoMovies isActive={true} genresValue={genresQuery} countriesValue={countriesQuery} />
             <SortingPanel setCurrentSorting={setCurrentSorting} currentSorting={currentSorting} />
             <Filters allFilters={allFilters} genresValue={genresQuery} countriesValue={countriesQuery} />
             <MoviesList
