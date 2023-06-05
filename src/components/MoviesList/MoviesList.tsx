@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import styles from './MoviesList.module.scss'
-import MoviesListSkeleton from '@/components/MoviesListSkeleton/MoviesListSkeleton'
+import MoviesListSkeleton from './MoviesListSkeleton/MoviesListSkeleton'
 import { Button } from '@/stories/Button/ButtonStandard'
 import DefaultCarouselSlide from '@/stories/DefaultCarouselSlide/DefaultCarouselSlide'
 import { useTranslation } from 'next-i18next'

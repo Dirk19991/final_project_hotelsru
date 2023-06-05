@@ -1,4 +1,4 @@
-import FooterContacts from '@/components/FooterContacts/FooterContacts'
+import FooterContacts from '@/components/layout/footer/FooterContacts/FooterContacts'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 

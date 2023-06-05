@@ -1,4 +1,4 @@
-import AuthModal from '@/components/AuthModal/AuthModal'
+import AuthModal from '@/components/auth/AuthModal/AuthModal'
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 

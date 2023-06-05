@@ -1,4 +1,4 @@
-import Promo from '@/components/Promo/Promo'
+import Promo from '@/components/promoMain/Promo/Promo'
 import { fireEvent, render, screen, within } from '@testing-library/react'
 
 jest.mock('react-i18next', () => ({

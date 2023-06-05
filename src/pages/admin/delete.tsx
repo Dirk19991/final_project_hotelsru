@@ -1,5 +1,5 @@
-import AdminPanelDelete from '@/components/AdminPanelDelete/AdminPanelDelete'
-import Layout from '@/components/Layout/Layout'
+import AdminPanelDelete from '@/components/admin/AdminPanelDelete/AdminPanelDelete'
+import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 
 const DeletePage = () => {

@@ -1,4 +1,4 @@
-import NavigationBar from '@/components/NavigationBar/NavigationBar'
+import NavigationBar from '@/components/layout/header/NavigationBar/NavigationBar'
 import { render, screen, within } from '@testing-library/react'
 
 const handleMouseOver = jest.fn()

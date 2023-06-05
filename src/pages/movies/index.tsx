@@ -1,6 +1,6 @@
-import Filters from '@/components/Filters/Filters'
-import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
-import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
+import Filters from '@/components/filters/Filters'
+import PromoMovies from '@/components/promoMovies/PromoMovies'
+import Breadcrumbs from '@/components/breadcrumbsMovies/Breadcrumbs'
 import { FC } from 'react'
 import Head from 'next/head'
 import 'swiper/scss'
@@ -8,7 +8,7 @@ import { GetStaticProps } from 'next'
 import DefaultCarousel from '@/stories/DefaultCarousel/DefaultCarousel'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import Layout from '@/components/Layout/Layout'
+import Layout from '@/components/layout/Layout'
 import MovieService from '@/services/MovieService'
 import AppService from '@/services/AppService'
 import { Movies } from '@/types/Response/MoviesResponse'
@@ -43,7 +43,7 @@ const Movies: FC<IMovies> = ({ carousels, allFilters, navigation }) => {
                 </title>
             </Head>
             <Breadcrumbs breadcrumbsData={breadcrumbsData} />
-            <MoviesTitle isActive={false} />
+            <PromoMovies isActive={false} />
             <Filters allFilters={allFilters} />
 
             {carousels &&

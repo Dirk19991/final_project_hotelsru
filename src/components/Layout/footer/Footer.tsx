@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import FooterNavigation from '../FooterNavigation/FooterNavigation'
-import FooterContacts from '../FooterContacts/FooterContacts'
-import FooterMobile from '../FooterMobile/FooterMobile'
+import FooterNavigation from './FooterNavigation/FooterNavigation'
+import FooterContacts from './FooterContacts/FooterContacts'
+import FooterMobile from './FooterMobile/FooterMobile'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import styles from './Footer.module.scss'
 import { useRouter } from 'next/router'
@@ -18,13 +18,7 @@ const Footer = () => {
             {matchesDesktopSize && (
                 <div className="container">
                     <FooterNavigation />
-                    {isLoggedIn && (
-                        <Button
-                            type="showMore"
-                            label="Админ-панель"
-                            onClick={() => push('/admin')}
-                        />
-                    )}
+                    {isLoggedIn && <Button type="showMore" label="Админ-панель" onClick={() => push('/admin')} />}
                     <FooterContacts />
                 </div>
             )}

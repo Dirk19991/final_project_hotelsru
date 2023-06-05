@@ -1,4 +1,4 @@
-import MediumCarousel from '@/components/MediumCarousel/MediumCarousel'
+import MediumCarousel from '@/components/carousels/MediumCarousel/MediumCarousel'
 import { render } from '@testing-library/react'
 import data from '@/data/top10Movies.json'
 

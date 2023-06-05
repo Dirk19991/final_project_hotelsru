@@ -1,5 +1,5 @@
-import Layout from '@/components/Layout/Layout'
-import Person, { GetActorResponse } from '@/components/Person/Person'
+import Layout from '@/components/layout/Layout'
+import Person, { GetActorResponse } from '@/components/person/Person'
 import PersonService from '@/services/PersonService'
 import AppService from '@/services/AppService'
 import { GetServerSideProps } from 'next'

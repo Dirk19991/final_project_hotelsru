@@ -3,9 +3,9 @@ import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 import { CSSProperties, useEffect, useRef, useState } from 'react'
-import Modal from '../Modal/Modal'
+import Modal from './modal/Modal'
 import { Button } from '@/stories/Button/ButtonStandard'
-import Comments from '../Comments/Comments'
+import Comments from './comments/Comments'
 import CommentSlide from '@/stories/CommentSlide/CommentSlide'
 import { IAdminPanelMovie } from '@/types/Component/IMovie'
 import { useTranslation } from 'next-i18next'
@@ -36,7 +36,7 @@ interface ICommentsCarousel {
 
 const CommentsCarousel = ({ film, refreshComments, setCommentsRefresh }: ICommentsCarousel) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const { t } = useTranslation()
+    const { t } = useTranslation('film')
     const prevRef = useRef(null)
     const nextRef = useRef(null)
 
