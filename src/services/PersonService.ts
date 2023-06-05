@@ -1,8 +1,6 @@
 import { IActor, IAdminPanelMovie } from '@/types/Component/IMovie'
 import { Person } from '@/types/Response/PersonResponse'
-import axios from 'axios'
-
-const serverURL = process.env.DEPLOY_API_URL
+import { $api } from '@/lib/axios'
 
 interface GetActorResponse {
     person: IActor
@@ -13,13 +11,11 @@ interface GetActorResponse {
 
 export default class PersonService {
     static getPersonByName = async (position: string, name: string) => {
-        const response = await axios.get<Person[]>(
-            `${serverURL}/persons/name/search?position=${position}&personName=${name}`
-        )
+        const response = await $api.get<Person[]>(`/persons/name/search?position=${position}&personName=${name}`)
         return response.data
     }
     static getPersonById = async (id: string) => {
-        const response = await axios.get<GetActorResponse>(`${serverURL}/persons/${id}`)
+        const response = await $api.get<GetActorResponse>(`/persons/${id}`)
         return response.data
     }
 }
