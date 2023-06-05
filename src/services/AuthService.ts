@@ -2,7 +2,6 @@ import $auth from '@/http/auth'
 import parseJwt from '@/util/parseJwt'
 import axios from 'axios'
 import { AuthResponse, AuthError } from '@/types/Response/AuthResponse'
-import { setCookie, destroyCookie } from 'nookies'
 
 export default class AuthService {
     static isAuth = false
@@ -14,13 +13,7 @@ export default class AuthService {
                 email,
                 password,
             })
-            const { refreshToken, accessToken } = response.data
-
-            setCookie(null, 'refreshToken', refreshToken, {
-                maxAge: 30 * 24 * 60 * 60,
-                path: '/',
-            })
-
+            const { accessToken } = response.data
             this.setToken(accessToken)
         } catch (e) {
             if (axios.isAxiosError(e)) {
@@ -49,14 +42,7 @@ export default class AuthService {
             const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/refreshAccessToken`, {
                 withCredentials: true,
             })
-
-            const { refreshToken, accessToken } = response.data
-
-            setCookie(null, 'refreshToken', refreshToken, {
-                maxAge: 30 * 24 * 60 * 60,
-                path: '/',
-            })
-
+            const { accessToken } = response.data
             this.setToken(accessToken)
         } catch (e) {
             console.log(e)
@@ -73,13 +59,7 @@ export default class AuthService {
                 email,
                 password,
             })
-            const { refreshToken, accessToken } = response.data
-
-            setCookie(null, 'refreshToken', refreshToken, {
-                maxAge: 30 * 24 * 60 * 60,
-                path: '/',
-            })
-
+            const { accessToken } = response.data
             this.setToken(accessToken)
         } catch (e) {
             return { status: 500, message: e?.toString() }
@@ -97,7 +77,6 @@ export default class AuthService {
 
     private static removeToken() {
         localStorage.removeItem('token')
-        destroyCookie(null, 'refreshToken')
         this.isAuth = false
         this.isAdmin = false
     }
