@@ -1,0 +1,66 @@
+@import '@/styles/vars.scss';
+
+.footerMobile {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    bottom: 0;
+    height: 48px;
+    background-color: $footer-bg-color;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+@media screen and (max-width: 600px) {
+    .wrapper {
+        padding: 0 32px;
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    li {
+        font-size: 10px;
+        padding-top: 8px;
+        a,
+        div {
+            color: $link-color;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            width: auto;
+            flex-basis: 100%;
+            flex-shrink: 1;
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        svg {
+            stroke: $link-color;
+            margin-bottom: 5px;
+            width: 22px;
+            height: 22px;
+            stroke-width: 3;
+            background: none;
+
+        }
+        &.active {
+            svg {
+                stroke: $accent-color;
+                -webkit-filter: drop-shadow(
+                    0px -10px 10px rgba(255, 255, 255, 0.7)
+                );
+                filter: drop-shadow(0px -5px 10px rgba(255, 255, 255, 0.7));
+            }
+            a {
+                color: $accent-color;
+            }
+        }
+    }
+}

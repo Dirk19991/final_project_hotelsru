@@ -1,5 +1,5 @@
-import AdminPanelFilm from '@/components/AdminPanelEdit/AdminPanelEdit'
-import Layout from '@/components/Layout/Layout'
+import AdminPanelEdit from '@/components/admin/AdminPanelEdit/AdminPanelEdit'
+import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 
 const EditPage = () => {
@@ -8,7 +8,7 @@ const EditPage = () => {
             <Head>
                 <title>{'Админ панель'}</title>
             </Head>
-            <AdminPanelFilm />
+            <AdminPanelEdit />
         </Layout>
     )
 }

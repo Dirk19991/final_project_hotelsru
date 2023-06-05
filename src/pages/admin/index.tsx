@@ -1,6 +1,6 @@
-import AdminPanel from '@/components/AdminPanel/AdminPanel'
+import AdminPanel from '@/components/admin/AdminPanel'
 import Head from 'next/head'
-import Layout from '@/components/Layout/Layout'
+import Layout from '@/components/layout/Layout'
 
 export default function Admin() {
     return (

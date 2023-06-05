@@ -67,7 +67,7 @@ const CommentForm = ({ commentId, movieId, toggleIsAnswerOpen, setCommentsRefres
                     onChange={handleChange}
                 />
                 <label className={styles.float} htmlFor="comment">
-                    {t("leaveAComment")}
+                    {t('leaveAComment')}
                 </label>
             </label>
             <Button onClick={handleSubmit} type="watchSubscription" label={t('send')} />

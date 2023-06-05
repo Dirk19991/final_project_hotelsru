@@ -1,5 +1,5 @@
-import AdminPanelGenre from '@/components/AdminPanelGenre/AdminPanelGenre'
-import Layout from '@/components/Layout/Layout'
+import AdminPanelGenre from '@/components/admin/AdminPanelGenre/AdminPanelGenre'
+import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 
 const GenrePage = () => {

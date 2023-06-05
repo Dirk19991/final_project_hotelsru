@@ -2,7 +2,7 @@ import styles from './AdminPanelGenre.module.scss'
 import Select, { SingleValue } from 'react-select'
 import { useEffect, useState } from 'react'
 
-import { PORT } from '../AdminPanel/AdminPanel'
+import { PORT } from '../AdminPanel'
 import { IGenre } from '@/types/Component/IMovie'
 import $auth from '@/http/auth'
 

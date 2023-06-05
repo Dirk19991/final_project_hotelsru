@@ -1,5 +1,5 @@
-import AdminPanelAdd from '@/components/AdminPanelAdd/AdminPanelAdd'
-import Layout from '@/components/Layout/Layout'
+import AdminPanelAdd from '@/components/admin/AdminPanelAdd/AdminPanelAdd'
+import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 
 const AddPage = () => {
