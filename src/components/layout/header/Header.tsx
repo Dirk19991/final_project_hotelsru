@@ -155,7 +155,6 @@ const Header: FC<Header> = ({ navigation }) => {
                                                 />
                                             )}
                                             {currentTabId === 6 && <HeaderDropdownTV />}
-
                                             {currentTabId === 10 && <HeaderDropdownSubscription />}
                                             {currentTabId === 11 && (
                                                 <HeaderDropdownProfile
