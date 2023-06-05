@@ -1,0 +1,26 @@
+@import '@/styles/vars.scss';
+
+.wrapper {
+    padding: 120px 160px;
+    color: $accent-color;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: 60px;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    > h2 {
+        text-align: left;
+        margin-bottom: 20px;
+        font-size: 40px;
+        line-height: 44px;
+        font-weight: 900;
+    }
+}
+.commentsList {
+    grid-column: 1 / 3;
+}
