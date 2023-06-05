@@ -27,6 +27,7 @@ const nextConfig = {
     i18n,
     env: {
         DEPLOY_API_URL: 'http://193.32.203.137:4000',
+        VERCEL_FORCE_NO_BUILD_CACHE: 1,
     },
 }
 
