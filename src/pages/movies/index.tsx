@@ -1,4 +1,4 @@
-import Filters from '@/components/Filters/Filters'
+import Filters from '@/components/filters/Filters'
 import MoviesTitle from '@/components/MoviesTitle/MoviesTitle'
 import Breadcrumbs from '@/components/Breakcrumbs/Breadcrumbs'
 import { FC } from 'react'

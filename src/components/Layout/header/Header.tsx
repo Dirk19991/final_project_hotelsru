@@ -7,7 +7,7 @@ import HeaderDropdownFilters from './HeaderDropdownFilters/HeaderDropdownFilters
 import HeaderDropdownProfile from './HeaderDropdownProfile/HeaderDropdownProfile'
 import HeaderDropdownSubscription from './HeaderDropdownSubscription/HeaderDropdownSubscription'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import NavigationBar from '@/components/NavigationBar/NavigationBar'
+import NavigationBar from './NavigationBar/NavigationBar'
 import { ButtonRound } from '@/stories/Button/ButtonRound'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'

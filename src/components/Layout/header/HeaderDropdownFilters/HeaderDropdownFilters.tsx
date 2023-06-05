@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import styles from './HeaderDropdownFilters.module.scss'
 import Link from 'next/link'
-import SubsciriptionWidget from '@/components/SubscriptionWidget/SubsciriptionWidget'
+import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
 import { useTranslation } from 'next-i18next'
 import { Subcategory, Category } from '@/types/Response/NavigationResponse'
 

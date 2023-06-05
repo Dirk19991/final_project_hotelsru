@@ -8,7 +8,7 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next'
 import AuthService from '@/services/AuthService'
-import AlternativeHeader from '../AlternativeHeader/AlternativeHeader'
+import AlternativeHeader from '../layout/header/AlternativeHeader/AlternativeHeader'
 
 interface IAuthModal {
     close: () => void

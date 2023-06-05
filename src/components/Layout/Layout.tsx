@@ -2,7 +2,7 @@ import Header from './header/Header'
 import Footer from './footer/Footer'
 import React, { ReactNode, FC } from 'react'
 import { useRouter } from 'next/router'
-import AlternativeHeader from '../AlternativeHeader/AlternativeHeader'
+import AlternativeHeader from './header/AlternativeHeader/AlternativeHeader'
 import NavigationResponse from '@/types/Response/NavigationResponse'
 
 interface LayoutProps {

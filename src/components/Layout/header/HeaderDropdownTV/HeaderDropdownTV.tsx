@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import styles from './HeaderDropdownTV.module.scss'
-import SubsciriptionWidget from '@/components/SubscriptionWidget/SubsciriptionWidget'
+import SubsciriptionWidget from '../SubscriptionWidget/SubsciriptionWidget'
 import { Button } from '@/stories/Button/ButtonStandard'
 import Link from 'next/link'
 import ChannelsList from './ChannelsList/ChannelsList'
