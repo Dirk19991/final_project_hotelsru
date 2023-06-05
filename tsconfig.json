@@ -5,7 +5,7 @@
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
-        "forceConsistentCasingInFileNames": true,
+        "forceConsistentCasingInFileNames": false,
         "noEmit": true,
         "esModuleInterop": true,
         "module": "esnext",
@@ -18,12 +18,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "next-i18next.config.js",
-        "src/context/i18n.js"
-    ],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next-i18next.config.js", "src/context/i18n.js"],
     "exclude": ["node_modules"]
 }
