@@ -1,5 +1,5 @@
 import { $api } from '@/lib/axios'
-import MoviesResponse, { Movies } from '@/types/Response/MoviesResponse'
+import MoviesResponse from '@/types/Response/MoviesResponse'
 import MovieResponse from '@/types/Response/MovieResponse'
 
 interface IQueryObject {
