@@ -5,7 +5,7 @@ import cn from 'classnames'
 import Link from 'next/link'
 
 interface CreatorMedallion {
-    size: string
+    size: 'big' | 'small'
     name: string
     src: string
     href: string
@@ -16,7 +16,7 @@ const CreatorMedallion: FC<CreatorMedallion> = ({ size, name, src, href }) => {
     const [isHover, setIsHover] = useState<boolean>(false)
 
     return (
-        <Link href={href}>
+        <Link href={href} data-testid="film-creator-medallion">
             <div
                 className={styles.wrapper}
                 onMouseEnter={() => setIsHover(true)}

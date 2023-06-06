@@ -54,7 +54,7 @@ const CreatorsList: FC<CreatorsList> = ({ data }) => {
     }, [cachedOnResize])
 
     return (
-        <div>
+        <div data-testid="film-creator-list">
             <h2 className={styles.title} onClick={() => setIsModalOpened(true)}>
                 {t('actorsAndCreators')}
             </h2>
@@ -73,7 +73,11 @@ const CreatorsList: FC<CreatorsList> = ({ data }) => {
                         </li>
                     )
                 })}
-                <li className={styles.more} onClick={() => setIsModalOpened(true)}>
+                <li
+                    className={styles.more}
+                    onClick={() => setIsModalOpened(true)}
+                    data-testid="film-creator-list-button"
+                >
                     <span className={styles.more__text}>{t('more')}</span>
                 </li>
             </ul>

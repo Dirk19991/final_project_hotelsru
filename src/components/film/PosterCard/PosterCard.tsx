@@ -20,7 +20,7 @@ const PosterCard: FC<PosterCard> = ({ film }) => {
     const movieName = i18n.language === 'ru' ? nameRu : nameEn
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-testid="film-postercard">
             <div className={styles.image}>
                 <Image src={poster} alt={'Постер'} fill className={styles.image__background} />
             </div>

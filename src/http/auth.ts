@@ -19,7 +19,7 @@ $auth.interceptors.response.use(
         if (error.response.status == 401 && error.config && !error.config._isRetry) {
             originalRequest._isRetry = true
             try {
-                const response = await axios.post(`${process.env.DEPLOY_API_URL}/profile/refreshAccessToken`)
+                const response = await axios.post(`${process.env.DEPLOY_API_URL}/refreshAccessToken`)
                 localStorage.setItem('token', response.data.accessToken)
                 return $auth.request(originalRequest)
             } catch (e) {

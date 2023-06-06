@@ -19,7 +19,7 @@ const Header: FC<Header> = ({ year, title, genres, duration }) => {
     const time = toHoursAndMinutes(duration, i18n)
 
     return (
-        <div className={cn(styles.wrapper, {})}>
+        <div className={cn(styles.wrapper, {})} data-testid="film-header">
             <h2 className={styles.name}>
                 {title} ({t('movie')} {year})
             </h2>

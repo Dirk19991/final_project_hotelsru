@@ -20,6 +20,8 @@ interface Film {
 }
 
 const Film: FC<Film> = ({ movie }) => {
+    console.log('movie', movie)
+
     const isMobile = useMediaQuery('(max-width: 1159px)')
     const { t, i18n } = useTranslation(['film'])
 

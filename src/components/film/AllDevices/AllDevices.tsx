@@ -13,7 +13,7 @@ const AllDevices: FC<IAllDevices> = ({ name, src }) => {
     const { t } = useTranslation(['film'])
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-testid="film-all-devices">
             <div className={styles.info}>
                 <h2 className={styles.info__title}>{`${t('titleStart')} «${name}» ${t('titleEnd')}`}</h2>
                 <h3 className={styles.info__subtitle}>{t('subtitle')}</h3>

@@ -10,7 +10,7 @@ interface IBreadcrumbs {
 
 const Breadcrumbs: FC<IBreadcrumbs> = ({ items, bold }) => {
     return (
-        <ul className={cn(styles.list, { [styles.list_bold]: bold })}>
+        <ul className={cn(styles.list, { [styles.list_bold]: bold })} data-testid="film-breadcrumbs">
             {items.map((item, index) => (
                 <li key={index}>
                     <Link href={item.href}>{item.name}</Link>
