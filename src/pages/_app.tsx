@@ -4,8 +4,9 @@ import type { AppProps } from 'next/app'
 import { Open_Sans } from 'next/font/google'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 import AuthService from '@/services/AuthService'
+import { AuthContext } from '@/types/Component/Context'
 
 const openSans = Open_Sans({
     weight: ['300', '400', '500', '700'],
@@ -14,6 +15,9 @@ const openSans = Open_Sans({
 })
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
+    const [isAuth, setIsAuth] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
+
     useEffect(() => {
         const refresh = async () => await AuthService.checkAuth()
         if (localStorage.getItem('token')) {
@@ -38,7 +42,11 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                         font-family: ${openSans.style.fontFamily};
                     }
                 `}</style>
-                <Component {...pageProps} />
+                <AuthContext.Provider
+                    value={{ isAuth: isAuth, setIsAuth: setIsAuth, isAdmin: isAdmin, setIsAdmin: setIsAdmin }}
+                >
+                    <Component {...pageProps} />
+                </AuthContext.Provider>
             </>
         </>
     )

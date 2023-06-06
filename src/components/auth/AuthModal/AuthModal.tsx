@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useContext, useState } from 'react'
 import styles from './AuthModal.module.scss'
 import Link from 'next/link'
 import { Button } from '@/stories/Button/ButtonStandard'
@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next'
 import AuthService from '@/services/AuthService'
 import AlternativeHeader from '@/components/layout/header/AlternativeHeader/AlternativeHeader'
+import { AuthContext } from '@/types/Component/Context'
+import parseJwt from '@/util/parseJwt'
 
 interface IAuthModal {
     close: () => void
@@ -19,6 +21,8 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
     const [password, setPassword] = useState<string>('')
     const [errorMes, setErrorMes] = useState('')
 
+    const auth = useContext(AuthContext)
+
     const { t } = useTranslation(['header'])
 
     const onContinueClick = async () => {
@@ -26,13 +30,11 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
             return
         }
 
-        const result = await AuthService.loginOrRegister(email, password)
-
-        if (result?.status === 401) {
+        const response = await AuthService.login(email, password)
+        if (response?.status === 401) {
             setErrorMes(t('auth.invalidPassword').toString())
-        }
-        if (AuthService.isAuth) {
-            close()
+        } else {
+            afterLogin()
         }
     }
 
@@ -51,16 +53,21 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
 
     const onGoogleClick = () => {
         AuthService.authGoogle()
-        if (AuthService.isAuth) {
-            close()
-        }
+        afterLogin()
     }
 
     const onVKClick = () => {
         AuthService.authVK()
-        if (AuthService.isAuth) {
-            close()
+        afterLogin()
+    }
+
+    const afterLogin = () => {
+        auth?.setIsAuth(true)
+        const data = parseJwt(localStorage.getItem('token') || '')
+        if (data && data.roles.includes('ADMIN')) {
+            auth?.setIsAdmin(true)
         }
+        close()
     }
 
     return (
@@ -110,11 +117,11 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
                                     testId="login-button"
                                 />
                                 <div className={styles.socials}>
-                                    <button onClick={onGoogleClick}>
+                                    <button onClick={onGoogleClick} type="button">
                                         <Image src="/icons/google.svg" alt={'google-icon'} width={20} height={20} />
                                         Google
                                     </button>
-                                    <button onClick={onVKClick}>
+                                    <button onClick={onVKClick} type="button">
                                         <Image src="/icons/vk.svg" alt={'vk-icon'} width={20} height={20} />
                                         VK
                                     </button>

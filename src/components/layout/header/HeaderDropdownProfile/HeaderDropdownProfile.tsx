@@ -1,8 +1,9 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import styles from './HeaderDropdownProfile.module.scss'
 import Link from 'next/link'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'next-i18next'
+import { AuthContext } from '@/types/Component/Context'
 import AuthService from '@/services/AuthService'
 
 interface IHeaderDropdownProfile {
@@ -11,6 +12,14 @@ interface IHeaderDropdownProfile {
 
 const HeaderDropdownProfile: FC<IHeaderDropdownProfile> = ({ openAuthModal }) => {
     const { t } = useTranslation(['header'])
+    const auth = useContext(AuthContext)
+
+    const onLogoutClick = () => {
+        AuthService.logout().then(() => {
+            auth?.setIsAdmin(false)
+            auth?.setIsAuth(false)
+        })
+    }
 
     return (
         <div className={styles.wrapper} data-testid="dropdown-profile">
@@ -183,9 +192,9 @@ const HeaderDropdownProfile: FC<IHeaderDropdownProfile> = ({ openAuthModal }) =>
                 </ul>
             </div>
             <div className={styles.sideContent}>
-                {AuthService.isAuth ? (
+                {auth?.isAuth ? (
                     <>
-                        <Button label={t('logout')} onClick={() => AuthService.logout()} type="register" />
+                        <Button label={t('logout')} onClick={onLogoutClick} type="register" />
                     </>
                 ) : (
                     <>
