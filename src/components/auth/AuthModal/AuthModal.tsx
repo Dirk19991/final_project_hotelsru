@@ -71,7 +71,7 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
     }
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-testid="auth-modal">
             <div className={styles.modal}>
                 <AlternativeHeader title={t('auth.loginTitle')} close={close} />
                 <div className={styles.auth}>

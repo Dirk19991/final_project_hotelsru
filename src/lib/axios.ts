@@ -41,4 +41,4 @@ const $api = axios.create({
     baseURL,
 })
 
-export { $auth, $api, $apiWithCredentials }
+export { $auth, $api, $apiWithCredentials, axios }
