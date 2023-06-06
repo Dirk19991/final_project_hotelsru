@@ -3,7 +3,7 @@ import styles from './AdminPanelDelete.module.scss'
 import React from 'react'
 import { IAdminPanelMovie, IAdminPanelData } from '@/types/Component/IMovie'
 import { PORT } from '../AdminPanel'
-import $auth from '@/http/auth'
+import { $auth } from '@/lib/axios'
 
 const AdminPanelDelete = () => {
     const [inputValue, setInputValue] = useState<string>('')

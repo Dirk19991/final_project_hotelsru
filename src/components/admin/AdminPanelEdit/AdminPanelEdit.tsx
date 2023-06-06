@@ -4,7 +4,7 @@ import React from 'react'
 import Select, { MultiValue } from 'react-select'
 import { IAdminPanelMovie, IAdminPanelData, IGenre } from '@/types/Component/IMovie'
 import { PORT } from '../AdminPanel'
-import $auth from '@/http/auth'
+import { $auth } from '@/lib/axios'
 
 const AdminPanelEdit = () => {
     const [inputValue, setInputValue] = useState<string>('')

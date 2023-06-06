@@ -7,7 +7,7 @@ import { IActor, IAdminPanelMovie, IPerson } from '@/types/Component/IMovie'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { useTranslation } from 'next-i18next'
 import getFilmWord from '@/util/getFilmWord'
-import $auth from '@/http/auth'
+import { $auth } from '@/lib/axios'
 import { PORT } from '../admin/AdminPanel'
 
 interface PersonProps {
