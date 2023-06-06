@@ -2,6 +2,8 @@ import styles from './CommentForm.module.scss'
 import { ChangeEvent, useState } from 'react'
 import { Button } from '@/stories/Button/ButtonStandard'
 import { useTranslation } from 'react-i18next'
+import parseJwt from '@/util/parseJwt'
+import { $auth } from '@/lib/axios'
 
 const url = process.env.DEPLOY_API_URL
 
@@ -31,22 +33,16 @@ const CommentForm = ({ commentId, movieId, toggleIsAnswerOpen, setCommentsRefres
     const handleSubmit = (e: React.FormEvent<HTMLFormElement> | void) => {
         if (e) e.preventDefault()
 
+        const data = parseJwt(localStorage.getItem('token') || '')
+
         const newComment = {
             author: {
-                userId: 1, //поменять на  userId
+                userId: data?.userId,
             },
             text: comment,
         }
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newComment),
-        }
-
-        fetch(`${url}/comments?${hand}`, requestOptions)
-            .then((response) => response.json())
-            .catch((error) => console.error(error))
+        $auth.post(`${url}/comments?${hand}`, newComment)
 
         setCommentsRefresh(true)
         setComment('')
