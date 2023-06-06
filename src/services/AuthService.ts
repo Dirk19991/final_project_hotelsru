@@ -2,7 +2,6 @@ import $auth from '@/http/auth'
 import parseJwt from '@/util/parseJwt'
 import axios from 'axios'
 import { AuthResponse, AuthError } from '@/types/Response/AuthResponse'
-import { setCookie, destroyCookie } from 'nookies'
 
 export default class AuthService {
     static isAuth = false
@@ -14,14 +13,7 @@ export default class AuthService {
                 email,
                 password,
             })
-            const { refreshToken, accessToken } = response.data
-
-            setCookie(null, 'refreshToken', refreshToken, {
-                maxAge: 30 * 24 * 60 * 60,
-                path: '/',
-            })
-
-            this.setToken(accessToken)
+            this.setToken(response.data.accessToken, response.data.refreshToken)
         } catch (e) {
             if (axios.isAxiosError(e)) {
                 const code = e?.response?.data?.statusCode
@@ -49,15 +41,29 @@ export default class AuthService {
             const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/refreshAccessToken`, {
                 withCredentials: true,
             })
+            this.setToken(response.data.accessToken, response.data.refreshToken)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
-            const { refreshToken, accessToken } = response.data
-
-            setCookie(null, 'refreshToken', refreshToken, {
-                maxAge: 30 * 24 * 60 * 60,
-                path: '/',
+    static async authVK() {
+        try {
+            const response = await axios.get(`${process.env.DEPLOY_API_URL}/oauth/vk`, {
+                withCredentials: true,
             })
+            this.setToken(response.data.accessToken, response.data.refreshToken)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
-            this.setToken(accessToken)
+    static async authGoogle() {
+        try {
+            const response = await axios.get(`${process.env.DEPLOY_API_URL}/oauth/google`, {
+                withCredentials: true,
+            })
+            this.setToken(response.data.accessToken, response.data.refreshToken)
         } catch (e) {
             console.log(e)
         }
@@ -73,31 +79,23 @@ export default class AuthService {
                 email,
                 password,
             })
-            const { refreshToken, accessToken } = response.data
-
-            setCookie(null, 'refreshToken', refreshToken, {
-                maxAge: 30 * 24 * 60 * 60,
-                path: '/',
-            })
-
-            this.setToken(accessToken)
+            this.setToken(response.data.accessToken, response.data.refreshToken)
         } catch (e) {
             return { status: 500, message: e?.toString() }
         }
     }
 
-    private static setToken(token: string) {
-        localStorage.setItem('token', token)
+    private static setToken(access: string, refresh: string) {
+        localStorage.setItem('token', access)
         this.isAuth = true
-        const data = parseJwt(token)
-        if (data && data.roles.includes('admin')) {
+        const data = parseJwt(access)
+        if (data && data.roles.includes('ADMIN')) {
             this.isAdmin = true
         }
     }
 
     private static removeToken() {
         localStorage.removeItem('token')
-        destroyCookie(null, 'refreshToken')
         this.isAuth = false
         this.isAdmin = false
     }

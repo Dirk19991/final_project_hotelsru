@@ -49,9 +49,19 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
         return true
     }
 
-    const onGoogleClick = () => {}
+    const onGoogleClick = () => {
+        AuthService.authGoogle()
+        if (AuthService.isAuth) {
+            close()
+        }
+    }
 
-    const onVKClick = () => {}
+    const onVKClick = () => {
+        AuthService.authVK()
+        if (AuthService.isAuth) {
+            close()
+        }
+    }
 
     return (
         <div className={styles.wrapper}>
