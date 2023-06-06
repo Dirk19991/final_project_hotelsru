@@ -193,24 +193,21 @@ const HeaderDropdownProfile: FC<IHeaderDropdownProfile> = ({ openAuthModal }) =>
             </div>
             <div className={styles.sideContent}>
                 {auth?.isAuth ? (
-                    <>
-                        <Button label={t('logout')} onClick={onLogoutClick} type="register" />
-                    </>
+                    <Button label={t('logout')} onClick={onLogoutClick} type="register" />
                 ) : (
-                    <>
-                        <Button label={t('logInOrSignUp')} onClick={openAuthModal} type="register" />
-                        <div className={styles.links}>
-                            <ul>
-                                <li>
-                                    <Link href="https://www.ivi.ru/profile/settings">{t('settings')}</Link>
-                                </li>
-                                <li>
-                                    <Link href="https://ask.ivi.ru/">{t('help')}</Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </>
+                    <Button label={t('logInOrSignUp')} onClick={openAuthModal} type="register" />
                 )}
+
+                <div className={styles.links}>
+                    <ul>
+                        <li>
+                            <Link href="https://www.ivi.ru/profile/settings">{t('settings')}</Link>
+                        </li>
+                        <li>
+                            <Link href="https://ask.ivi.ru/">{t('help')}</Link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     )
