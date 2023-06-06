@@ -1,5 +1,5 @@
 describe('Movies page testing', () => {
-    it('Visits the movies page', () => {
+    it('visits movies page', () => {
         cy.visit('/movies')
     })
 })
