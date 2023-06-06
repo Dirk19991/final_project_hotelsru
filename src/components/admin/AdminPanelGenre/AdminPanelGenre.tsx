@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { PORT } from '../AdminPanel'
 import { IGenre } from '@/types/Component/IMovie'
-import $auth from '@/http/auth'
+import { $auth } from '@/lib/axios'
 
 const AdminPanelGenre = () => {
     const [allGenres, setAllGenres] = useState<{ value: string; label: string; id: number }[] | null>(null)

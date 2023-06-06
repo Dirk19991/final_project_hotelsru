@@ -1,5 +1,4 @@
-import $auth from '@/http/auth'
-import axios from 'axios'
+import { $auth, axios, $apiWithCredentials } from '@/lib/axios'
 import { AuthResponse, AuthError } from '@/types/Response/AuthResponse'
 
 export default class AuthService {
@@ -34,9 +33,7 @@ export default class AuthService {
 
     static async checkAuth() {
         try {
-            const response = await axios.post<AuthResponse>(`${process.env.DEPLOY_API_URL}/refreshAccessToken`, {
-                withCredentials: true,
-            })
+            const response = await $apiWithCredentials.post<AuthResponse>(`/refreshAccessToken`)
             localStorage.setItem('token', response.data.accessToken)
         } catch (e) {
             console.log(e)
@@ -45,9 +42,7 @@ export default class AuthService {
 
     static async authVK() {
         try {
-            const response = await axios.get(`${process.env.DEPLOY_API_URL}/oauth/vk`, {
-                withCredentials: true,
-            })
+            const response = await $apiWithCredentials.get(`/oauth/vk`)
             localStorage.setItem('token', response.data.accessToken)
         } catch (e) {
             console.log(e)
@@ -56,9 +51,7 @@ export default class AuthService {
 
     static async authGoogle() {
         try {
-            const response = await axios.get(`${process.env.DEPLOY_API_URL}/oauth/google`, {
-                withCredentials: true,
-            })
+            const response = await $apiWithCredentials.get(`/oauth/google`)
             localStorage.setItem('token', response.data.accessToken)
         } catch (e) {
             console.log(e)
