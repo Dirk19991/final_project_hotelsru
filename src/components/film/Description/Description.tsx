@@ -15,17 +15,14 @@ const Description: FC<IDescription> = ({ text }) => {
 
     useEffect(() => {
         if (descriptionRef.current) {
-            if (
-                descriptionRef.current.scrollHeight <=
-                descriptionRef.current.clientHeight
-            ) {
+            if (descriptionRef.current.scrollHeight <= descriptionRef.current.clientHeight) {
                 setIsShort(true)
             }
         }
     }, [text])
 
     return (
-        <div>
+        <div data-testid="film-description">
             <div
                 className={cn(styles.description, {
                     [styles.description_closed]: !detailsOpened,
@@ -36,6 +33,7 @@ const Description: FC<IDescription> = ({ text }) => {
             </div>
             {!isShort && (
                 <div
+                    data-testid="film-description-button"
                     onClick={() => setDetailsOpened(!detailsOpened)}
                     className={styles.details}
                 >

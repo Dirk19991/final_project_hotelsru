@@ -49,13 +49,14 @@ const CreatorModal: FC<CreatorModal> = ({ film, close }) => {
     ]
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-testid="film-creator-modal">
             <div className={styles.modal}>
                 <div
                     className={styles.back}
                     onMouseEnter={() => setIsBackHover(true)}
                     onMouseLeave={() => setIsBackHover(false)}
                     onClick={close}
+                    data-testid="film-creator-modal-close"
                 >
                     <FontAwesomeIcon
                         icon={faChevronLeft}

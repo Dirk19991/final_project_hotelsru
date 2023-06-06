@@ -12,7 +12,7 @@ interface IRating {
 const Rating: FC<IRating> = ({ ratingCount, fixedRating }) => {
     const { t } = useTranslation(['film'])
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-testid="film-rating">
             <ButtonRating fontSize={25} height={64} rating={fixedRating} width={64} />
             <div className={styles.description}>
                 <div className={styles.title}>{t('iviRatingNoColon')}</div>
