@@ -18,44 +18,39 @@ const NavigationBar: FC<INavigationBar> = ({ handleMouseOver }) => {
     const { t } = useTranslation(['common'])
 
     const navLinks: INavLink[] = [
-        { id: 1, name: t('myIvi'), href: '', expandable: false },
+        { id: 1, name: t('myIvi'), href: '/', expandable: false },
         {
             id: 2,
             name: t('whatsNew'),
-            href: 'new',
+            href: 'https://www.ivi.ru/new',
             expandable: false,
         },
         {
             id: 3,
             name: t('movies'),
-            href: 'movies',
+            href: '/movies',
             expandable: true,
         },
         {
             id: 4,
             name: t('tvSeries'),
-            href: 'series',
+            href: 'https://www.ivi.ru/series',
             expandable: true,
         },
         {
             id: 5,
             name: t('cartoons'),
-            href: 'animation',
+            href: 'https://www.ivi.ru/animation',
             expandable: true,
         },
-        { id: 6, name: 'TV+', href: 'tvplus', expandable: true },
+        { id: 6, name: 'TV+', href: 'https://www.ivi.ru/tvplus', expandable: true },
     ]
 
     return (
         <ul className={styles.menu} data-testid="navigation-bar">
             {navLinks.map(({ id, name, href, expandable }: INavLink) => (
                 <li key={id}>
-                    <Link
-                        href={`/${href}`}
-                        title={name}
-                        onMouseOver={() => handleMouseOver(id, expandable)}
-                        role="link"
-                    >
+                    <Link href={`${href}`} title={name} onMouseOver={() => handleMouseOver(id, expandable)} role="link">
                         {name}
                     </Link>
                 </li>
