@@ -6,12 +6,12 @@ import useMediaQuery from '@/hooks/useMediaQuery'
 import styles from './Footer.module.scss'
 import { useRouter } from 'next/router'
 import { Button } from '@/stories/Button/ButtonStandard'
-import { AuthContext } from '@/types/Component/Context'
+import AuthContext from '@/types/Component/Context'
 
 const Footer = () => {
     const matchesDesktopSize = useMediaQuery('(min-width: 1160px)')
     const { push } = useRouter()
-    const auth = useContext(AuthContext)
+    const { isAdmin } = useContext(AuthContext)
 
     return (
         <footer className={styles.footer}>
@@ -19,7 +19,7 @@ const Footer = () => {
             {matchesDesktopSize && (
                 <div className="container">
                     <FooterNavigation />
-                    {auth?.isAdmin && <Button type="showMore" label="Админ-панель" onClick={() => push('/admin')} />}
+                    {isAdmin && <Button type="showMore" label="Админ-панель" onClick={() => push('/admin')} />}
                     <FooterContacts />
                 </div>
             )}

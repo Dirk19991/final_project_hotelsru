@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next'
 import AuthService from '@/services/AuthService'
 import AlternativeHeader from '@/components/layout/header/AlternativeHeader/AlternativeHeader'
-import { AuthContext } from '@/types/Component/Context'
+import AuthContext from '@/types/Component/Context'
 import parseJwt from '@/util/parseJwt'
 
 interface IAuthModal {
@@ -21,7 +21,7 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
     const [password, setPassword] = useState<string>('')
     const [errorMes, setErrorMes] = useState('')
 
-    const auth = useContext(AuthContext)
+    const { isAuth, isAdmin, setIsAdmin, setIsAuth } = useContext(AuthContext)
 
     const { t } = useTranslation(['header'])
 
@@ -62,10 +62,10 @@ const AuthModal: FC<IAuthModal> = ({ close }) => {
     }
 
     const afterLogin = () => {
-        auth?.setIsAuth(true)
+        setIsAuth(true)
         const data = parseJwt(localStorage.getItem('token') || '')
         if (data && data.roles.includes('ADMIN')) {
-            auth?.setIsAdmin(true)
+            setIsAdmin(true)
         }
         close()
     }
