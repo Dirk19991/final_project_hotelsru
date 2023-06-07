@@ -1,10 +1,10 @@
-import { Context, Dispatch, SetStateAction, createContext } from 'react'
+import { createContext } from 'react'
 
-interface AuthContextData {
-    isAuth: boolean
-    isAdmin: boolean
-    setIsAuth: Dispatch<SetStateAction<boolean>>
-    setIsAdmin: Dispatch<SetStateAction<boolean>>
-}
+const AuthContext = createContext({
+    isAuth: false,
+    setIsAuth: (auth: boolean) => {},
+    isAdmin: false,
+    setIsAdmin: (auth: boolean) => {},
+})
 
-export const AuthContext = createContext<AuthContextData | null>(null)
+export default AuthContext
