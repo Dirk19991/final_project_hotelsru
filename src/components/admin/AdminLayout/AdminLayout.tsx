@@ -1,13 +1,17 @@
-import { FC, ReactNode, useContext, useEffect, useState } from 'react'
-import AuthContext from '@/types/Component/Context'
+import { FC, ReactNode, useEffect, useState } from 'react'
 import styles from './AdminLayout.module.scss'
+import parseJwt from '@/util/parseJwt'
 
 interface AdminLayoutProps {
     children: ReactNode
 }
 
 const AdminLayout: FC<AdminLayoutProps> = ({ children }) => {
-    const { isAdmin } = useContext(AuthContext)
+    const [isAdmin, setIsAdmin] = useState(false)
+    useEffect(() => {
+        const data = parseJwt(localStorage.getItem('token') || '')
+        setIsAdmin(data?.roles.includes('ADMIN') || false)
+    }, [])
 
     return (
         <>
